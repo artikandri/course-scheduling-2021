@@ -1,0 +1,52 @@
+Environment installation: 
+
+1. Install OpenJDK 11
+    - Linux: 
+        https://dev.to/mumu/windows-subsystem-for-linux-java-setup-2b2b?utm_source=pocket_mylist 
+        > sudo apt update
+        > sudo apt install openjdk-11-jdk
+    - Windows: 
+        https://knowledge.exlibrisgroup.com/Aleph/Knowledge_Articles/How_to_Download_and_Install_OpenJDK_11_on_Windows_10_PC_for_Aleph 
+
+2. Find out where JDK is installed.
+    - Linux:    
+        > readlink -f $(which java)
+        will output something similar to: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+
+3. Setup your environment variable and configure the PATH env variable
+    - Linux: 
+        > nano ~/.bashrc  OR vi ~/.bashrc  as ROOT user
+            will enable you to edit .bashrc file. 
+            Add this line to the end of the  file to add the JAVA_HOME variable to your env: 
+            export JAVA_HOME=/path/to/your/jdk/excluding/the/bin/folder
+            Example: 
+            export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+        > source ~/.bashrc
+            refresh the change in the terminal
+    - Windows:             
+
+4. Verify whether Java is installed already. 
+    > java --version
+
+5. Install maven. Maven is a build tool that you can use for compiling, running unit or integration tests, 
+    deploying you your code locally and remotely, etc. 
+    Linux: 
+    > sudo apt install maven 
+
+6. Verify whether maven is already installed. 
+    Linux: 
+    > mvn --version
+
+7. Build and run the project 
+    > mvn compile -e
+        will compile the project and show errors in case it fails
+    > mvn clean package
+        will build a clean package in the "target" folder in form of "jar" file
+    > java -jar {jar_file_name}.jar
+        will run the compiled file 
+
+
+
+
+    
+
