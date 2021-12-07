@@ -31,6 +31,8 @@ msbuild.err
 msbuild.wrn
 code/example/[Bb]in/
 code/example/[Oo]bj/
+code/[Bb]in/
+code/[Oo]bj/
 
 
 # Visual Studio 2015
