@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R+6AlcNfIYTXtxLpLMnvzGkV9qNXJMIVPdiLAmOo8Y9H8O87G0R9k0BFQlNWuau6vUZo9pbIwuYDPerb8HD/9A==",
+  "dgSpecHash": "W33KUTD/3Q2HcKgrrcDY+xRetIAV0Yzm+8M6K+GvPKVmgG0bUORTERsYaF8a4wsDgbsyzcvSONnk3wPBX3X5wQ==",
   "success": true,
-  "projectFilePath": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/course-scheduling-2021.csproj",
+  "projectFilePath": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/code/example/course-scheduling-2021.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

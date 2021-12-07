@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/course-scheduling-2021.csproj",
+      "projectUniqueName": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/code/example/course-scheduling-2021.csproj",
       "projectName": "course-scheduling-2021",
-      "projectPath": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/course-scheduling-2021.csproj",
+      "projectPath": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/code/example/course-scheduling-2021.csproj",
       "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/obj/",
+      "outputPath": "/home/artikandri/kuliah/AI-2021/course-scheduling-2021/code/example/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/root/.nuget/NuGet/NuGet.Config"
