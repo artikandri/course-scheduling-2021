@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace course_scheduling_2021
+namespace code
 {
     class Program
     {
