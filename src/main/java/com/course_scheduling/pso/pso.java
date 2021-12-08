@@ -1,3 +1,6 @@
+package com.course_scheduling.pso;
+// 08/12/2021: Added this so that the file structure comply with the rest of the code, feel free to delete this comment later
+
 /**
  *
  * @author Teddy Ferdinan
