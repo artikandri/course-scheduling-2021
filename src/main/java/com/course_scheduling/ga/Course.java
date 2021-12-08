@@ -16,17 +16,18 @@ public class Course {
 
     }
 
-    void setCourseData(int courseId, String courseName, int instructorId, int defaultDay, int fixedTimeSlot, int fixedRoom, int[] unavailableTime) {
+    public void setCourseData(int courseId, String courseName, int instructorId, int defaultDay, int fixedTimeSlot, int fixedRoom, int[] unavailableTime) {
         this.courseId = courseId; 
         this.courseName = courseName; 
         this.instructorId = instructorId; 
         this.defaultDay = defaultDay; 
         this.fixedTimeSlot = fixedTimeSlot; 
-        this.fixedRoom = fixedRoom; 
+        this.fixedRoom = fixedRoom;
         
         // checks unavailable time 
         if(ArrayUtils.isNotEmpty(unavailableTime)) {
             // do something
+
         }
     }
 
