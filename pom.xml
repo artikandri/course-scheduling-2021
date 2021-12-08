@@ -33,6 +33,12 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <!-- common-lang dependency -->
+    <dependency>
+        <groupId>commons-lang3</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>2.1</version>
+</dependency>
   </dependencies>
    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

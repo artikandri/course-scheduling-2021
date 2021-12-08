@@ -1,7 +1,8 @@
 package com.course_scheduling.app;
 
 /**
- * Hello world!
+ * Main class 
+ * Called in pom.xml
  *
  */
 public class App 
