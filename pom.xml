@@ -35,9 +35,9 @@
     </dependency>
     <!-- common-lang dependency -->
     <dependency>
-        <groupId>commons-lang3</groupId>
+        <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>2.1</version>
+        <version>3.0</version>
 </dependency>
   </dependencies>
    <properties>

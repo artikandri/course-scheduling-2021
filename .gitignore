@@ -1,4 +1,8 @@
-#Maven.gitignore
+
+# =====================================================================================
+# Maven.gitignore
+# =====================================================================================
+
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -11,7 +15,11 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
-#Java.gitignore
+
+# =====================================================================================
+# Java.gitignore
+# =====================================================================================
+
 # Compiled class file
 *.class
 

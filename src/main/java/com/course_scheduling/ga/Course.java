@@ -1,10 +1,10 @@
-package com.course_scheduling.app;
+package com.course_scheduling.ga;
 
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Course {
 
-    private int courseId; 
+    private int id; 
     private String courseName; 
     private int instructorId; 
     private int defaultDay; 

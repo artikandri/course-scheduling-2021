@@ -1,7 +1,7 @@
 package com.course_scheduling.app;
 
 /**
- * Main class 
+ * Main class
  * Called in pom.xml
  *
  */
