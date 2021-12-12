@@ -44,6 +44,11 @@ Environment installation:
         will build a clean package in the "target" folder in form of "jar" file
     > java -jar {jar_file_name}.jar
         will run the compiled file 
+    > mvn install -e
+        download & install dependencies defined in pom.xml
+    > mvn dependency:copy-dependencies
+        copy dependencies from M2_HOME folder (in Linux, usually located in /home/user_name/.m2/repository) to target/dependency folder
+        
 
 
 
