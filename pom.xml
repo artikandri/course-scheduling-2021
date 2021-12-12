@@ -15,7 +15,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.course_scheduling.app.App</mainClass>
+              <mainClass>com.course_scheduling.assets.DatasetProcessor</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -38,11 +38,11 @@
       <artifactId>commons-lang3</artifactId>
       <version>3.0</version>
     </dependency>
-    <!-- Apache POI - Java API To Access Microsoft Format Files -->
+    <!-- Open CSV: simple and easy to use CSV parser for Java. -->
     <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>ss</artifactId>
-      <version>3.0</version>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>5.3</version>
     </dependency>
   </dependencies>
   <properties>
