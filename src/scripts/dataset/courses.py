@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import pandas as pd
-from random import choice
+from random import randrange, choice
 import csv
 
 # get project root, relative to this folder: if the folder changes, the path MUST be changed as well. 
@@ -46,10 +46,10 @@ weeklyHours = findWeeklyHours()
 # get courses name from illinois dataset and limit the length to the number of courses in Unitime
 courses = coursesNames[:len(weeklyHours)]
 
-# generate a list of course instructors
+# generate a list of course instructor ids
 courseInstructors = list()
 for i in range (0, len(weeklyHours)):
-    courseInstructors.append(choice(instructors))
+    courseInstructors.append(randrange(0, len(instructors), 1))
 
 #Generate new csv file
 targetFilePath = Path("dataset/processed", "courses.csv")

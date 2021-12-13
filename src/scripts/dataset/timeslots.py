@@ -11,7 +11,7 @@ PROJECT_ROOT = Path().resolve().parent.parent.parent
 #initialize the directory
 os.chdir(PROJECT_ROOT)
 
-# Generate the timeslots
+# Generate the timeslot
 # Unitime dataset defines timeslot everyday from Monday to Friday, from 07.00 to 19.00 (12 hrs)
 # the timerange varies from 60 min to 90 min (1 to 1.5 hours) everyday
 
