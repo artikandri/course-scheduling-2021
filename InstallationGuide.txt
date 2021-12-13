@@ -42,8 +42,30 @@ Environment installation:
         will compile the project and show errors in case it fails
     > mvn clean package
         will build a clean package in the "target" folder in form of "jar" file
+    > javac /path/to/your/file.java -cp /path/to/your/jar/dependency/file
+        will compile a specific file with given dependencies
+    > javac /path/to/your/file -cp /path/to/your/jar/dependency/file
+        will run the file with given dependencies. RUN THIS COMMAND FROM src/.../java folder, or else it won't work 
     > java -jar {jar_file_name}.jar
         will run the compiled file 
+    > mvn install -e
+        download & install dependencies defined in pom.xml
+    > mvn dependency:copy-dependencies
+        copy dependencies from M2_HOME folder (in Linux, usually located in /home/user_name/.m2/repository) to target/dependency folder
+        
+8. Alternative: Install NetBeans as your IDE. It runs much faster than iDEA on low to mid-end computer 
+    > Windows: 
+        https://netbeans.apache.org/download/nb126/nb126.html 
+        > WSL2 configuration: 
+            To use NetBeans with WSL, you have to allow Windows to use UNC path ("//wsl..."). To do this, you may 
+            add a registry key to disable UNC check.
+            https://www.ibm.com/support/pages/disableunccheck-registry-key-created-during-rational-synergy-installation 
+            - go to Registry Editor under 'HKEY_LOCAL_MACHINE'
+            - find "\SOFTWARE\Microsoft\Command Processor\" path  
+            - add 'DisableUNCCheck' key, value=1, hexadecimal 
+            - rerun the project (Shift + F6)
+
+
 
 
 

@@ -1,9 +1,9 @@
 package com.course_scheduling.ga;
 
-public class Classroom () {
+public class Classroom {
     private int id;
-    private int seats;
-    private int classType;
+    private String name;
+    private double weeklyHours;
 
     public Classroom() {
         
