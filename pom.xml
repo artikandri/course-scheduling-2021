@@ -15,7 +15,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.course_scheduling.assets.DatasetProcessor</mainClass>
+              <mainClass>com.course_scheduling.app.App</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -47,7 +47,7 @@
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 </project>

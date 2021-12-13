@@ -1,44 +1,35 @@
 package com.course_scheduling.assets;
 
 import com.opencsv.*;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 /**
- * Open dataset with given filename and columns()name
- * @params     String fileName, String[] columns
- * @return     [[]]
+ * Open dataset with given filename and return records as arrays of columns.
+ * Parse the columns by splitting it on ";" separator. The csv file uses ";"
+ * separator because some of the column data contains ","
+ *
+ * @params String pathToCsv
+ * @return List<String> records
  *
  */
-public class DatasetProcessor  {
-    private static void readFile(String fileName, String columns) {
-        fileName = fileName == null ? "/dataset/processed/courses.csv" : fileName;
-        try {
-            FileReader filereader = new FileReader(fileName);
-            CSVReader csvReader = new CSVReader(filereader);
-            String[] nextRecord;
-    
-            while ((nextRecord = csvReader.readNext()) != null) {
-                for (String cell : nextRecord) {
-                    System.out.print(cell + "\t");
-                }
-                System.out.println();
+public class DatasetProcessor {
+
+    public static List readFile(String pathToCsv) {
+        pathToCsv = pathToCsv == null ? "dataset/processed/courses.csv" : pathToCsv;
+        List<List<String>> records = new ArrayList<List<String>>();
+        try (CSVReader csvReader = new CSVReader(new FileReader(pathToCsv));) {
+            String[] values = null;
+            while ((values = csvReader.readNext()) != null) {
+                records.add(Arrays.asList(values));
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        return records;
     }
 
-    public static void main( String[] args )
-    {   
-        readFile("../../../dataset/processed/courses.csv", "");
-        System.out.print("test");
+    public static void main(String[] args) {
     }
-    
+
 }
-
-
