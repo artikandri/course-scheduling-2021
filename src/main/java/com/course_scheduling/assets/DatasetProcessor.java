@@ -29,7 +29,4 @@ public class DatasetProcessor {
         return records;
     }
 
-    public static void main(String[] args) {
-    }
-
 }

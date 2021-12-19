@@ -1,24 +1,34 @@
 package com.course_scheduling.ga;
 
+import java.util.ArrayList;
+
 public class Course {
 
     private int id;
-    private String courseName;
+    private String name = null;
+    private double weeklyHours = 0;
     private int instructorId;
 
-    public Course() {
-
-    }
-
-    public void setCourseData(int courseId, String courseName, int instructorId) {
-        this.id = courseId;
-        this.courseName = courseName;
+    public Course(int id, String name, double weeklyHours, int instructorId) {
+        this.id = id;
+        this.name = name;
+        this.weeklyHours = weeklyHours;
         this.instructorId = instructorId;
-
-        // do something
     }
 
-    public void main(String[] args) {
+    public int getId() {
+        return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public double getWeeklyHours() {
+        return weeklyHours;
+    }
+
+    public int getInstructorId() {
+        return instructorId;
+    }
 }
