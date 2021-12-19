@@ -1,13 +1,15 @@
 package com.course_scheduling.ga;
 
-import java.util.ArrayList;
+import com.course_scheduling.assets.DatasetProcessor;
+import java.util.*;
 
 public class Course {
 
-    private int id;
-    private String name = null;
-    private double weeklyHours = 0;
-    private int instructorId;
+    public int id;
+    public String name = null;
+    public double weeklyHours = 0;
+    public int instructorId;
+    public String instructorName;
 
     public Course(int id, String name, double weeklyHours, int instructorId) {
         this.id = id;
@@ -30,5 +32,9 @@ public class Course {
 
     public int getInstructorId() {
         return instructorId;
+    }
+
+    public String getInstructorName() {
+        return instructorName;
     }
 }

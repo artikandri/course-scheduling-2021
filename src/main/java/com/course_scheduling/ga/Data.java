@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this
+ * license Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.course_scheduling.ga;
 
@@ -8,8 +8,10 @@ package com.course_scheduling.ga;
  *
  * @author hp
  */
-import com.course_scheduling.assets.DatasetProcessor;
+import com.course_scheduling.assets.*;
+import java.time.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Data {
 
@@ -17,7 +19,10 @@ public class Data {
     private ArrayList<Instructor> instructors;
     private ArrayList<Course> courses;
     private ArrayList<Timeslot> timeslots;
+
     private int numberOfClasses = 0;
+    private CsvParser csvParser = new CsvParser();
+    private TimeParser timeParser = new TimeParser();
 
     public Data() {
         initialize();
@@ -58,7 +63,8 @@ public class Data {
         roomCsvs.remove(0);
         rooms = new ArrayList<Room>(Arrays.asList());
         for (int i = 0; i < roomCsvs.size(); i++) {
-            Room room = new Room(i, roomCsvs.get(i).toString());
+            String[] row = csvParser.parseRow(roomCsvs.get(i).toString());
+            Room room = new Room(i, row[0]);
             rooms.add(room);
         }
     }
@@ -68,7 +74,7 @@ public class Data {
         instructorCsvs.remove(0);
         instructors = new ArrayList<Instructor>(Arrays.asList());
         for (int i = 0; i < instructorCsvs.size(); i++) {
-            String[] row = instructorCsvs.get(i).toString().split(";", -1);
+            String[] row = csvParser.parseRow(instructorCsvs.get(i).toString());
             Instructor instructor = new Instructor(i, row[0], row[1]);
             instructors.add(instructor);
         }
@@ -79,8 +85,9 @@ public class Data {
         courseCsvs.remove(0);
         courses = new ArrayList<Course>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
-            String[] row = courseCsvs.get(i).toString().replaceAll("&amp;", "&").split(";", -1);
-            Course course = new Course(i, row[0], Double.parseDouble(row[1]), Integer.parseInt(row[2].replaceAll("\\]", "")));
+            String[] row = csvParser.parseRow(courseCsvs.get(i).toString());
+            Course course = new Course(i, row[0], Double.parseDouble(row[1]),
+                    Integer.parseInt(row[2].replaceAll("\\]", "")));
             courses.add(course);
         }
     }
@@ -90,10 +97,43 @@ public class Data {
         timeslotCsvs.remove(0);
         timeslots = new ArrayList<Timeslot>(Arrays.asList());
         for (int i = 0; i < timeslotCsvs.size(); i++) {
-            String[] row = timeslotCsvs.get(i).toString().replaceAll("&amp;", "&").split(";", -1);
-            Timeslot timeslot = new Timeslot(i, row[0]);
+            String[] row = csvParser.parseRow(timeslotCsvs.get(i).toString());
+            String time = row[0].split(" - ")[1];
+            String courseTime = timeParser.padZeroToHourAndMinute(time);
+
+            String startTime = "07:30:00";
+            String endTime = "19:30:00";
+            double duration = 1;
+
+            // calculate duration for each timeslot
+            if (i == 0) {
+                duration = timeParser.timeDifferenceInHours(startTime, courseTime);
+            } else if (i == timeslotCsvs.size() - 1) {
+                duration = timeParser.timeDifferenceInHours(courseTime, endTime);
+            } else {
+                String[] nextRow = csvParser.parseRow(timeslotCsvs.get(i + 1).toString());
+                String nextTime = nextRow[0].split(" - ")[1];
+                String nextCourseTime = timeParser.padZeroToHourAndMinute(nextTime);
+
+                duration = timeParser.timeDifferenceInHours(courseTime, nextCourseTime);
+            }
+
+            Timeslot timeslot = new Timeslot(i, row[0], duration);
             timeslots.add(timeslot);
         }
+    }
+
+    public Instructor findInstructorById(int id) {
+        return instructors.stream().filter(instructor -> instructor.id == id).findFirst()
+                .orElse(null);
+    }
+
+    public Course findCourseById(int id) {
+        return courses.stream().filter(course -> course.id == id).findFirst().orElse(null);
+    }
+
+    public Timeslot findTimeslotById(int id) {
+        return timeslots.stream().filter(timeslot -> timeslot.id == id).findFirst().orElse(null);
     }
 
     public void setNumberOfClasses() {
@@ -106,5 +146,10 @@ public class Data {
         setCourses();
         setTimeslots();
         setNumberOfClasses();
+    }
+
+    public static void main(String[] args) {
+        Data data = new Data();
+        data.setData();
     }
 }

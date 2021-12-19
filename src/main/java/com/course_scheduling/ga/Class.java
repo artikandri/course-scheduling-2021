@@ -55,6 +55,6 @@ public class Class {
     }
 
     public String toString() {
-        return "[" + "," + course.getName() + "," + room.getName() + "," + instructor.getName() + "," + timeslot.getTime() + "]";
+        return "[" + course.getName() + "," + room.getName() + "," + instructor.getName() + "," + timeslot.getTime() + "]";
     }
 }

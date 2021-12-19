@@ -20,7 +20,7 @@
           </archive>
         </configuration>
       </plugin>
-    </plugins>
+   </plugins>
   </build>
   <version>1.0</version>
   <name>course_scheduling</name>

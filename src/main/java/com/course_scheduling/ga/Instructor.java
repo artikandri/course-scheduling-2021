@@ -6,9 +6,9 @@ import java.util.stream.*;
 
 public class Instructor {
 
-    private int id;
-    private String name;
-    private List<Integer> preferences;
+    public int id;
+    public String name;
+    public List<Integer> preferences;
 
     public Instructor(int id, String name, String preferences) {
         this.id = id;
@@ -26,7 +26,7 @@ public class Instructor {
                     .map(pref -> Integer.parseInt(pref.trim()))
                     .collect(Collectors.toList());
         }
-        return Arrays.asList();
+        return list;
     }
 
     public int getId() {

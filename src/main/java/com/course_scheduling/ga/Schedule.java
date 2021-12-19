@@ -4,7 +4,7 @@
  */
 package com.course_scheduling.ga;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Schedule {
 
@@ -27,9 +27,19 @@ public class Schedule {
     public Schedule initialize() {
         new ArrayList<Course>(data.getCourses()).forEach(course -> {
             Class newClass = new Class(classNumb++, course);
-            newClass.setTimeslot(data.getTimeslots().get((int) (data.getTimeslots().size() * Math.random())));
             newClass.setRoom(data.getRooms().get((int) (data.getRooms().size() * Math.random())));
-            newClass.setInstructor(data.getInstructors().get((int) (data.getInstructors().size() * Math.random())));
+            newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
+
+            double randomTimeslotId = data.getTimeslots().size() * Math.random();
+            List preferredTimeslots = data.findInstructorById(course.getInstructorId()).preferences;
+
+            if (!preferredTimeslots.isEmpty()) {
+                double preferredTimeslotId = preferredTimeslots.size() * Math.random();
+                newClass.setTimeslot(data.findTimeslotById((int) preferredTimeslots.get((int) preferredTimeslotId)));
+            } else {
+                newClass.setTimeslot(data.getTimeslots().get((int) randomTimeslotId));
+            }
+
             classes.add(newClass);
         });
         return this;

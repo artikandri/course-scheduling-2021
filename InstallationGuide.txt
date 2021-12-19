@@ -47,9 +47,11 @@ Environment installation:
     > javac /path/to/your/file -cp /path/to/your/jar/dependency/file
         will run the file with given dependencies. RUN THIS COMMAND FROM src/.../java folder, or else it won't work 
     > java -jar {jar_file_name}.jar
-        will run the compiled file 
+        will run the compiled file d
     > mvn install -e
         download & install dependencies defined in pom.xml
+    > mvn -Dmaven.test.skip=true -DskipTests=true clean install
+        clean install maven 
     > mvn dependency:copy-dependencies
         copy dependencies from M2_HOME folder (in Linux, usually located in /home/user_name/.m2/repository) to target/dependency folder
         

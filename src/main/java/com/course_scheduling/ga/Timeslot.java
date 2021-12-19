@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this
+ * license Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.course_scheduling.ga;
 
@@ -10,12 +10,14 @@ package com.course_scheduling.ga;
  */
 public class Timeslot {
 
-    private int id;
-    private String time;
+    public int id;
+    public String time;
+    public double duration;
 
-    public Timeslot(int id, String time) {
+    public Timeslot(int id, String time, double duration) {
         this.id = id;
         this.time = time;
+        this.duration = duration;
     }
 
     public int getId() {
@@ -24,5 +26,9 @@ public class Timeslot {
 
     public String getTime() {
         return time;
+    }
+
+    public double getDuration() {
+        return duration;
     }
 }
