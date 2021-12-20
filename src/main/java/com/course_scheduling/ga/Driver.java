@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.course_scheduling.ga;
 
 import java.util.ArrayList;
@@ -17,12 +13,6 @@ public class Driver {
     private int classNumb = 1;
     private Data data;
 
-    // to do: check weeklyHours, sesuaikan sama duration timeslot
-    // to do: pasang timer, tampilin di txt file
-    // to do: print schedules jadi txt file
-    // to do: check kenapa maven surefire kagak mau ngebuild mulu
-    // to do: itung fitnessFunction, panggil di main class
-    // to do: pasang department, pull dr branch java yg baru kalau nanti sudah di MR, sesuaikan sama schedule, group
     public void runAlgorithm() {
         Driver driver = new Driver();
         driver.data = new Data();
@@ -36,7 +26,7 @@ public class Driver {
         int generationNumber = 0;
         System.out.println("> Generation # " + generationNumber);
         System.out.print("  Schedule # |                                           ");
-        System.out.print("Classes [class,room,instructor,timeslot]       ");
+        System.out.print("Classes [class, room,instructor,timeslot]       ");
         System.out.println("                                  | Fitness | Conflicts");
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
@@ -52,7 +42,10 @@ public class Driver {
             System.out.println("> Generation # " + ++generationNumber);
             System.out.print("  Schedule # |                                           ");
             System.out.print("Classes [class,room,instructor, timeslot]       ");
-            System.out.println("                                  | Fitness | Conflicts");
+            System.out.println("                                  | Fitness #"
+                    + population.getSchedules().get(0).getFitness()
+                    + "  | Conflicts # "
+                    + population.getSchedules().get(0).getNumbOfConflicts() + " ");
             System.out.print("-----------------------------------------------------------------------------------");
             System.out.println("-------------------------------------------------------------------------------------");
             population = geneticAlgorithm.evolve(population).sortByFitness();

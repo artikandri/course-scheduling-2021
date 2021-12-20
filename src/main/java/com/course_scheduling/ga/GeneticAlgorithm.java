@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.course_scheduling.ga;
 
 import java.util.ArrayList;
@@ -15,10 +11,12 @@ public class GeneticAlgorithm {
         this.data = data;
     }
 
+    // mutate population which is already crossovered
     public Population evolve(Population population) {
         return mutatePopulation(crossoverPopulation(population));
     }
 
+    // compare two population, get the best one (has the best fitness), cross them over, and return the new pop
     Population crossoverPopulation(Population population) {
         Population crossoverPopulation = new Population(population.getSchedules().size(), data);
         IntStream.range(0, Driver.NUMB_OF_ELITE_SCHEDULES).forEach(x -> crossoverPopulation.getSchedules().set(x,
