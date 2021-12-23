@@ -1,3125 +1,651 @@
 courses;weekly_hours;instructors;major
-Intro Asian American Studies;3.0;74;41
-Intro to Asian Am Pop Culture;3.0;69;47
-U.S. Race and Empire;3.0;88;47
-US Racial & Ethnic Politics;3.0;43;51
-Asian American Youth in Film;3.0;37;51
-The Politics of Fashion;3.0;38;51
-Constructing Race in America;3.0;63;59
-Asian American History;3.0;68;59
-Food and Asian Americans;3.0;1;29
-Asian Families in America;3.0;94;51
-Race and Cultural Diversity;3.0;9;67
-Immigration,Law,and Rights;3.0;95;62
-Adv Asian Am Undergrad Reading;3.0;95;62
-Asian American Education;3.0;19;62
-Intro Agric & Biological Engrg;3.0;85;62
-Undergraduate Open Seminar;3.0;32;62
-ABE Principles: Machine Syst;3.0;11;71
-ABE Principles: Soil & Water;3.0;22;71
-Transport Processes in ABE;3.0;93;71
-Off-Road Machine Design;3.0;31;62
-Independent Study;3.0;22;66
-Principles of Mobile Robotics;3.0;28;71
-Project Management;3.0;31;71
-Renewable Energy Systems;3.0;58;71
-Applied Statistical Methods I;3.0;63;71
-Statistical Methods;3.0;72;71
-Drainage and Water Management;3.0;74;71
-Engineering Off-Road Vehicles;3.0;20;71
-Indoor Air Quality Engineering;3.0;7;71
-Bioprocessing Biomass for Fuel;3.0;45;70
-Special Topics;3.0;74;72
-Graduate Research I;3.0;72;58
-Graduate Seminar;3.0;83;64
-Thesis Research;3.0;87;65
-Fundamentals of Accounting;3.0;61;33
-Accounting and Accountancy I;3.0;56;67
-Accounting and Accountancy II;3.0;64;71
-Prof Internship in Accountancy;3.0;25;45
-Atg Measurement & Disclosure;3.0;18;64
-Decision Making for Atg;3.0;75;72
-Accounting Institutions and Regulation;3.0;0;10
-Accounting Control Systems;3.0;70;70
-Principles of Taxation;3.0;6;55
-Principles of Public Policy;3.0;43;58
-Practical Problems in Atg;3.0;76;58
-Assurance and Attestation;3.0;77;58
-Advanced Financial Reporting;3.0;75;58
-Auditing Stds and Practice;3.0;6;58
-Advanced Income Tax Problems;3.0;53;58
-Senior Research;3.0;19;58
-Accounting Measurement,Reporting,and Control;1.0;86;57
-Accounting Analysis I;1.0;21;29
-Accounting Analysis II;1.0;59;29
-Auditing;1.0;37;50
-Federal Taxation;1.0;34;72
-Advanced Topics in Accounting;1.0;10;64
-Financial Reporting Standards;1.0;37;64
-Data Analytics for Management Accounting;1.0;56;64
-Auditing & Assurance Standards;1.0;39;64
-Financial Statement Analysis;1.0;65;68
-Financial Statement Fraud;3.0;94;68
-Corporate Income Taxation;3.0;87;33
-Tax Research;3.0;41;34
-Data Driven Decisions in Accounting;3.0;56;34
-Data Analytics Foundations for Accountancy;3.0;31;34
-Introduction to Accounting Research;3.0;8;34
-Special Research Problems;3.0;27;55
-Agr Cons and Resource Econ;3.0;49;67
-Microcomputer Applications;3.0;94;29
-Environmental Economics;3.0;4;39
-Agricultural Marketing;3.0;72;31
-Personal Financial Planning;3.0;77;31
-The World Food Economy;3.0;28;31
-Applied Statistical Methods;3.0;53;29
-Off-Campus Internship;3.0;69;29
-On-Campus Internship;3.0;4;57
-Food Law;3.0;9;50
-Issues&Careers in Applied Econ;3.0;38;10
-Finan Decision Indiv Sm Bus;3.0;86;71
-Tax Policy and Finan Planning;3.0;72;71
-Spreadsheet Models & Applic;3.0;55;72
-Honors Research or Thesis;3.0;82;70
-Seminar;3.0;27;70
-Environmental Law;3.0;92;72
-Environment and Development;3.0;45;39
-Commodity Price Analysis;3.0;36;47
-Commodity Futures and Options;3.0;40;10
-Farm Management;3.0;89;10
-Global Agribusiness Management;3.0;59;10
-Finan Serv & Invest Plan;3.0;62;69
-Intermediate Personal Fin Plan;1.0;4;29
-The Latin American Economies;1.0;77;36
-Intl Trade in Food and Agr;1.0;66;36
-Practicum;1.0;93;36
-Applied Economic Theory;1.0;54;36
-Risk and Info: Theory and App;1.0;17;36
-Time Series Econometrics for Price Analysis;1.0;57;36
-Impact Evaluation;1.0;83;36
-Applied Regression Models I;1.0;18;36
-Applied Regression Models II;1.0;4;36
-Career Development for PhDs;3.0;76;36
-Household Economics;3.0;22;36
-Seminars and Workshops;3.0;16;36
-Contemporary Issues in ACES;3.0;32;36
-Intro Sustainable Food Systems;3.0;31;36
-History of Ag in IL Since 1860;3.0;8;36
-ACES Transfer Orientation;3.0;68;36
-International Internship;3.0;15;36
-Undergrad Research or Thesis;3.0;70;36
-International Experience;3.0;61;36
-ACES Study Abroad;3.0;85;36
-Introduction to Advertising;3.0;59;36
-Undergraduate Seminar;3.0;1;36
-Principles of Sales;3.0;77;71
-Advertising Research Methods;3.0;84;36
-Advertising and Brand Strategy;3.0;72;36
-Consumer Insight;3.0;58;36
-Digital Advertising Content,Technologies and Concepts;3.0;24;36
-Intro to Public Relations;3.0;2;36
-Classic Campaigns;3.0;11;36
-Sales Management;3.0;96;71
-Writing for Public Relations;3.0;48;71
-Sales and the Consumer;3.0;59;71
-Content Creation;1.0;98;71
-Advertising and Society;3.0;87;36
-Research Experience in Advertising;3.0;86;71
-Special Problems;3.0;51;45
-Media Entrepreneurship;3.0;67;36
-Public Relations Strategies;3.0;24;36
-Creative Concepts I;3.0;29;36
-Innovation in Advertising;3.0;58;36
-Psychology of Advertising;3.0;18;36
-Qualitative Analysis in Advert;3.0;18;36
-Audience Analysis;3.0;13;36
-Advanced Special Topics in Advertising;3.0;82;49
-Advertising Management Plan;3.0;24;36
-Persuasion Consumer Response;3.0;2;36
-Internship Seminar;3.0;6;36
-UG Research Project;3.0;9;36
-The Sandage Project;3.0;78;36
-Foundations of Advertising;3.0;98;36
-Advertising Theory;3.0;46;49
-Qualitative Rsrch in Advert;3.0;4;36
-Graduate Seminar I;3.0;42;36
-Special Topics in Advertising;3.0;46;36
-Professional Project;3.0;25;36
-Intro to Aerospace Engineering;3.0;77;36
-Aerospace Flight Mechanics;3.0;95;36
-Incompressible Flow;3.0;3;49
-Compressible Flow;3.0;61;36
-Mechs of Aerospace Structures;3.0;62;67
-Applied Aerospace Structures;3.0;53;31
-Aerospace Dynamical Systems;3.0;84;31
-Aerospace Control Systems;3.0;35;31
-Honors Project;3.0;74;31
-Honors Seminar;3.0;14;49
-Orbital Mechanics;3.0;95;62
-Viscous Flow & Heat Transfer;3.0;0;31
-Applied Aerodynamics;3.0;14;31
-Finite Element Analysis;3.0;75;31
-Mechanics of Composites;2.0;28;31
-Aerospace Propulsion;3.0;46;31
-Aerospace Systems Design I;3.0;46;45
-Aerospace Systems Design II;3.0;2;45
-Aeroelasticity;3.0;38;61
-Systems Dynamics & Control;3.0;17;60
-Aerodynamics & Propulsion Lab;3.0;72;61
-Introduction to Robotics;3.0;55;64
-Unmanned Aerial Vehicle (UAV) Navigation and Control;3.0;77;64
-Spacecraft Environment and Interactions;3.0;70;64
-Fracture and Fatigue;3.0;39;61
-Aerospace Syst Engineering I;3.0;4;36
-Elastodynamics and Vibrations;3.0;40;36
-Leadership Laboratory;3.0;8;54
-Heritage and Values of the United States Air Force I;3.0;3;36
-Intro to US Armed Forces;2.0;43;61
-Team and Leadership Fundamentals I;2.0;63;64
-Leading People and Effective Communication I;3.0;21;62
-Nat Sec Afrs/Prep Actv Duty I;3.0;6;64
-Intro to African American St;3.0;77;62
-Black America,1619-Present;3.0;3;64
-Black Literature in America;3.0;50;62
-Intro African American Theat;3.0;25;64
-Black Women Contemp US Society;3.0;78;62
-Pan Africanism;3.0;97;64
-Early African American Literature and Culture;3.0;25;29
-Modern African American Literature and Culture;1.0;41;64
-Intro to the African Diaspora;1.0;25;65
-Afro-American Hist Since 1877;1.0;19;64
-Psychology of Race & Ethnicity;1.0;83;49
-Race and Revolutions;1.0;43;63
-African Amer Families in Film;1.0;19;54
-Spec Topics Afro-Am Studies;1.0;65;63
-African American Psychology;1.0;85;62
-Racial and Ethnic Families;1.0;21;63
-Black Freed Move,1955-Present;1.0;90;63
-Urban Communities & Public Pol;1.0;53;63
-Immersion Journalism;1.0;24;70
-Theory in African American St;1.0;26;70
-Spec Topics African Am Studies;1.0;86;10
-Directed Independent Readings;1.0;30;49
-Introduction to Modern African Literature;1.0;59;58
-Elementary Swahili I;1.0;58;67
-Elementary Wolof I;1.0;90;62
-Egypt Since World War I;1.0;18;56
-Topics Swahili Lang & Lit I;1.0;26;67
-Adv Topics Swahili Lang&Lit I;1.0;42;29
-Intermediate Swahili I;1.0;46;69
-Advanced Swahili I;1.0;87;70
-Intermediate Wolof I;1.0;79;69
-Advanced Wolof I;1.0;70;69
-Intro to Ag and Env Comm;1.0;97;29
-Communicating Agriculture;1.0;56;31
-Visual Principles for Ag Comm;1.0;90;61
-Ag Sales and Persuasive Communication;1.0;73;70
-Communications Internship;1.0;57;70
-Research Internship;1.0;29;70
-Independent Study or Research;1.0;34;70
-Comm in Env Social Movements;1.0;49;31
-Intro to Ag & Leadership Ed;1.0;42;31
-Harnessing Your Interpersonal Intelligence;1.0;79;54
-Leading Student Organizations;1.0;18;57
-Prog Del in Ag & Leadership Ed;1.0;4;69
-Leadership Communications;1.0;46;69
-Introduction to Leadership Studies;1.0;21;70
-Training Needs Assessment;1.0;96;69
-Ag Leadership Internship;1.0;65;69
-Prof Dev in Leadership Ed;1.0;23;71
-Leadership Ethics & Pluralism;1.0;30;71
-Early Field Experience;1.0;89;46
-Advanced Leadership Studies;1.0;73;49
-Leadership in Groups and Teams;1.0;19;61
-Foundations of Ag & Extn Ed;1.0;58;62
-Curr Design & Instruction;1.0;41;63
-Teaching Strategies in AGED;1.0;78;51
-Interpersonal Intelligence for Professional Success;1.0;33;51
-Collaborative Leadership;1.0;22;51
-Education Program Management;1.0;3;46
-Grad Professional Dev in Ag Ed;1.0;56;46
-Advanced Program Delivery;2.0;35;54
-Advanced Program Evaluation;2.0;6;31
-Freshmen Scholars Seminar;2.0;4;39
-AHS Study Abroad;2.0;25;66
-Comm Partners & Health;2.0;10;66
-Advanced Open Seminar;2.0;25;66
-Intro to Amer Indian Studies;2.0;45;70
-Encounters in Native America;2.0;81;31
-Indigenous Thinkers;2.0;79;31
-Topics in American Indian Lit;2.0;36;54
-Adv Topics in Am Ind Studies;2.0;25;31
-Intro to Animal Sciences;2.0;72;71
-Working With Farm Animals;2.0;0;71
-Life With Animals and Biotech;2.0;62;68
-Principles of Dairy Production;2.0;72;68
-World Animal Resources;2.0;96;68
-Horse Management;2.0;96;68
-Companion Animal Biology &Care;2.0;92;70
-Meat Technology;2.0;99;70
-Cells,Metabolism and Genetics;2.0;26;71
-Anatomy and Physiology;2.0;14;66
-Companion Animals in Society;2.0;7;71
-Epidemics and Infectious Diseases;2.0;63;71
-Human Animal Interactions;2.0;67;71
-Companion Animal Management;2.0;53;71
-Meat Production and Marketing;2.0;96;71
-Meat Selection and Grading;2.0;49;71
-Advanced Livestock Evaluation;2.0;6;29
-Adv Dairy Cattle Evaluation;2.0;55;70
-Livestock Feeds and Feeding;2.0;1;10
-Cellular Metabolism in Animals;2.0;61;72
-UG Experiential Learning;2.0;88;72
-Beef Production;2.0;29;36
-Ruminant Nutrition;2.0;90;42
-Companion Animal Nutrition;2.0;18;36
-Pet Food & Feed Manufacturing;2.0;12;72
-Advanced Reproductive Biology;2.0;48;72
-Human Genetics;2.0;8;42
-Biological Modeling;2.0;84;36
-Animal Growth and Development;2.0;79;29
-ANSC Leaders & Entrepreneurs;2.0;53;72
-Integrating Animal Sciences;2.0;0;36
-Techniques in Animal Nutrition;2.0;77;36
-Nonruminant Nutrition Concepts;1.0;60;36
-Topics in Nutrition Research;1.0;41;36
-Regression Analysis;1.0;31;36
-Animal Sciences Seminar;1.0;90;36
-Res Studies in Animal Sciences;1.0;98;56
-Introduction to Anthropology;1.0;8;36
-Anthro in a Changing World;1.0;22;39
-Talking Culture;1.0;60;36
-World Archaeology;1.0;53;36
-Religion & Society in West I;1.0;20;36
-Biology of Human Behavior;1.0;29;36
-The Archaeology of Death;1.0;36;36
-Families in Global Perspective;1.0;78;36
-Introduction to Archaeology;1.0;80;36
-Tourist Cities and Sites;1.0;71;36
-Sociocultural Anthropology;1.0;83;36
-Human Biological Variation;1.0;22;61
-Forensic Science;1.0;84;62
-Images of the Other;1.0;19;58
-Language and Culture in Turkey;1.0;56;61
-Human Osteology;1.0;31;61
-Evolution and Human Health;1.0;96;61
-Topics in Lang & Culture;1.0;38;61
-The Culture of Nature;1.0;15;61
-Individual Study;1.0;12;61
-Evolutionary Immunology;1.0;76;61
-Human Evolutionary Anatomy;1.0;55;29
-Economic Anthropology;1.0;17;51
-Primate Life History Evolution;1.0;73;69
-Methods in Bioanthropology;1.0;9;29
-Research in Bioanthropology;1.0;75;40
-Archaeological Field School;1.0;17;49
-Lab Analysis in Archaeology;1.0;52;49
-Heritage Management;1.0;68;58
-Honors Senior Thesis I;1.0;12;65
-Honors Senior Thesis II;1.0;53;49
-Individual Field Research;1.0;24;31
-Individual Field Data Analysis;1.0;20;31
-Senior Capstone Seminar;1.0;22;31
-Topics in Anthropology;1.0;12;31
-Seminar in Cognitive Science;1.0;15;10
-Seminar in Anthropology;1.0;88;10
-Language in Culture II;1.0;34;41
-Archaeological Theory;1.0;44;52
-Readings in Anthropology;1.0;50;65
-Dissertation Readings;1.0;67;65
-Lang&Culture of Arab World;1.0;59;65
-Elementary Standard Arabic I;1.0;79;65
-Colloquial Arabic I;1.0;85;65
-Intermediate Stand Arabic I;1.0;58;44
-Advanced Standard Arabic I;1.0;29;53
-Adv Top Stand Arabic LangLit I;1.0;98;60
-Business Arabic;1.0;89;70
-Concepts and Theories of Architectural Design;1.0;92;10
-Introduction to the History of World Architecture;1.0;7;60
-Anatomy of Buildings;1.0;45;61
-Strategies of Architectural Design;1.0;84;58
-Environment,Architecture,and Global Health;1.0;61;45
-Architectural Design and Urbanism;1.0;66;68
-Senior Honors in Architecture;1.0;74;52
-Special Topics in Spanish Arch;1.0;7;48
-Medieval Architecture;1.0;83;48
-Modern and Contemporary Global Architecture;1.0;74;62
-Design of Steel and Reinforced Concrete Structures;1.0;24;64
-Environmental Control Systems I;1.0;75;70
-Theory & Design Steel & Timber;1.0;85;43
-Overseas Architectural Studies;1.0;55;57
-Fundamentals of Arch Design;1.0;45;29
-Arch Design & Development;1.0;27;51
-Arch Design & Exploration;1.0;52;56
-Arch Professional Internship;1.0;4;51
-Directed Research in Arch;1.0;16;56
-Off-Campus Study;1.0;96;72
-Conserv of Building Materials;1.0;83;47
-Advanced Applications in the Built Environment,Architecture and Global Health and Well-Being;1.0;30;66
-Planning and Design of Structural Systems;1.0;37;56
-Environmental Control Systems II;1.0;50;10
-Bldg Sys & Design Integration;1.0;71;66
-Reinforced Concrete Design;1.0;81;59
-Structural Analysis;1.0;99;61
-Adv Steel Design;1.0;6;29
-Design: Detail and Architectonics;1.0;1;29
-Design: Behavior and Environment;1.0;50;56
-Design: Technology and Performance;1.0;29;47
-Design: Architecture and Urban Design;1.0;95;63
-Architectural Design Seminar;1.0;64;29
-Theories of Architecture;1.0;70;48
-PhD Colloquium;1.0;26;62
-Directed Research;1.0;75;63
-Special Problems in Architectural History and Preservation;1.0;10;10
-Spec Prob Arch Practice & Mgt;1.0;56;67
-Spec Prob Struct Theory & Des;1.0;56;60
-Spec Prob Arch Design;1.0;68;59
-Specialized Architectural Practice;1.0;81;65
-Drawing for Non-Majors;1.0;87;46
-Painting for Non-Majors;1.0;19;41
-Sculpture for Non-Majors;1.0;48;59
-Introduction to Art;1.0;15;50
-Introduction to Drawing;1.0;29;31
-Black & White Film Photography;1.0;35;67
-Digital Video;1.0;91;10
-Introduction to Graphic Design - Unit One;1.0;98;51
-Unit One Studio/Seminar;1.0;30;62
-Art in Early Childhood;1.0;77;51
-Special Topics in Art;1.0;25;51
-Design Thinking;1.0;59;51
-Introduction to Industrial Design;3.0;1;51
-Introduction to Graphic Design;3.0;76;51
-The Image World;3.0;38;51
-Industrial Design I;3.0;93;51
-Chado (The Way of Tea);3.0;25;51
-Graphic Design for Non-Majors;3.0;35;51
-Typographic Practice;3.0;75;51
-Design Drawing;3.0;67;51
-Design Thinking/Need-Finding;3.0;40;51
-Graphic Design Toolbox;3.0;75;51
-Basic Photography;3.0;79;51
-Photography II;3.0;7;51
-Design Methods;3.0;98;51
-Spec Topics in Design Courses;3.0;49;51
-Industrial Design III;3.0;5;51
-UI/UX Design for Non-Majors;3.0;35;51
-Human-Centered Product Design;3.0;49;51
-Graphic Design Inquiry;3.0;61;51
-Photography III;3.0;79;51
-Photography Workshop;3.0;94;68
-RAW Photography;1.0;31;68
-Graphic Design Practicum;1.0;67;68
-Special Problems in Design;2.0;81;72
-Internship in Design;3.0;26;71
-Industrial Design V;3.0;67;61
-Ninth Letter;3.0;9;61
-Product Innovation;4.0;13;10
-Ethics of a Designer in a Global Economy;4.0;50;62
-Advanced Photography;4.0;44;40
-Senior Honors;4.0;19;10
-Special Topics in Design;4.0;57;11
-Design Research Methodology;4.0;88;10
-MFA Graphic Design Studio;4.0;74;70
-Industrial Design Thesis;4.0;40;29
-Facilitating the Art Experience;4.0;57;10
-Everyday Arts Lab;4.0;68;29
-Practicum Teaching Experience;4.0;50;61
-Art-Centered Learning at the Secondary Level;4.0;59;61
-Teaching Seminar;4.0;84;45
-Art Exhibition Practices;4.0;34;71
-Theories of Art Education;4.0;67;63
-Independent Graduate Studies;4.0;60;69
-Survey: Qualitative Methodologies;4.0;93;71
-Contemporary Issues in Art;4.0;65;71
-Observational Drawing;4.0;72;61
-Visualization Drawing;4.0;25;70
-Introduction to the History of Art and Visual Culture;4.0;63;62
-Design History Survey;4.0;6;64
-Development of Ancient Cities;4.0;1;65
-Art Since 1940;4.0;48;69
-American Art;4.0;14;71
-Spec Topics in Art History;4.0;80;71
-Arts of Colonial Latin America;4.0;10;62
-Women and the Visual Arts;4.0;72;69
-Individual Art History Topics;4.0;74;57
-Junior Seminar in Art History;4.0;88;71
-Ways of Seeing in Edo Japan;4.0;31;66
-Romantic Art;4.0;93;71
-Senior Art-History Honors-BA;4.0;70;57
-Senior Art-History Honors-BFA;4.0;40;57
-Topics in Art History;4.0;89;71
-Senior Seminar in Art History;4.0;29;61
-Seminar in Ancient Art;4.0;27;61
-Seminar in Modern Art;4.0;70;68
-Seminar in American Art;4.0;46;10
-Individual Readings;4.0;32;64
-Theory and Methodology;4.0;19;29
-Introduction to Printmaking;4.0;29;51
-Ceramics Sculpture I;4.0;17;53
-Jewelry/Metals I;4.0;2;53
-Jewelry/Metals II;4.0;83;72
-Image Practice;4.0;37;62
-Time Arts I;4.0;84;61
-Interaction I;4.0;48;61
-Life Drawing;4.0;51;66
-Beginning Painting;4.0;20;29
-Making and Meaning;1.0;1;51
-Beginning Sculpture;3.0;31;59
-Spec Topics in Studio Art;3.0;20;63
-Ceramics Sculpture II;2.0;38;70
-Jewelry Metals III;1.0;18;41
-Jewelry Metals IV;2.0;27;29
-Metal Technology;2.0;32;50
-Intermediate Studio I;2.0;62;50
-Intermediate Painting;2.0;43;64
-Special Topics in Printmaking;2.0;65;62
-Jewelry Metals V;2.0;63;64
-Time Arts II;2.0;74;64
-Special Topics in New Media;2.0;47;64
-Advanced Studio I;2.0;35;64
-Advanced Painting;2.0;43;29
-Special Topics in Studio Art;2.0;98;57
-Graduate Studio;2.0;29;46
-Seminar: Methods Criticism;2.0;76;29
-Graduate Laboratory;2.0;55;10
-Theory of Interest;2.0;1;70
-Introduction to Actuarial Research;2.0;70;56
-Actuarial Problem Solving;2.0;11;70
-Actuarial Statistics II;2.0;52;60
-Linear Algebra with Financial Applications;2.0;36;72
-Investments and Financial Markets;2.0;8;10
-Methods of Applied Statistics;2.0;90;46
-Basics of Statistical Learning;2.0;75;63
-Loss Models;2.0;97;46
-Life Contingencies I;2.0;31;10
-Topics in Actuarial Science;2.0;66;61
-Financial Mathematics;2.0;6;63
-Risk Management Practices and Regulation;2.0;94;67
-Statistical Learning;2.0;14;71
-Loss Data Analytics & Credibility;2.0;26;55
-Extreme Value Theory and Catastrophe Modeling;2.0;66;64
-Literature Seminar;2.0;93;29
-Asian Mythology;2.0;4;66
-Individual Study and Research;2.0;18;29
-Introduction to Astronomy;2.0;25;66
-Solar System and Worlds Beyond;2.0;0;29
-Stars and Galaxies;2.0;40;66
-Killer Skies: Astro-Disasters;2.0;5;10
-Introduction to Astrophysics;2.0;7;10
-The Big Bang,Black Holes,and the End of the Universe;2.0;44;10
-Stellar Astrophysics;2.0;53;29
-Galaxies and the Universe;2.0;32;63
-Senior Thesis;2.0;39;29
-Astrophysical Dynamics;2.0;85;62
-Computational Astrophysics;2.0;61;29
-Astrophysics;2.0;58;63
-Seminar in Special Topics;2.0;26;36
-Introduction to Meteorology;2.0;49;62
-Severe and Hazardous Weather;2.0;48;59
-Climate and Global Change;2.0;44;35
-General Physical Meteorology;2.0;56;29
-Atmospheric Thermodynamics;3.0;83;63
-Atmospheric Dynamics I;3.0;77;57
-Synoptic-Dynamic Wea Analysis;3.0;7;57
-Computing and Data Analysis;3.0;45;72
-Soc Impacts Weather & Climate;3.0;95;51
-Air Pollution to Global Change;3.0;49;63
-Tropical Meteorology;3.0;19;53
-Radar Remote Sensing;3.0;23;63
-Earth Systems Modeling;3.0;30;36
-Air Quality Modeling;3.0;71;58
-Adv Topics in Atmospheric Sci;3.0;26;36
-Capstone Undergraduate Research;3.0;29;36
-Dynamic Meteorology;3.0;95;36
-Physical Meteorology;3.0;87;36
-Clouds and Climate;3.0;78;36
-Professional Development;3.0;76;65
-Atmospheric Sciences Seminar;3.0;30;65
-Non-Thesis Research;3.0;92;36
-Business Location Decisions;3.0;82;58
-Business Analytics I;3.0;10;64
-Business Analytics II;3.0;4;36
-Technology & Mgmt Seminar;3.0;59;54
-Fundamentals of Operations Management;3.0;13;54
-The Legal Environment of Bus;3.0;94;54
-Mgmt and Organizational Beh;3.0;47;59
-Leading Individuals and Teams;3.0;66;63
-Designing and Managing Orgs;3.0;99;69
-Strategic Human Resource Management;3.0;80;70
-Leading Negotiations;3.0;90;54
-Principles of Marketing;3.0;10;58
-Principles of Retailing;3.0;82;58
-Marketing Research;3.0;45;58
-Marketing Communications;3.0;19;58
-Purchasing and Supply Mgmnt;3.0;90;58
-Consumer Behavior;3.0;83;58
-Pricing Policies;3.0;58;67
-Marketing to Business and Govt;3.0;59;70
-New Product Development;3.0;6;57
-Brand Management;3.0;77;72
-Supply Chain Management Basics;3.0;90;72
-Modeling the Supply Chain;3.0;88;10
-Global Supply Chain Management;3.0;43;72
-Ethical Dilemmas of Business;3.0;60;72
-IT for Networked Organizations;3.0;58;59
-E-Business Management;3.0;20;65
-Database Design and Management;3.0;39;60
-Info Sys Analysis and Design;3.0;55;63
-Data Science and Analytics;3.0;91;68
-New Product Marketing;2.0;91;72
-Mgmt of Innov and Technology;2.0;30;29
-Management Decision Models;3.0;45;70
-Operations Management;3.0;26;63
-Logistics Management;3.0;41;10
-International Business;3.0;6;72
-Multinational Management;3.0;65;69
-Senior Research I;3.0;67;65
-Senior Research II;3.0;40;10
-Corporate & Commercial Law;3.0;78;31
-Advanced Marketing Management;3.0;0;31
-Small Business Consulting;3.0;88;31
-Entrepreneurship: New Venture Creation;2.0;27;31
-Business Policy and Strategy;2.0;66;64
-Business Intelligence;2.0;11;31
-IT Governance;2.0;28;50
-Business Process Modeling;2.0;18;50
-Communicating with Data and Decision Making;2.0;79;31
-Classics in Business Administration;2.0;70;31
-Phil of Science and Bus Admin;2.0;70;31
-Leadership and Teams;2.0;11;49
-Managing Organizations;2.0;76;49
-HR Management and Strategy;2.0;70;29
-Communication Strategy in Bus;2.0;69;47
-Managing Innovation;2.0;45;47
-Seminar in Organizational Behavior and Theory;2.0;92;36
-Marketing Management;2.0;90;61
-Promotional Strategy;2.0;86;40
-Survey Methods in Mkt Res;2.0;13;40
-Global Business;2.0;54;40
-Res Sem in Consumer Behavior;2.0;43;40
-Frontiers in Technology;2.0;95;40
-Economics of Organizations;2.0;17;40
-Strategic Management;2.0;44;71
-Found of Strategy Research;2.0;23;71
-Current Strategy Research;2.0;88;40
-Enterprise Database Management;2.0;69;55
-Enterprise IT Governance;2.0;8;57
-Social Media Strategy;2.0;73;38
-Supply Chain Management;2.0;95;55
-Process Management;2.0;83;46
-Res Topics in Operations Mgt;2.0;51;46
-Stat for Mgt Decision Making;2.0;99;62
-Current Topics in Intl Bus;2.0;3;71
-Intl Comparative Management;2.0;42;71
-Business Practice Immersion;2.0;71;71
-Seminar in Business Admin;2.0;94;70
-Proseminar in Business Admin;2.0;96;65
-Research in Special Fields;2.0;52;33
-Independent Study and Research;2.0;92;56
-Business Fundamentals;2.0;56;71
-Dissertation Research;2.0;36;57
-Beginners Basque;4.0;23;40
-Introduction to the Brain and Cognitive Science;4.0;91;69
-Advances in Brain and Cognitive Science;4.0;39;60
-First Year Bosnian-Croatian-Serbian I;4.0;5;54
-Second Year Bosnian-Croatian-Serbian I;4.0;10;64
-Biochemistry Orientation;4.0;23;56
-Individual Topics;4.0;46;56
-Physical Chemistry Principles;4.0;9;64
-Biochemistry Senior Seminar;4.0;76;63
-Anlys Biochemical Literature;4.0;50;64
-Biochemistry Seminar;4.0;38;64
-Bioengineering Freshman Seminar;4.0;56;57
-Introduction to Bioengineering;4.0;52;57
-Bioengineering Career Immersion;4.0;37;51
-Conservation Principles Bioeng;4.0;17;51
-Cell & Tissue Engineering Lab;4.0;6;62
-Cellular Bioengineering;4.0;39;10
-Modeling Human Physiology;4.0;60;47
-Quantitative Physiology Lab;4.0;20;36
-Biofabrication Lab;4.0;76;36
-Biomedical Imaging;1.0;57;56
-Biomedical Instrumentation;2.0;28;43
-Biomedical Instrumentation Lab;2.0;20;70
-Intro Synthetic Biology;2.0;42;46
-Senior Design I;2.0;42;59
-Cellular Biomechanics;2.0;2;44
-Tissue Engineering;2.0;45;70
-Musculoskel Tissue Mechanics;2.0;96;40
-Seminar Discussion;2.0;99;36
-Bioengineering Professionalism;2.0;95;46
-Analytical Methods in Bioeng;2.0;18;71
-Computational Bioengineering;3.0;43;71
-Seminar Series;3.0;42;71
-Biological Measurement I;3.0;56;10
-Managing Business Operations;3.0;69;10
-Capstone Project;3.0;76;29
-Photosynthesis;3.0;50;38
-Lab Rotation I;3.0;54;70
-Lab Rotation II;3.0;64;66
-Lab Rotation III;3.0;30;10
-Special Topics in Biophysics;3.0;41;10
-Biophysics Seminars;3.0;10;10
-Cardiovascular;3.0;75;10
-Respiratory;3.0;87;36
-Renal;3.0;99;55
-Genitourinary;3.0;83;72
-Womens Health;3.0;73;72
-Obstetrics;3.0;62;54
-Hematology & Oncology;3.0;93;29
-Infection & Immunity;3.0;59;56
-Principles Bus Comm;3.0;77;56
-Principles Tech Comm;3.0;53;56
-Writing in the Disciplines;3.0;52;58
-Persuasive Writing;3.0;69;56
-Descriptive English Grammar;3.0;75;43
-Professional Responsibility and Business;3.0;52;43
-Business Honors Seminar;3.0;21;49
-Business Dynamics;3.0;70;59
-BUS Internship;3.0;55;61
-Business Study Abroad;3.0;98;61
-Independent Research;3.0;30;61
-Basic Toxicology;3.0;27;55
-Ecotoxicology North Hemisphere;3.0;42;10
-Interdisciplinary Tox Sem;3.0;46;10
-Graduate Sem Cell Devel Biol;3.0;87;71
-About Civil Engineering;3.0;4;58
-Systems Engrg & Economics;3.0;25;29
-Engineering Risk & Uncertainty;3.0;45;45
-Behavior of Materials;3.0;54;67
-Transportation Engineering;3.0;99;67
-Construction Engineering;3.0;66;67
-Environmental Engineering;3.0;22;59
-Energy and Global Environment;3.0;83;10
-Water Resources Engineering;3.0;67;55
-Structural Engineering;3.0;3;62
-Geotechnical Engineering;3.0;87;56
-Concrete Materials;3.0;3;59
-Asphalt Materials I;3.0;91;60
-Pavement Design I;3.0;28;58
-Railroad Transportation Engrg;3.0;84;66
-Railroad Track Engineering;3.0;5;72
-High-Speed Rail Engineering;2.0;10;72
-Traffic Capacity Analysis;2.0;27;62
-Urban Transportation Planning;2.0;56;66
-Construction Planning;2.0;19;60
-Construction Cost Analysis;2.0;48;40
-Stream Ecology;2.0;68;56
-Environmental Systems I;2.0;1;10
-Water Quality Engineering;2.0;16;69
-Environmental Engineering Principles,Physical;2.0;89;69
-Env Eng Principles,Chemical;2.0;68;69
-Env Eng Principles,Biological;2.0;95;69
-Surface Hydrology;2.0;40;56
-Environmental Fluid Mechanics;2.0;2;57
-Groundwater;2.0;5;56
-Water Resources Field Methods;2.0;24;52
-Steel Structures I;2.0;42;52
-Reinforced Concrete I;2.0;69;68
-Reinforced Concrete II;2.0;15;48
-Design of Structural Systems;2.0;46;61
-Structural Mechanics;2.0;9;61
-Structural Dynamics I;2.0;40;61
-Soil Mechanics and Behavior;2.0;42;70
-Decision and Risk Analysis;2.0;37;59
-Sustainable Design Eng Tech;2.0;9;62
-Professional Practice;2.0;71;67
-Pavement Evaluation and Rehab;2.0;26;72
-Logistics Systems Analysis;2.0;67;70
-Construction Law;2.0;91;70
-Open-Channel Hydraulics;2.0;63;72
-Probabilistic Loads and Design;2.0;36;46
-Nonlinear Finite Elements;2.0;97;72
-Geotechnical Earthquake Engrg;2.0;61;57
-Geotechnical Field Measurement;2.0;22;57
-Cooperative Education Practice;2.0;37;72
-CHBE Internship;2.0;67;72
-Principles of CHE;2.0;78;31
-Individual Study Sophomores;2.0;45;31
-Thermodynamics;2.0;57;31
-Individual Study for Juniors;2.0;64;31
-Momentum and Heat Transfer;2.0;59;31
-Mass Transfer Operations;3.0;24;72
-Chemical Reaction Engineering;3.0;68;31
-Unit Operations Laboratory;3.0;88;29
-Process Design;3.0;74;29
-Process Control and Dynamics;3.0;53;40
-Biochemical Engineering;3.0;37;10
-Biomolecular Engineering;3.0;2;29
-Biotransport;3.0;57;69
-Individual Study for Seniors;3.0;25;71
-Graduate CHBE Internship;3.0;54;29
-Applied Mathematics in CHBE;2.0;80;72
-Statistical Thermodynamics for Chemical Engineers;2.0;37;29
-Chemical Kinetics & Catalysis;2.0;50;51
-CHBE Seminar;2.0;5;51
-Research Seminar;2.0;88;51
-Introductory Chemistry;2.0;54;56
-General Chemistry I;2.0;53;56
-General Chemistry Lab I;2.0;57;56
-General Chemistry II;2.0;72;71
-General Chemistry Lab II;2.0;73;72
-Individual Study Freshman;2.0;11;72
-Accelerated Chemistry I;2.0;91;72
-Accelerated Chemistry Lab I;2.0;58;29
-Quantitative Analysis Lecture;2.0;31;59
-Quantitative Analysis Lab;2.0;42;55
-Elementary Organic Chemistry I;2.0;7;55
-Elementary Organic Chem Lab I;2.0;69;53
-Fundamental Organic Chem I;2.0;88;70
-Structure and Synthesis;2.0;37;29
-Chemistry Internship;2.0;3;72
-Individual Study Sophomore;2.0;66;72
-Inorganic Chemistry;2.0;69;29
-Instrumental Chem Systems Lab;2.0;29;62
-Elementary Organic Chem II;2.0;76;65
-Individual Study Junior;2.0;10;29
-Instrumental Characterization;2.0;88;29
-Physical Chemistry I;2.0;71;29
-Physical Chemistry II;2.0;4;59
-Physical Principles Lab I;2.0;33;29
-Physical Principles Lab II;2.0;29;60
-Polymer Chemistry;2.0;15;60
-Solid State Structural Anlys;2.0;17;60
-Surfaces and Colloids;2.0;73;60
-Special Topics in Chemistry;2.0;46;60
-Lab Safety Fundamentals;2.0;72;60
-Teaching Secondary Chemistry;2.0;0;60
-Individual Study Senior;2.0;22;60
-Advanced Inorganic Chemistry;2.0;6;60
-Inorganic Chemistry Seminar;2.0;74;69
-Topics in Inorganic Chemistry;2.0;78;70
-Analytical Chemistry Seminar;2.0;78;66
-Physical Organic Chemistry;2.0;67;71
-Advanced Organic Synthesis;2.0;37;29
-Organic Chemistry Seminar;2.0;5;29
-Topics in Organic Chemistry;2.0;86;72
-Quantum Mechanics;2.0;10;69
-Statistical Thermodynamics;2.0;91;70
-Physical Chemistry Seminar;2.0;51;40
-Concepts in Chemical Biology;2.0;92;34
-Chemical Biology Seminar;2.0;23;34
-Introduction to Materials Chem;2.0;65;34
-Materials Chemistry Seminar;2.0;71;34
-Preparing Graduate Fellowships;2.0;1;34
-Elementary Chinese I;2.0;90;55
-Elementary Chinese II;2.0;63;37
-Intermediate Chinese I;2.0;84;37
-Intermediate Chinese II;2.0;12;67
-Chinese Reading and Writing;2.0;94;37
-Advanced Chinese I;2.0;72;37
-Intro to Classical Chinese;2.0;33;29
-Fourth-Year Chinese I;3.0;98;61
-Readings in Chinese Lit;3.0;70;59
-Contemporary Health;3.0;51;10
-Introduction to Public Health;3.0;64;70
-Orientation KIN & Comm Health;3.0;78;11
-Mental Health;3.0;17;29
-Public Health Research Methods;3.0;49;29
-Human Sexuality;3.0;53;71
-Community Health Organizations;3.0;34;46
-Drug Use and Abuse;3.0;95;46
-Health Statistics;3.0;16;46
-Health Care Systems;3.0;61;70
-Introduction to Medical Ethics;3.0;53;70
-Introduction to Epidemiology;3.0;62;36
-Foundations of Health Behavior;3.0;85;43
-Disability in American Society;3.0;15;43
-Orientation to Internship;3.0;77;36
-Honors;2.0;58;43
-Special Projects;2.0;39;43
-Gerontology;2.0;40;36
-Public Health Practice;1.0;33;43
-International Health;1.0;47;43
-Health Data Analysis;1.0;61;36
-Research Techniques;2.0;69;43
-Exercise & Health Psychology;1.0;10;36
-Health Services Financing;1.0;32;44
-Organization of Health Care;1.0;7;44
-Health Planning;1.0;45;36
-Health Administration;1.0;79;44
-Social Marketing Health&Behav;1.0;18;44
-Technology,Health,and Aging;1.0;86;44
-Immigration,Health & Society;1.0;70;36
-Community Health Internship;1.0;63;44
-Principle/Method Epidemiology;1.0;71;44
-Health Behavior: Theory;1.0;92;69
-Health Policy: United States;1.0;65;69
-Teaching in the Professoriate;1.0;34;10
-Principles of Epidemiology;1.0;11;10
-Cultural Competence in Public Health;1.0;29;55
-MPH Applied Practice Experience;1.0;99;65
-MPH Integrative Learning Experience;1.0;96;29
-Interdisciplinary Seminar;1.0;20;37
-Interdisciplinary Seminar ACP;1.0;33;37
-Introduction to Digital Learning Environments;1.0;28;37
-Teaching Diverse Middle Grade Students;1.0;35;37
-Teaching a Diverse High School Student Population;1.0;95;41
-Introduction to Teaching Elementary Age Children;1.0;50;38
-Theory Practice in Elementary School Teaching I;1.0;40;37
-Middle School Instruction,Philosophy and Structures;1.0;38;57
-Language Varieties,Cultures and Learning;1.0;93;57
-Principles and Practices in Early Childhood Education;1.0;47;57
-Families,Communities,Schools;1.0;95;57
-Teaching Children Mathematics;1.0;79;57
-Foundations of Bilingual Education;1.0;5;57
-Culture in the Classroom;1.0;47;57
-Teaching Elementary Science I;1.0;36;57
-Social Studies as Action and Inquiry;1.0;44;57
-Language Literacy in Early Childhood Education I;1.0;59;57
-Principles in Teaching Literature to Children and Youth;1.0;80;57
-Principles and Practices to Foster Independence in Reading;1.0;19;57
-Teaching Elementary and Middle Grade Language Arts;1.0;71;57
-Social Learning and Multimedia;1.0;24;57
-Learning Technologies;1.0;69;57
-Assessing Student Performance;1.0;54;57
-Issues and Development in Education;1.0;36;57
-Curriculum Development for the 21st Century;1.0;92;57
-Problems & Trends in Special Fields;1.0;15;57
-Urban Schools and Schooling;1.0;37;57
-Arts in Early Childhood and Elementary: Curriculum in Context;1.0;73;31
-Learning in Science;1.0;88;10
-Methods of Educational Inquiry;1.0;65;70
-Advanced Educational Technologies for Engagement and Interactive Learning;1.0;87;71
-Linguistics and the School Curriculum;1.0;72;53
-Writing Studies;1.0;25;31
-Topics Writ Pedagogy & Design;1.0;78;31
-Childrens Literature in the School Curriculum;1.0;51;31
-Topics Discourse and Writing;1.0;52;72
-Theories in Second Language Acquisition;1.0;49;43
-Sem for Adv Stu of Education;1.0;49;43
-Field Study & Thesis Seminar;1.0;39;43
-CIC Traveling Scholar;1.0;29;43
-Medical Terms-GRK & LAT Roots;1.0;82;39
-Mythology of Greece and Rome;1.0;19;61
-Introduction to Greek Culture;1.0;78;62
-The Classical Tradition;1.0;4;46
-Classical Archaeology,Greece;1.0;8;71
-Ancient Philosophy;1.0;97;71
-Origins of Western Literature;1.0;38;67
-Introduction to Greek and Roman Theater;1.0;60;67
-American Race and Ethnicity in the Classical Tradition;1.0;11;68
-Sex & Gender in Antiquity;1.0;89;58
-Independent Reading;1.0;93;59
-Physical Diagnosis I;1.0;95;72
-Public Speaking;1.0;98;64
-Intro to Comm Theory & Res;1.0;5;10
-Oral & Written Comm I;1.0;95;10
-Internship in Teaching Comm;1.0;83;72
-Business Communication;1.0;62;72
-Intro to Organizational Comm;1.0;71;72
-Small Group Communication;1.0;85;72
-Interviewing Principles & Practices;1.0;72;71
-Communicating Public Policy;1.0;50;61
-Intro to Interpersonal Comm;1.0;5;72
-Intro to Intercultural Comm;1.0;50;40
-Social Movement Communication;1.0;14;39
-Intro to Health Communication;1.0;99;51
-Media,Money and Power;1.0;70;29
-Introduction to Mediated Communication;1.0;93;71
-Comm Technology & Society;1.0;9;71
-Communication Internship;1.0;58;37
-The Rhetorical Tradition;1.0;62;37
-Communicating for Innovation;1.0;49;10
-Strategies of Persuasion;1.0;16;10
-Argumentation;1.0;58;10
-Family Communication;1.0;61;10
-Visual Politics;1.0;2;46
-Visual Media Effects;1.0;91;46
-Storytelling as Oral Communication;1.0;63;69
-Sexual Communication;1.0;31;10
-Political Economy of Communication;1.0;14;10
-Propaganda and Modern Society;1.0;84;10
-Special Topics in Comm;1.0;66;67
-Adv Organizational Comm;1.0;83;57
-Race and the Mass Media;1.0;82;71
-Interpersonal Health Comm;2.0;18;71
-Organizational Health Comm;2.0;43;48
-Health Communication Campaigns;2.0;87;43
-Commercialism and the Public;2.0;76;71
-Honors Individual Study;2.0;36;64
-Honors Senior Thesis;2.0;44;66
-Adv Topics in Communication;2.0;41;10
-Hlth Comm Orgs Profs & Policy;2.0;25;10
-Seminar Communication Theory;1.0;65;72
-Seminar Rhetorical Theory;2.0;50;54
-Intro to Comm Grad Study;2.0;33;31
-Communication Research Methods;2.0;50;31
-Capstone Individual Study;2.0;31;41
-Research in Crop Sciences;1.0;11;50
-Introduction to Crop Sciences;1.0;7;59
-Environment,Agric,& Society;1.0;40;43
-Medicinal Plants and Herbology;1.0;25;42
-Evolution in Action;1.0;24;29
-Introduction to Weed Science;1.0;59;57
-Applied Entomology;1.0;19;67
-On-Campus Crop Sci Internship;1.0;59;69
-Plant Genetics;1.0;40;70
-Organic Chem of Biol Processes;1.0;31;70
-Off-Campus Crop Sci Internship;1.0;65;70
-Undergrad Honors Res or Thesis;1.0;92;10
-Diseases of Field Crops;1.0;14;70
-Principles of Crop Production;1.0;6;29
-Forage Crops and Pasture Eco;1.0;37;29
-Bioenergy Crops;1.0;85;29
-Water and Agriculture in the 21st Century;1.0;87;70
-Midwest Agricultural Practices;1.0;12;70
-Weed Mgt in Agronomic Crops;1.0;79;70
-Introduction to R Programming;1.0;46;67
-Introduction to Spatial Analytics;1.0;17;67
-Advanced Plant Genetics;1.0;85;71
-Genomics for Plant Improvement;1.0;18;71
-Insect Pest Management;1.0;0;71
-Crop Sci Professional Develpmt;1.0;54;71
-Weed Science and Management;1.0;26;71
-Adv Studies in Crop Sciences;1.0;93;71
-Professional Orientation CPSC;1.0;37;71
-Freshman Orientation;1.0;3;71
-Intro Computing: Engrg & Sci;1.0;69;71
-Intro Computing: Non-Tech;1.0;14;10
-Data Science Discovery;1.0;4;10
-Intro to Computer Science;1.0;22;48
-Software Design Studio;1.0;36;29
-Discrete Structures;1.0;69;43
-Freshman Honors;1.0;34;71
-Undergraduate Open Seminar in Computer Science;1.0;42;71
-Ethical & Professional Issues;1.0;15;72
-Data Structures;1.0;23;72
-Computer Architecture;1.0;81;71
-System Programming;1.0;45;71
-Programming Studio;1.0;72;71
-Honors Course;1.0;74;71
-Numerical Methods I;1.0;92;29
-Probability & Statistics for Computer Science;1.0;36;31
-Introduction to Algorithms & Models of Computation;1.0;36;48
-Text Information Systems;1.0;88;29
-Database Systems;1.0;68;63
-Introduction to Data Mining;1.0;56;63
-Intro to Combinatorics;1.0;11;46
-Interactive Computer Graphics;1.0;14;68
-Parallel Progrmg: Sci & Engrg;1.0;8;68
-Programming Languages & Compilers;1.0;52;68
-Real-Time Systems;1.0;42;68
-Distributed Systems;1.0;13;68
-Compiler Construction;1.0;64;68
-Software Engineering I;1.0;24;68
-Computer System Organization;1.0;62;72
-Communication Networks;1.0;80;72
-Artificial Intelligence;1.0;78;72
-Computational Photography;1.0;5;72
-Machine Learning;1.0;70;72
-Natural Language Processing;1.0;44;72
-Numerical Analysis;1.0;23;72
-Computer Security I;1.0;36;72
-User Interface Design;1.0;47;65
-Introduction to Bioinformatics;1.0;17;31
-Algorithms;1.0;38;29
-Advanced Topics in Stochastic Processes & Applications;1.0;1;30
-Applied Parallel Programming;1.0;67;71
-Senior Project II,ACP;1.0;3;71
-Senior Project II;1.0;16;71
-Advanced Information Retrieval;1.0;83;67
-Theory & Practice of Data Cleaning;1.0;28;68
-Advanced Operating Systems;1.0;29;68
-Fault-Tolerant Dig Syst Design;1.0;13;67
-Deep Learning;1.0;61;67
-Parallel Numerical Algorithms;1.0;76;71
-Combinatorial Mathematics;1.0;95;71
-Topics in Automated Deduction;1.0;48;72
-Embedded System Verification;1.0;12;71
-Advanced Seminar;1.0;36;30
-Statistical Computing;1.0;71;69
-Statistical Data Management;1.0;9;30
-Advanced Data Analysis;1.0;50;30
-Computational Mechanics;1.0;77;64
-Atomic Scale Simulations;1.0;73;55
-Computational Fluid Mechanics;1.0;22;36
-Intro to Creative Writing;1.0;67;36
-Introductory Narrative Writing;1.0;2;36
-Introductory Poetry Writing;1.0;10;36
-Reading for Writers;1.0;96;30
-Topics in Creative Writing;1.0;13;56
-Intermediate Narrative Writing;1.0;75;50
-Intermediate Poetry Writing;1.0;28;36
-Inter Expository Writing;1.0;56;36
-Advanced Narrative Writing;1.0;17;30
-Advanced Poetry Writing;1.0;77;47
-Creative Writing Tutorial;1.0;69;56
-Intro to Literary Editing;1.0;90;56
-Adv Topics in Creative Writing;1.0;29;62
-The Craft of Fiction;1.0;21;72
-Problems in Poetry Writing;1.0;67;68
-Writing Workshop in Fiction;1.0;72;72
-Writing Workshop in Poetry;1.0;74;49
-Final Project;1.0;46;43
-Bible as Literature;1.0;71;72
-Literature of Global Culture;1.0;51;70
-Global Consciousness and Lit;1.0;63;60
-Russ & E Euro Science Fiction;1.0;73;60
-Literature of Fantasy;1.0;31;60
-Cross-Cultural Thematics;1.0;81;62
-Lit of Asia & Africa I;1.0;20;55
-Freshman Honors Tutorial;1.0;90;55
-Comparative Lit Studies;1.0;62;57
-Jewish American and US Minority Literatures in Dialogue;1.0;25;55
-Israeli Cinema and Television;1.0;11;52
-Jewish Storytelling;1.0;79;30
-Golden Age of Russian Lit;1.0;89;72
-Italy Middle Ages & Renaiss;1.0;81;63
-Early Masterpieces of Western Culture;1.0;97;31
-Viking Mythology;1.0;79;49
-Viking Sagas in Translation;1.0;7;31
-Medieval Literature and Culture;1.0;0;41
-Renaissance Literature and Culture;1.0;33;67
-Enlightenment Literature and Culture;1.0;29;10
-The Short Story;1.0;77;62
-Sexuality and Literature;1.0;26;62
-Masterpieces of East Asian Lit;1.0;51;62
-Russian Writers;1.0;44;64
-Children and Youth Literature;1.0;73;70
-Mod Chinese Lit in Translation;1.0;77;65
-Masterpieces Renaiss Lit;1.0;13;65
-Lit Genres and Forms;1.0;38;66
-Russia and the Other;1.0;2;36
-Senior Thesis and Honors;1.0;37;36
-Special Topics in Comp Lit II;1.0;6;36
-Theory of Literature;1.0;93;36
-Historiography of Cinema;1.0;28;54
-Applied Literary Translation I;1.0;18;54
-Seminar Lit Movements;1.0;10;54
-Sem Spanish-American Lit;1.0;4;54
-Studies in Critical Theory;1.0;59;36
-Seminar Lit Themes;1.0;10;71
-Special Studies;1.0;0;65
-Elementary Czech I;1.0;10;65
-Readings in Czech;1.0;95;68
-Intro to Contemporary Dance;1.0;87;31
-Modern Dance I;1.0;62;31
-Modern Dance II;1.0;47;72
-Contact Improvisation;1.0;21;10
-Jazz Dance I;1.0;96;31
-Ballet I;1.0;48;59
-Ballet II;1.0;57;64
-Ballet III;1.0;65;69
-Hip Hop;1.0;54;69
-Black Dances of Resistance;1.0;14;69
-Production Practicum I;1.0;4;69
-Orientation to Dance;1.0;16;69
-Beg Contemp Modern Tech Core;1.0;71;52
-Beginning Ballet Tech Core;1.0;89;52
-Beginning Ballet Tech Elect;1.0;81;65
-Explore Music through Dance;1.0;61;54
-Yoga Practicum;1.0;11;69
-Lyric Theatre Dance;1.0;80;66
-Int Hip Hop Technique;1.0;19;66
-Perf Pract Student Works I;1.0;69;68
-Performance in Grad Thesis I;1.0;0;65
-Perf Pract November I;1.0;77;66
-Perf Pract February I;1.0;48;66
-Production Practicum II;1.0;1;30
-Repertory Company;1.0;93;62
-Dance History;1.0;84;68
-Contact Improv for Act/Mus/Dan;1.0;69;68
-Int Contemp Modern Tech Core;1.0;31;68
-Int Contemp Modern Tech Elect;1.0;5;61
-Choreographic Process I;1.0;24;61
-Intermediate Ballet Tech Core;1.0;10;61
-Intermediate Ballet Tech Elect;1.0;92;61
-Yoga Fundamentals;1.0;0;66
-Dance Documentation;1.0;56;67
-Production Practicum III;1.0;10;70
-Dance Anatomy and Kinesiology;1.0;84;71
-Int/Adv Contemp Mod Tech Core;1.0;37;71
-Int/Adv Contemp Mod Tech Elect;1.0;6;71
-Choreographic Process II;1.0;20;60
-Int/Adv Ballet Tech Core;1.0;38;51
-Int/Adv Ballet Tech Elect;1.0;20;67
-Viewing Dance;1.0;1;54
-Alexander Tech for Dancers;1.0;68;54
-Alexander Technique Practicum;1.0;76;66
-Adv Hip Hop Technique;1.0;45;71
-Perf Pract Student Works II;1.0;23;51
-Performance in Grad Thesis II;1.0;53;66
-Perf Pract November II;1.0;92;66
-Perf Pract February II;1.0;76;66
-Dance Internship;1.0;2;66
-Production Practicum IV;1.0;48;68
-Ind Study and Special Topics;1.0;25;61
-Supervised Teaching;1.0;21;71
-Contact Improv Act/Mus/Dan II;1.0;26;64
-Adv Contemp Modern Tech Core;1.0;70;61
-Adv Contemp Modern Tech Elect;1.0;77;66
-Composition Workshop;1.0;26;66
-Advanced Ballet Tech Elect;1.0;83;10
-Senior Career Seminar;1.0;38;62
-BA Capstone Project;1.0;80;54
-Senior Thesis Production;1.0;47;54
-Senior Thesis Project;1.0;50;67
-Grad Seminar/Special Topics;1.0;98;49
-MFA Prof Practice Seminar;1.0;64;49
-Advanced Research in Dance;1.0;72;63
-Advanced Physical Practice;1.0;25;71
-Graduate Composition II;1.0;82;71
-Creative Thesis Project;1.0;62;71
-East Asian Civilizations;1.0;31;71
-History East Asian Religions;1.0;26;61
-Zen;1.0;28;10
-Chinese Civilization;1.0;4;54
-Intro to Japanese Culture;1.0;17;54
-Gov & Pol of China;1.0;35;54
-Government and Politics of Japan;1.0;18;72
-Colloquium in EALC;1.0;8;10
-Soc-Econ Hist Modern China;1.0;64;39
-Topics in Asian Religions;1.0;88;10
-Proseminar in EALC;1.0;36;47
-Seminar in EALC;1.0;8;30
-East Asian Language Pedagogy;1.0;58;47
-Sem Second Lang Learn;1.0;49;65
-Introduction to Electronics;1.0;74;30
-Introduction to Computing;1.0;85;10
-Electrical and Electronic Circuits;1.0;42;30
-Electrical and Electronic Circuits Lab;1.0;73;61
-Analog Signal Processing;1.0;37;61
-Analog Circuits & Systems;1.0;18;10
-Computer Systems & Programming;1.0;57;54
-Photonic Devices;1.0;3;10
-Digital Signal Processing;1.0;22;36
-Digital Signal Processing Lab;1.0;6;70
-Probability with Engrg Applic;1.0;83;10
-Probability in Engineering Lab;1.0;71;31
-Ethics and Engineering;1.0;99;36
-Fields and Waves I;1.0;25;36
-Power Ckts & Electromechanics;1.0;65;69
-Green Electric Energy;1.0;12;70
-Semiconductor Electronics;1.0;62;10
-Electronic Circuits;1.0;62;70
-Electronic Circuits Laboratory;1.0;16;70
-Fields and Waves II;1.0;88;70
-Data Science and Engineering;1.0;51;70
-Digital Systems Laboratory;1.0;22;70
-Computer Systems Engineering;1.0;46;70
-Advanced Digital Projects Lab;1.0;16;69
-Individual Study in ECE;1.0;33;66
-Electronic Music Synthesis;1.0;51;72
-Computer Organization & Design;1.0;36;70
-Multimedia Signal Processing;1.0;34;49
-Embedded DSP Laboratory;1.0;34;48
-Intro to VLSI System Design;1.0;31;66
-Sensors and Instrumentation;1.0;90;61
-IC Device Theory & Fabrication;1.0;55;10
-Senior Design Project Lab;1.0;8;49
-Principles of Experimental Research in Electrical Engineering;1.0;0;43
-Active Microwave Ckt Design;1.0;29;43
-Electromagnetic Fields;1.0;93;43
-Wireless Communication Systems;1.0;10;43
-Communications Systems;1.0;85;10
-Digital Communications Lab;1.0;99;10
-Power Electronics;1.0;1;10
-Optical Communications Systems;1.0;47;49
-Optical Communications Lab;1.0;50;44
-Power Electronics Laboratory;1.0;21;72
-Fund of Engrg Acoustics;1.0;21;30
-Power System Analysis;1.0;12;40
-Digital IC Design;3.0;43;10
-Control Systems;3.0;33;30
-Intro Quantum Electr for EEs;3.0;92;10
-Compound Semicond & Devices;1.0;68;67
-Advanced Engineering Math;1.0;24;55
-Senior Research Project;2.0;59;55
-Special Topics in ECE;3.0;42;31
-ECE Colloquium;3.0;71;31
-Control System Theory & Design;3.0;83;69
-Nonlinear & Adaptive Control;3.0;45;70
-Adv Semiconductor Nanotech;3.0;70;69
-Large-Scale System Analysis;3.0;94;69
-Random Processes;3.0;32;70
-Theory of Semicond & Devices;3.0;13;69
-Computational Electromagnetics;3.0;81;70
-Topics in Signal Processing;3.0;91;31
-Digital Signal Processing II;3.0;14;31
-Advanced Digital Communication;3.0;72;70
-Information Theory;3.0;23;31
-Modern Light Microscopy;3.0;47;31
-Computational Inference and Learning;3.0;35;31
-Nanophotonics;3.0;0;70
-Grad Sem in Special Topics;3.0;33;71
-Masters Project;3.0;72;70
-Microeconomic Principles;3.0;94;49
-Macroeconomic Principles;3.0;29;52
-Economics at Illinois;3.0;14;45
-Economic Statistics I;3.0;28;30
-Economic Statistics II;3.0;84;30
-Inter Microeconomic Theory;3.0;92;30
-Inter Macroeconomic Theory;3.0;71;47
-Advanced Undergraduate Open Seminar;3.0;36;71
-American Economic History;3.0;30;10
-Public Sector Economics;3.0;62;70
-Urban Economics;3.0;79;70
-Health Economics;3.0;65;30
-International Economics;3.0;7;51
-Macroeconomic Policy;3.0;60;43
-Monetary Economics and Policy;3.0;73;57
-Game Theory;3.0;69;39
-Economics of Labor Markets;3.0;47;30
-Women in the Economy;3.0;58;55
-Economics of the Workplace;3.0;76;10
-Employee Compensation and Incentives;3.0;88;49
-Development Economics;3.0;39;49
-Program Evaluation in Developing Economies;3.0;36;10
-Financial Economics;3.0;35;10
-Intro to Applied Econometrics;3.0;44;56
-Economic Forecasting;3.0;3;10
-Law and Economics;3.0;54;13
-Topics in Economics;3.0;66;41
-Microeconomics;3.0;77;29
-Macroeconomics;3.0;21;30
-Economic Statistics;3.0;63;72
-Time Series Analysis in Econ;3.0;35;70
-Introduction to Game Theory;3.0;59;70
-Economics of Taxation;3.0;10;69
-International Trade;3.0;92;70
-Monetary Theory;3.0;37;70
-Microeconomics for Business;3.0;96;70
-Microeconomic Theory I;3.0;77;70
-Macroeconomic Theory I;3.0;11;70
-Econometric Analysis I;3.0;55;70
-Labor Economics II;3.0;37;70
-Collective Bargaining;3.0;30;70
-Workplace Dispute Resolution;3.0;19;69
-Gen Equ Env Tax Policy;3.0;74;69
-Econ of Development and Growth;3.0;79;72
-Topics in Development Econ;3.0;91;70
-Econometrics II;3.0;96;70
-Workshop and Research Seminar;3.0;10;70
-School & Community Experiences;3.0;54;70
-Ed Prac Students with Sp Needs;3.0;73;70
-Ed Prac in EC & ELED;1.5;21;70
-Educational Practice in Special Fields;1.5;63;70
-Educational Practice in Secondary Education;3.0;43;70
-School and Community Experience;1.0;70;70
-Education Orientation Seminar;1.0;46;70
-Freshman Honors Seminar;1.0;77;70
-Identity and Difference in Education;1.0;69;70
-Social Justice,School and Society;2.0;62;69
-Education Abroad;1.0;8;69
-TESL in the Elementary School;2.0;40;71
-TESL in the Secondary School;1.0;97;71
-Intro to TESL Methodology;1.0;64;69
-Engl Grammar for ESL Teachers;1.0;29;71
-Principles of Language Testing;3.0;48;70
-Practicum in Teaching ESL;3.0;9;70
-Seminar in Second Lang Studies;3.0;51;71
-Research in Special Topics;3.0;89;69
-Engineering Orientation;3.0;96;70
-Engineering at Illinois;3.0;34;38
-Communicating and Presenting in Engineering;3.0;67;38
-Engineering First-Year Experience Seminars;3.0;51;38
-Engineering Study Abroad;3.0;68;38
-Engineering Transfer Orientation;3.0;4;38
-Engineering Internship;3.0;86;38
-Seminar Energy & Sustain Engrg;2.0;36;38
-Interdisciplinary Design Proj;2.0;2;10
-Engineering Practice;2.0;25;10
-Theory Energy & Sustain Engrg;2.0;17;10
-Professional Practicum;2.0;13;30
-Engineering Advanced Seminar;2.0;83;41
-Honors Independent Study;2.0;52;58
-Intro to Fiction;2.0;5;37
-Introduction to Film;2.0;16;37
-Intro to Fiction-ACP;2.0;1;37
-Intro to British Literature;3.0;2;37
-Introduction to American Literature;3.0;75;37
-Science Fiction;2.0;13;37
-Introduction to Comics;2.0;77;36
-Swords,Sorcery & Sex: The Middle Ages in Popular Culture;3.0;14;37
-Introduction to the Study of Literature and Culture;1.0;61;39
-Romantic Literature and Culture;1.0;62;39
-Early British Literature and Culture;3.0;58;39
-Modernist Literature and Culture;3.0;51;39
-Introduction to Shakespeare;3.0;52;39
-Literature and Medicine;3.0;66;39
-Speculative Futures;3.0;88;62
-Intro to Latina/o Literature;3.0;13;39
-Modern Poetry;3.0;40;53
-The British Novel;3.0;68;10
-The Twentieth-Century American Novel;3.0;49;31
-Topics in Literature and New Media;3.0;8;55
-Early American Literature and Culture;3.0;4;30
-American Cinema,1950-2000;3.0;6;30
-Postcolonial Literature in English;3.0;51;10
-Introduction to Critical Theory;2.0;17;39
-History of the English Language;3.0;84;43
-Slavery and Identity;3.0;35;65
-Writing about Literature,Text,and Culture;3.0;67;39
-Environmental Writing;3.0;19;71
-Special Topics in Film Studies;3.0;84;53
-Advanced Individual Study;3.0;82;10
-English Honors Seminar;3.0;40;58
-Introduction to Old English;3.0;39;10
-Shakespeare;3.0;12;37
-Nineteenth-Century British Fiction;3.0;69;37
-American Literature in the Age of Modernism;3.0;36;37
-Major Authors;3.0;35;37
-Advanced Environmental Writing;3.0;83;49
-Composition Theory and Practice;2.0;11;37
-Intro to Criticism & Research;2.0;96;37
-Seminar in Shakespeare;2.0;79;37
-Seminar Victorian Lit;2.0;93;37
-Seminar Later American Lit;2.0;62;31
-Seminar Themes and Movements;2.0;33;31
-Seminar Literary Theory;2.0;90;52
-Professional Seminar in College Teaching;2.0;51;52
-Ind Studies of Env. Topics;2.0;87;55
-Sustainability Experience;2.0;84;54
-Sustainability,Energy and Environment Capstone;2.0;32;49
-Intro to Educational Leadershp;2.0;75;49
-Leading Learning-Centrd Schls;2.0;48;57
-Leading School Improvement;2.0;7;49
-Education Law;2.0;27;67
-Ed Ldrshp & Prof Development;2.0;93;71
-Clinical Experience Admin;2.0;52;64
-Ed Politics and Policies;2.0;98;49
-District Change for Equity and Social Justice;2.0;29;39
-School District Financial Management;2.0;44;37
-Program Planning & Evaluation;2.0;9;60
-Organization of Higher Ed;2.0;63;10
-The College Student;2.0;55;71
-Higher Education Law;2.0;41;61
-Access to Higher Education;2.0;63;50
-Critical Issues in Higher Ed;2.0;56;40
-Student Affairs Admin;2.0;78;49
-Proseminar in EPOL;2.0;75;49
-Ethnographic Methods in Educ;2.0;80;30
-General Field Research Seminar;2.0;47;10
-Special Field Research Seminar;2.0;81;71
-Methodology Research Seminar;2.0;31;30
-Thesis Seminar;2.0;46;71
-Undergraduate Advanced Seminar;2.0;3;10
-History of American Education;2.0;33;10
-Critical Thinking in Ed;2.0;45;60
-Sociology of Education;2.0;56;57
-Politics of Education;2.0;8;29
-New Learning;2.0;67;57
-Topics in Educational Policy;2.0;99;51
-Ubiquitous Learning;1.0;57;37
-Education and Globalization;1.0;6;69
-Critical Race Theory & Educ;1.0;48;69
-Global Youth & Citizenship;1.0;16;71
-Race,Gender & Sexuality Issu;1.0;17;71
-Globalization of Higher Ed;1.0;95;59
-Cultural Studies and Critical Interpretation;1.0;79;71
-Advanced Graduate Seminar;1.0;86;62
-Educational Psychology;1.0;23;62
-Exploring Cultural Diversity;1.0;28;62
-Social Issues Group Dialogues;1.0;41;62
-Career Theory and Practice;1.0;72;61
-Language & Culture of Deaf Communities;1.0;90;60
-Child Language and Education;1.0;25;29
-Research Methods in Learning Sciences;1.0;14;51
-Personality and Soc Dev;1.0;72;31
-Adult Learning and Development;1.0;66;44
-Learning and Human Development with Educational Technology;1.0;47;31
-Theories of Psychotherapy;1.0;38;29
-Early Adolescent Development;1.0;98;66
-Human Performance and Cognition in Context;1.0;62;31
-Introduction to Evaluation Theory;1.0;43;31
-Educational Statistics;1.0;79;29
-Developments in Educational Psychology;1.0;19;31
-Educational Psychology Field Instruction;1.0;4;31
-History and Systems of Psychology;1.0;99;31
-Display/Interpretation of Data;1.0;19;31
-Counseling Psych/Ethics ProSem;1.0;44;31
-Counseling Psychology Practicum;1.0;78;39
-Analysis of Educational Technologies;1.0;84;31
-Quasi-Experimental Design;1.0;66;31
-Mixed Method Inquiry;1.0;43;69
-Qualitative Inquiry Methods;1.0;62;51
-Statistical Inference in Education;1.0;66;58
-Advanced Statistical Methods;1.0;93;70
-Multivar Anlys in Psych and Ed;1.0;24;58
-Theories of Measurement I;1.0;11;50
-Categorical Data Analysis in Educational Psychology;1.0;53;71
-Advanced Seminar in Educational Psychology;1.0;30;58
-Field Study and Thesis Seminar;1.0;25;65
-Sustainable Earth;1.0;47;40
-Earths Physical Systems;1.0;37;51
-The Oceans;1.0;90;52
-Natural Disasters;1.0;26;61
-History of Life;1.0;17;65
-Earth Systems;1.0;93;69
-History of the Earth System;1.0;58;54
-Social & Environmental Issues;1.0;70;69
-Environment & Sustainability Field Study;1.0;52;37
-Intro to GIS Systems;1.0;62;68
-ESE Capstone;3.0;23;37
-Geomorphology;1.5;19;37
-Introduction to Hydrogeology;1.5;6;70
-English Pronunciation & Oral Fluency;1.5;85;37
-Intro to Academic Writing I;1.5;27;37
-Intro to Academic Writing II;1.5;52;37
-Principles of Academic Writing;1.5;66;37
-English Pronunciation for ITAs;1.5;82;37
-Oral Communication for ITAs;1.5;12;29
-Seminar for Intl TAs;1.5;86;51
-Written and Oral Communication;1.5;49;56
-Introduction to Academic Writing;1.5;99;64
-Written and Oral Business Communication;1.5;51;56
-Introduction to Business Writing;1.5;39;69
-Advanced Academic Writing;1.5;28;29
-Academic Presentation Skills;3.0;21;64
-Politics of the European Union;3.0;80;66
-Special Topics in EU Studies;3.0;78;46
-Dialogue on Europe;3.0;25;10
-EU Institutions and Governance;3.0;85;10
-Directed Ind Study;3.0;49;52
-Arts at Illinois;3.0;24;50
-Design Beyond Boundaries;3.0;52;67
-Exploring Arts and Creativity;3.0;75;50
-Introduction to Fashion;3.0;52;29
-FAA Study Abroad;3.0;70;59
-Corporate Finance;2.0;71;37
-Introduction to Insurance;1.0;2;37
-Fundamentals of Real Estate;1.0;20;37
-Financial Markets;1.0;48;37
-Advanced Corporate Finance;1.0;4;37
-Finance Academy;1.0;90;37
-Investment Banking Academy;1.0;98;37
-Investment Management Academy;1.0;36;37
-Investment & Portfolio Mngt;1.0;53;37
-Options and Futures Markets;1.0;44;37
-Fixed Income Portfolios;1.0;64;40
-Financial Modeling;1.0;89;52
-Financing Emerging Businesses;1.0;14;37
-Mergers and Acquisition;1.0;92;69
-Corporate Risk Management;1.0;40;29
-Personal Wealth Management;1.0;7;50
-Legal Issues in Real Estate;1.0;86;48
-Urban Real Estate Valuation;1.0;90;57
-Real Estate Investment;1.0;1;71
-Real Estate Development;1.0;59;71
-Investment Banking;1.0;95;71
-Special Topics in Finance;1.0;53;37
-Introduction to Finance;1.0;52;37
-Economics of Stock Market Fundamentals;1.0;53;71
-Investments;1.0;10;37
-Financial Derivatives;1.0;26;33
-Financial Engineering II;1.0;74;67
-Term Structure Models;1.0;54;69
-Financial Management;1.0;88;48
-Cases in Financial Strategy;1.0;13;57
-Mergers & Acquisitions Topics;1.0;17;56
-Foundations in Risk Management;1.0;44;31
-Real Estate Fundamentals;1.0;50;57
-Algorithmic Market Microstructure;1.0;12;70
-Behavioral Finance;1.0;90;31
-Business and Public Policy;1.0;24;70
-Theory of Finance;1.0;12;48
-Empirical Analysis in Finance;1.0;80;57
-Seminar in Corporate Finance;1.0;86;54
-Learning to Teach World Language;1.0;5;62
-Secondary World Language Teaching;1.0;62;69
-Elementary French I;1.0;36;40
-Elementary French II;1.0;63;67
-Intermediate French I;1.0;93;67
-Intermediate French II;1.0;68;71
-Accel Intermediate French I;1.0;73;46
-Oral French;1.0;94;40
-Writing and Grammar Workshop;1.0;76;66
-Introduction to Literary Studies;1.0;70;68
-Introduction to Cultural Analysis: French Identities;1.0;95;52
-French Phonetics;1.0;68;67
-Study Abroad;1.0;2;45
-Advanced Grammar in Context;1.0;53;62
-Literature and the Other Arts;1.0;99;54
-French Cultural History 1789-1968;2.0;82;57
-Indiv Study Major Tutorial;2.0;39;65
-Techniques in Translation I;2.0;39;61
-Theoretical Foundations of SLA;2.0;62;62
-Teaching College and Secondary Foreign Language;2.0;93;65
-Studies in French Linguistics;2.0;14;71
-Sem Romance Ling;2.0;45;56
-Seminar 17thC French Lit;2.0;79;71
-Seminar 18thC French Lit;2.0;98;71
-Seminar in Francophonie;2.0;6;70
-Intro Food Science & Nutrition;2.0;66;29
-Contemporary Nutrition;2.0;82;56
-Intro to Human Nutrition;2.0;11;58
-Introduction to Food Science;2.0;11;70
-Introduction to Hospitality;2.0;67;10
-Introduction to Dietetics;2.0;81;37
-Science of Fermented Foods;2.0;81;59
-Principles of Nutrition;2.0;6;46
-Food Sci Professional Issues;2.0;67;37
-Science of Food Preparation;2.0;5;37
-Off Campus Internship;2.0;95;38
-On Campus Internship;2.0;65;54
-UG Research or Thesis;2.0;71;57
-Sensory Evaluation of Foods;2.0;46;57
-Food Production and Service;2.0;10;57
-Foundations in Beverage Management: Introduction to Wine,Beer and Spirits;2.0;45;57
-Strategic Operations Management;2.0;65;57
-Food Service Sanitation;2.0;99;13
-UG Honors Research or Thesis;2.0;76;10
-Food Chemistry;2.0;38;50
-Food Chemistry Laboratory;2.0;56;10
-Neuroscience of Eating & Drinking;2.0;88;56
-Nutritional Aspects of Disease;2.0;5;10
-Advances in Foods & Nutrition;2.0;49;44
-Biochemical Nutrition I;2.0;38;71
-Community Nutrition;2.0;78;72
-Dietetics: Professional Issues;2.0;55;62
-Nutrition for Performance;2.0;12;62
-Food Processing I;2.0;10;65
-Principles of Food Technology;2.0;5;10
-Food Product Development;2.0;44;59
-Cur Topics in FS & Human Nutr;2.0;34;50
-Advanced Food Chemistry;2.0;56;50
-Flavor Chemistry and Analysis;2.0;42;49
-Advanced Clinical Nutrition;2.0;86;10
-Grantsmanship and Ethics;2.0;12;54
-Dietetic Internship I;2.0;11;10
-Graduate Internship Experience;2.0;45;70
-Seminar in Foods and Nutrition;2.0;57;29
-Advanced Topics in Food Science and Human Nutrition;2.0;48;10
-Advanced Special Problems;2.0;49;71
-Graduate Domestic Study Away;2.0;99;70
-Sustainability and Social Science;2.0;66;45
-Sustainability in Fiction;2.0;35;63
-Mapping Inequalities;2.0;96;69
-Social Justice in the Social Sciences;2.0;5;48
-Historical Perspectives on Social Justice;2.0;36;49
-Health,Wellness,and the Black Experience;2.0;78;58
-Health and Society;2.0;95;49
-Health and Wellness in Literature;2.0;74;58
-Fictions of Equality;2.0;92;47
-Global Development&Environment;2.0;71;65
-Social and Cultural Geography;2.0;97;66
-Cities of the World;2.0;50;66
-Geographies of Global Conflict;2.0;88;66
-Intro to Social Statistics;2.0;16;66
-Geography & GIS Internship;2.0;82;65
-Watershed Hydrology;2.0;45;64
-Humans and River Systems;2.0;85;10
-Geospatial Tech & Society;2.0;77;40
-Recent Trends in Geog Thought;2.0;49;43
-Digital Cartography & Map Design;2.0;92;43
-Introduction to Remote Sensing;2.0;40;43
-Advanced Topics in GIS;2.0;46;66
-Advanced Topics in Geography;2.0;43;58
-Advanced Spatial Analysis;2.0;60;54
-Advanced Studies in Geography;2.0;71;69
-Graduate Capstone Project;2.0;70;61
-Planet Earth;2.0;83;60
-Physical Geology;2.0;73;60
-Individual Honors Study;2.0;93;69
-Field Geology;2.0;94;54
-Mineralogy and Mineral Optics;2.0;12;60
-Introduction to Geophysics;2.0;36;47
-Geochemistry;2.0;45;70
-Undergraduate Research;2.0;87;70
-Honors Undergraduate Research;2.0;32;63
-Special Topics in Geology;2.0;86;47
-Advanced Field Geology;2.0;95;47
-Petroleum Geology;2.0;4;67
-Aqueous Geochemistry;2.0;29;51
-Analytical Geochemistry;2.0;53;54
-Current Research in Geoscience;2.0;63;64
-Advanced Studies in Geology;2.0;89;69
-Beginning German I;2.0;31;64
-Beginning German II;2.0;9;64
-Intermediate German I;2.0;74;69
-Intermediate German II;2.0;48;71
-Germany and Europe;2.0;56;10
-Conversation and Writing I;2.0;51;70
-Conversation and Writing II;2.0;38;70
-German for Business;2.0;76;60
-Intro to German Literature;2.0;64;63
-German-English Translation: Theory & Practice;2.0;71;69
-Realism to Expressionism;2.0;40;10
-Special Topics German Studies;2.0;27;49
-Introduction to Graduate Study;2.0;78;48
-19thC German Studies;2.0;1;48
-Theories of German Lang Tchg;2.0;80;48
-Intro to Global Studies;2.0;77;10
-Energy Systems;2.0;6;47
-Governance;2.0;64;31
-Career Development:Internships;2.0;21;31
-Terrorism,Past and Present;2.0;41;10
-Global Health;2.0;22;71
-Global St Foundation Seminar;2.0;66;71
-Global Studies Seminar Abroad;2.0;26;71
-Poverty in a Global Context;2.0;36;71
-Global Health: Interventions & Evaluations;2.0;85;71
-Writing on Technol & Security;2.0;47;71
-Seminar on Security;2.0;36;71
-Research Methods I;2.0;64;71
-Global Society;2.0;48;37
-Elementary Greek I;2.0;54;37
-Classical & Koine Greek I;2.0;0;46
-Elementary Modern Greek I;2.0;37;37
-Intermediate Modern Greek I;2.0;51;37
-Readings in Greek Literature;2.0;63;43
-Exploring General Studies;2.0;37;38
-DGS Study Abroad;2.0;29;37
-Intro Gender & Womens Studies;2.0;15;37
-Race,Gender & Power;2.0;19;46
-Intro to Social Issues Theatre;2.0;18;38
-Race and the Politics of Reproduction;2.0;80;37
-Queer Lives,Queer Politics;2.0;18;37
-US Gender History Since 1877;2.0;95;38
-Gender & Latina/o Migration;2.0;80;37
-Gender,Relationshps & Society;2.0;87;38
-Sex & Gender in Popular Media;2.0;21;37
-Feminist Disability Studies;2.0;63;65
-Queer Theory;2.0;8;38
-History of Sexuality in U.S.;2.0;67;38
-Chicanas&Latinas: Self&Society;2.0;52;37
-Intermediate Topics GWS;2.0;55;43
-Leading Post-Perform Dialog;2.0;47;37
-Devising Social Issues Theatre;2.0;12;59
-Social Work with Women;2.0;60;59
-Sex,Power and Politics;2.0;98;38
-Feminist Theories & Methods;2.0;15;38
-Feminist Media Studies;2.0;43;58
-Topics in Queer Studies;2.0;22;38
-Issues & Careers in HDFS;2.0;20;38
-Intro to Human Development;2.0;75;72
-Intro to Family Studies;2.0;58;48
-Early Childhood Curriculum Dev;2.0;3;43
-Child Fam with Special Needs;2.0;40;65
-Close Relationships;2.0;40;37
-Motor Development and Control;2.0;76;37
-Motor Develop,Growth & Form;2.0;55;37
-Diversity in Recreation,Sport,and Tourism;2.0;43;38
-Intro to Research Methods;2.0;26;31
-HDFS Career Planning & Preparation;2.0;65;31
-Infancy & Early Childhood;2.0;55;31
-HDFS Study Abroad Experience;2.0;71;31
-Socialization and Development;2.0;52;70
-Adolescent Development;2.0;52;72
-Family Stress and Change;2.0;15;40
-Practicum in HDFS;2.0;41;38
-Applied Research Methods;2.0;12;10
-Human Development Theories;2.0;23;34
-Intimate Partner Violence;2.0;6;34
-Community In American Society;2.0;23;69
-Inequalities In A Diverse Society;2.0;60;69
-Advanced Practicum in HDFS;2.0;36;51
-Advanced Research Methods;2.0;32;51
-Advanced Studies in HDFS;2.0;63;51
-Advanced Statistical Analysis;2.0;48;51
-Special Problems in HDFS;2.0;49;51
-Elementary Modern Hebrew I;2.0;47;51
-Intermediate Modern Hebrew I;2.0;53;51
-Global History;2.0;97;51
-A History of Everything: The Big Bang to Big Data;2.0;17;58
-Western Civ to 1660-ACP;2.0;67;60
-Western Civ to 1660;2.0;49;51
-Western Civ Since 1660;2.0;11;65
-US History to 1877-ACP;2.0;27;51
-US History to 1877;2.0;13;67
-US History Since 1877;2.0;66;67
-Intro Hist Interpretation;2.0;50;67
-Reacting to the Past;2.0;24;67
-Ancient Greek Civilization;2.0;96;67
-The Holocaust;2.0;45;67
-20thC World to Midcentury;2.0;9;59
-20thC World from Midcentury;2.0;11;51
-The Darwinian Revolution;2.0;38;51
-Jewish History Since 1700;2.0;58;51
-Caribbean Latina/o Migration;2.0;29;51
-Religion,Violence & America;2.0;76;51
-Global Capitalism in History;2.0;91;51
-Global History of Intelligence;2.0;38;51
-Protestant & Catholic Refs;2.0;39;67
-European History 1918 to 1939;2.0;94;67
-Twentieth Century Europe;2.0;50;51
-History Harvest: Collaborative Digital Public History;2.0;54;58
-Fict & Historical Imagination;2.0;19;51
-Internship in Public History;2.0;66;51
-Decolonization in Africa;2.0;62;56
-The Ottoman Empire;2.0;64;58
-Twentieth-Century Germany;2.0;34;71
-20th Century US Culture Wars;2.0;14;71
-Directed Research in Digital History;2.0;64;71
-Research and Writing Seminar;2.0;94;71
-Prob in Comparative History;2.0;31;71
-Problems in Russian History;2.0;25;71
-Approaches to History;2.0;72;50
-Individual Research Project;2.0;56;29
-Reading Course;2.0;48;63
-Teaching of College History;2.0;66;58
-Language and Culture in India;2.0;10;58
-Elementary Hindi-Urdu I;2.0;33;58
-Intermediate Hindi I;2.0;89;58
-Advanced Hindi I;3.0;77;58
-Introduction to Horticulture;3.0;29;58
-Vegetable Gardening;3.0;75;58
-The Sustainable Home Garden;3.0;98;47
-Plant Propagation;3.0;89;48
-On-Campus Horticulture Internship;3.0;35;48
-Planting for Biodiversity and Aesthetics;3.0;3;47
-Vegetable Crop Production;3.0;36;29
-Tree Fruit Production;3.0;84;29
-Off-Campus Horticulture Internship;3.0;44;29
-Ug Honors Research or Thesis;3.0;1;33
-Urban Food Production;3.0;74;33
-Principles of HRE;3.0;11;33
-Instructional and Training System Design;3.0;68;33
-Designing and Evaluating E-Learning Systems;3.0;57;33
-Issues and Developments in HRD;3.0;44;54
-Strategic HRD;3.0;21;34
-Management of HRD;3.0;90;29
-International HRD;3.0;83;29
-e-Learning Ecologies;3.0;78;29
-Seminar for Advanced Students;3.0;81;64
-Special Topics in Health Technology;3.0;51;29
-Introduction to the Humanities I: Philosophy & Art History;3.0;51;29
-Special Topics Junior;3.0;49;42
-Special Advanced Topics;3.0;31;61
-Special Topics Senior;3.0;32;29
-Biology in Todays World;3.0;58;29
-Animal Biology;3.0;84;31
-Environmental Biology;3.0;92;41
-The Biology of Dinosaurs;3.0;67;31
-Organismal & Evolutionary Biol;3.0;38;41
-Organismal & Evol Biol Lab;3.0;32;29
-Ecology;3.0;74;40
-Genetics;3.0;71;69
-Evolution of Molecules & Cells;1.0;68;58
-Introduction to Undergraduate Research in Integrative Biology;1.0;89;53
-Translating Your IB Degree Into Career Success;1.0;24;54
-Undergraduate Special Course;1.0;76;72
-Anatomy;1.0;62;56
-Fish and Wildlife Ecology;1.0;18;58
-Marine Biology;1.0;1;53
-Ecology and Evolution;1.0;41;54
-Undergraduate Research Experience;1.0;83;71
-Introduction to Entomology;1.0;78;71
-Bioinspiration;1.0;20;72
-Animal Behavior Lab;1.0;40;71
-Evolutionary Neuroscience;1.0;6;29
-Ecosystem Ecology;1.0;51;40
-Mammalogy;1.0;77;63
-Insect Classification and Evol;1.0;70;66
-Theoretical Biology + Models;1.0;23;29
-Special Courses;1.0;13;40
-Disc in Plant Physiology;1.0;39;69
-Seminar in Entomology;1.0;58;58
-Topics in Ecology & Evolution;1.0;40;29
-Analysis of Data;1.0;91;40
-Deterministic Models in Optimization;1.0;88;72
-Facilities Planning and Design;1.0;90;71
-Design & Anlys of Experiments;1.0;14;72
-Computing for ISE;1.0;86;72
-Optimization of Large Systems;1.0;76;67
-OR Models for Mfg Systems;1.0;62;67
-Statistical Methods in Finance;1.0;61;29
-Financial Computing;1.0;7;71
-Optimization in Finance;1.0;25;29
-Stats of Big Data & Clustering;1.0;72;72
-Algorithms for Data Analytics;1.0;68;69
-Analysis of Network Data;1.0;48;29
-Big Graphs and Social Networks;1.0;98;67
-Introduction to i-Health;1.0;77;29
-Survey of Interdisc Health;2.0;50;72
-Leadership in Health;2.0;94;67
-Aging and Health Policy;2.0;55;69
-Interdis Collab in Health Serv;2.0;53;69
-Pre-Field Experience in Health;2.0;46;60
-Field Experience in i-Health;2.0;8;29
-Social Aspects Info Tech;2.0;4;72
-Writing Across Media;2.0;54;71
-New Media,Culture & Society;2.0;62;29
-An Introduction to Top Down Video Game Design;2.0;33;70
-Orientation Seminar;2.0;56;45
-Research Practicum;2.0;61;43
-The Design of Usable Information Interfaces;2.0;79;68
-Special Topics in Information Studies;2.0;82;29
-Literature and Resources for Children;2.0;36;29
-Literature and Resources for Young Adults;2.0;36;29
-Community Engagement;2.0;79;62
-Fantasy Literature and Media for Youth;2.0;43;63
-Introduction to Network Information Systems;2.0;14;29
-Foundations of Information Processing;2.0;85;69
-Database Design and Prototyping;2.0;86;62
-Introduction to Data Science;2.0;95;29
-Instructional Strategies and Techniques for Information Professionals;2.0;66;29
-Advanced Topics in Information Studies;2.0;49;40
-Information Organization and Access;2.0;2;62
-Libraries,Information and Society;2.0;93;58
-Use and Users of Information;2.0;59;29
-Reference and Information Services;2.0;89;47
-Administration & Management of Libraries and Information Centers;2.0;90;31
-Youth Services Librarianship;2.0;27;31
-Introduction to Bibliographic Metadata;2.0;28;31
-Collection Development;2.0;3;67
-History of Childrens Lit;2.0;26;66
-Media Literacy for Youth;2.0;59;67
-School Library Media Center;2.0;84;66
-Community Informatics;2.0;37;69
-Information Needs of Particular Communities;2.0;4;67
-Competitive Intelligence & Knowledge Management;2.0;15;29
-Information Consulting;2.0;85;10
-Applied Business Research;2.0;78;47
-Data,Statistical Models and Information;3.0;23;41
-Sociotechnical Information Systems;3.0;18;31
-Social Justice in the Information Professions;3.0;97;58
-Intellectual Freedom and Censorship;3.0;27;58
-Usability Engineering;3.0;42;58
-Information Modeling;3.0;29;59
-Metadata in Theory & Practice;3.0;26;59
-Academic Librarianship;2.0;32;31
-History of the Book;2.0;13;31
-Administration and Use of Archival Materials;2.0;47;45
-Preserving Info Resources;2.0;10;29
-International Librarianship;2.0;87;62
-Digital Preservation;2.0;83;62
-Research Design in Library and Information Science;2.0;40;61
-Advanced Problems in Information Sciences;2.0;98;72
-CAS Project;2.0;59;67
-Information Sciences Practice;2.0;5;53
-Elementary Italian I;2.0;9;63
-Elementary Italian II;2.0;19;63
-Intermediate Italian I;2.0;47;49
-Intermediate Italian II;2.0;12;58
-Exploring Rome: History and Culture of the Eternal City;2.0;97;59
-Practical Review Italian;2.0;75;58
-Spec Topics Italian Studies;2.0;87;53
-Topics in Italian Cinema;2.0;60;71
-Spec Topics in Italian;2.0;28;71
-Elementary Japanese I;2.0;84;71
-Intermediate Japanese I;2.0;83;71
-Advanced Japanese I;2.0;61;64
-Fourth Year Japanese I;2.0;8;36
-Introduction to Journalism;2.0;50;60
-History of American Journalism;2.0;44;36
-Newsgathering Across Platforms;2.0;8;36
-Multimedia Reporting;2.0;33;67
-News Editing;2.0;82;63
-Journalism Ethics & Diversity;2.0;40;36
-Digital Photography for Everyone;2.0;3;36
-Media Law;2.0;75;59
-Adv Public Affairs Reporting;2.0;6;36
-Audio Journalism;2.0;79;10
-Video Reporting & Storytelling;2.0;80;45
-The Media and You;2.0;6;47
-Multimedia Editing and Design;2.0;94;10
-Video Storytelling 2-Producing;2.0;71;10
-Media and Public Opinion;2.0;54;36
-Great Books of Journalism;2.0;72;29
-Advanced Reporting Topics;2.0;68;31
-Investigative Journalism;2.0;6;64
-Multimedia Storytelling;2.0;70;50
-Journalism Proseminar;2.0;69;62
-Advanced Topics in Journalism;2.0;8;62
-Zionism: A Global History;2.0;36;62
-Development Activities;2.0;49;62
-Dance Activities;2.0;99;39
-Individual and Dual Activities;2.0;93;31
-Indoor Court Activities;2.0;4;31
-Skating Activities;2.0;83;31
-Aquatic Sport Activities;2.0;1;31
-Team Sport Activities;2.0;72;64
-Prescribed Exercise;2.0;5;64
-Physical Activity and Health;2.0;8;64
-Social Sci of Human Movement;2.0;6;62
-Contemporary Issues in Sport;2.0;8;31
-Bioscience of Human Movement;2.0;60;31
-Introduction to Kinesiology;2.0;53;31
-Physical Activity Research Methods;2.0;33;31
-Intro to Sport Psychology;2.0;35;31
-Sport & Modern Society;2.0;1;65
-Teaching Activities I;2.0;87;65
-Childrens Movement;2.0;74;65
-Soc & Psych of Phys Activity;2.0;45;29
-Bioenergetics of Movement;2.0;27;36
-Biomechanics of Human Movement;2.0;2;41
-Adapted Physical Education;2.0;56;29
-Curriculum in Grades K-6;2.0;50;61
-Exper in the Common School;2.0;97;71
-Coaching Strategies;2.0;72;71
-Exper in Kinesiology Research;2.0;58;49
-Exercise Instruction & Elderly;2.0;89;39
-Exper in the Agency Setting;2.0;57;10
-Special Project-Problems;2.0;56;70
-Honors Thesis;2.0;72;29
-Measure & Eval in Kinesiology;2.0;80;69
-Motor Learning & Control;2.0;66;61
-Technology & Pedagogical KINES;2.0;90;29
-Clin Exper in Sports Medicine;2.0;9;10
-Physical Activity & Cognition;2.0;26;31
-Elementary Korean I;3.0;55;71
-Intermediate Korean I;3.0;45;71
-Korean Reading and Writing I;3.0;36;71
-Korean Reading and Writing III;3.0;34;31
-Advanced Korean I;3.0;60;10
-Fourth Year Korean I;3.0;47;10
-Introduction to Landscape Arch;3.0;50;10
-Foundation Design Studio;2.0;33;36
-Nature and American Culture;2.0;9;36
-Environmental Site Analysis;2.0;53;47
-Behavioral Factors in Design;2.0;75;36
-Design Communications I;2.0;29;47
-Community & Open Space Studio;2.0;60;36
-Design Workshop Studio I;2.0;72;36
-Site Engineering;2.0;53;36
-Regional Design Studio;2.0;49;36
-Natural Precedent in Planting;2.0;2;36
-Landscape Arch Theory & Prac;2.0;39;55
-Landscape and Vision;2.0;80;55
-Landscape Plan & Design Studio;2.0;55;36
-Success in LAS for International Students;2.0;24;41
-Design Your First Year Experience;2.0;84;41
-Transfer Advantage;2.0;59;41
-Leadership and Society;2.0;66;41
-Global Perspectives for Intercultural Learning;2.0;84;41
-Global Perspectives in Cross-Cultural Contexts;2.0;59;41
-LAS Study Abroad;2.0;84;41
-Leadership & Professional Development;2.0;59;41
-Senior Project;2.0;3;41
-Introduction to Latin America;2.0;89;41
-Spanish in the Community;2.0;10;41
-Native Latin Amer Languages;2.0;1;41
-Interdisc Seminar Latin Am St;2.0;26;41
-Elementary Latin I;2.0;16;67
-Elementary Latin II;2.0;98;67
-Intermediate Latin;2.0;77;67
-Intro to Latin Literature;2.0;94;67
-Survey of Latin Literature;2.0;88;67
-Readings in Latin Literature;2.0;21;67
-Proseminar;2.0;92;47
-Introduction to Law;2.0;8;47
-LAW Study Abroad;2.0;82;47
-LLM Legal Writing and Research;2.0;63;47
-Professional Responsibility;1.0;44;47
-Pro Bono Service;1.0;32;36
-Contracts;1.0;48;67
-Property;1.0;84;36
-Torts;1.0;91;36
-Criminal Law;1.0;20;36
-Criminal Proc: Investigation;1.0;46;36
-Civil Procedure;1.0;47;72
-Legal Writing & Analysis;1.0;85;50
-Administrative Law;1.0;0;36
-Environmental Law and Pol I;1.0;12;36
-Legal Research;1.0;53;36
-Secured Transactions;1.0;89;36
-Business Associations I;1.0;71;36
-Securities Regulation;1.0;83;36
-Securities Litigation;1.0;44;36
-White Collar Crime;1.0;66;36
-Trademark & Unfair Competition;1.0;93;36
-Copyright Law;1.0;25;36
-Patent Law;1.0;46;40
-Income Taxation;1.0;23;44
-Labor Law I;1.0;56;70
-Family Law;1.0;56;36
-Decedents Estates and Trusts;1.0;71;36
-Workers Compensation;1.0;30;36
-Evidence;1.0;58;36
-Complex Litigation;1.0;93;36
-Federal Courts;1.0;60;36
-Field Placements;1.0;11;36
-Clinical Training;1.0;57;36
-Trial Advocacy;1.0;4;36
-Fundamentals of Trial Practice;1.0;28;36
-Legal Problems;1.0;10;44
-Moot Court;1.0;31;36
-Current Legal Problems;1.0;42;56
-Advanced Litigation Topics;1.0;85;36
-Adv Topics in Business Law;1.0;36;36
-Comparative Law Topics;1.0;59;36
-Intellectual Property Topics;1.0;6;36
-Seminars;1.0;96;36
-Introduction to Labor Studies;1.0;29;36
-Labor and Social Movements;1.0;89;36
-Contemporary Labor Problems;1.0;4;36
-Globalization and Workers;1.0;16;36
-Introduction to Employment Law;1.0;30;36
-Gender,Race,Class and Work;1.0;67;36
-Comparative Labor Relations;1.0;60;36
-Government Regulation;1.0;17;48
-Org Fundamentals for HR;3.0;75;48
-Faculty-Student Workshop;3.0;44;48
-Micro Research Methods;3.0;33;48
-Compensation Systems;3.0;58;48
-HR Planning and Staffing;3.0;72;48
-International HR Management;3.0;79;48
-Firm Performance and HR;3.0;50;48
-Power & Influence in HRM;3.0;21;48
-Leadership for HR Managers;3.0;18;36
-Internship;3.0;94;36
-Employment Relations Systems;3.0;9;48
-Quantitative Methods in LER;3.0;43;49
-Managing Diversity Globally;3.0;82;49
-Impl High Perf Work Systems;3.0;50;47
-Intro to Language Science;3.0;32;47
-Language in Globalization;2.0;61;47
-Language History;2.0;73;47
-American Sign Language II;2.0;4;47
-Language,Mind,and Brain;2.0;57;48
-Language in Human History;2.0;9;48
-American Voices: Linguistic Diversity in the US;2.0;20;48
-Language,Technology & Society;2.0;70;48
-Linguistics Laboratory Research Experience;2.0;1;48
-Anat & Physiol Spch Mechanism;2.0;37;48
-Elements of Syntax;2.0;13;36
-Elmnts Semantics & Pragmatics;2.0;78;40
-American Sign Language III;2.0;93;47
-Intro to Linguistic Structure;2.0;6;47
-Intro to General Phonetics;2.0;58;47
-Tools & Tech Spch & Lang Proc;2.0;96;47
-Tutorials in Non-Western Lang;2.0;45;48
-Sociolinguistics I;2.0;78;48
-Special Topics in Linguistics;2.0;37;48
-Syntax I;2.0;57;48
-Topics in Computational Ling;2.0;9;48
-Formal Semantics I;2.0;89;48
-Design and Methodology in Linguistic Research;2.0;89;36
-Seminar in Bilingualism;2.0;52;67
-Seminar in Linguistic Analysis;2.0;2;70
-Intro Latina/Latino Studies;2.0;55;58
-Latina/o Migration;2.0;7;58
-Gender & Sexuality in Latina/o Literature;2.0;31;58
-Spanish in the United States;2.0;96;58
-Contemporary US Latina/o Lit;2.0;35;58
-Chicana/Latina Autobiography,Memoir,Testimonio;2.0;81;58
-Theory and Methods in LLS;2.0;14;58
-Senior Honors Thesis;2.0;2;58
-Seminar in Latina/o Studies;2.0;41;58
-Graduate Seminar in LLS;2.0;30;36
-Intro to Popular TV & Movies;2.0;57;36
-Intro to the Media;2.0;74;36
-Smartphone Cinema;2.0;72;36
-Introduction to Digital Media Production;2.0;99;70
-Contemporary Movies;2.0;86;36
-Introduction to Documentary;2.0;58;36
-Survey of World Cinema I;2.0;44;36
-Creative and Information Economies;2.0;56;36
-Innovation Illinois: From Accessible Design to Supercomputing Cultures;2.0;85;36
-A World of Death and Blood: The Horror Movie;2.0;56;36
-Media History;2.0;47;36
-Popular Culture;2.0;50;36
-Studies Film/Media Production;2.0;17;36
-Social Aspects of Media;2.0;90;36
-Editing and Post-production for Cinema;2.0;10;36
-Advanced Media/Cinema Topics;2.0;47;36
-Thinking Mathematically;2.0;55;36
-Theory of Arithmetic;2.0;48;36
-Algebra;2.0;43;36
-Preparation for Calculus;2.0;0;36
-Ideas in Geometry;2.0;31;36
-Finite Mathematics;2.0;81;36
-Elementary Linear Algebra;2.0;56;36
-A Mathematical World;2.0;35;36
-Basic Discrete Mathematics;2.0;16;36
-Calculus;2.0;45;36
-Calculus I;2.0;85;36
-Introductory Matrix Theory;2.0;17;36
-Calculus II;2.0;8;36
-Calculus III;2.0;46;36
-Intro Differential Equations;2.0;73;36
-Intro to Differential Eq Plus;2.0;53;36
-Topics in Mathematics;2.0;36;36
-Fundamental Mathematics;2.0;10;36
-Math/Actuarial Internship;2.0;43;36
-Non Euclidean Geometry;2.0;85;36
-Euclidean Geometry;2.0;92;36
-Teachers Course;2.0;37;36
-Graph Theory;2.0;76;36
-Applied Linear Algebra;2.0;96;36
-Abstract Linear Algebra;2.0;55;36
-Intro to Abstract Algebra;2.0;32;36
-Differential Geometry;2.0;8;36
-Honors Real Analysis;2.0;37;36
-Honors Abstract Algebra;2.0;3;36
-Honors Topics in Mathematics;2.0;19;36
-Differential Equations;2.0;73;36
-Intro Partial Diff Equations;2.0;72;36
-Elementary Real Analysis;2.0;29;36
-Applied Complex Variables;2.0;72;36
-Real Variables;2.0;20;36
-Complex Variables;2.0;38;36
-Elementary Theory of Numbers;2.0;68;36
-Probability Theory;2.0;96;36
-Statistics and Probability I;2.0;7;36
-Statistics and Probability II;2.0;60;36
-Vector and Tensor Analysis;2.0;57;36
-Linear Programming;2.0;88;36
-Nonlinear Programming;2.0;99;36
-Dynamics & Differential Eqns;2.0;31;36
-Advanced Topics in Mathematics;2.0;56;36
-Undergraduate Research in Math;2.0;92;36
-Introduction Graduate Research;2.0;11;36
-Abstract Algebra I;2.0;59;38
-Commutative Algebra;2.0;58;38
-Riemann Surf & Algebraic Curv;2.0;20;41
-Modern Algebraic Geometry;2.0;55;42
-Differentiable Manifolds I;2.0;86;42
-Symplectic Geometry;2.0;11;42
-Algebraic Topology II;2.0;8;63
-Analytic Theory of Numbers I;2.0;84;48
-General Topology;2.0;50;48
-Real Analysis;2.0;34;36
-Complex Variables I;2.0;63;36
-Banach Spaces;2.0;8;36
-Dynamical Systems I;2.0;71;57
-Linear Analysis and Partial Differential Equations;2.0;38;36
-Theory of Probability II;2.0;88;36
-Risk Modeling and Analysis;2.0;39;36
-Applied Stochastic Processes;2.0;89;36
-Mathematical Logic;2.0;41;36
-Set Theory;2.0;0;57
-Mathematical Internship;2.0;83;57
-Foundations of Business I;2.0;1;47
-Foundations of Business II;2.0;84;60
-Digital Media & Marketing;2.0;53;60
-Marketing in an Analog World;2.0;81;57
-Global Strategy;2.0;42;36
-Entrepreneurship: From Startup to Growth;2.0;18;36
-Specialization Capstone;2.0;5;41
-Program Capstone;2.0;21;42
-Current Topics in Business;2.0;74;57
-Introductory Microbiology;2.0;28;57
-Intro Microbiology Laboratory;2.0;71;45
-Molec & Cellular Basis of Life;2.0;67;45
-Molec & Cellular Laboratory;2.0;75;45
-Society and the Brain;2.0;52;48
-Human Anatomy & Physiology I;2.0;26;57
-Human Anat & Physiol Lab I;2.0;87;60
-Molecular Genetics;2.0;63;63
-Exp Techniqs in Molecular Biol;2.0;31;70
-Cells,Tissues & Development;2.0;31;36
-Exp Techniqs in Cellular Biol;2.0;78;36
-Experiential Learning in MCB;2.0;11;36
-MCB Honors Discussion;2.0;21;36
-MCB Honors Lab Discussion;2.0;36;36
-MCB Merit Program Discussion;2.0;14;36
-Microbiology;2.0;34;36
-Experimental Microbiology;2.0;50;36
-Introduction to Neurobiology;2.0;49;36
-Genetics and Disease;2.0;70;36
-Biochem & Phys Basis of Life;2.0;85;36
-Eukaryotic Cell Biology Laboratory;2.0;70;36
-Cancer Cell Biology;2.0;55;36
-Cell & Membrane Physiology;2.0;90;36
-Endocrinology;2.0;17;41
-Microbial Pathogens Laboratory;2.0;73;42
-Virology & Viral Pathogenesis;2.0;97;42
-Global Biosecurity;2.0;97;42
-Introductory Biochemistry;2.0;15;45
-Cell & Molecular Neuroscience;2.0;56;45
-Cell Structure and Dynamics;2.0;76;48
-Special Topics Mol Cell Biol;2.0;90;48
-Advanced Biochemistry;2.0;2;48
-Advanced Molecular Genetics;2.0;20;48
-Special Topics Cell Devel Biol;2.0;85;48
-Reproductive Physiol Seminar;2.0;77;54
-Scientific Writing;2.0;24;10
-Interdisciplinary Approaches to Neuroscience I;2.0;51;63
-Res Ethics & Responsibilities;2.0;18;47
-Laboratory Rotation I;2.0;94;56
-Laboratory Rotation II;2.0;60;56
-Laboratory Rotation III;2.0;99;47
-College of Media Orientation;2.0;2;65
-Media Study Abroad;2.0;9;45
-21st Century Documentaries;2.0;42;47
-Special Topics in Media;2.0;21;70
-Proseminar I;2.0;12;56
-Computer-Aided Design;2.0;42;72
-Design for Manufacturability;2.0;50;65
-Introductory Independent Study;2.0;47;49
-Fundamentals of Fluid Dynamics;2.0;8;70
-Heat Transfer;2.0;74;72
-Engineering Materials;2.0;98;72
-Dynamics of Mechanical Systems;2.0;19;43
-Signal Processing;2.0;95;31
-Mechanical Design I;2.0;42;70
-Mechanical Design II;2.0;75;70
-Design of Thermal Systems;2.0;82;70
-Internal Combustion Engines;2.0;32;70
-Intermediate Gas Dynamics;2.0;56;70
-Intermediate Heat Transfer;2.0;77;66
-Failure of Engrg Materials;2.0;48;36
-Fundamentals of Photovoltaics;2.0;18;36
-Computer-Aided Mfg Systems;2.0;5;36
-Computer Cntrl of Mech Systems;2.0;9;36
-Senior Design Project;2.0;52;36
-MEMS-NEMS Theory & Fabrication;2.0;18;36
-Robust Adaptive Control;2.0;13;36
-Mechanics of MEMS;2.0;61;36
-Microbiology Graduate Seminar;2.0;0;36
-Introduction to Leadership;2.0;23;36
-Individual Leadership Studies;2.0;63;65
-Leadership and Problem Solving;2.0;57;65
-Leadership and Management;2.0;88;36
-Seminars in Physiology;2.0;84;36
-Materials in Todays World;2.0;70;36
-Introduction to MatSE;2.0;45;38
-Phases and Phase Relations;2.0;36;36
-Materials Laboratory I;2.0;31;36
-Introduction to Research;2.0;17;36
-Thermodynamics of Materials;2.0;91;36
-Synthesis of Materials;2.0;90;36
-Laboratory Studies in Materials Science and Engineering;2.0;4;36
-Thermal-Mech Behavior of Matls;2.0;67;48
-Ceramic Processing;2.0;41;38
-Mechanical Behavior of Metals;2.0;36;29
-Electronic Materials II;2.0;51;31
-Design and Use of Biomaterials;2.0;4;31
-Statistical Thermodyn of Matls;2.0;23;31
-Hard Materials Seminar;2.0;79;67
-Soft Materials Seminar;2.0;51;67
-Research Seminars;2.0;6;31
-Materials Colloquium;2.0;2;67
-Seminar in Music Education;2.0;95;67
-Music Theory and Practice I;2.0;87;67
-Rudiments of Music Theory I;2.0;36;67
-Computation and Music I;2.0;87;67
-Beginning Composition;2.0;99;67
-Musicianship I;2.0;96;67
-Musicianship II;2.0;31;67
-Introd Art Mus: Intl Perspect;2.0;59;67
-Italian Diction;2.0;97;68
-French Diction;2.0;59;68
-Introd to the Art of Music;3.0;46;68
-Introduction to World Music;3.0;88;68
-String Instrument Class;3.0;98;68
-Supp WW Inst: Clarinet;3.0;61;68
-Supp WW Inst: Flute;3.0;96;68
-Supp WW Inst: Oboe;3.0;2;68
-Supp WW Inst: Saxophone;3.0;87;68
-Supp WW Inst: Bassoon;1.0;45;68
-Supp Brass Inst: Trumpet;1.0;62;68
-Supp Brass Inst: Horn;1.0;69;68
-Supp Brass Inst: Trombone;1.0;24;68
-Supp Brass Inst: Euph/Tuba;1.0;1;66
-Supp Percussion Instruments;1.0;17;66
-Jazz Keyboard Studies I;1.0;54;55
-Applied Jazz Instruction;1.0;84;50
-Class Jazz Improvisation I;1.0;30;56
-Unit One Sem Instruct in Music;1.0;94;36
-Grp Instr Pno for Mus Major I;1.0;95;36
-Grp Instr Pno for Mus Maj III;1.0;56;36
-Guitar;1.0;32;36
-Harpsichord;1.0;49;36
-Piano;1.0;79;36
-Voice;1.0;92;36
-Organ;1.0;8;36
-Violin;1.0;71;64
-Viola;1.0;55;41
-Cello;1.0;84;45
-Double Bass;1.0;41;64
-Harp;1.0;64;64
-Flute;1.0;5;64
-Clarinet;1.0;13;64
-Oboe;1.0;57;64
-Bassoon;1.0;61;64
-Saxophone;1.0;51;64
-Trumpet;1.0;64;64
-Horn;1.0;55;64
-Trombone;1.0;61;64
-Euphonium;1.0;36;64
-Tuba;1.0;92;64
-Percussion;1.0;51;36
-Music Theory and Practice III;1.0;40;36
-Music Theory and Practice IV;1.0;85;36
-Intermediate Composition;1.0;68;36
-Musicianship III;1.0;28;36
-Singing in Musical Theatre;1.0;42;36
-Orientation Mus Tchg Lrng K-HS;1.0;97;36
-Elements of Conducting;1.0;37;36
-Introductory Music Ed Tech;1.0;67;47
-University Orchestra;1.0;22;56
-Ethnomusicology Perf Ensembles;1.0;49;56
-Brass Ensemble;1.0;15;56
-Percussion Ensemble;1.0;30;64
-Piano Ensemble;1.0;24;64
-Oratorio Society;1.0;29;64
-Choral Ensemble;1.0;48;36
-Womens Glee Club;1.0;69;36
-Mens Glee Club;1.0;79;36
-Jazz Ensemble;3.0;36;36
-Chamber Music;3.0;58;36
-Wind Symphony;3.0;39;36
-Wind Orchestra;3.0;66;36
-Hindsley Symphonic Band;3.0;75;51
-Concert Band;3.0;96;36
-Marching Illini;3.0;69;36
-Athletic Bands;3.0;24;29
-Thesis/Adv UG Honors in Music;3.0;59;54
-The History of Music I;3.0;10;29
-Pre-Student Tchng Experience;3.0;87;67
-Advanced Choral Conducting I;3.0;64;31
-Cond/Teach Strings-Grp Setting;3.0;50;31
-Music in Adolescence;3.0;16;31
-Mus Methods in Early Childhood;3.0;58;31
-Choral Literature;3.0;13;62
-Music Teaching in Ensemble Settings;3.0;63;64
-Jazz Improv:Theory and Prac I;3.0;71;67
-Jazz Arranging I;3.0;76;31
-Jazz Composition I;3.0;17;63
-Jazz Improvisation Styles I;3.0;29;63
-Contemp Compos Techniques;3.0;36;63
-Advanced Composition;3.0;65;63
-Elect Music Techniques I;3.0;16;29
-Analysis of Musical Form;3.0;37;54
-Period Studies in Musicology;3.0;0;29
-Genre Studies in Musicology;3.0;59;31
-Regional Studies in Musicology;3.0;20;31
-Musical Theatre Repertoire;3.0;40;31
-Intro to Piano Technology;3.0;34;62
-Orchestration;3.0;39;29
-Applied Music Pedagogy;3.0;4;31
-Jazz Aural Skills I;3.0;63;31
-Differentiating Music Instruction;3.0;37;31
-Orchestral Repertory;3.0;11;31
-Advanced Music Ed Technology;3.0;34;31
-Computer Music;3.0;63;31
-Advanced Ensemble Music;3.0;49;38
-Basso Continuo;3.0;84;61
-Special Topics in Harpsichord;3.0;69;69
-Special Topics in Organ;3.0;84;47
-Advanced Keyboard Skills I;3.0;95;47
-Adv Jazz Piano Improvisation;3.0;24;63
-Professional Internship;3.0;67;71
-Jazz Listening Seminar I;3.0;42;40
-Jazz History I;3.0;17;40
-Lyric Theatre Voice;3.0;16;54
-Lyric Studio;3.0;3;10
-Vocal Repertoire I;3.0;2;29
-Principles of Accompanying;3.0;12;29
-Proseminar in Music;3.0;95;57
-Artist Diploma Recital;3.0;34;57
-Grad Music History Review;3.0;23;29
-Graduate Theory Review;3.0;55;29
-Grad. Jazz Improv. I;3.0;34;42
-Individ Topics in Music Theory;3.0;76;29
-Graduate Level Composition;3.0;68;49
-Sem in Music Comp and Theory;3.0;84;49
-Graduate Seminar in Band Conducting,History,and Literature;3.0;60;29
-Fdns/Methods of Musicology I;3.0;53;29
-Soc Theory in Ethnomusicology;3.0;94;29
-Hist Studies in 20thC Music;3.0;49;60
-Seminar in Musicology;3.0;85;29
-Rdgs in Musicol and Mus Theory;3.0;72;61
-Res & Bibliography in Music;3.0;25;46
-Critical Readings in Mus Ed;3.0;19;43
-Curricular Perspectives on Music Education;3.0;6;10
-Graduate Wind Band Conducting;3.0;91;64
-Doctoral Seminar in Music Education;3.0;95;10
-Topics in Music Education;3.0;8;31
-Orchestral Literature I;3.0;48;54
-Advanced Jazz Harmony I;2.0;21;42
-Choral Literature I;2.0;7;45
-Graduate Orchestral Conducting;2.0;97;50
-Advanced Choral Techniques I;2.0;62;31
-Piano Literature;2.0;71;50
-Vocal Literature;2.0;81;31
-Organ Literature;2.0;40;57
-String Instrument Literature;2.0;5;31
-Wind Instrument Literature;2.0;83;31
-Percussion Instruments Lit;2.0;92;48
-Hist of Voc Ens and Chor Music;2.0;40;29
-Choral Conducting Project;2.0;89;29
-Adv Choral Perform Techniques;2.0;27;42
-Graduate Applied Jazz Instruc;2.0;66;29
-Prac Pno Tchg Child and Teens;2.0;85;42
-Doctoral Orchestral Conducting;2.0;45;10
-Doctoral Wind Band Conducting;2.0;78;33
-Jazz Arranging III;2.0;5;33
-Doctoral Projects;2.0;18;33
-Advanced Accompanying;2.0;78;33
-Graduate Level Harpischord;2.0;15;33
-Graduate Level Piano;2.0;64;71
-Graduate Level Voice;2.0;74;33
-Graduate Level Organ;2.0;20;33
-Graduate Level Violin;2.0;40;33
-Graduate Level Viola;2.0;57;33
-Graduate Level Cello;2.0;0;33
-Graduate Level Double Bass;2.0;48;33
-Graduate Level Harp;2.0;48;33
-Graduate Level Flute;2.0;93;33
-Graduate Level Clarinet;2.0;31;33
-Graduate Level Oboe;2.0;50;33
-Graduate Level Bassoon;2.0;48;66
-Graduate Level Saxophone;2.0;88;59
-Graduate Level Trumpet;2.0;25;10
-Graduate Level Horn;2.0;95;31
-Graduate Level Trombone;2.0;27;29
-Graduate Level Euphonium;2.0;73;68
-Graduate Level Tuba;2.0;97;33
-Graduate Level Percussion;2.0;41;68
-Introduction to Museums;2.0;87;57
-Museum Internship;2.0;67;33
-Core Prob Museum Theory & Prac;2.0;50;29
-Memory and Amnesia;2.0;18;33
-Cognitive Psychophysiology;2.0;60;33
-Cog Neuroscience of Vision;2.0;76;57
-Topics in Neuroscience;2.0;96;70
-Advanced Topics in Neuroscience;2.0;15;38
-Indiv Topics Neuroscience;2.0;0;38
-Proseminar in Psychology;2.0;96;29
-Orientation to NPRE;2.0;59;38
-Modeling Nuclear Energy System;2.0;48;38
-Nuclear Power Engineering;2.0;81;38
-Plasma Laboratory;2.0;16;38
-Materials in Nuclear Engrg;2.0;93;38
-Nuclear Engrg Materials Lab;2.0;75;65
-Radiological Imaging;2.0;56;65
-Radiation Interact w/Matter I;2.0;30;65
-Nuclear Syst Engrg & Design;2.0;21;65
-NPRE Laboratory;2.0;8;64
-Safety Anlys Nucl Reactor Syst;2.0;99;29
-Probabilistic Risk Assessment;2.0;98;68
-Fundamentals of Nuclear Engrg;2.0;89;31
-Plasma Waves;2.0;56;31
-Independent Lab Investigations;2.0;54;31
-Student Research Seminar;2.0;75;31
-Seminar in Nuclear Sci & Engrg;2.0;50;69
-Fundamentals of Env Sci;2.0;0;31
-Introduction to NRES;2.0;82;38
-The Great Lakes - Freshwater Wonder at Risk;2.0;43;47
-Introductory Soils;2.0;3;51
-Principles of Ecosystem Mgmt;2.0;73;10
-Field Experience;2.0;40;58
-Resident Internship;2.0;34;58
-Watersheds and Water Quality;2.0;58;35
-Fishery Ecol and Conservation;2.0;95;30
-Native Plant ID and Floristics;2.0;7;59
-Env and Plant Ecosystems;2.0;70;62
-Restoration Ecology;2.0;40;62
-Politics of International Conservation and Development;2.0;76;40
-US Environ,Justic & Policy;2.0;0;30
-Valuing Nature;2.0;45;30
-GIS in Natural Resource Mgmt;2.0;47;45
-Pedology;2.0;53;45
-Environmental Psychology;2.0;32;30
-Soil Chemistry;2.0;67;35
-Capstone Group Research Project;2.0;18;35
-Discussions in NRES;2.0;38;33
-NRES Professional Orientation;2.0;85;30
-Experimental Graduate Courses;2.0;7;58
-Introduction to Naval Science;2.0;33;58
-Navigation/Naval Operations I;2.0;3;72
-Intro to Naval Engineering;2.0;36;72
-Navigation/Naval Operations II;2.0;32;66
-Leadership and Ethics;2.0;88;66
-Maneuver Warfare Fundamentals;2.0;82;30
-Nutritional Sciences Seminar;1.0;90;68
-Disciplinary Seminar;1.0;64;68
-Individual Topics in Nutrition;1.0;79;66
-Pathobiology;1.0;46;66
-Mechanisms Viral Pathogenesis;1.0;92;72
-Parasitology/Epidemiology Sem;1.0;8;72
-Ocular Pathology;1.0;17;53
-Vet Diagnostic Path 1;1.0;61;59
-Vet Diagnostic Path 2;1.0;32;72
-Pathology Seminar;1.0;65;56
-Interpretive Cytopathology;1.0;9;72
-Diagnostic Cytology;1.0;74;72
-Exotic/Wild Animal Diag Path 1;1.0;28;72
-Exotic/Wild Animal Diag Path 2;1.0;58;69
-Exotic/Wild Animal Path Sem;1.0;30;46
-Surgical Pathology;1.0;32;61
-Vet Info Tech/Computer App;1.0;58;60
-Communication Vet Consultation;1.0;58;48
-Vet Leadership Organ Behavior;1.0;20;10
-Adv Concept Swine Health Med 1;1.0;20;65
-Bioscientific Writing;1.0;30;72
-Elementary Persian I;1.0;91;72
-Intermediate Persian I;1.0;19;70
-Intro to Philosophy-ACP;1.0;94;10
-Introduction to Philosophy;1.0;65;71
-Logic and Reasoning;1.0;98;67
-Logic and Reasoning QR II;1.0;27;67
-Intro to Ethics-ACP;1.0;63;67
-Introduction to Ethics;1.0;89;67
-Intro to Political Philosophy;1.0;80;67
-World Religions;1.0;53;72
-Symbolic Logic;1.0;21;72
-Early Modern Philosophy;1.0;89;72
-Biomedical Ethics;1.0;85;31
-Religion and Philosophy;1.0;2;55
-Conceptions of Human Nature;1.0;75;40
-Current Controversies;1.0;18;10
-Classical Ancient Philosophers;1.0;98;71
-Major Recent Philosophers;1.0;95;71
-Ethical Theories;1.0;44;71
-Recent Developments in Ethics;1.0;43;66
-Philosophy of Mind;1.0;66;10
-Phil of Law and of the State;1.0;61;15
-Philosophy of Psychology;1.0;86;47
-Thesis;1.0;56;47
-Seminar on the History of Philosophy;1.0;82;47
-Seminar Ethical Theory;1.0;20;45
-Seminar Theory of Knowledge;1.0;8;35
-Thinking About Physics;1.0;1;35
-College Physics: Mech & Heat;1.0;88;35
-College Physics: E&M & Modern;1.0;50;38
-Physics Careers;1.0;19;36
-University Physics: Mechanics;1.0;19;31
-University Physics: Elec & Mag;1.0;32;70
-Univ Physics: Thermal Physics;1.0;95;31
-Univ Physics: Quantum Physics;1.0;90;64
-Enrichment E & M;1.0;32;70
-Relativity & Math Applications;1.0;55;31
-Freshmen/Sophomore Special Topics in Physics;1.0;53;31
-Classical Mechanics I;1.0;20;31
-Classical Mechanics II;2.0;19;31
-Sophomore/Junior Special Topics in Physics;2.0;14;66
-Classical Physics Lab;2.0;17;61
-Light;2.0;42;51
-Modern Experimental Physics;2.0;95;29
-Thermal & Statistical Physics;2.0;34;41
-Electromagnetic Fields I;2.0;63;51
-Electromagnetic Fields II;2.0;55;51
-Condensed Matter Physics;2.0;75;51
-Atomic Phys & Quantum Theory;2.0;47;35
-Quantum Physics I;2.0;78;64
-Quantum Physics II;2.0;96;64
-Intro to Physics Research;2.0;49;66
-Special Topics in Physics;2.0;54;52
-Classical Electromagnetism;2.0;80;52
-Mathematical Physics I;2.0;51;31
-Condensed Matter Physics II;2.0;78;31
-Quantum Mechanics I;2.0;97;64
-General Field Theory;2.0;91;67
-Graduate Physics Orientation;2.0;45;67
-Plants,Pathogens,and People;2.0;17;67
-Plant Disease Diagnosis & Mgmt;2.0;16;69
-Elementary Polish I;2.0;74;31
-Second Yr Polish I;2.0;58;31
-Survey of Polish Literature;2.0;82;55
-Intensive Beginning Portuguese;2.0;3;31
-Intensive Intermediate Portuguese;2.0;46;43
-Advanced Grammar;2.0;23;68
-Proseminar For Lang Tchg;2.0;95;66
-Special Topics Port & Braz Lit;2.0;21;66
-Intro to Political Science;2.0;74;66
-Intro to US Gov & Pol;2.0;6;67
-Washington Experience;2.0;59;69
-Power,Politics,and Protest;2.0;6;69
-Intro to Public Policy;2.0;87;51
-Environmental Politics & Policy;2.0;52;64
-Intro to Pol Research;2.0;35;64
-Intro to Comp Politics;2.0;68;66
-Comp Politics in Dev Nations;2.0;28;67
-Intro to Political Theory;2.0;46;67
-Intro to Intl Relations;2.0;24;67
-Intro Internship Seminar;2.0;5;65
-The US Constitution I;2.0;26;48
-The US Constitution II;2.0;66;29
-The US Congress;2.0;39;71
-Judicial Politics;2.0;66;29
-Congress and Foreign Policy;2.0;98;71
-Political Psychology;2.0;53;49
-Public Opinion;2.0;57;71
-Intro to Political Behavior;2.0;89;31
-Gov & Pol in Western Europe;2.0;83;57
-Classical Political Theory;2.0;18;71
-Democratic Theory;2.0;20;66
-Feminist Political Theory;2.0;69;67
-International Cooperation;2.0;8;43
-American Foreign Policy;2.0;80;59
-Crisis Diplomacy;2.0;8;59
-Strategic Interntl Relations;2.0;68;63
-UG Research Assistance;2.0;60;64
-Junior Honors Seminar;2.0;49;64
-Senior Honors Seminar;2.0;6;35
-Topics in American Politics;2.0;61;70
-The Comparative Method;2.0;50;41
-Quant Pol Analysis I;2.0;17;35
-Quant Pol Analysis III;2.0;91;39
-Proseminar Intl Rel I;2.0;47;51
-Intl Political Economy;2.0;5;72
-Research in Selected Topics;2.0;96;39
-Evaluating New Research;2.0;38;35
-PSM Industry Seminar I;2.0;2;66
-PSM Industry Seminar III;2.0;65;49
-Special Topics-Sci & Business;2.0;68;10
-PSM Internship;2.0;72;10
-Intro Psych;2.0;58;10
-Psych Orientation;2.0;9;41
-Intro to Social Psych;2.0;13;45
-Intro to Brain and Cognition;2.0;49;45
-Behavioral Neuroscience;2.0;97;45
-Child Psych;2.0;91;45
-Cognitive Psych;2.0;7;45
-Perception & Sensory Processes;2.0;55;45
-Intro to Statistics;2.0;62;45
-Psychopathology and Problems in Living;2.0;71;45
-Community Psych;2.0;60;45
-Industrial Org Psych;2.0;92;71
-Learning and Memory;2.0;75;71
-Psych of Personality;2.0;63;30
-Research Experience in Psych;2.0;9;30
-Behavioral Neuroscience Lab;2.0;20;33
-Developmental Psychopathology;2.0;85;33
-Social Psych in Society Lab;2.0;92;33
-Perception Lab;2.0;27;33
-Community Projects;2.0;52;33
-Personality Lab;2.0;74;33
-Social Cognition;2.0;18;33
-Developmental Child Psych Lab;2.0;44;33
-Adv Prac in Mental Hlth I;2.0;54;33
-Adv Prac in Mental Hlth II;2.0;75;33
-Intermediate Current Topics in Psychology;2.0;81;40
-Human Behavior Genetics;2.0;63;40
-Psych of Language;2.0;3;40
-Psych and Law;2.0;9;40
-Personnel Psych;2.0;25;38
-Measurement & Test Develop Lab;2.0;47;38
-Capstone Undergrad Research;3.0;53;38
-Advanced Research in Psych;3.0;63;33
-Adv Current Topics in Psych;3.0;91;71
-Professional Develop for Psych;3.0;14;30
-Best Psych Research Practices;3.0;74;10
-Statistical Methods I;3.0;93;61
-Intro to Clin-Comm Psych III;3.0;61;63
-Intro to Clin-Comm Psych I;3.0;58;71
-Intervention & Assessment;3.0;2;63
-Moral Psychology;3.0;29;71
-Soc Psych Theory and Meth II;3.0;83;71
-ResearchMethods:Clin/CommPsych;3.0;99;71
-Prin and Meth of Tchg Psych;3.0;43;71
-Clinical/Community: Diversity;3.0;38;71
-Clinical/Community: Biological;3.0;98;71
-Clinical/Community:Cog/Affect;3.0;76;70
-Clinical/Community:Development;3.0;4;72
-Individual Research;3.0;34;33
-Intro to Russia and Eurasia;3.0;28;10
-Individual Study or Research;3.0;46;64
-Senior Seminar;1.0;44;71
-Topics in REEE Studies;1.0;11;70
-Seminar in REEE Studies;1.0;0;72
-Medical Aspects of Disability;1.0;90;59
-Counseling Internship;1.0;12;53
-Rehabilitation Practicum;1.0;66;53
-Hebrew Bible in English;1.0;1;53
-Advanced Biblical Hebrew;1.0;70;53
-Graduate Intro to Religion;1.0;12;53
-History of Jewish Theology;1.0;91;53
-Principles of Writing;1.0;70;53
-Writing and Research;1.0;57;53
-Adv Rhetoric & Composition;1.0;51;53
-Global Demography;1.0;54;53
-Recreation,Sport,and Tourism in Modern Society;1.0;14;59
-Orientation to Recreation,Sport and Tourism;1.0;40;53
-Foundations of Sport Mgt;1.0;52;53
-Foundations of Tourism;1.0;80;53
-Leadership in Recreation,Sport and Tourism;1.0;70;53
-Management in Recreation,Sport and Tourism;1.0;56;53
-Ethical Issues in Recreation,Sport and Tourism;1.0;58;53
-Disability in Recreation,Sport and Tourism;1.0;7;53
-Leisure and Human Development;1.0;14;53
-Designing Parks and Recreation Experiences;1.0;25;53
-Marketing in Recreation,Sport and Tourism;1.0;0;53
-Leisure and Consumer Culture;1.0;84;53
-Facility Management in Recreation,Sport and Tourism;1.0;7;63
-Legal Aspects of Sport;1.0;98;53
-Research Methods & Analysis;1.0;60;59
-Strategic Thinking in Recreation,Sport and Tourism;1.0;5;59
-Contemporary Issues in Recreation,Sport and Tourism;1.0;87;59
-Sport & Development;1.0;78;59
-Tourism Planning & Development;1.0;22;53
-Event Management in Recreation,Sport and Tourism;1.0;6;53
-Event Implementation and Evaluation in Recreation,Sport and Tourism;1.0;8;53
-Orientation to Practicum;1.0;56;53
-Concepts & Applications in Recreation,Sport & Tourism;1.0;8;53
-Critical Issues Recreation Mgt;1.0;87;59
-Managing Recreation,Sport & Tourism Organizations;1.0;94;59
-Marketing in RST;1.0;10;60
-Event Management;1.0;85;53
-Strategic Management in RST;1.0;23;53
-Critical Issues Sport Mgt;1.0;98;53
-Critical Issues Tourism Mgt;1.0;98;53
-Management Internship;1.0;58;53
-Doctoral Research Seminar and Colloquium;1.0;3;53
-Special Topics in Leisure;1.0;90;53
-First-Year Russian I;1.0;83;53
-Second-Year Russian I;1.0;36;59
-Readings in Russian;1.0;1;53
-Third Year Russian I;3.0;34;53
-Fourth Year Russian I;3.0;50;53
-Russian for Grad Students I;3.0;37;53
-Strategic Brand Communication Essentials;3.0;93;53
-Strategic Branding: Global Perspectives;3.0;63;53
-Essentials of Business Management;3.0;12;53
-Consumer Insights I;3.0;20;53
-Strategic Analytics & Data Visual;3.0;47;53
-Professional SBC Capstone Project;3.0;84;55
-Beginning Scandinavian I;3.0;96;53
-Intermediate Scandinavian I;3.0;8;53
-Topics in Scan Languages;3.0;38;53
-Special Topics in Scan Studies;3.0;52;53
-Introduction to ISE;3.0;43;53
-Engineering Graphics & Design;3.0;33;53
-Business Side of Engineering;3.0;63;53
-ISE Undergraduate Seminar;3.0;95;53
-Design of Structures and Mechanisms;3.0;15;53
-Emotional Intelligence Skills;3.0;16;53
-Engineering Law;3.0;77;53
-Comp-Aided Product Realization;3.0;76;53
-Component Design;3.0;0;53
-Nondestructive Evaluation;3.0;44;53
-Digital Control Systems;3.0;32;53
-Decision Analysis I;3.0;6;53
-Senior Engineering Project I;3.0;85;53
-Senior Engineering Project II;3.0;89;53
-Project Design;3.0;23;53
-Living-Learning ASL Part 1;3.0;92;53
-Child,Comm,& Lang Ability;3.0;48;53
-American Sign Language I;1.0;31;53
-Intro Hum Comm Sys & Disorders;1.0;85;53
-Freshmen Seminar;1.0;85;53
-Communication Neuroscience;1.0;37;53
-Research Lab Experience in SHS;1.0;85;53
-Development of Spoken Language;1.0;63;53
-Children with Neurodevelopmental Disorders Across Communication Contexts;1.0;13;53
-Lang Disorders Preschool Child;1.0;70;53
-Intro Audiol & Hear Disorders;1.0;44;53
-Aural Rehab Children to Adults;1.0;54;61
-Neural Bases Spch Lang;1.0;76;53
-Prepracticum in SHS;1.0;72;53
-Beginning Practicum in SHS;1.0;1;67
-Assessment and Management of Voice Disorders;1.0;89;67
-Lang Disorders Schl-Age Child;1.0;74;70
-Aphasia and Related Disorders;1.0;36;72
-Psychoacoustics;1.0;7;53
-Clinical Auditory Anat & Phys;1.0;35;53
-Assess Audition & Aud Disorder;1.0;81;53
-Adv Clin Prac Aud Assess Rehab;1.0;49;53
-Tinnitus;1.0;61;53
-Hearing Conservation;1.0;65;53
-Audiological Assessment Lab;1.0;71;53
-Vestibular Assessment and Rehabilitation;1.0;27;53
-Quant Reasoning Spch Hear Sci;1.0;54;53
-Counseling in Comm Disorders;1.0;36;53
-Advanced Practicum in SHS;1.0;74;53
-Auditory Processing Disorders;1.0;83;53
-Prosem Spch & Hear Sci;1.0;81;61
-PhD Early Research Project;1.0;74;70
-Introduction to Sociology;1.0;29;70
-Sociology of Gender;1.0;1;71
-Global Ineq and Social Change;1.0;77;71
-Intro to Intl Health Policy;1.0;96;61
-Social Problems;1.0;44;53
-Issues in Sociology;1.0;65;64
-Introduction to Sociological Theory;1.0;84;53
-Race and Ethnicity;1.0;30;57
-Health,Illness and Society;1.0;44;57
-Criminology;1.0;37;53
-Sociology of Deviance;1.0;53;53
-Postsocialism Eastern Europe;1.0;13;53
-Sociology of Law;1.0;27;53
-Social Research Methods;1.0;88;53
-Topics in Sociology;1.0;71;53
-Internships;1.0;4;56
-Law and Society;1.0;91;55
-Advanced Independent Study;1.0;31;71
-Contemp Sociological Theory;1.0;97;53
-Professionalization Seminar;1.0;57;53
-Individual Topics in Sociology;1.0;12;53
-Recent Developments in Soc;1.0;14;53
-Readings in Sociology;1.0;34;53
-Thesis Proposal;1.0;55;65
-SOCW Orientation Seminar;1.0;53;65
-Introduction to Social Work;1.0;74;61
-Intro Stat for Social Work;1.0;30;65
-Death & Dying;1.0;64;67
-Diversity: Identities & Issues;1.0;0;61
-Social Work Services for Older Adults;1.0;57;56
-Social Entre & Social Change;1.0;38;59
-Social Work and the Military;1.0;84;59
-Social Work and Disability Studies;1.0;23;59
-Current Topics in Social Work;1.0;62;59
-Generalist SW Practice Methods;1.0;65;59
-Practice I;1.0;20;59
-Practice II;1.0;66;59
-Practice III;1.0;80;66
-Social Welfare Pol and Svcs;1.0;22;71
-Child Welfare Issues & Trends;1.0;56;64
-Subst Use in Social Context;1.0;4;71
-Social Work Research Methods;1.0;17;64
-HBSE I: Human Development;1.0;91;53
-Professional Practice Seminar I;1.0;35;66
-Field Practicum & Professional Seminar II;1.0;60;65
-Brief Motivational Interventions for Substance Use;1.0;26;53
-Trauma Informed Social Work with Children and Adolescents;1.0;85;53
-Behav and Cogn Methods for SW;1.0;82;53
-SW Practice with Child/Adol;1.0;23;66
-Adv Clin Assess & Interviewing;1.0;46;55
-Social Welfare Planning;1.0;17;55
-SW Practice with Communities;1.0;64;53
-Field Practicum and Integrative Seminar I;1.0;37;53
-Field Practicum and Integrative Seminar II;1.0;26;54
-Field Practicum III;1.0;95;54
-Clinical Research Seminar;1.0;88;55
-Program Evaluation;1.0;55;55
-HBSE II: Mental Disorders;1.0;94;55
-Special Studies in Soc Work I;1.0;46;55
-Special Studies in Soc Work II;1.0;68;55
-Teaching Practicum;1.0;50;55
-National Social Welfare Policy;1.0;91;64
-Social Work and the Law;1.0;64;64
-Applied Qualitative Research;1.0;21;53
-Elementary Spanish I;1.0;33;53
-Elementary Spanish II;1.0;88;53
-Intensive Elementary Spanish;1.0;37;53
-Intermediate Spanish;1.0;70;60
-Introduction to Spanish Grammar;1.0;50;63
-Spanish in the Professions;1.0;26;53
-Readings in Hispanic Texts;3.0;91;53
-Spanish for Business;3.0;23;53
-Advanced Spanish Grammar in Context;3.0;36;57
-Oral Spanish;3.0;58;71
-Spanish Composition;3.0;43;63
-Introduction to Literary Analysis;3.0;22;54
-Introduction to Hispanic Linguistics;3.0;40;62
-Introduction to Cultural Analysis;3.0;72;53
-The Sounds of Spanish;3.0;46;58
-The Structure of Spanish;3.0;14;60
-Bilingualism;3.0;69;53
-Varieties of Spoken Spanish;3.0;80;70
-Spanish Cultural Studies I;3.0;47;31
-Spanish Cultural Studies II;3.0;49;31
-Latin America Cultural Studies I;3.0;23;58
-Latin America Cultural Studies II;3.0;34;63
-Advanced Study Abroad;3.0;44;31
-Spanish/English Translation;3.0;11;55
-Spanish Phonology;3.0;43;42
-Colonial Span Amer Studies;3.0;95;58
-Spanish Grammar and Communicative Language Teaching;3.0;38;33
-Advanced Readings in Spanish;4.0;71;33
-Topics for Honors Students;4.0;64;64
-Sem 20thC Spanish Lit;4.0;41;33
-Special Topics in Spanish;4.0;40;33
-The Culture of Disability;4.0;15;45
-General Educators Role in Special Education;4.0;89;33
-Assessment in Early Childhood Special Education;4.0;21;10
-Assistive Technology and Physical Disabilities;4.0;96;33
-Instructional Strategies I;4.0;92;57
-Career Development and Transition;4.0;77;72
-Curriculum Development I;4.0;87;72
-Curriculum Development III;4.0;95;10
-Introduction to Early Childhood Special Education;4.0;11;43
-Alternative and Augmentative Communication and Literacy;4.0;93;58
-Curriculum and Methods in Early Childhood Special Education;4.0;78;57
-Learning Environments I;4.0;84;67
-Learning Environments II;4.0;16;55
-Legal Aspects of Disabilities;4.0;32;71
-Disability Issues in Special Education;4.0;87;71
-Supervised Practice in Special Education;4.0;46;58
-Concepts and Issues in Special Education I;3.0;70;30
-Statistics;0.6666666666666666;45;37
-Statistical Analysis;2.0;55;33
-Biostatistics;2.0;70;34
-Statistics Programming Methods;2.0;90;34
-Applied Regression and Design;2.0;33;34
-Time Series Analysis;2.0;77;34
-Topics in Applied Statistics;2.0;96;55
-Stochastic Processes;2.0;74;71
-Survival Analysis;2.0;65;71
-Professional Statistics;2.0;69;37
-Data Science Foundations;2.0;70;37
-Mathematical Statistics I;2.0;80;30
-Advanced Regression Analysis;2.0;89;46
-Probability and Measure I;2.0;19;35
-Multivariate Analysis;2.0;16;49
-Topics in Statistics;2.0;12;49
-STAT Internship;2.0;4;72
-Mechanics in the Modern World;2.0;86;46
-Mechanics for Technol & Mgmt;2.0;40;46
-Introduction to Statics;2.0;57;46
-Statics;2.0;20;10
-Introductory Dynamics;2.0;53;63
-Introductory Solid Mechanics;2.0;65;62
-Introductory Fluid Mechanics;2.0;35;37
-Mechanics of Structural Metals;2.0;87;37
-Intermediate Fluid Mechanics;2.0;90;33
-Intermediate Solid Mechanics;2.0;2;33
-Wave Motion;2.0;82;10
-Inviscid Flow;2.0;48;30
-Turbulence;2.0;78;35
-Fluid Mechanics Seminar;2.0;62;35
-Mathematical Methods I;2.0;34;35
-Solid Mechanics I;2.0;59;35
-Plasticity;2.0;63;35
-Advanced Special Topics;2.0;62;61
-Introduction to Innovation,Leadership and Engineering Entrepreneurship;2.0;78;35
-Introduction to Innovation;2.0;70;35
-From Idea to Enterprise;2.0;1;35
-Creativity,Innovation,Vision;2.0;42;35
-Lectures in Engineering Entrepreneurship;2.0;25;35
-Special Topics II;2.0;55;35
-Developing Breakthrough Projects;2.0;53;61
-Startups: Inc,Fund,Contracts,IP;2.0;78;35
-Technology Entrepreneurship;2.0;42;35
-High-Tech Venture Marketing;2.0;97;62
-Technol Innovation & Strategy;2.0;53;62
-Finance for Engineering Mgmt;2.0;54;62
-Venture Funded Startups;2.0;53;62
-Special Topics IV;2.0;60;35
-Practicum I;2.0;28;47
-Introduction to Theatre Arts;2.0;81;35
-Text to Stage;2.0;13;35
-Broadway Musicals;2.0;96;35
-Stagecraft;3.0;40;35
-Introduction to Theatre Sound;3.0;93;35
-Fundamentals of Acting I;3.0;1;35
-Fundamentals of Acting II;3.0;9;35
-Practicum II;3.0;68;35
-21st Century American Dramaturgy;3.0;51;35
-Introduction to Playwriting;3.0;3;35
-Survey of Theatrical Design;3.0;66;47
-Relationships in Acting I;3.0;32;35
-Voice and Movement I;3.0;65;35
-Practicum III;3.0;31;35
-Professional Stage Management;1.0;86;71
-History of Theatre I;3.0;99;71
-Acting Studio I: Dynamics;1.0;57;71
-Acting Studio I: Voice;1.0;61;71
-Acting Studio I: Movement;3.0;85;71
-Acting Studio I: Acting;3.0;49;71
-Undergraduate Group Seminar;3.0;59;71
-Practicum IV;3.0;60;71
-Stage Management Workshop;3.0;94;71
-Directors Workshop;3.0;28;71
-Theatrical CAD Drafting I;3.0;72;71
-Shop Practice;3.0;39;71
-Structures for the Stage I;3.0;40;35
-Advanced Lighting Design;3.0;42;72
-Electric Motors & Fluid Power;3.0;48;35
-Stage Drafting;1.0;67;35
-Scenic Painting I;1.0;52;35
-Scenic Painting II;1.0;64;35
-Technical Direction I;1.0;1;35
-Lighting for Non-Theatrical Spaces and Styles;1.0;61;35
-Advanced Lighting Seminar;1.0;18;35
-Professional Lighting Systems;1.0;12;35
-Software for Lighting Design;1.0;52;35
-Costume History and Design I;1.0;82;35
-Advanced Costume Crafts;1.0;95;35
-Management Seminar;1.0;87;65
-Principles of Stage Management;1.0;54;35
-Sound Design II;1.0;59;65
-Rendering for Live Performance;1.0;38;65
-Introduction to Media Design;1.0;48;65
-Acting Studio III: Dynamics;1.0;44;65
-Acting Studio III: Voice;1.0;18;65
-Acting Studio III: Movement;1.0;88;69
-Acting Studio III: Acting;1.0;68;69
-Upholstery Techniques;1.0;65;69
-Digital Rendering for Lighting;1.0;76;71
-Advanced Problem Solving for Lighting Designers;1.0;33;71
-Audio Engineering I;1.0;26;71
-Audio Engineering II;1.0;0;69
-Technical Direction II;1.0;35;66
-Colloquium Design & Theat Tech;1.0;65;51
-Topics in Stage Management;1.0;49;51
-Seminar in Theatre History;1.0;87;51
-Seminar in Theatre Theory;1.0;38;63
-Colloquium in Acting: Dynamics;1.0;61;63
-Colloquium in Acting: Voice;1.0;36;63
-Colloquium in Acting: Movement;1.0;73;30
-Colloquium in Acting: Acting;1.0;69;72
-Creative Project;1.0;77;51
-Intro to Translation Studies;1.0;80;51
-Translation for Professions;1.0;92;51
-Terminology and CAT;1.0;34;58
-Community Interpreting;1.0;35;59
-Special Topics in Translation;1.0;44;59
-Technical Systems in Agr;1.0;17;60
-Basics of CAD;1.0;1;63
-Materials and Construction Sys;1.0;87;71
-Metallurgy & Welding Process;1.0;72;71
-Humanity in the Food Web;1.0;3;71
-Land and Water Mgt Systems;1.0;18;63
-Environ Control & HVAC Systems;1.0;73;40
-Ag Health-Illnesses Prevention;1.0;99;72
-Elec Computer Ctrl Sys;1.0;28;31
-Renewable Energy Applications;1.0;91;69
-Elementary Turkish I;1.0;94;69
-Intermediate Turkish I;1.0;89;55
-Advanced Turkish I;1.0;16;31
-Special Topics in Turkish;1.0;40;31
-Basic Ukrainian I;1.0;21;64
-Ukrainian Culture;1.0;67;64
-Second-Year Ukrainan I;1.0;14;64
-Introduction to City Planning;1.0;67;64
-Cities: Planning & Urban Life;1.0;87;64
-Local Planning,Govt and Law;1.0;32;64
-Social Inequality and Planning;1.0;63;31
-Communication for Planners;1.0;23;31
-The Modern American City;1.0;66;35
-Planning for Healthy Cities;1.0;53;35
-Planning Internship;1.0;46;72
-Undergraduate Project;1.0;27;72
-Undergraduate Capstone Seminar;1.0;40;35
-GIS for Planners;1.0;71;35
-Plng for Historic Preservation;1.0;19;35
-Community Development in the Global South;1.0;47;35
-Pedestrian and Bicycle Planning;1.0;58;35
-Land Use Planning Workshop;1.0;1;35
-Transportation/Land Use Policy;1.0;90;35
-Housing & Urban Policy;1.0;98;35
-Community Development Workshop;1.0;74;35
-Community Engagement in Planning;1.0;38;58
-Special Topics in Planning;1.0;49;58
-Planning History and Theory;1.0;75;62
-Physical Planning;1.0;47;62
-Urban History and Theory;1.0;53;62
-Economics for Planners;1.0;61;62
-Urban Skills & Applications II: Chicago Practicum;1.0;76;62
-Advanced Applications of GIS;1.0;65;65
-Economic Development Policy;1.0;93;65
-Capstone Seminar;1.0;34;65
-Doctoral Urban Planning Seminar;1.0;51;65
-Urban Planning Research;1.0;20;63
-Zoological Medicine Seminar;1.0;85;64
-Current Lit in Equine Med Surg;1.0;56;72
-Topics in Pathophysiology;1.0;23;72
-Adv Comp Theriogenology;1.0;96;63
-Comparative Veterinary Physiology;1.0;8;63
-Small Animal Internal Medicine Book Club;1.0;94;63
-ECC Journal Topics;1.0;25;63
-Infectious Disease in Livestock Systems;1.0;17;63
-Biosecurity in Livestock Systems;1.0;7;63
-Advanced Large Animal Medicine;1.0;25;63
-Current Concepts Comp Surgery;1.0;56;64
-Current Lit Sm Anim Medicine;1.0;48;64
-Advances in Vet Dermatology;1.0;25;64
-Adv Topics Vet Clin Med;1.0;50;64
-Manuscript Research;1.0;57;64
-Advanced Soft Tissue Surgery;1.0;10;59
-Advanced Clinical Pathology;1.0;5;51
-Equine Emergency Medicine;1.0;33;51
-Lab Animal Science I;1.0;41;51
-One Medicine: One Health;1.0;1;51
-Avian Medicine and Surgery;1.0;33;51
-Lab Animal Science II;1.0;13;66
-Shelter Medicine II;1.0;3;66
-Advanced Equine Anatomy;1.0;31;66
-Food Supply Disease Prevention;1.0;95;66
-Advanced Equine Internal Medicine;1.0;49;45
-Wildlife Medicine;1.0;94;66
-ZooMed: What is Your Diagnosis;1.0;80;45
-Food Supply Decision Making;1.0;70;45
-Clinical Practice I;1.0;18;70
-Structure and Function I;1.0;73;31
-Pathobiology I;1.0;71;62
-Pathobiology II;1.0;61;57
-Medicine and Surgery I;1.0;26;53
-Medicine and Surgery II;1.0;52;63
-Clinical Practice V;1.0;15;66
-Clinical Practice VI;1.0;1;66
-Research Project I;1.0;32;66
-The Basics of Business;1.0;5;66
-Veterinary Medical Spanish;1.0;95;66
-Fundamentals of Management;1.0;27;70
-Issues in Tutoring Writing;1.0;68;70
-Beginning Yiddish I;1.0;83;70
-Intermediate Yiddish I;1.0;23;72
-Elementary Zulu II;1.0;66;72
+Intro Asian American Studies;3.0;221;0
+Intro to Asian Am Pop Culture;3.0;560;3
+U.S. Race and Empire;3.0;508;0
+US Racial & Ethnic Politics;3.0;529;2
+Asian American Youth in Film;3.0;220;1
+The Politics of Fashion;3.0;438;1
+Constructing Race in America;3.0;434;1
+Asian American History;3.0;352;3
+Food and Asian Americans;3.0;541;2
+Asian Families in America;3.0;220;3
+Race and Cultural Diversity;3.0;122;3
+Immigration,Law,and Rights;3.0;250;1
+Adv Asian Am Undergrad Reading;3.0;250;0
+Asian American Education;3.0;51;1
+Intro Agric & Biological Engrg;3.0;269;1
+Undergraduate Open Seminar;3.0;197;3
+ABE Principles: Machine Syst;3.0;384;1
+ABE Principles: Soil & Water;3.0;34;2
+Transport Processes in ABE;3.0;154;2
+Off-Road Machine Design;3.0;451;0
+Independent Study;3.0;300;2
+Principles of Mobile Robotics;3.0;458;3
+Project Management;3.0;282;1
+Renewable Energy Systems;3.0;600;1
+Applied Statistical Methods I;3.0;128;0
+Statistical Methods;3.0;249;2
+Drainage and Water Management;3.0;32;1
+Engineering Off-Road Vehicles;3.0;590;3
+Indoor Air Quality Engineering;3.0;361;0
+Bioprocessing Biomass for Fuel;3.0;523;1
+Special Topics;3.0;214;1
+Graduate Research I;3.0;521;1
+Graduate Seminar;3.0;234;0
+Thesis Research;3.0;300;2
+Fundamentals of Accounting;3.0;131;1
+Accounting and Accountancy I;3.0;50;2
+Accounting and Accountancy II;3.0;119;2
+Prof Internship in Accountancy;3.0;487;2
+Atg Measurement & Disclosure;3.0;43;1
+Decision Making for Atg;3.0;43;0
+Accounting Institutions and Regulation;3.0;290;2
+Accounting Control Systems;3.0;252;1
+Principles of Taxation;3.0;450;3
+Principles of Public Policy;3.0;128;3
+Practical Problems in Atg;3.0;48;0
+Assurance and Attestation;3.0;125;1
+Advanced Financial Reporting;3.0;490;2
+Auditing Stds and Practice;3.0;198;1
+Advanced Income Tax Problems;3.0;587;1
+Senior Research;3.0;543;0
+Accounting Measurement,Reporting,and Control;1.0;125;0
+Accounting Analysis I;1.0;13;2
+Accounting Analysis II;1.0;158;2
+Auditing;1.0;157;1
+Federal Taxation;1.0;164;0
+Advanced Topics in Accounting;1.0;80;0
+Financial Reporting Standards;1.0;600;1
+Data Analytics for Management Accounting;1.0;490;1
+Auditing & Assurance Standards;1.0;347;0
+Financial Statement Analysis;1.0;26;2
+Financial Statement Fraud;3.0;107;2
+Corporate Income Taxation;3.0;407;2
+Tax Research;3.0;438;0
+Data Driven Decisions in Accounting;3.0;604;3
+Data Analytics Foundations for Accountancy;3.0;74;1
+Introduction to Accounting Research;3.0;200;1
+Special Research Problems;3.0;373;1
+Agr Cons and Resource Econ;3.0;436;0
+Microcomputer Applications;3.0;144;3
+Environmental Economics;3.0;499;0
+Agricultural Marketing;3.0;52;0
+Personal Financial Planning;3.0;196;3
+The World Food Economy;3.0;508;1
+Applied Statistical Methods;3.0;96;0
+Off-Campus Internship;3.0;223;3
+On-Campus Internship;3.0;42;2
+Food Law;3.0;34;0
+Issues&Careers in Applied Econ;3.0;61;1
+Finan Decision Indiv Sm Bus;3.0;283;2
+Tax Policy and Finan Planning;3.0;551;2
+Spreadsheet Models & Applic;3.0;317;1
+Honors Research or Thesis;3.0;168;1
+Seminar;3.0;372;3
+Environmental Law;3.0;273;1
+Environment and Development;3.0;109;2
+Commodity Price Analysis;3.0;332;2
+Commodity Futures and Options;3.0;272;0
+Farm Management;3.0;67;0
+Global Agribusiness Management;3.0;506;0
+Finan Serv & Invest Plan;3.0;307;0
+Intermediate Personal Fin Plan;1.0;391;3
+The Latin American Economies;1.0;422;3
+Intl Trade in Food and Agr;1.0;289;0
+Practicum;1.0;491;2
+Applied Economic Theory;1.0;55;2
+Risk and Info: Theory and App;1.0;462;0
+Time Series Econometrics for Price Analysis;1.0;195;0
+Impact Evaluation;1.0;561;1
+Applied Regression Models I;1.0;299;0
+Applied Regression Models II;1.0;454;1
+Career Development for PhDs;3.0;53;0
+Household Economics;3.0;595;3
+Seminars and Workshops;3.0;191;0
+Contemporary Issues in ACES;3.0;559;3
+Intro Sustainable Food Systems;3.0;279;2
+History of Ag in IL Since 1860;3.0;355;1
+ACES Transfer Orientation;3.0;288;0
+International Internship;3.0;438;0
+Undergrad Research or Thesis;3.0;565;2
+International Experience;3.0;383;3
+ACES Study Abroad;3.0;21;1
+Introduction to Advertising;3.0;329;3
+Undergraduate Seminar;3.0;499;0
+Principles of Sales;3.0;85;1
+Advertising Research Methods;3.0;117;0
+Advertising and Brand Strategy;3.0;62;1
+Consumer Insight;3.0;70;1
+Digital Advertising Content,Technologies and Concepts;3.0;582;2
+Intro to Public Relations;3.0;539;0
+Classic Campaigns;3.0;375;0
+Sales Management;3.0;74;1
+Writing for Public Relations;3.0;235;3
+Sales and the Consumer;3.0;323;1
+Content Creation;1.0;462;1
+Advertising and Society;3.0;62;1
+Research Experience in Advertising;3.0;313;1
+Special Problems;3.0;360;0
+Media Entrepreneurship;3.0;54;3
+Public Relations Strategies;3.0;201;0
+Creative Concepts I;3.0;456;0
+Innovation in Advertising;3.0;256;3
+Psychology of Advertising;3.0;132;2
+Qualitative Analysis in Advert;3.0;68;1
+Audience Analysis;3.0;253;0
+Advanced Special Topics in Advertising;3.0;154;2
+Advertising Management Plan;3.0;466;3
+Persuasion Consumer Response;3.0;59;2
+Internship Seminar;3.0;414;0
+UG Research Project;3.0;363;2
+The Sandage Project;3.0;452;2
+Foundations of Advertising;3.0;398;3
+Advertising Theory;3.0;335;2
+Qualitative Rsrch in Advert;3.0;214;1
+Graduate Seminar I;3.0;491;2
+Special Topics in Advertising;3.0;583;2
+Professional Project;3.0;406;3
+Intro to Aerospace Engineering;3.0;269;0
+Aerospace Flight Mechanics;3.0;535;1
+Incompressible Flow;3.0;75;3
+Compressible Flow;3.0;74;0
+Mechs of Aerospace Structures;3.0;2;2
+Applied Aerospace Structures;3.0;562;0
+Aerospace Dynamical Systems;3.0;430;2
+Aerospace Control Systems;3.0;229;3
+Honors Project;3.0;537;2
+Honors Seminar;3.0;170;1
+Orbital Mechanics;3.0;294;0
+Viscous Flow & Heat Transfer;3.0;501;3
+Applied Aerodynamics;3.0;487;3
+Finite Element Analysis;3.0;203;1
+Mechanics of Composites;2.0;200;1
+Aerospace Propulsion;3.0;156;0
+Aerospace Systems Design I;3.0;280;3
+Aerospace Systems Design II;3.0;354;0
+Aeroelasticity;3.0;382;1
+Systems Dynamics & Control;3.0;264;0
+Aerodynamics & Propulsion Lab;3.0;62;0
+Introduction to Robotics;3.0;44;3
+Unmanned Aerial Vehicle (UAV) Navigation and Control;3.0;404;2
+Spacecraft Environment and Interactions;3.0;328;3
+Fracture and Fatigue;3.0;141;2
+Aerospace Syst Engineering I;3.0;90;0
+Elastodynamics and Vibrations;3.0;509;3
+Leadership Laboratory;3.0;173;1
+Heritage and Values of the United States Air Force I;3.0;44;2
+Intro to US Armed Forces;2.0;461;0
+Team and Leadership Fundamentals I;2.0;360;0
+Leading People and Effective Communication I;3.0;214;3
+Nat Sec Afrs/Prep Actv Duty I;3.0;587;2
+Intro to African American St;3.0;170;0
+Black America,1619-Present;3.0;452;3
+Black Literature in America;3.0;41;1
+Intro African American Theat;3.0;257;1
+Black Women Contemp US Society;3.0;308;1
+Pan Africanism;3.0;473;0
+Early African American Literature and Culture;3.0;264;0
+Modern African American Literature and Culture;1.0;509;0
+Intro to the African Diaspora;1.0;229;1
+Afro-American Hist Since 1877;1.0;608;3
+Psychology of Race & Ethnicity;1.0;352;1
+Race and Revolutions;1.0;575;1
+African Amer Families in Film;1.0;144;3
+Spec Topics Afro-Am Studies;1.0;189;1
+African American Psychology;1.0;99;2
+Racial and Ethnic Families;1.0;131;1
+Black Freed Move,1955-Present;1.0;560;1
+Urban Communities & Public Pol;1.0;352;2
+Immersion Journalism;1.0;280;0
+Theory in African American St;1.0;268;3
+Spec Topics African Am Studies;1.0;265;0
+Directed Independent Readings;1.0;189;2
+Introduction to Modern African Literature;1.0;23;1
+Elementary Swahili I;1.0;180;3
+Elementary Wolof I;1.0;351;2
+Egypt Since World War I;1.0;206;0
+Topics Swahili Lang & Lit I;1.0;234;3
+Adv Topics Swahili Lang&Lit I;1.0;170;2
+Intermediate Swahili I;1.0;470;1
+Advanced Swahili I;1.0;319;1
+Intermediate Wolof I;1.0;237;2
+Advanced Wolof I;1.0;593;2
+Intro to Ag and Env Comm;1.0;152;1
+Communicating Agriculture;1.0;554;1
+Visual Principles for Ag Comm;1.0;191;3
+Ag Sales and Persuasive Communication;1.0;333;1
+Communications Internship;1.0;356;1
+Research Internship;1.0;260;1
+Independent Study or Research;1.0;553;1
+Comm in Env Social Movements;1.0;291;0
+Intro to Ag & Leadership Ed;1.0;398;2
+Harnessing Your Interpersonal Intelligence;1.0;467;2
+Leading Student Organizations;1.0;356;1
+Prog Del in Ag & Leadership Ed;1.0;535;2
+Leadership Communications;1.0;94;3
+Introduction to Leadership Studies;1.0;567;0
+Training Needs Assessment;1.0;95;0
+Ag Leadership Internship;1.0;439;2
+Prof Dev in Leadership Ed;1.0;405;1
+Leadership Ethics & Pluralism;1.0;455;2
+Early Field Experience;1.0;440;2
+Advanced Leadership Studies;1.0;271;3
+Leadership in Groups and Teams;1.0;190;1
+Foundations of Ag & Extn Ed;1.0;552;3
+Curr Design & Instruction;1.0;607;0
+Teaching Strategies in AGED;1.0;529;1
+Interpersonal Intelligence for Professional Success;1.0;93;3
+Collaborative Leadership;1.0;73;3
+Education Program Management;1.0;369;1
+Grad Professional Dev in Ag Ed;1.0;266;2
+Advanced Program Delivery;2.0;549;3
+Advanced Program Evaluation;2.0;244;0
+Freshmen Scholars Seminar;2.0;385;1
+AHS Study Abroad;2.0;247;0
+Comm Partners & Health;2.0;477;3
+Advanced Open Seminar;2.0;594;2
+Intro to Amer Indian Studies;2.0;322;3
+Encounters in Native America;2.0;508;2
+Indigenous Thinkers;2.0;403;0
+Topics in American Indian Lit;2.0;559;2
+Adv Topics in Am Ind Studies;2.0;294;3
+Intro to Animal Sciences;2.0;428;0
+Working With Farm Animals;2.0;272;1
+Life With Animals and Biotech;2.0;569;0
+Principles of Dairy Production;2.0;414;1
+World Animal Resources;2.0;502;0
+Horse Management;2.0;204;2
+Companion Animal Biology &Care;2.0;153;2
+Meat Technology;2.0;70;3
+Cells,Metabolism and Genetics;2.0;356;0
+Anatomy and Physiology;2.0;218;3
+Companion Animals in Society;2.0;70;1
+Epidemics and Infectious Diseases;2.0;67;1
+Human Animal Interactions;2.0;573;3
+Companion Animal Management;2.0;230;3
+Meat Production and Marketing;2.0;37;3
+Meat Selection and Grading;2.0;267;1
+Advanced Livestock Evaluation;2.0;366;2
+Adv Dairy Cattle Evaluation;2.0;573;3
+Livestock Feeds and Feeding;2.0;392;1
+Cellular Metabolism in Animals;2.0;457;1
+UG Experiential Learning;2.0;314;1
+Beef Production;2.0;493;1
+Ruminant Nutrition;2.0;1;2
+Companion Animal Nutrition;2.0;329;1
+Pet Food & Feed Manufacturing;2.0;189;1
+Advanced Reproductive Biology;2.0;493;3
+Human Genetics;2.0;106;3
+Biological Modeling;2.0;144;3
+Animal Growth and Development;2.0;19;2
+ANSC Leaders & Entrepreneurs;2.0;317;2
+Integrating Animal Sciences;2.0;535;3
+Techniques in Animal Nutrition;2.0;591;0
+Nonruminant Nutrition Concepts;1.0;165;2
+Topics in Nutrition Research;1.0;188;3
+Regression Analysis;1.0;599;3
+Animal Sciences Seminar;1.0;541;1
+Res Studies in Animal Sciences;1.0;554;1
+Introduction to Anthropology;1.0;305;3
+Anthro in a Changing World;1.0;126;3
+Talking Culture;1.0;129;1
+World Archaeology;1.0;163;2
+Religion & Society in West I;1.0;267;2
+Biology of Human Behavior;1.0;38;1
+The Archaeology of Death;1.0;282;3
+Families in Global Perspective;1.0;253;3
+Introduction to Archaeology;1.0;357;0
+Tourist Cities and Sites;1.0;126;0
+Sociocultural Anthropology;1.0;362;3
+Human Biological Variation;1.0;392;1
+Forensic Science;1.0;433;1
+Images of the Other;1.0;150;0
+Language and Culture in Turkey;1.0;553;2
+Human Osteology;1.0;260;2
+Evolution and Human Health;1.0;482;1
+Topics in Lang & Culture;1.0;217;0
+The Culture of Nature;1.0;125;3
+Individual Study;1.0;25;2
+Evolutionary Immunology;1.0;135;0
+Human Evolutionary Anatomy;1.0;434;1
+Economic Anthropology;1.0;116;1
+Primate Life History Evolution;1.0;265;0
+Methods in Bioanthropology;1.0;392;1
+Research in Bioanthropology;1.0;91;0
+Archaeological Field School;1.0;451;3
+Lab Analysis in Archaeology;1.0;586;1
+Heritage Management;1.0;69;3
+Honors Senior Thesis I;1.0;212;3
+Honors Senior Thesis II;1.0;425;3
+Individual Field Research;1.0;264;3
+Individual Field Data Analysis;1.0;316;0
+Senior Capstone Seminar;1.0;71;0
+Topics in Anthropology;1.0;481;2
+Seminar in Cognitive Science;1.0;3;3
+Seminar in Anthropology;1.0;489;0
+Language in Culture II;1.0;595;2
+Archaeological Theory;1.0;37;2
+Readings in Anthropology;1.0;508;1
+Dissertation Readings;1.0;510;0
+Lang&Culture of Arab World;1.0;507;1
+Elementary Standard Arabic I;1.0;247;1
+Colloquial Arabic I;1.0;569;0
+Intermediate Stand Arabic I;1.0;335;1
+Advanced Standard Arabic I;1.0;329;1
+Adv Top Stand Arabic LangLit I;1.0;470;2
+Business Arabic;1.0;190;3
+Concepts and Theories of Architectural Design;1.0;263;2
+Introduction to the History of World Architecture;1.0;62;2
+Anatomy of Buildings;1.0;557;0
+Strategies of Architectural Design;1.0;152;2
+Environment,Architecture,and Global Health;1.0;249;0
+Architectural Design and Urbanism;1.0;478;2
+Senior Honors in Architecture;1.0;392;0
+Special Topics in Spanish Arch;1.0;144;1
+Medieval Architecture;1.0;242;3
+Modern and Contemporary Global Architecture;1.0;222;0
+Design of Steel and Reinforced Concrete Structures;1.0;192;3
+Environmental Control Systems I;1.0;252;2
+Theory & Design Steel & Timber;1.0;338;3
+Overseas Architectural Studies;1.0;454;1
+Fundamentals of Arch Design;1.0;419;3
+Arch Design & Development;1.0;267;1
+Arch Design & Exploration;1.0;243;0
+Arch Professional Internship;1.0;454;2
+Directed Research in Arch;1.0;578;3
+Off-Campus Study;1.0;271;1
+Conserv of Building Materials;1.0;470;1
+Advanced Applications in the Built Environment,Architecture and Global Health and Well-Being;1.0;124;3
+Planning and Design of Structural Systems;1.0;566;0
+Environmental Control Systems II;1.0;545;0
+Bldg Sys & Design Integration;1.0;298;1
+Reinforced Concrete Design;1.0;354;2
+Structural Analysis;1.0;114;1
+Adv Steel Design;1.0;123;2
+Design: Detail and Architectonics;1.0;517;3
+Design: Behavior and Environment;1.0;189;0
+Design: Technology and Performance;1.0;225;3
+Design: Architecture and Urban Design;1.0;398;3
+Architectural Design Seminar;1.0;518;3
+Theories of Architecture;1.0;226;1
+PhD Colloquium;1.0;230;0
+Directed Research;1.0;185;1
+Special Problems in Architectural History and Preservation;1.0;135;2
+Spec Prob Arch Practice & Mgt;1.0;502;3
+Spec Prob Struct Theory & Des;1.0;126;1
+Spec Prob Arch Design;1.0;147;3
+Specialized Architectural Practice;1.0;151;0
+Drawing for Non-Majors;1.0;74;0
+Painting for Non-Majors;1.0;415;0
+Sculpture for Non-Majors;1.0;220;3
+Introduction to Art;1.0;535;3
+Introduction to Drawing;1.0;266;3
+Black & White Film Photography;1.0;177;0
+Digital Video;1.0;107;0
+Introduction to Graphic Design - Unit One;1.0;68;3
+Unit One Studio/Seminar;1.0;543;1
+Art in Early Childhood;1.0;337;1
+Special Topics in Art;1.0;592;0
+Design Thinking;1.0;12;1
+Introduction to Industrial Design;3.0;115;1
+Introduction to Graphic Design;3.0;382;1
+The Image World;3.0;200;1
+Industrial Design I;3.0;398;2
+Chado (The Way of Tea);3.0;503;2
+Graphic Design for Non-Majors;3.0;591;2
+Typographic Practice;3.0;289;0
+Design Drawing;3.0;551;3
+Design Thinking/Need-Finding;3.0;164;2
+Graphic Design Toolbox;3.0;62;0
+Basic Photography;3.0;597;3
+Photography II;3.0;494;2
+Design Methods;3.0;450;3
+Spec Topics in Design Courses;3.0;501;3
+Industrial Design III;3.0;69;0
+UI/UX Design for Non-Majors;3.0;444;1
+Human-Centered Product Design;3.0;84;1
+Graphic Design Inquiry;3.0;177;2
+Photography III;3.0;265;1
+Photography Workshop;3.0;60;3
+RAW Photography;1.0;40;3
+Graphic Design Practicum;1.0;232;1
+Special Problems in Design;2.0;183;2
+Internship in Design;3.0;162;2
+Industrial Design V;3.0;367;0
+Ninth Letter;3.0;397;2
+Product Innovation;4.0;119;2
+Ethics of a Designer in a Global Economy;4.0;9;3
+Advanced Photography;4.0;449;3
+Senior Honors;4.0;510;3
+Special Topics in Design;4.0;215;3
+Design Research Methodology;4.0;328;2
+MFA Graphic Design Studio;4.0;302;2
+Industrial Design Thesis;4.0;454;2
+Facilitating the Art Experience;4.0;472;3
+Everyday Arts Lab;4.0;18;0
+Practicum Teaching Experience;4.0;103;1
+Art-Centered Learning at the Secondary Level;4.0;116;1
+Teaching Seminar;4.0;594;1
+Art Exhibition Practices;4.0;149;0
+Theories of Art Education;4.0;214;2
+Independent Graduate Studies;4.0;65;1
+Survey: Qualitative Methodologies;4.0;58;2
+Contemporary Issues in Art;4.0;436;2
+Observational Drawing;4.0;426;0
+Visualization Drawing;4.0;13;3
+Introduction to the History of Art and Visual Culture;4.0;195;2
+Design History Survey;4.0;299;0
+Development of Ancient Cities;4.0;116;3
+Art Since 1940;4.0;80;1
+American Art;4.0;267;2
+Spec Topics in Art History;4.0;501;2
+Arts of Colonial Latin America;4.0;16;2
+Women and the Visual Arts;4.0;507;3
+Individual Art History Topics;4.0;82;1
+Junior Seminar in Art History;4.0;219;3
+Ways of Seeing in Edo Japan;4.0;433;3
+Romantic Art;4.0;225;3
+Senior Art-History Honors-BA;4.0;177;1
+Senior Art-History Honors-BFA;4.0;603;2
+Topics in Art History;4.0;555;3
+Senior Seminar in Art History;4.0;306;3
+Seminar in Ancient Art;4.0;93;2
+Seminar in Modern Art;4.0;269;2
+Seminar in American Art;4.0;515;1
+Individual Readings;4.0;406;1
+Theory and Methodology;4.0;271;0
+Introduction to Printmaking;4.0;123;0
+Ceramics Sculpture I;4.0;557;3
+Jewelry/Metals I;4.0;212;2
+Jewelry/Metals II;4.0;53;3
+Image Practice;4.0;413;1
+Time Arts I;4.0;562;0
+Interaction I;4.0;516;2
+Life Drawing;4.0;234;2
+Beginning Painting;4.0;490;3
+Making and Meaning;1.0;306;2
+Beginning Sculpture;3.0;433;1
+Spec Topics in Studio Art;3.0;191;2
+Ceramics Sculpture II;2.0;58;2
+Jewelry Metals III;1.0;453;3
+Jewelry Metals IV;2.0;388;0
+Metal Technology;2.0;356;1
+Intermediate Studio I;2.0;57;3
+Intermediate Painting;2.0;332;3
+Special Topics in Printmaking;2.0;601;1
+Jewelry Metals V;2.0;606;2
+Time Arts II;2.0;485;3
+Special Topics in New Media;2.0;342;1
+Advanced Studio I;2.0;330;0
+Advanced Painting;2.0;3;0
+Special Topics in Studio Art;2.0;381;2
+Graduate Studio;2.0;109;1
+Seminar: Methods Criticism;2.0;216;3
+Graduate Laboratory;2.0;273;3
+Theory of Interest;2.0;356;1
+Introduction to Actuarial Research;2.0;284;0
+Actuarial Problem Solving;2.0;349;0
+Actuarial Statistics II;2.0;60;0
+Linear Algebra with Financial Applications;2.0;133;1
+Investments and Financial Markets;2.0;526;0
+Methods of Applied Statistics;2.0;105;1
+Basics of Statistical Learning;2.0;430;2
+Loss Models;2.0;59;1
+Life Contingencies I;2.0;234;2
+Topics in Actuarial Science;2.0;310;3
+Financial Mathematics;2.0;164;0
+Risk Management Practices and Regulation;2.0;347;2
+Statistical Learning;2.0;38;2
+Loss Data Analytics & Credibility;2.0;459;0
+Extreme Value Theory and Catastrophe Modeling;2.0;61;3
+Literature Seminar;2.0;394;2
+Asian Mythology;2.0;312;1
+Individual Study and Research;2.0;529;1
+Introduction to Astronomy;2.0;185;0
+Solar System and Worlds Beyond;2.0;585;0
+Stars and Galaxies;2.0;593;0
+Killer Skies: Astro-Disasters;2.0;497;1
+Introduction to Astrophysics;2.0;146;3
+The Big Bang,Black Holes,and the End of the Universe;2.0;186;1
+Stellar Astrophysics;2.0;250;0
+Galaxies and the Universe;2.0;185;2
+Senior Thesis;2.0;234;3
+Astrophysical Dynamics;2.0;354;2
+Computational Astrophysics;2.0;536;2
+Astrophysics;2.0;262;2
+Seminar in Special Topics;2.0;551;1
+Introduction to Meteorology;2.0;355;1
+Severe and Hazardous Weather;2.0;155;2
+Climate and Global Change;2.0;345;3
+General Physical Meteorology;2.0;195;3
+Atmospheric Thermodynamics;3.0;227;3
+Atmospheric Dynamics I;3.0;234;3
+Synoptic-Dynamic Wea Analysis;3.0;76;1
+Computing and Data Analysis;3.0;349;3
+Soc Impacts Weather & Climate;3.0;298;3
+Air Pollution to Global Change;3.0;111;2
+Tropical Meteorology;3.0;143;2
+Radar Remote Sensing;3.0;523;1
+Earth Systems Modeling;3.0;591;1
+Air Quality Modeling;3.0;185;1
+Adv Topics in Atmospheric Sci;3.0;18;0
+Capstone Undergraduate Research;3.0;208;3
+Dynamic Meteorology;3.0;439;1
+Physical Meteorology;3.0;83;2
+Clouds and Climate;3.0;544;0
+Professional Development;3.0;85;2
+Atmospheric Sciences Seminar;3.0;99;1
+Non-Thesis Research;3.0;207;2
+Business Location Decisions;3.0;1;1
+Business Analytics I;3.0;305;1
+Business Analytics II;3.0;469;3
+Technology & Mgmt Seminar;3.0;325;1
+Fundamentals of Operations Management;3.0;54;2
+The Legal Environment of Bus;3.0;479;0
+Mgmt and Organizational Beh;3.0;4;2
+Leading Individuals and Teams;3.0;296;0
+Designing and Managing Orgs;3.0;252;0
+Strategic Human Resource Management;3.0;7;2
+Leading Negotiations;3.0;330;1
+Principles of Marketing;3.0;95;2
+Principles of Retailing;3.0;511;0
+Marketing Research;3.0;210;1
+Marketing Communications;3.0;396;0
+Purchasing and Supply Mgmnt;3.0;110;2
+Consumer Behavior;3.0;76;0
+Pricing Policies;3.0;320;1
+Marketing to Business and Govt;3.0;485;3
+New Product Development;3.0;151;0
+Brand Management;3.0;344;2
+Supply Chain Management Basics;3.0;178;2
+Modeling the Supply Chain;3.0;537;2
+Global Supply Chain Management;3.0;329;3
+Ethical Dilemmas of Business;3.0;466;0
+IT for Networked Organizations;3.0;358;3
+E-Business Management;3.0;597;3
+Database Design and Management;3.0;589;2
+Info Sys Analysis and Design;3.0;134;1
+Data Science and Analytics;3.0;132;2
+New Product Marketing;2.0;376;0
+Mgmt of Innov and Technology;2.0;365;3
+Management Decision Models;3.0;80;0
+Operations Management;3.0;252;2
+Logistics Management;3.0;14;2
+International Business;3.0;300;1
+Multinational Management;3.0;602;2
+Senior Research I;3.0;176;2
+Senior Research II;3.0;460;1
+Corporate & Commercial Law;3.0;473;3
+Advanced Marketing Management;3.0;606;0
+Small Business Consulting;3.0;152;2
+Entrepreneurship: New Venture Creation;2.0;384;2
+Business Policy and Strategy;2.0;103;0
+Business Intelligence;2.0;297;0
+IT Governance;2.0;562;3
+Business Process Modeling;2.0;296;1
+Communicating with Data and Decision Making;2.0;254;1
+Classics in Business Administration;2.0;118;1
+Phil of Science and Bus Admin;2.0;328;1
+Leadership and Teams;2.0;487;3
+Managing Organizations;2.0;392;1
+HR Management and Strategy;2.0;72;0
+Communication Strategy in Bus;2.0;70;3
+Managing Innovation;2.0;536;1
+Seminar in Organizational Behavior and Theory;2.0;187;2
+Marketing Management;2.0;606;1
+Promotional Strategy;2.0;169;1
+Survey Methods in Mkt Res;2.0;301;3
+Global Business;2.0;237;1
+Res Sem in Consumer Behavior;2.0;81;1
+Frontiers in Technology;2.0;172;0
+Economics of Organizations;2.0;10;2
+Strategic Management;2.0;78;0
+Found of Strategy Research;2.0;234;1
+Current Strategy Research;2.0;341;2
+Enterprise Database Management;2.0;332;2
+Enterprise IT Governance;2.0;81;0
+Social Media Strategy;2.0;376;2
+Supply Chain Management;2.0;17;1
+Process Management;2.0;84;3
+Res Topics in Operations Mgt;2.0;63;3
+Stat for Mgt Decision Making;2.0;214;3
+Current Topics in Intl Bus;2.0;279;3
+Intl Comparative Management;2.0;237;1
+Business Practice Immersion;2.0;542;2
+Seminar in Business Admin;2.0;332;1
+Proseminar in Business Admin;2.0;544;0
+Research in Special Fields;2.0;549;1
+Independent Study and Research;2.0;361;0
+Business Fundamentals;2.0;530;2
+Dissertation Research;2.0;47;3
+Beginners Basque;4.0;106;2
+Introduction to the Brain and Cognitive Science;4.0;537;0
+Advances in Brain and Cognitive Science;4.0;550;2
+First Year Bosnian-Croatian-Serbian I;4.0;27;0
+Second Year Bosnian-Croatian-Serbian I;4.0;315;0
+Biochemistry Orientation;4.0;516;3
+Individual Topics;4.0;122;0
+Physical Chemistry Principles;4.0;527;3
+Biochemistry Senior Seminar;4.0;301;0
+Anlys Biochemical Literature;4.0;379;1
+Biochemistry Seminar;4.0;402;2
+Bioengineering Freshman Seminar;4.0;271;2
+Introduction to Bioengineering;4.0;371;1
+Bioengineering Career Immersion;4.0;293;2
+Conservation Principles Bioeng;4.0;163;3
+Cell & Tissue Engineering Lab;4.0;130;3
+Cellular Bioengineering;4.0;496;2
+Modeling Human Physiology;4.0;302;0
+Quantitative Physiology Lab;4.0;98;3
+Biofabrication Lab;4.0;426;0
+Biomedical Imaging;1.0;490;3
+Biomedical Instrumentation;2.0;496;2
+Biomedical Instrumentation Lab;2.0;588;1
+Intro Synthetic Biology;2.0;457;1
+Senior Design I;2.0;437;2
+Cellular Biomechanics;2.0;368;3
+Tissue Engineering;2.0;594;3
+Musculoskel Tissue Mechanics;2.0;62;0
+Seminar Discussion;2.0;150;1
+Bioengineering Professionalism;2.0;265;3
+Analytical Methods in Bioeng;2.0;171;1
