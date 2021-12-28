@@ -18,7 +18,7 @@ df.dropna(inplace=True)
 
 # Generate room names
 def generateRoomNames():
-    numberOfRoomsInOriginalWorksheet = len(df)-1
+    numberOfRoomsInOriginalWorksheet = len(df['id'])
     names = list()
     for x in range (1, numberOfRoomsInOriginalWorksheet):
         roomName = str("Room "+str(x)+choice(string.ascii_letters).upper())
