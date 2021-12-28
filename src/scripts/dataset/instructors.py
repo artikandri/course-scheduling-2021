@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import random
+import pandas as pd
 import string
 import csv
 
@@ -10,39 +11,40 @@ PROJECT_ROOT = Path().resolve().parent.parent.parent
 #initialize the directory
 os.chdir(PROJECT_ROOT)
 xlsx_file = Path('dataset/raw','dataset_pu-fal07-llr.xlsx')
+timeslotFilePath = Path('dataset/processed','timeslots.csv')
+
+# read unitime dataset file
+unitimeInstructors = pd.read_excel(xlsx_file, sheet_name='Sheet1', usecols="AJ")
+unitimeInstructors.dropna(inplace=True)
+
+# read timeslot file
+timeslotFile = pd.read_csv(timeslotFilePath, usecols=['timeslots'], sep=";")
+timeslots = timeslotFile["timeslots"].to_list()
 
 #Generate new csv file
 targetFilePath = Path("dataset/processed", "instructors.csv")
 targetFile = open(targetFilePath, 'w', newline="")
 
-# generate instructor initials
+# generate random initials
 def generateInitial(): 
     firstInitial, secondInitial = random.choice(string.ascii_letters), random.choice(string.ascii_letters)
     initial = str(firstInitial+secondInitial).upper()
     return initial
 
-# generate 100 random initials for the instructors
+# Relabel Unitime instructors and added preferences
+# preferences refer to timeslots index and started from 0
 def generateInstructors():
     instructors = []
-    for instructor in range(0, 150):
-        initial = generateInitial()
-        if initial not in instructors:
-            instructors.append(initial)
-            initial = generateInitial()
-
-    return list(set(instructors))[:100]
-
-
-def generatePreferences():
-    preferences = []
-    for i in range(0, 100):
+    for instructor in range(len(unitimeInstructors)-1):
         amountOfPreferences = random.randrange(0, 7, 1)
-        preferences.append([random.randrange(1, 48, 1) for i in range(amountOfPreferences)])
-    return preferences
+        instructors.append([generateInitial(), [random.randrange(0, len(timeslots)-1, 1) for i in range(amountOfPreferences)]])
 
-instructors = generateInstructors()
-preferences = generatePreferences()
+    return instructors
+
+instructorsAndPreferences = generateInstructors()
+instructors, preferences=zip(*instructorsAndPreferences)
 preferencesInString = list(map(lambda pref: "".join(str(pref)), preferences))
+instructors = list(instructors)
 
 # write the file and close 
 writer = csv.writer(targetFile, dialect="excel", delimiter=";")
