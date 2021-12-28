@@ -74,7 +74,7 @@ targetFile = open(targetFilePath, 'w', newline="")
 
 # write the file and close
 writer = csv.writer(targetFile, dialect="excel", delimiter=";")
-writer.writerow(["courses", "weekly_hours", "instructors", "major"])
+writer.writerow(["courses", "weekly_hours", "instructors", "department"])
 i = 0
 while i != len(courses):
     randomInstructor = randrange(0, len(instructors)-1, 1)
