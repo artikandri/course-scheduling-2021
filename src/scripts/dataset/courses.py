@@ -76,7 +76,7 @@ while i != len(courses):
     writer.writerow([courses[i:i+1], weeklyHours[i:i+1],
                     randomInstructor, courseGroup])
     i += 1
-    if (i !=0 and i % 15 == 0):
+    if (i !=0 and i % 13 == 0):
         courseGroup+=1
 targetFile.close()
 
