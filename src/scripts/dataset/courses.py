@@ -14,17 +14,11 @@ datasetIllinoisFilePath = Path('dataset/raw', 'dataset_illinois_2019-fa.csv')
 instructorFilePath = Path('dataset/processed', 'instructors.csv')
 
 # read unitime dataset file
-# W (value.2) column stores department value
 # AB (offering) column stores course offerings
-# AG (scheduler) column stores department id for each course
 # AO (days) column stores the number of days the courses are held
 # AQ (length) column stores the number of hours of each course
 datasetUnitime = pd.read_excel(
-    datasetUnitimeFilePath, sheet_name='Sheet1', usecols="W, AB, AG, AO, AQ",   header=0, converters={"value.2": str})
-datasetUnitime.rename(columns = {'value.1':'value', "value.2": "value"},inplace =True) 
-
-# get unique list of unitime depts. Ideally, this list should be taken from AG column, but this column only has 1 department (3)
-unitimeDepts = list(set(datasetUnitime['value'].dropna()))
+    datasetUnitimeFilePath, sheet_name='Sheet1', usecols="AB, AO, AQ",   header=0)
 
 # get unique list of unitime courses
 unitimeCourses = list(set(datasetUnitime['offering'].dropna()))
@@ -74,14 +68,16 @@ targetFile = open(targetFilePath, 'w', newline="")
 
 # write the file and close
 writer = csv.writer(targetFile, dialect="excel", delimiter=";")
-writer.writerow(["courses", "weekly_hours", "instructors", "department"])
+writer.writerow(["courses", "weekly_hours", "instructors", "group"])
 i = 0
+courseGroup = 0
 while i != len(courses):
     randomInstructor = randrange(0, len(instructors)-1, 1)
-    randomDept = randrange(0, len(unitimeDepts)-1, 1)
     writer.writerow([courses[i:i+1], weeklyHours[i:i+1],
-                    randomInstructor, randomDept])
+                    randomInstructor, courseGroup])
     i += 1
+    if (i !=0 and i % 15 == 0):
+        courseGroup+=1
 targetFile.close()
 
 # replace quotation marks
