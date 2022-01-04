@@ -15,6 +15,7 @@ public class Data {
     private ArrayList<Instructor> instructors;
     private ArrayList<Course> courses;
     private ArrayList<Timeslot> timeslots;
+    private ArrayList<Group> groups;
 
     private int numberOfClasses = 0;
     private CsvParser csvParser = new CsvParser();
@@ -29,6 +30,7 @@ public class Data {
         setInstructors();
         setCourses();
         setTimeslots();
+        setGroups();
         setNumberOfClasses();
 
         return this;
@@ -48,6 +50,10 @@ public class Data {
 
     public ArrayList<Timeslot> getTimeslots() {
         return timeslots;
+    }
+
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
     public int getNumberOfClasses() {
@@ -86,6 +92,23 @@ public class Data {
                     Integer.parseInt(row[2].replaceAll("\\]", "")));
             courses.add(course);
         }
+    }
+
+    public void setGroups() {
+        List courseCsvs = DatasetProcessor.readFile("dataset/processed/courses.csv");
+        List groupCsvs = new ArrayList(Arrays.asList());
+        courseCsvs.remove(0);
+        groups = new ArrayList<Group>(Arrays.asList());
+        for (int i = 0; i < courseCsvs.size(); i++) {
+            String[] row = csvParser.parseRow(courseCsvs.get(i).toString());
+            groupCsvs.add(row[3]);
+        }
+
+        // make unique
+        // map as group object via loop
+        // impor di schedule.java
+        // ubah fitness function
+        // sesuaikan jadwal
     }
 
     public void setTimeslots() {
@@ -141,6 +164,7 @@ public class Data {
         setInstructors();
         setCourses();
         setTimeslots();
+        setGroups();
         setNumberOfClasses();
     }
 

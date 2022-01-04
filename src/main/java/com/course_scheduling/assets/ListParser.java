@@ -31,7 +31,9 @@ public class ListParser {
         return list;
     }
 
-    public static void main(String[] args) {
-
+    public List uniqueList(List listWithDuplicates) {
+        List<Integer> listWithoutDuplicates = new ArrayList<>(
+                new HashSet<>(listWithDuplicates));
+        return listWithoutDuplicates;
     }
 }
