@@ -47,19 +47,23 @@ Environment installation:
     > javac /path/to/your/file -cp /path/to/your/jar/dependency/file
         will run the file with given dependencies. RUN THIS COMMAND FROM src/.../java folder, or else it won't work 
     > java -jar {jar_file_name}.jar
-        will run the compiled file d
+        will run the compiled file. By default, the compiled file will be located in "target/" folder, 
+        but it's not recommended to run the file this way because system will ask you to 
     > mvn install -e
         download & install dependencies defined in pom.xml
     > mvn -Dmaven.test.skip=true -DskipTests=true clean install
         clean install maven 
+    > mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+        assembly a new jar file, packed with dependencies
     > mvn dependency:copy-dependencies
         copy dependencies from M2_HOME folder (in Linux, usually located in /home/user_name/.m2/repository) to target/dependency folder
         
 8. Alternative: Install NetBeans as your IDE. It runs much faster than iDEA on low to mid-end computer 
-    > Windows: 
+    Windows: 
         https://netbeans.apache.org/download/nb126/nb126.html 
-        > WSL2 configuration: 
-            To use NetBeans with WSL, you have to allow Windows to use UNC path ("//wsl..."). To do this, you may 
+        WSL2 configuration: 
+            To use NetBeans with WSL, you have to allow Windows to use UNC path ("//wsl..."). 
+            To do this, you may 
             add a registry key to disable UNC check.
             https://www.ibm.com/support/pages/disableunccheck-registry-key-created-during-rational-synergy-installation 
             - go to Registry Editor under 'HKEY_LOCAL_MACHINE'

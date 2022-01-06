@@ -6,7 +6,20 @@
   <build>
     <plugins>
       <plugin>
-        <!-- Build an executable JAR -->
+        <!-- maven-assembly-plugin: enables to combine project output into a single distributable archive 
+            that also contains dependencies, modules, site documentation, and other files. -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>com.course_scheduling.app.App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- maven-jar-plugin: This plugin provides the capability to build jars -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.1.0</version>
@@ -20,7 +33,7 @@
           </archive>
         </configuration>
       </plugin>
-   </plugins>
+    </plugins>
   </build>
   <version>1.0</version>
   <name>course_scheduling</name>
