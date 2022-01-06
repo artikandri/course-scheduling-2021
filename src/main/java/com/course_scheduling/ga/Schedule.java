@@ -23,9 +23,6 @@ public class Schedule {
 
     public Schedule initialize() {
         new ArrayList<Course>(data.getCourses()).forEach(course -> {
-            Class newClass = new Class(classNumb++, course);
-            newClass.setRoom(data.getRooms().get((int) (data.getRooms().size() * Math.random())));
-            newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
 
             // consider timeslot
             List<Integer> preferredTimeslots = data.findInstructorById(course.getInstructorId()).getPreferences();
@@ -46,6 +43,10 @@ public class Schedule {
             Map possibleTimeslotMap = course.getPossibleTimeslotMap();
 
             for (Double duration : randomDurations) {
+                Class newClass = new Class(classNumb++, course);
+                newClass.setRoom(data.getRooms().get((int) (data.getRooms().size() * Math.random())));
+                newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
+
                 List<Integer> possibleTimeslots = (List) possibleTimeslotMap.get(duration.toString());
                 List<Integer> suitablePreferredTimeslots = Arrays.asList();
                 List<Timeslot> suitablePreferredTimeslotObjects = Arrays.asList();
@@ -72,7 +73,7 @@ public class Schedule {
                 }
 
                 if (suitablePreferredTimeslots.isEmpty()) {
-//                    // assign random timeslot with possible duration
+                    // assign random timeslot with possible duration
                     boolean isTimeslotSet = false;
                     do {
                         double randomTimeslotId = suitableTimeslotObjects.size() * Math.random();
@@ -95,6 +96,7 @@ public class Schedule {
                             if (previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds.contains((int) timeslotObject.getId())) {
                                 previouslyChosenTimeslotIds.add(timeslotObject.getId());
                                 newClass.setTimeslot(timeslotObject);
+
                                 classes.add(newClass);
                                 isTimeslotSet = true;
                             }
@@ -114,7 +116,6 @@ public class Schedule {
                     } while (!isTimeslotSet);
                 }
             }
-
             previouslyChosenTimeslotIds.clear();
         });
 
@@ -155,12 +156,10 @@ public class Schedule {
         return 1 / (double) (numbOfConflicts + 1);
     }
 
-    public String toString() {
-        String returnValue = new String();
-        for (int x = 0; x < classes.size() - 1; x++) {
-            returnValue += classes.get(x) + ",";
-        }
-        returnValue += classes.get(classes.size() - 1);
-        return returnValue;
+    public static void main(String[] args) {
+        Data data = new Data();
+        Schedule schedule = new Schedule(data);
+        schedule.initialize();
     }
+
 }
