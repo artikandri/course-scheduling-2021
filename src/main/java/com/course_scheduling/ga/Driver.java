@@ -77,13 +77,20 @@ public class Driver {
 
         ArrayList<Class> classes = schedule.getClasses();
         printWriter.println("\n                       ");
-        printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Meeting Time (Id)");
         printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
+
+        printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Meeting Time (Id) | Group (Id)");
+        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
+
         classes.forEach(x -> {
             int coursesIndex = data.getCourses().indexOf(x.getCourse());
             int roomsIndex = data.getRooms().indexOf(x.getRoom());
             int instructorsIndex = data.getInstructors().indexOf(x.getInstructor());
             int meetingTimeIndex = data.getTimeslots().indexOf(x.getTimeslot());
+            int groupIndex = data.getCourses().get(coursesIndex).getGroupId();
+
             printWriter.println("                       ");
             printWriter.print(String.format("  %1$02d  ", classNumb) + "  | ");
             printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName() + " (" + data.getCourses().get(coursesIndex).getId() + ")             | "));
@@ -91,7 +98,9 @@ public class Driver {
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
             printWriter.print(data.getTimeslots().get(meetingTimeIndex).getTime()
-                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + ")");
+                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + "  | ");
+            printWriter.print(data.getGroups().get(groupIndex).getName()
+                    + " (" + data.getGroups().get(groupIndex).getId() + ")");
 
             classNumb++;
         });
@@ -118,10 +127,9 @@ public class Driver {
         data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
         printWriter.println("\nAvailable Meeting Times ==>");
         data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
-        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
         String availableData = stringWriter.toString();
-        System.out.println(availableData);
     }
 }

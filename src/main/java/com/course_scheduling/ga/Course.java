@@ -12,7 +12,7 @@ public class Course {
     private int groupId;
 
     private List possibleDurations;
-    private List possibleTimeslots;
+    private Map possibleTimeslots;
     private int maxPossibleCombination;
 
     public Course(int id, String name, double weeklyHours, int instructorId, int groupId) {
@@ -27,7 +27,7 @@ public class Course {
         this.possibleDurations = possibleDurations;
     }
 
-    public void setPossibleTimeslots(List possibleTimeslots) {
+    public void setPossibleTimeslots(Map possibleTimeslots) {
         this.possibleTimeslots = possibleTimeslots;
     }
 
@@ -59,7 +59,7 @@ public class Course {
         return possibleDurations;
     }
 
-    public List getPossibleTimeslots() {
+    public Map getPossibleTimeslotMap() {
         return possibleTimeslots;
     }
 

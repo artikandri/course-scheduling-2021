@@ -1,6 +1,7 @@
 package com.course_scheduling.ga;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Schedule {
 
@@ -27,24 +28,57 @@ public class Schedule {
             newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
 
             // consider timeslot
-            List preferredTimeslots = data.findInstructorById(course.getInstructorId()).getPreferences();
+            List<Integer> preferredTimeslots = data.findInstructorById(course.getInstructorId()).getPreferences();
+            List<Timeslot> preferredTimeslotObjects = data.getTimeslots()
+                    .stream()
+                    .filter(timeslot -> preferredTimeslots.contains(timeslot.getId()))
+                    .collect(Collectors.toList());
 
             // consider duration
             List possibleDurations = course.getPossibleDurations();
             double randomPossibleDurationId = possibleDurations.size() * Math.random();
-            List randomDurations = (List) possibleDurations.get((int) randomPossibleDurationId);
+            List<Double> randomDurations = (List) possibleDurations.get((int) randomPossibleDurationId);
 
             // match duration with timeslot
             // add classes by considering the duration
             // > 1 hour means multiple classes
-            for (var duration : randomDurations) {
-                if (preferredTimeslots.isEmpty()) {
-                    // assign random timeslot with possible duration
+            List<Integer> previouslyChosenTimeslotIds = new ArrayList(Arrays.asList());
+            Map possibleTimeslotMap = course.getPossibleTimeslotMap();
+
+            for (Double duration : randomDurations) {
+                List<Integer> possibleTimeslots = (List) possibleTimeslotMap.get(duration.toString());
+                List<Integer> suitablePreferredTimeslots = Arrays.asList();
+                List<Timeslot> suitablePreferredTimeslotObjects = Arrays.asList();
+                List<Timeslot> suitableTimeslotObjects = Arrays.asList();
+
+                if (possibleTimeslots != null) {
+                    suitablePreferredTimeslots = preferredTimeslots
+                            .stream()
+                            .collect(Collectors.filtering(timeslotId
+                                    -> possibleTimeslots.contains(timeslotId),
+                                    Collectors.toList()));
+
+                    suitablePreferredTimeslotObjects = data.getTimeslots()
+                            .stream()
+                            .collect(Collectors.filtering(timeslot
+                                    -> suitablePreferredTimeslots.contains(timeslot.getId()),
+                                    Collectors.toList()));
+
+                    suitableTimeslotObjects = data.getTimeslots()
+                            .stream()
+                            .collect(Collectors.filtering(timeslot
+                                    -> possibleTimeslots.contains(timeslot.getId()),
+                                    Collectors.toList()));
+                }
+
+                if (suitablePreferredTimeslots.isEmpty()) {
+//                    // assign random timeslot with possible duration
                     boolean isTimeslotSet = false;
                     do {
-                        double randomTimeslotId = data.getTimeslots().size() * Math.random();
-                        Timeslot randomTimeslot = data.getTimeslots().get((int) randomTimeslotId);
-                        if (randomTimeslot.getDuration() == Double.parseDouble(duration.toString())) {
+                        double randomTimeslotId = suitableTimeslotObjects.size() * Math.random();
+                        Timeslot randomTimeslot = suitableTimeslotObjects.get((int) randomTimeslotId);
+                        if (previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds.contains((int) randomTimeslot.getId())) {
+                            previouslyChosenTimeslotIds.add(randomTimeslot.getId());
                             newClass.setTimeslot(randomTimeslot);
                             classes.add(newClass);
                             isTimeslotSet = true;
@@ -52,52 +86,38 @@ public class Schedule {
 
                     } while (!isTimeslotSet);
                 } else {
-                    // assign preferred timeslot if duration matches
-                    // else assign random timeslot
-                    Integer chosenPreferredTimeslotId;
-                    List<Integer> previouslyChosenPreferredTimeslotId = new ArrayList(Arrays.asList());
+                    // assign random timeslot from preferred timeslots if possible
+                    // if not, assign from timeslot pool
                     boolean isTimeslotSet = false;
-                    int i = 0;
                     do {
-                        // choose preferred timeslot id from preference list
-                        // do not assign the same preferred timeslot as previous one
-                        // filter possible timeslot from preferred timeslot
-                        // only assign them
-                        // if not possible
-                        boolean isTimeslotChosen = false;
-                        do {
-                            double randomPreferredTimeslotId = preferredTimeslots.size() * Math.random();
-                            chosenPreferredTimeslotId = Integer.parseInt(preferredTimeslots.get((int) randomPreferredTimeslotId).toString());
-                            if (!previouslyChosenPreferredTimeslotId.contains(chosenPreferredTimeslotId)) {
-                                previouslyChosenPreferredTimeslotId.add(chosenPreferredTimeslotId);
-                                isTimeslotChosen = true;
+                        Timeslot timeslotObject = suitableTimeslotObjects.get((int) (suitableTimeslotObjects.size() * Math.random()));
+                        if (suitablePreferredTimeslots.contains(timeslotObject.getId())) {
+                            if (previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds.contains((int) timeslotObject.getId())) {
+                                previouslyChosenTimeslotIds.add(timeslotObject.getId());
+                                newClass.setTimeslot(timeslotObject);
+                                classes.add(newClass);
+                                isTimeslotSet = true;
                             }
-                        } while (!isTimeslotChosen);
+                        }
 
-                        // clear list
-                        previouslyChosenPreferredTimeslotId.clear();
-
-                        // assign timeslot
-                        Timeslot randomPreferredTimeslot = data.findTimeslotById((int) chosenPreferredTimeslotId);
-                        double randomTimeslotId = data.getTimeslots().size() * Math.random();
-                        Timeslot randomTimeslot = data.getTimeslots().get((int) randomTimeslotId);
-
-                        if (randomPreferredTimeslot.getDuration() == Double.parseDouble(duration.toString())) {
-                            newClass.setTimeslot(randomPreferredTimeslot);
-                            classes.add(newClass);
-
-                            isTimeslotSet = true;
-                        } else if (randomTimeslot.getDuration() == Double.parseDouble(duration.toString())) {
-                            newClass.setTimeslot(randomTimeslot);
-                            classes.add(newClass);
-
-                            isTimeslotSet = true;
+                        if (!isTimeslotSet) {
+                            // do something if isTimeslotSet is still false
+                            double randomTimeslotId = suitableTimeslotObjects.size() * Math.random();
+                            Timeslot randomTimeslot = suitableTimeslotObjects.get((int) randomTimeslotId);
+                            if (previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds.contains((int) randomTimeslot.getId())) {
+                                previouslyChosenTimeslotIds.add(randomTimeslot.getId());
+                                newClass.setTimeslot(randomTimeslot);
+                                classes.add(newClass);
+                                isTimeslotSet = true;
+                            }
                         }
                     } while (!isTimeslotSet);
                 }
-
             }
+
+            previouslyChosenTimeslotIds.clear();
         });
+
         return this;
     }
 

@@ -111,24 +111,16 @@ public class Data {
 
             // set possible timeslots combinations for each course
             // the combinations will be checked on constraint checking
-            // result: list of list of object
-            List<List> possibleTimeslots = new ArrayList(Arrays.asList());
-            for (List possibleDuration : possibleDurations) {
-                List possibleTimeslot = new ArrayList(Arrays.asList());
-                for (var duration : possibleDuration) {
-                    boolean isTimeslotSet = false;
-                    do {
-                        double randomTimeslotId = timeslots.size() * Math.random();
-                        Timeslot timeslot = findTimeslotById((int) randomTimeslotId);
-
-                        if (timeslot.getDuration() == Double.parseDouble(duration.toString())) {
-                            possibleTimeslot.add(timeslot.getId());
-                            isTimeslotSet = true;
-                        }
-
-                    } while (!isTimeslotSet);
+            // result: map of list of of timeslot id
+            Map timeslotMap = new HashMap();
+            for (Double duration : durations) {
+                List<Integer> possibleTimeslots = new ArrayList(Arrays.asList());
+                for (Timeslot timeslot : timeslots) {
+                    if (timeslot.getDuration() == duration) {
+                        possibleTimeslots.add(timeslot.getId());
+                    }
                 }
-                possibleTimeslots.add(possibleTimeslot);
+                timeslotMap.put(duration.toString(), possibleTimeslots);
             }
 
             Course course = new Course(i, row[0], Double.parseDouble(row[1]),
@@ -137,7 +129,7 @@ public class Data {
             );
 
             course.setPossibleDurations(possibleDurations);
-            course.setPossibleTimeslots(possibleTimeslots);
+            course.setPossibleTimeslots(timeslotMap);
             course.setMaxPossibleCombination(maxLength);
 
             courses.add(course);

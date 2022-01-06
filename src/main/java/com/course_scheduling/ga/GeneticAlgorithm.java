@@ -24,7 +24,7 @@ public class GeneticAlgorithm {
         IntStream.range(Driver.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
             if (Driver.CROSSOVER_RATE > Math.random()) {
                 Schedule schedule1 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(0);
-                Schedule schedule2 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(0);
+                Schedule schedule2 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(1);
                 crossoverPopulation.getSchedules().set(x, crossoverSchedule(schedule1, schedule2));
             } else {
                 crossoverPopulation.getSchedules().set(x, population.getSchedules().get(x));
@@ -35,13 +35,24 @@ public class GeneticAlgorithm {
 
     Schedule crossoverSchedule(Schedule schedule1, Schedule schedule2) {
         Schedule crossoverSchedule = new Schedule(data).initialize();
-        IntStream.range(0, crossoverSchedule.getClasses().size()).forEach(x -> {
+
+        for (int i = 0; i < crossoverSchedule.getClasses().size(); i++) {
             if (Math.random() > 0.5) {
-                crossoverSchedule.getClasses().set(x, schedule1.getClasses().get(x));
+                if (i < schedule1.getClasses().size()) {
+                    crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
+                } else {
+                    int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
+                    crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
+                }
             } else {
-                crossoverSchedule.getClasses().set(x, schedule2.getClasses().get(x));
+                if (i < schedule2.getClasses().size()) {
+                    crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
+                } else {
+                    int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
+                    crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
+                }
             }
-        });
+        }
         return crossoverSchedule;
     }
 
@@ -56,12 +67,18 @@ public class GeneticAlgorithm {
     }
 
     Schedule mutateSchedule(Schedule mutateSchedule) {
+        // randomly generated schedules may have differing length due to the random nature of timeslot assignment
         Schedule schedule = new Schedule(data).initialize();
-        IntStream.range(0, mutateSchedule.getClasses().size()).forEach(x -> {
+        for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
             if (Driver.MUTATION_RATE > Math.random()) {
-                mutateSchedule.getClasses().set(x, schedule.getClasses().get(x));
+                if (i < schedule.getClasses().size()) {
+                    mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
+                } else {
+                    int randomIndex = (int) (schedule.getClasses().size() * Math.random());
+                    mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
+                }
             }
-        });
+        }
         return mutateSchedule;
     }
 
