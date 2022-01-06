@@ -15,17 +15,25 @@ public class ListParser {
      * @param arrayOfString
      * @return list
      */
-    // Example
-    //        String[] numbers = {"1", "2"};
-    //        ListParser listParser = new ListParser();
-    //        List arr = listParser.arrayOfStringToListOfIntegers(numbers);
-    public List arrayOfStringToListOfIntegers(String[] arrayOfString) {
+    public List<Integer> arrayOfStringToListOfIntegers(String[] arrayOfString) {
         List list = Arrays.asList();
         if (!ArrayUtils.isEmpty(arrayOfString)) {
             list = Arrays.asList(arrayOfString)
                     .stream()
                     .filter(item -> item != null && !"".equals(item) && !" ".equals(item))
                     .map(pref -> Integer.parseInt(pref.trim()))
+                    .collect(Collectors.toList());
+        }
+        return list;
+    }
+
+    public List<Double> arrayOfStringToListOfDoubles(String[] arrayOfString) {
+        List list = Arrays.asList();
+        if (!ArrayUtils.isEmpty(arrayOfString)) {
+            list = Arrays.asList(arrayOfString)
+                    .stream()
+                    .filter(item -> item != null && !"".equals(item) && !" ".equals(item))
+                    .map(pref -> Double.parseDouble(pref.trim()))
                     .collect(Collectors.toList());
         }
         return list;

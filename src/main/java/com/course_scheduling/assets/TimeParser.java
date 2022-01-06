@@ -13,8 +13,17 @@ import java.util.stream.Collectors;
 public class TimeParser {
 
     public double timeDifferenceInHours(String startTime, String endTime) {
-        return Duration.between(LocalTime.parse(endTime), LocalTime.parse(startTime))
-                .toHours();
+        ListParser listParser = new ListParser();
+        List startTimes = listParser.arrayOfStringToListOfDoubles(startTime.split(":"));
+        List endTimes = listParser.arrayOfStringToListOfDoubles(endTime.split(":"));
+
+        Double durationHour = Double.parseDouble(startTimes.get(0).toString()) - Double.parseDouble(endTimes.get(0).toString());
+        Double durationMin = Double.parseDouble(startTimes.get(1).toString()) - Double.parseDouble(endTimes.get(1).toString());
+
+        durationHour = durationHour * 1;
+        durationMin = durationMin / 60;
+
+        return durationHour + durationMin;
     }
 
     public String padZeroToHourAndMinute(String time) {

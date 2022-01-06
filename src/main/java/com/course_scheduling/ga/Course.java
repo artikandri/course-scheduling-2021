@@ -5,17 +5,34 @@ import java.util.*;
 
 public class Course {
 
-    public int id;
-    public String name = null;
-    public double weeklyHours = 0;
-    public int instructorId;
-    public String instructorName;
+    private int id;
+    private String name = null;
+    private double weeklyHours = 0;
+    private int instructorId;
+    private int groupId;
 
-    public Course(int id, String name, double weeklyHours, int instructorId) {
+    private List possibleDurations;
+    private List possibleTimeslots;
+    private int maxPossibleCombination;
+
+    public Course(int id, String name, double weeklyHours, int instructorId, int groupId) {
         this.id = id;
         this.name = name;
         this.weeklyHours = weeklyHours;
         this.instructorId = instructorId;
+        this.groupId = groupId;
+    }
+
+    public void setPossibleDurations(List possibleDurations) {
+        this.possibleDurations = possibleDurations;
+    }
+
+    public void setPossibleTimeslots(List possibleTimeslots) {
+        this.possibleTimeslots = possibleTimeslots;
+    }
+
+    public void setMaxPossibleCombination(int maxPossibleCombination) {
+        this.maxPossibleCombination = maxPossibleCombination;
     }
 
     public int getId() {
@@ -34,7 +51,19 @@ public class Course {
         return instructorId;
     }
 
-    public String getInstructorName() {
-        return instructorName;
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public List getPossibleDurations() {
+        return possibleDurations;
+    }
+
+    public List getPossibleTimeslots() {
+        return possibleTimeslots;
+    }
+
+    public int getMaxPossibleCombination() {
+        return maxPossibleCombination;
     }
 }

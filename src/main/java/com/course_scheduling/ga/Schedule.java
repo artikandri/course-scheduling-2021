@@ -26,17 +26,77 @@ public class Schedule {
             newClass.setRoom(data.getRooms().get((int) (data.getRooms().size() * Math.random())));
             newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
 
-            double randomTimeslotId = data.getTimeslots().size() * Math.random();
-            List preferredTimeslots = data.findInstructorById(course.getInstructorId()).preferences;
+            // consider timeslot
+            List preferredTimeslots = data.findInstructorById(course.getInstructorId()).getPreferences();
 
-            if (!preferredTimeslots.isEmpty()) {
-                double preferredTimeslotId = preferredTimeslots.size() * Math.random();
-                newClass.setTimeslot(data.findTimeslotById((int) preferredTimeslots.get((int) preferredTimeslotId)));
-            } else {
-                newClass.setTimeslot(data.getTimeslots().get((int) randomTimeslotId));
+            // consider duration
+            List possibleDurations = course.getPossibleDurations();
+            double randomPossibleDurationId = possibleDurations.size() * Math.random();
+            List randomDurations = (List) possibleDurations.get((int) randomPossibleDurationId);
+
+            // match duration with timeslot
+            // add classes by considering the duration
+            // > 1 hour means multiple classes
+            for (var duration : randomDurations) {
+                if (preferredTimeslots.isEmpty()) {
+                    // assign random timeslot with possible duration
+                    boolean isTimeslotSet = false;
+                    do {
+                        double randomTimeslotId = data.getTimeslots().size() * Math.random();
+                        Timeslot randomTimeslot = data.getTimeslots().get((int) randomTimeslotId);
+                        if (randomTimeslot.getDuration() == Double.parseDouble(duration.toString())) {
+                            newClass.setTimeslot(randomTimeslot);
+                            classes.add(newClass);
+                            isTimeslotSet = true;
+                        }
+
+                    } while (!isTimeslotSet);
+                } else {
+                    // assign preferred timeslot if duration matches
+                    // else assign random timeslot
+                    Integer chosenPreferredTimeslotId;
+                    List<Integer> previouslyChosenPreferredTimeslotId = new ArrayList(Arrays.asList());
+                    boolean isTimeslotSet = false;
+                    int i = 0;
+                    do {
+                        // choose preferred timeslot id from preference list
+                        // do not assign the same preferred timeslot as previous one
+                        // filter possible timeslot from preferred timeslot
+                        // only assign them
+                        // if not possible
+                        boolean isTimeslotChosen = false;
+                        do {
+                            double randomPreferredTimeslotId = preferredTimeslots.size() * Math.random();
+                            chosenPreferredTimeslotId = Integer.parseInt(preferredTimeslots.get((int) randomPreferredTimeslotId).toString());
+                            if (!previouslyChosenPreferredTimeslotId.contains(chosenPreferredTimeslotId)) {
+                                previouslyChosenPreferredTimeslotId.add(chosenPreferredTimeslotId);
+                                isTimeslotChosen = true;
+                            }
+                        } while (!isTimeslotChosen);
+
+                        // clear list
+                        previouslyChosenPreferredTimeslotId.clear();
+
+                        // assign timeslot
+                        Timeslot randomPreferredTimeslot = data.findTimeslotById((int) chosenPreferredTimeslotId);
+                        double randomTimeslotId = data.getTimeslots().size() * Math.random();
+                        Timeslot randomTimeslot = data.getTimeslots().get((int) randomTimeslotId);
+
+                        if (randomPreferredTimeslot.getDuration() == Double.parseDouble(duration.toString())) {
+                            newClass.setTimeslot(randomPreferredTimeslot);
+                            classes.add(newClass);
+
+                            isTimeslotSet = true;
+                        } else if (randomTimeslot.getDuration() == Double.parseDouble(duration.toString())) {
+                            newClass.setTimeslot(randomTimeslot);
+                            classes.add(newClass);
+
+                            isTimeslotSet = true;
+                        }
+                    } while (!isTimeslotSet);
+                }
+
             }
-
-            classes.add(newClass);
         });
         return this;
     }

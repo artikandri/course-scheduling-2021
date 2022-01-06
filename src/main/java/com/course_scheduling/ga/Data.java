@@ -20,6 +20,7 @@ public class Data {
     private int numberOfClasses = 0;
     private CsvParser csvParser = new CsvParser();
     private TimeParser timeParser = new TimeParser();
+    private ListParser listParser = new ListParser();
 
     public Data() {
         initialize();
@@ -28,9 +29,9 @@ public class Data {
     private Data initialize() {
         setRooms();
         setInstructors();
-        setCourses();
         setTimeslots();
         setGroups();
+        setCourses();
         setNumberOfClasses();
 
         return this;
@@ -88,8 +89,57 @@ public class Data {
         courses = new ArrayList<Course>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
             String[] row = csvParser.parseRow(courseCsvs.get(i).toString());
+
+            // set possible duration combinations for each course
+            // the combinations will be checked on constraint checking
+            // result: list of list of doubles
+            List<List> possibleDurations = new ArrayList(Arrays.asList());
+            ArrayList<Double> durations = new ArrayList<>(Arrays.asList(1.0, 1.5));
+            int maxLength = 0;
+
+            NumberCombinator numberCombinator = new NumberCombinator(durations, Double.parseDouble(row[1].replaceAll("\\]", "")), true);
+            numberCombinator.calculateCombinations();
+            for (String solution : numberCombinator.getCombinations()) {
+                String[] combinations = solution.replaceAll("\\[", "").replaceAll("\\]", "").split(" , ");
+                for (String combination : combinations) {
+                    String result = combination.substring(combination.lastIndexOf(":") + 1);
+                    String[] results = result.replaceAll("\\[", "").replaceAll("\\]", "").split(" ");
+                    maxLength = results.length > maxLength ? results.length : maxLength;
+                    possibleDurations.add(listParser.arrayOfStringToListOfDoubles(results));
+                }
+            }
+
+            // set possible timeslots combinations for each course
+            // the combinations will be checked on constraint checking
+            // result: list of list of object
+            List<List> possibleTimeslots = new ArrayList(Arrays.asList());
+            for (List possibleDuration : possibleDurations) {
+                List possibleTimeslot = new ArrayList(Arrays.asList());
+                for (var duration : possibleDuration) {
+                    boolean isTimeslotSet = false;
+                    do {
+                        double randomTimeslotId = timeslots.size() * Math.random();
+                        Timeslot timeslot = findTimeslotById((int) randomTimeslotId);
+
+                        if (timeslot.getDuration() == Double.parseDouble(duration.toString())) {
+                            possibleTimeslot.add(timeslot.getId());
+                            isTimeslotSet = true;
+                        }
+
+                    } while (!isTimeslotSet);
+                }
+                possibleTimeslots.add(possibleTimeslot);
+            }
+
             Course course = new Course(i, row[0], Double.parseDouble(row[1]),
-                    Integer.parseInt(row[2].replaceAll("\\]", "")));
+                    Integer.parseInt(row[2].replaceAll("\\]", "")),
+                    Integer.parseInt(row[3].replaceAll("\\]", ""))
+            );
+
+            course.setPossibleDurations(possibleDurations);
+            course.setPossibleTimeslots(possibleTimeslots);
+            course.setMaxPossibleCombination(maxLength);
+
             courses.add(course);
         }
     }
@@ -104,11 +154,11 @@ public class Data {
             groupCsvs.add(row[3]);
         }
 
-        // make unique
-        // map as group object via loop
-        // impor di schedule.java
-        // ubah fitness function
-        // sesuaikan jadwal
+        List uniqueGroups = listParser.uniqueList(groupCsvs);
+        for (int i = 0; i < uniqueGroups.size(); i++) {
+            Group group = new Group(Integer.parseInt(uniqueGroups.get(i).toString()));
+            groups.add(group);
+        }
     }
 
     public void setTimeslots() {
@@ -118,23 +168,24 @@ public class Data {
         for (int i = 0; i < timeslotCsvs.size(); i++) {
             String[] row = csvParser.parseRow(timeslotCsvs.get(i).toString());
             String time = row[0].split(" - ")[1];
-            String courseTime = timeParser.padZeroToHourAndMinute(time);
+            String courseTime = timeParser.padZeroToHourAndMinute(time).trim();
 
             String startTime = "07:30:00";
             String endTime = "19:30:00";
-            double duration = 1;
+            double duration = 1.0;
 
             // calculate duration for each timeslot
-            if (i == 0) {
-                duration = timeParser.timeDifferenceInHours(startTime, courseTime);
-            } else if (i == timeslotCsvs.size() - 1) {
-                duration = timeParser.timeDifferenceInHours(courseTime, endTime);
+            if (i == timeslotCsvs.size() - 1) {
+                duration = timeParser.timeDifferenceInHours(endTime, courseTime);
             } else {
                 String[] nextRow = csvParser.parseRow(timeslotCsvs.get(i + 1).toString());
-                String nextTime = nextRow[0].split(" - ")[1];
-                String nextCourseTime = timeParser.padZeroToHourAndMinute(nextTime);
-
-                duration = timeParser.timeDifferenceInHours(courseTime, nextCourseTime);
+                String nextTime = nextRow[0].split(" - ")[1].trim();
+                String nextCourseTime = timeParser.padZeroToHourAndMinute(nextTime).trim();
+                if (nextCourseTime.trim().equals("07:30:00")) {
+                    duration = timeParser.timeDifferenceInHours(endTime, courseTime);
+                } else {
+                    duration = timeParser.timeDifferenceInHours(nextCourseTime, courseTime);
+                }
             }
 
             Timeslot timeslot = new Timeslot(i, row[0], duration);
@@ -143,16 +194,20 @@ public class Data {
     }
 
     public Instructor findInstructorById(int id) {
-        return instructors.stream().filter(instructor -> instructor.id == id).findFirst()
+        return instructors.stream().filter(instructor -> instructor.getId() == id).findFirst()
                 .orElse(null);
     }
 
     public Course findCourseById(int id) {
-        return courses.stream().filter(course -> course.id == id).findFirst().orElse(null);
+        return courses.stream().filter(course -> course.getId() == id).findFirst().orElse(null);
     }
 
     public Timeslot findTimeslotById(int id) {
-        return timeslots.stream().filter(timeslot -> timeslot.id == id).findFirst().orElse(null);
+        return timeslots.stream().filter(timeslot -> timeslot.getId() == id).findFirst().orElse(null);
+    }
+
+    public Group findGroupById(int id) {
+        return groups.stream().filter(group -> group.getId() == id).findFirst().orElse(null);
     }
 
     public void setNumberOfClasses() {
@@ -162,9 +217,9 @@ public class Data {
     public void setData() {
         setRooms();
         setInstructors();
-        setCourses();
         setTimeslots();
         setGroups();
+        setCourses();
         setNumberOfClasses();
     }
 

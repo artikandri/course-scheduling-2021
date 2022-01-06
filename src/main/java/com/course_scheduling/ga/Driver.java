@@ -1,5 +1,7 @@
 package com.course_scheduling.ga;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 public class Driver {
@@ -24,82 +26,102 @@ public class Driver {
         Driver driver = new Driver();
         driver.data = new Data();
         int generationNumber = 0;
-        System.out.println("> Generation # " + generationNumber);
-        System.out.print("  Schedule # |                                           ");
-        System.out.print("Classes [class, room,instructor,timeslot]       ");
-        System.out.println("                                  | Fitness | Conflicts");
-        System.out.print("-----------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        printWriter.println("> Generation # " + generationNumber);
+        printWriter.print("  Schedule # |                                           ");
+        printWriter.print("Classes [class, room,instructor,timeslot]       ");
+        printWriter.println("                                  | Fitness | Conflicts");
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(driver.data);
         Population population = new Population(Driver.POPULATION_SIZE, driver.data).sortByFitness();
-        population.getSchedules().forEach(schedule -> System.out.println("       " + driver.scheduleNumb++
-                + "     | " + schedule + " | "
-                + String.format("%.5f", schedule.getFitness())
-                + " | " + schedule.getNumbOfConflicts()));
+        population.getSchedules().forEach(schedule
+                -> printWriter.println("       " + driver.scheduleNumb++
+                        + "     | " + schedule + " | "
+                        + String.format("%.5f", schedule.getFitness())
+                        + " | " + schedule.getNumbOfConflicts()));
         driver.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
         driver.classNumb = 1;
         while (population.getSchedules().get(0).getFitness() != 1.0) {
-            System.out.println("> Generation # " + ++generationNumber);
-            System.out.print("  Schedule # |                                           ");
-            System.out.print("Classes [class,room,instructor, timeslot]       ");
-            System.out.println("                                  | Fitness #"
+            printWriter.println("> Generation # " + ++generationNumber);
+            printWriter.print("  Schedule # |                                           ");
+            printWriter.print("Classes [class,room,instructor, timeslot]       ");
+            printWriter.println("                                  | Fitness #"
                     + population.getSchedules().get(0).getFitness()
                     + "  | Conflicts # "
                     + population.getSchedules().get(0).getNumbOfConflicts() + " ");
-            System.out.print("-----------------------------------------------------------------------------------");
-            System.out.println("-------------------------------------------------------------------------------------");
+            printWriter.print("-----------------------------------------------------------------------------------");
+            printWriter.println("-------------------------------------------------------------------------------------");
+
             population = geneticAlgorithm.evolve(population).sortByFitness();
             driver.scheduleNumb = 0;
             population.getSchedules().forEach(schedule
-                    -> System.out.println("       " + driver.scheduleNumb++
+                    -> printWriter.println("       " + driver.scheduleNumb++
                             + "     | " + schedule + " | "
                             + String.format("%.5f", schedule.getFitness())
                             + " | " + schedule.getNumbOfConflicts()));
             driver.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
             driver.classNumb = 1;
         }
+
+        String schedules = stringWriter.toString();
+        System.out.println(schedules);
     }
 
     private void printScheduleAsTable(Schedule schedule, int generation) {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
         ArrayList<Class> classes = schedule.getClasses();
-        System.out.print("\n                       ");
-        System.out.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Meeting Time (Id)");
-        System.out.print("                       ");
-        System.out.print("------------------------------------------------------");
-        System.out.println("---------------------------------------------------------------");
+        printWriter.println("\n                       ");
+        printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Meeting Time (Id)");
+        printWriter.println("------------------------------------------------------------------------------------");
         classes.forEach(x -> {
             int coursesIndex = data.getCourses().indexOf(x.getCourse());
             int roomsIndex = data.getRooms().indexOf(x.getRoom());
             int instructorsIndex = data.getInstructors().indexOf(x.getInstructor());
             int meetingTimeIndex = data.getTimeslots().indexOf(x.getTimeslot());
-            System.out.print("                       ");
-            System.out.print(String.format("  %1$02d  ", classNumb) + "  | ");
-            System.out.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName() + " (" + data.getCourses().get(coursesIndex).getId() + ")             | "));
-            System.out.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
-            System.out.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
-                    + " (" + data.getInstructors().get(instructorsIndex).getName() + ")") + "  | ");
-            System.out.println(data.getTimeslots().get(meetingTimeIndex).getTime()
+            printWriter.println("                       ");
+            printWriter.print(String.format("  %1$02d  ", classNumb) + "  | ");
+            printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName() + " (" + data.getCourses().get(coursesIndex).getId() + ")             | "));
+            printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
+            printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
+                    + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
+            printWriter.print(data.getTimeslots().get(meetingTimeIndex).getTime()
                     + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + ")");
+
             classNumb++;
         });
         if (schedule.getFitness() == 1) {
-            System.out.println("> Solution Found in " + (generation + 1) + " generations");
+            printWriter.println("> Solution Found in " + (generation + 1) + " generations");
         }
-        System.out.print("-----------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+        printWriter.println("\n-----------------------------------------------------------------------------------");
+
+        String scheduleTables = stringWriter.toString();
+        System.out.println(scheduleTables);
     }
 
     private void printAvailableData() {
-        System.out.println("\nAvailable Courses ==>");
-        data.getCourses().forEach(x -> System.out.println("course #: " + x.getId() + ", name: " + x.getName()
-                + ", instructors: " + data.findInstructorById(x.getInstructorId()).name));
-        System.out.println("\nAvailable Rooms ==>");
-        data.getRooms().forEach(x -> System.out.println("room #: " + x.getName()));
-        System.out.println("\nAvailable Instructors ==>");
-        data.getInstructors().forEach(x -> System.out.println("id: " + x.getId() + ", name: " + x.getName()));
-        System.out.println("\nAvailable Meeting Times ==>");
-        data.getTimeslots().forEach(x -> System.out.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
-        System.out.print("-----------------------------------------------------------------------------------");
-        System.out.println("-------------------------------------------------------------------------------------");
+
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        printWriter.println("\nAvailable Courses ==>");
+        data.getCourses().forEach(x -> printWriter.println("course #: " + x.getId() + ", name: " + x.getName()
+                + ", instructors: " + data.findInstructorById(x.getInstructorId()).getName()));
+        printWriter.println("\nAvailable Rooms ==>");
+        data.getRooms().forEach(x -> printWriter.println("room #: " + x.getName()));
+        printWriter.println("\nAvailable Instructors ==>");
+        data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
+        printWriter.println("\nAvailable Meeting Times ==>");
+        data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        String availableData = stringWriter.toString();
+        System.out.println(availableData);
     }
 }

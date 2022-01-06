@@ -6,14 +6,24 @@ package com.course_scheduling.ga;
  */
 public class Timeslot {
 
-    public int id;
-    public String time;
-    public double duration;
+    private int id;
+    private String time;
+    private String day;
+    private String hour;
+    private double duration;
 
     public Timeslot(int id, String time, double duration) {
         this.id = id;
         this.time = time;
         this.duration = duration;
+
+        this.setDayAndHour();
+    }
+
+    private void setDayAndHour() {
+        String[] dayAndHour = time.split(" - ");
+        day = dayAndHour[0];
+        hour = dayAndHour[1];
     }
 
     public int getId() {

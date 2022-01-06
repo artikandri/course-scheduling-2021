@@ -6,9 +6,9 @@ import java.util.stream.*;
 
 public class Instructor {
 
-    public int id;
-    public String name;
-    public List<Integer> preferences;
+    private int id;
+    private String name;
+    private List<Integer> preferences;
 
     public Instructor(int id, String name, String preferences) {
         this.id = id;
