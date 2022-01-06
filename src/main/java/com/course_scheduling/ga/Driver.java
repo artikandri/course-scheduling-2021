@@ -32,7 +32,7 @@ public class Driver {
 
         printWriter.println("> Generation # " + generationNumber);
         printWriter.print("  Schedule # |                                           ");
-        printWriter.print("Classes [class, room,instructor,timeslot]       ");
+        printWriter.print("Classes [class, room, instructor, timeslot, group]       ");
         printWriter.println("                                  | Fitness | Conflicts");
         printWriter.print("-----------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
@@ -98,7 +98,7 @@ public class Driver {
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
             printWriter.print(data.getTimeslots().get(meetingTimeIndex).getTime()
-                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + "  | ");
+                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + ")  | ");
             printWriter.print(data.getGroups().get(groupIndex).getName()
                     + " (" + data.getGroups().get(groupIndex).getId() + ")");
 
@@ -131,5 +131,6 @@ public class Driver {
         printWriter.println("-------------------------------------------------------------------------------------");
 
         String availableData = stringWriter.toString();
+        System.out.println(availableData);
     }
 }

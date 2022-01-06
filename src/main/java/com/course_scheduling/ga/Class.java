@@ -12,6 +12,7 @@ public class Class {
     private Instructor instructor;
     private Timeslot timeslot;
     private Room room;
+    private Group group;
 
     public Class(int id, Course course) {
         this.id = id;
@@ -30,6 +31,10 @@ public class Class {
         this.room = room;
     }
 
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     public int getId() {
         return id;
     }
@@ -38,12 +43,28 @@ public class Class {
         return course;
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
+    public int getGroupId() {
+        return group.getId();
+    }
+
     public Instructor getInstructor() {
         return instructor;
     }
 
     public Timeslot getTimeslot() {
         return timeslot;
+    }
+
+    public int getCourseId() {
+        return course.getId();
+    }
+
+    public int getTimeslotDayId() {
+        return timeslot.getDayId();
     }
 
     public Room getRoom() {

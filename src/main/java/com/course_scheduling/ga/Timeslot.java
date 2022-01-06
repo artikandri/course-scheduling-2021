@@ -1,5 +1,7 @@
 package com.course_scheduling.ga;
 
+import com.course_scheduling.assets.TimeParser;
+
 /**
  *
  * @author @artikandri
@@ -11,6 +13,7 @@ public class Timeslot {
     private String day;
     private String hour;
     private double duration;
+    private int dayId;
 
     public Timeslot(int id, String time, double duration) {
         this.id = id;
@@ -18,6 +21,12 @@ public class Timeslot {
         this.duration = duration;
 
         this.setDayAndHour();
+        this.setDayId();
+    }
+
+    private void setDayId() {
+        TimeParser timeParser = new TimeParser();
+        this.dayId = timeParser.indexDayByName(day);
     }
 
     private void setDayAndHour() {
@@ -36,5 +45,9 @@ public class Timeslot {
 
     public double getDuration() {
         return duration;
+    }
+
+    public int getDayId() {
+        return dayId;
     }
 }

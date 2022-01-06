@@ -215,6 +215,9 @@ public class Data {
         setNumberOfClasses();
     }
 
+    // function is not used
+    // only here to help debugging
+    // to do: remove before submission
     public static void main(String[] args) {
         Data data = new Data();
         data.setData();

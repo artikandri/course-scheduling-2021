@@ -12,6 +12,12 @@ import java.util.stream.Collectors;
  */
 public class TimeParser {
 
+    public int indexDayByName(String dayName) {
+        String dayToFind = dayName.toLowerCase();
+        List<String> daysOfTheWeek = Arrays.asList("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday");
+        return daysOfTheWeek.indexOf(dayToFind);
+    }
+
     public double timeDifferenceInHours(String startTime, String endTime) {
         ListParser listParser = new ListParser();
         List startTimes = listParser.arrayOfStringToListOfDoubles(startTime.split(":"));
