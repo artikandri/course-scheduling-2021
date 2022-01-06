@@ -1,4 +1,4 @@
-Environment installation: 
+Environment installation (Java):
 
 1. Install OpenJDK 11
     - Linux: 
@@ -49,12 +49,16 @@ Environment installation:
     > java -jar {jar_file_name}.jar
         will run the compiled file. By default, the compiled file will be located in "target/" folder, 
         but it's not recommended to run the file this way because system will ask you to 
+        refer to the dependencies.
     > mvn install -e
         download & install dependencies defined in pom.xml
     > mvn -Dmaven.test.skip=true -DskipTests=true clean install
         clean install maven 
     > mvn assembly:assembly -DdescriptorId=jar-with-dependencies
-        assembly a new jar file, packed with dependencies
+        assembly a new jar file, packed with dependencies. Run this to get an executable jar file.
+        You may later run the file by executing java -jar path/to/the/file.jar
+        By default the assembled package will be located in target/ folder 
+        under the name course-scheduling-1.0-jar-with-dependencies.jar
     > mvn dependency:copy-dependencies
         copy dependencies from M2_HOME folder (in Linux, usually located in /home/user_name/.m2/repository) to target/dependency folder
         
@@ -73,6 +77,41 @@ Environment installation:
 
 
 
+Environment installation (Python): 
+1. Run the "installPython.sh" script (located in src/scripts/) through your command line.
+    This script will automatically install python3, python3-pip, and python3-venv apps in your env. 
+    It will also install pandas & openpyxl packages.
+
+2. Install the packages one by one manually
+    Linux: 
+    # install python3, pip, and venv (virtual environment)
+    > sudo apt install python3
+    > sudo apt install python3-pip
+    > sudo apt install python3-venv
+
+    # Pandas: Python package, providing fast, flexible, and expressive data structures
+    > pip install pandas
+
+    # openpyxl: openpyxl is a Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.
+    > pip install openpyxl
+
+
+How to run the project (make sure to install the environment first): 
+
+1. If you are using Maven
+    > mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+        build the jar file
+    > java -jar target/course-scheduling-1.0-jar-with-dependencies.jar
+        run the jar file
+2. If you are using a dedicated Java editor: 
+    - Install OpenJDK 11 and connect them with your editor.
+    - Make sure to install all the dependencies specified in pom.xml. 
+        Every editor has their own installation way so I can't mention the steps.
+    - Click on the play button to run the whole program. 
+
+
+
+    
 
 
 
