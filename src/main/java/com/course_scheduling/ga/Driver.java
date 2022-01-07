@@ -45,16 +45,13 @@ public class Driver {
                         + " | " + schedule.getNumbOfConflicts()));
         driver.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
         driver.classNumb = 1;
-        while (population.getSchedules().get(0).getFitness() != 1.0) {
-            printWriter.println("> Generation # " + ++generationNumber);
-            printWriter.print("  Schedule # |                                           ");
-            printWriter.print("Classes [class,room,instructor, timeslot]       ");
-            printWriter.println("                                  | Fitness #"
-                    + population.getSchedules().get(0).getFitness()
-                    + "  | Conflicts # "
-                    + population.getSchedules().get(0).getNumbOfConflicts() + " ");
-            printWriter.print("-----------------------------------------------------------------------------------");
-            printWriter.println("-------------------------------------------------------------------------------------");
+
+        printWriter.println(population.getSchedules().get(0).getFitness());
+
+        while (population.getSchedules().get(0).getFitness() < 1.0) {
+
+            generationNumber += 1;
+            driver.printGenerationInfo(generationNumber, population);
 
             population = geneticAlgorithm.evolve(population).sortByFitness();
             driver.scheduleNumb = 0;
@@ -63,12 +60,31 @@ public class Driver {
                             + "     | " + schedule + " | "
                             + String.format("%.5f", schedule.getFitness())
                             + " | " + schedule.getNumbOfConflicts()));
+
             driver.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
             driver.classNumb = 1;
         }
 
         String schedules = stringWriter.toString();
         System.out.println(schedules);
+    }
+
+    private void printGenerationInfo(int generationNumber, Population population) {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        printWriter.println("Generation # " + generationNumber);
+        printWriter.print("Schedule # " + generationNumber);
+
+        printWriter.println("       |         Fitness # "
+                + population.getSchedules().get(0).getFitness()
+                + "  |                  Conflicts # "
+                + population.getSchedules().get(0).getNumbOfConflicts() + " ");
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        String info = stringWriter.toString();
+        System.out.println(info);
     }
 
     private void printScheduleAsTable(Schedule schedule, int generation) {
