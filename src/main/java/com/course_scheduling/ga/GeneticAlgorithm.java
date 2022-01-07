@@ -39,17 +39,25 @@ public class GeneticAlgorithm {
         for (int i = 0; i < crossoverSchedule.getClasses().size(); i++) {
             if (Math.random() > 0.5) {
                 if (i < schedule1.getClasses().size()) {
-                    crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
+                    if (crossoverSchedule.getClasses().get(i).getCourseId() == schedule1.getClasses().get(i).getCourseId()) {
+                        crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
+                    }
                 } else {
                     int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
-                    crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
+                    if (crossoverSchedule.getClasses().get(randomIndex).getCourseId() == schedule1.getClasses().get(randomIndex).getCourseId()) {
+                        crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
+                    }
                 }
             } else {
                 if (i < schedule2.getClasses().size()) {
-                    crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
+                    if (crossoverSchedule.getClasses().get(i).getCourseId() == schedule2.getClasses().get(i).getCourseId()) {
+                        crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
+                    }
                 } else {
                     int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
-                    crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
+                    if (crossoverSchedule.getClasses().get(randomIndex).getCourseId() == schedule2.getClasses().get(randomIndex).getCourseId()) {
+                        crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
+                    }
                 }
             }
         }
@@ -72,10 +80,14 @@ public class GeneticAlgorithm {
         for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
             if (Driver.MUTATION_RATE > Math.random()) {
                 if (i < schedule.getClasses().size()) {
-                    mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
+                    if (mutateSchedule.getClasses().get(i).getCourseId() == schedule.getClasses().get(i).getCourseId()) {
+                        mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
+                    }
                 } else {
                     int randomIndex = (int) (schedule.getClasses().size() * Math.random());
-                    mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
+                    if (mutateSchedule.getClasses().get(randomIndex).getCourseId() == schedule.getClasses().get(randomIndex).getCourseId()) {
+                        mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
+                    }
                 }
             }
         }
