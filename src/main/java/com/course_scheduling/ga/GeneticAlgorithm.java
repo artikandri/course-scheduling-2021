@@ -1,6 +1,6 @@
 package com.course_scheduling.ga;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class GeneticAlgorithm {
@@ -39,25 +39,26 @@ public class GeneticAlgorithm {
         for (int i = 0; i < crossoverSchedule.getClasses().size(); i++) {
             if (Math.random() > 0.5) {
                 if (i < schedule1.getClasses().size()) {
-                    if (crossoverSchedule.getClasses().get(i).getCourseId() == schedule1.getClasses().get(i).getCourseId()) {
+                    if (canScheduleBeChanged(crossoverSchedule, schedule1, i)) {
                         crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
                     }
                 } else {
                     int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
-                    if (crossoverSchedule.getClasses().get(randomIndex).getCourseId() == schedule1.getClasses().get(randomIndex).getCourseId()) {
+                    if (canScheduleBeChanged(crossoverSchedule, schedule1, randomIndex)) {
                         crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
                     }
                 }
             } else {
                 if (i < schedule2.getClasses().size()) {
-                    if (crossoverSchedule.getClasses().get(i).getCourseId() == schedule2.getClasses().get(i).getCourseId()) {
+                    if (canScheduleBeChanged(crossoverSchedule, schedule2, i)) {
                         crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
                     }
                 } else {
                     int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
-                    if (crossoverSchedule.getClasses().get(randomIndex).getCourseId() == schedule2.getClasses().get(randomIndex).getCourseId()) {
+                    if (canScheduleBeChanged(crossoverSchedule, schedule2, randomIndex)) {
                         crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
                     }
+
                 }
             }
         }
@@ -80,18 +81,34 @@ public class GeneticAlgorithm {
         for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
             if (Driver.MUTATION_RATE > Math.random()) {
                 if (i < schedule.getClasses().size()) {
-                    if (mutateSchedule.getClasses().get(i).getCourseId() == schedule.getClasses().get(i).getCourseId()) {
+                    if (canScheduleBeChanged(mutateSchedule, schedule, i)) {
                         mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
                     }
                 } else {
                     int randomIndex = (int) (schedule.getClasses().size() * Math.random());
-                    if (mutateSchedule.getClasses().get(randomIndex).getCourseId() == schedule.getClasses().get(randomIndex).getCourseId()) {
+                    if (canScheduleBeChanged(mutateSchedule, schedule, randomIndex)) {
                         mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
                     }
                 }
             }
         }
         return mutateSchedule;
+    }
+
+    private boolean canScheduleBeChanged(Schedule schedule1, Schedule schedule2, int index) {
+        boolean canBeChanged = false;
+
+        Class class1 = schedule1.getClasses().get(index);
+        Class class2 = schedule2.getClasses().get(index);
+
+        boolean hasTheSameCourse = class1.getCourseId() == class2.getCourseId();
+        boolean hasTheSameDuration = class1.getTimeslot().getDuration() == class2.getTimeslot().getDuration();
+
+        if (hasTheSameCourse && hasTheSameDuration) {
+            canBeChanged = true;
+        }
+
+        return canBeChanged;
     }
 
     Population selectTournamentPopulation(Population population) {

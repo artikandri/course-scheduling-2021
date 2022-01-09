@@ -1,4 +1,3 @@
-
 package com.course_scheduling.ga;
 
 /**
@@ -74,8 +73,8 @@ public class Data {
     }
 
     public void setInstructors() {
-        List instructorCsvs =
-                DatasetProcessor.readFile("src/main/resources/dataset/processed/instructors.csv");
+        List instructorCsvs
+                = DatasetProcessor.readFile("src/main/resources/dataset/processed/instructors.csv");
         instructorCsvs.remove(0);
         instructors = new ArrayList<Instructor>(Arrays.asList());
         for (int i = 0; i < instructorCsvs.size(); i++) {
@@ -86,8 +85,8 @@ public class Data {
     }
 
     public void setCourses() {
-        List courseCsvs =
-                DatasetProcessor.readFile("src/main/resources/dataset/processed/courses.csv");
+        List courseCsvs
+                = DatasetProcessor.readFile("dataset/processed/courses_small.csv");
         courseCsvs.remove(0);
         courses = new ArrayList<Course>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
@@ -104,12 +103,12 @@ public class Data {
                     Double.parseDouble(row[1].replaceAll("\\]", "")), true);
             numberCombinator.calculateCombinations();
             for (String solution : numberCombinator.getCombinations()) {
-                String[] combinations =
-                        solution.replaceAll("\\[", "").replaceAll("\\]", "").split(" , ");
+                String[] combinations
+                        = solution.replaceAll("\\[", "").replaceAll("\\]", "").split(" , ");
                 for (String combination : combinations) {
                     String result = combination.substring(combination.lastIndexOf(":") + 1);
-                    String[] results =
-                            result.replaceAll("\\[", "").replaceAll("\\]", "").split(" ");
+                    String[] results
+                            = result.replaceAll("\\[", "").replaceAll("\\]", "").split(" ");
                     maxLength = results.length > maxLength ? results.length : maxLength;
                     possibleDurations.add(listParser.arrayOfStringToListOfDoubles(results));
                 }
@@ -142,8 +141,8 @@ public class Data {
     }
 
     public void setGroups() {
-        List courseCsvs =
-                DatasetProcessor.readFile("src/main/resources/dataset/processed/courses.csv");
+        List courseCsvs
+                = DatasetProcessor.readFile("src/main/resources/dataset/processed/courses.csv");
         List groupCsvs = new ArrayList(Arrays.asList());
         courseCsvs.remove(0);
         groups = new ArrayList<Group>(Arrays.asList());
@@ -160,8 +159,8 @@ public class Data {
     }
 
     public void setTimeslots() {
-        List timeslotCsvs =
-                DatasetProcessor.readFile("src/main/resources/dataset/processed/timeslots.csv");
+        List timeslotCsvs
+                = DatasetProcessor.readFile("src/main/resources/dataset/processed/timeslots.csv");
         timeslotCsvs.remove(0);
         timeslots = new ArrayList<Timeslot>(Arrays.asList());
         for (int i = 0; i < timeslotCsvs.size(); i++) {

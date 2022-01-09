@@ -4,6 +4,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
+import com.course_scheduling.assets.Timer;
+import java.util.Comparator;
+import java.util.concurrent.TimeUnit;
+
 public class Driver {
 
     public static final int POPULATION_SIZE = 9;
@@ -30,6 +34,8 @@ public class Driver {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
+        Timer watch = Timer.start();
+
         printWriter.println("> Generation # " + generationNumber);
         printWriter.print("  Schedule # |                                           ");
         printWriter.print("Classes [class, room, instructor, timeslot, group]       ");
@@ -55,13 +61,15 @@ public class Driver {
 
             population = geneticAlgorithm.evolve(population).sortByFitness();
             driver.scheduleNumb = 0;
-            population.getSchedules().forEach(schedule
-                    -> printWriter.println("       " + driver.scheduleNumb++
-                            + "     | " + schedule + " | "
-                            + String.format("%.5f", schedule.getFitness())
-                            + " | " + schedule.getNumbOfConflicts()));
+
+            long passedTimeInMs = watch.time();
+            long passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
 
             driver.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
+
+            System.out.print("Time (seconds): " + passedTimeInMs / 1000);
+            System.out.println("        |    Time (minutes): " + passedTimeInMinutes);
+
             driver.classNumb = 1;
         }
 
@@ -78,6 +86,8 @@ public class Driver {
 
         printWriter.println("       |         Fitness # "
                 + population.getSchedules().get(0).getFitness()
+                + "       |         Penalty # "
+                + population.getSchedules().get(0).getPenalty()
                 + "  |                  Conflicts # "
                 + population.getSchedules().get(0).getNumbOfConflicts() + " ");
         printWriter.print("-----------------------------------------------------------------------------------");
@@ -92,12 +102,14 @@ public class Driver {
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
         ArrayList<Class> classes = schedule.getClasses();
+        classes.sort(Comparator.comparing(Class::getCourseId).thenComparing(Class::getTimeslotId));
+
         printWriter.println("\n                       ");
-        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("------------------------------------------------------------------------------------");
 
         printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Meeting Time (Id) | Group (Id)");
-        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("------------------------------------------------------------------------------------");
 
         classes.forEach(x -> {
@@ -109,7 +121,7 @@ public class Driver {
 
             printWriter.println("                       ");
             printWriter.print(String.format("  %1$02d  ", classNumb) + "  | ");
-            printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName() + " (" + data.getCourses().get(coursesIndex).getId() + ")             | "));
+            printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName() + " (" + data.getCourses().get(coursesIndex).getWeeklyHours() + " hours)             | "));
             printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
@@ -123,7 +135,8 @@ public class Driver {
         if (schedule.getFitness() == 1) {
             printWriter.println("> Solution Found in " + (generation + 1) + " generations");
         }
-        printWriter.println("\n-----------------------------------------------------------------------------------");
+        printWriter.print("\n-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
 
         String scheduleTables = stringWriter.toString();
         System.out.println(scheduleTables);

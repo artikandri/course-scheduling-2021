@@ -67,32 +67,26 @@ public class Schedule {
                                 timeslotId -> possibleTimeslots.contains(timeslotId),
                                 Collectors.toList()));
 
-                if (suitablePreferredTimeslots.isEmpty()) {
-                    // assign random timeslot with possible duration
-                    Timeslot randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), false);
+                boolean isPreferenceConsidered = !suitablePreferredTimeslots.isEmpty();
+                Timeslot randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
 
-                    if (previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds
-                            .contains((int) randomTimeslot.getId())) {
-                        previouslyChosenTimeslotIds.add(randomTimeslot.getId());
-                        newClass.setTimeslot(randomTimeslot);
-                        courseDayId = randomTimeslot.getDayId();
+                boolean isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId());
+                do {
+                    randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
+                    isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId());
+                } while (isTimeslotAlreadyAdded);
 
-                        classes.add(newClass);
-                    }
+                boolean canAssignTimeslot = previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds
+                        .contains((int) randomTimeslot.getId());
 
-                } else {
-                    // assign random timeslot from preferred timeslots if possible
-                    // if not, assign from timeslot pool
-                    Timeslot randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), true);
-                    if (previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds
-                            .contains((int) randomTimeslot.getId())) {
-                        previouslyChosenTimeslotIds.add(randomTimeslot.getId());
-                        newClass.setTimeslot(randomTimeslot);
-                        courseDayId = randomTimeslot.getDayId();
-                        classes.add(newClass);
-                    }
+                if (canAssignTimeslot) {
+                    previouslyChosenTimeslotIds.add(randomTimeslot.getId());
+                    newClass.setTimeslot(randomTimeslot);
+                    courseDayId = randomTimeslot.getDayId();
 
+                    classes.add(newClass);
                 }
+
                 prevCourseId = course.getId();
             }
             previouslyChosenTimeslotIds.clear();
@@ -100,14 +94,11 @@ public class Schedule {
         return this;
     }
 
-    private Timeslot getSuitableTimeslot(Course course, List previouslyChosenTimeslotIds, int prevCourseId, int courseDayId, String duration, boolean isPreferenceChecked) {
+    private Timeslot getSuitableTimeslot(Course course, List previouslyChosenTimeslotIds, int prevCourseId, int courseDayId, String duration, boolean shouldCheckPreference) {
         Map possibleTimeslotMap = course.getPossibleTimeslotMap();
         // consider timeslot
         List<Integer> preferredTimeslots
                 = data.findInstructorById(course.getInstructorId()).getPreferences();
-        List<Timeslot> preferredTimeslotObjects = data.getTimeslots().stream()
-                .filter(timeslot -> preferredTimeslots.contains(timeslot.getId()))
-                .collect(Collectors.toList());
         List<Integer> possibleTimeslots
                 = (List) possibleTimeslotMap.get(duration.toString());
         List<Integer> suitablePreferredTimeslots = preferredTimeslots.stream()
@@ -116,53 +107,53 @@ public class Schedule {
                         Collectors.toList()));
         List<Timeslot> suitablePreferredTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
-                        timeslot -> suitablePreferredTimeslots.contains(timeslot.getId()),
+                        timeslot -> suitablePreferredTimeslots.contains(timeslot.getId()) && possibleTimeslots.contains(timeslot.getId()),
                         Collectors.toList()));
         List<Timeslot> suitableTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
                         timeslot -> possibleTimeslots.contains(timeslot.getId()),
                         Collectors.toList()));
 
-        // consider duration
-        List possibleDurations = course.getPossibleDurations();
-        double randomPossibleDurationIndex = possibleDurations.size() * Math.random();
-        List<Double> randomDurations
-                = (List) possibleDurations.get((int) randomPossibleDurationIndex);
+        // consider the day
+        List<Timeslot> suitableTimeslotObjectsOnTheDay = suitableTimeslotObjects.stream()
+                .collect(Collectors.filtering(
+                        timeslot -> timeslot.getDayId() == courseDayId,
+                        Collectors.toList())
+                );
 
         // create random timeslot
         double randomTimeslotIndex = suitableTimeslotObjects.size() * Math.random();
         Timeslot randomTimeslot
                 = suitableTimeslotObjects.get((int) randomTimeslotIndex);
 
-        if (suitablePreferredTimeslots.contains(randomTimeslot.getId()) || !isPreferenceChecked) {
-            if (course.getId() == prevCourseId) {
-                List<Timeslot> suitableTimeslotObjectsOnTheDay = suitableTimeslotObjects.stream()
-                        .collect(Collectors.filtering(
-                                timeslot -> timeslot.getDayId() == courseDayId,
-                                Collectors.toList())
-                        );
+        boolean isTimeslotOnTheDayExist = suitableTimeslotObjectsOnTheDay.contains(randomTimeslot.getId());
+        boolean isPreferredTimeslotExist = suitablePreferredTimeslots.contains(randomTimeslot.getId());
 
-                if (suitableTimeslotObjectsOnTheDay != null && !suitableTimeslotObjectsOnTheDay.isEmpty()) {
-                    randomTimeslotIndex = (int) (suitableTimeslotObjectsOnTheDay.size() * Math.random());
-                    randomTimeslot = suitableTimeslotObjectsOnTheDay.get((int) randomTimeslotIndex);
+        // check preferences
+        // not prioritized because penalty is lower
+        if (isPreferredTimeslotExist && shouldCheckPreference) {
+            randomTimeslotIndex = suitablePreferredTimeslotObjects.size() * Math.random();
+            randomTimeslot = suitablePreferredTimeslotObjects.get((int) randomTimeslotIndex);
+        }
 
-                    // if possible, schedule classes with the same course id consecutively
-                    if (course.getWeeklyHours() == 2.0 || course.getWeeklyHours() == 3.0) {
-                        if (!previouslyChosenTimeslotIds.isEmpty()) {
-                            int lastChosenTimeslotId = Integer.parseInt(previouslyChosenTimeslotIds.get(previouslyChosenTimeslotIds.size() - 1).toString());
-                            List<Timeslot> nextSuitableTimeslotObjectsOnTheDay = suitableTimeslotObjects.stream()
-                                    .collect(Collectors.filtering(
-                                            timeslot -> timeslot.getId() == lastChosenTimeslotId + 1,
-                                            Collectors.toList())
-                                    );
+        // make sure the same course get consecutive timeslot on the same day
+        if (course.getId() == prevCourseId) {
+            if (isTimeslotOnTheDayExist) {
+                randomTimeslotIndex = (int) (suitableTimeslotObjectsOnTheDay.size() * Math.random());
+                randomTimeslot = suitableTimeslotObjectsOnTheDay.get((int) randomTimeslotIndex);
 
-                            if (nextSuitableTimeslotObjectsOnTheDay != null && !nextSuitableTimeslotObjectsOnTheDay.isEmpty()) {
-                                randomTimeslotIndex = (int) (nextSuitableTimeslotObjectsOnTheDay.size() * Math.random());
-                                randomTimeslot = nextSuitableTimeslotObjectsOnTheDay.get((int) randomTimeslotIndex);
-                            }
+                // if possible, schedule classes with the same course id consecutively
+                if (!previouslyChosenTimeslotIds.isEmpty()) {
+                    int lastChosenTimeslotId = Integer.parseInt(previouslyChosenTimeslotIds.get(previouslyChosenTimeslotIds.size() - 1).toString());
+                    List<Timeslot> nextSuitableTimeslotObjectsOnTheDay = suitableTimeslotObjects.stream()
+                            .collect(Collectors.filtering(
+                                    timeslot -> timeslot.getId() == lastChosenTimeslotId + 1,
+                                    Collectors.toList())
+                            );
 
-                        }
-
+                    if (!nextSuitableTimeslotObjectsOnTheDay.isEmpty()) {
+                        randomTimeslotIndex = (int) (nextSuitableTimeslotObjectsOnTheDay.size() * Math.random());
+                        randomTimeslot = nextSuitableTimeslotObjectsOnTheDay.get((int) randomTimeslotIndex);
                     }
                 }
             }
@@ -189,12 +180,17 @@ public class Schedule {
     }
 
     public int getPenalty() {
-        calculateFitnessAndPenalty();
+        if (isFitnessChanged == true) {
+            fitness = calculateFitnessAndPenalty();
+            isFitnessChanged = false;
+        }
         return penalty;
     }
 
     private double calculateFitnessAndPenalty() {
         numbOfConflicts = 0;
+        penalty = 0;
+
         calculatePenaltyForHardConstraints();
         calculatePenaltyForInstructorPreferences();
         calculatePenaltyForCourseShape();
@@ -223,10 +219,11 @@ public class Schedule {
     // 2. Hard constraint: same room can't be scheduled for 2 diff courses simultaneously
     // penalty += 99
     private void calculatePenaltyForHardConstraints() {
+        classes.sort(Comparator.comparing(Class::getTimeslotId));
         classes.forEach(x -> {
             classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(x)).forEach(y -> {
-                if (x.getTimeslot() == y.getTimeslot() && x.getId() != y.getId()) {
-                    if (x.getInstructor() == y.getInstructor()) {
+                if (x.getTimeslot().getId() == y.getTimeslot().getId() && x.getId() != y.getId()) {
+                    if (x.getInstructor().getId() == y.getInstructor().getId()) {
                         numbOfConflicts++;
                         penalty += 99;
                     }
@@ -235,6 +232,13 @@ public class Schedule {
                         numbOfConflicts++;
                         penalty += 99;
                     }
+                }
+
+                // Additional soft constraint: classes with the same course id on the same day
+                // should be assigned to the same room
+                boolean isConsecutive = Math.abs(x.getTimeslot().getId() - y.getTimeslot().getId()) == 1;
+                if (x.getId() == y.getId() && isConsecutive && x.getRoom().getId() != y.getRoom().getId()) {
+                    penalty += 1;
                 }
             });
         });
@@ -248,66 +252,73 @@ public class Schedule {
         // 4h courses should not be scheduled consecutively, better to split them into 2 days
         // penalty += 2
 
-        Map<String, List<Class>> classInCourses = classes.stream()
+        classes.sort(Comparator.comparing(Class::getTimeslotId));
+        Map<String, List<Class>> classInCourses = classes
+                .stream()
                 .collect(Collectors.groupingBy(p -> String.valueOf(p.getCourseId())));
+
         for (Map.Entry<String, List<Class>> classInCourse : classInCourses.entrySet()) {
             Class randomClass = classInCourse.getValue().get(0);
             Course course = randomClass.getCourse();
 
-            if (classInCourse.getValue().size() == 2) {
-                for (int i = 0; i < 2; i++) {
+            if (course.getWeeklyHours() == 2.0) {
+                for (int i = 0; i < classInCourse.getValue().size(); i++) {
                     Class prevClass = classInCourse.getValue().get(i);
                     if (i + 1 < 2) {
                         Class nextClass = classInCourse.getValue().get(i + 1);
-                        if (nextClass.getTimeslot().getId() != prevClass.getTimeslot().getId()
-                                + 1) {
+                        boolean isConsecutive = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) == 1;
+                        if (!isConsecutive) {
                             penalty += 2;
+
                         }
                     }
                 }
             }
 
-            if (classInCourse.getValue().size() == 3) {
-                for (int i = 0; i < 3; i++) {
+            if (course.getWeeklyHours() == 3.0) {
+                for (int i = 0; i < classInCourse.getValue().size(); i++) {
                     Class prevClass = classInCourse.getValue().get(i);
-                    if (i + 1 < 3) {
+                    if (i + 1 < classInCourse.getValue().size()) {
                         Class nextClass = classInCourse.getValue().get(i + 1);
-                        if (nextClass.getTimeslot().getId() != prevClass.getTimeslot().getId()
-                                + 1) {
+                        boolean isConsecutive = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) == 1;
+                        boolean isDistanceMoreThan7 = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) >= 7;
+
+                        if (!isConsecutive) {
+                            penalty += 2;
+                        }
+
+                        if (isDistanceMoreThan7) {
                             penalty += 2;
                         }
                     }
 
-                    // average of classes each day is 7
-                    // the maximum distance is 7
-                    if (i == 1) {
-                        Class nextClass = classInCourse.getValue().get(i + 1);
-                        if (nextClass.getTimeslot().getId() > prevClass.getTimeslot().getId() + 7) {
-                            penalty += 2;
-                        }
-                    }
                 }
             }
 
             // ideally courses should be splitted into 2 days
-            if (classInCourse.getValue().size() == 4) {
+            if (course.getWeeklyHours() == 4.0) {
                 Map<String, List<Class>> classInCoursesInDays = classInCourse.getValue().stream()
                         .collect(Collectors.groupingBy(p -> String.valueOf(p.getTimeslotDayId())));
+
+                // check number of classes in 1 day
                 for (Map.Entry<String, List<Class>> classInCoursesInDay : classInCoursesInDays
                         .entrySet()) {
                     if (classInCoursesInDay.getValue().size() != 2) {
                         penalty += 2;
+
                     }
                 }
 
                 // check consecutive classes for every 2 classes
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < classInCourse.getValue().size(); i++) {
                     Class prevClass = classInCourse.getValue().get(i);
-                    if (i == 0 || i == 2) {
+                    if (i == 0 || i == 2 && i < classInCourse.getValue().size()) {
                         Class nextClass = classInCourse.getValue().get(i + 1);
-                        if (nextClass.getTimeslot().getId() != prevClass.getTimeslot().getId()
-                                + 1) {
+                        boolean isConsecutive = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) == 1;
+
+                        if (!isConsecutive) {
                             penalty += 2;
+
                         }
                     }
 
@@ -323,14 +334,16 @@ public class Schedule {
         // 5. Soft constraint: number of daily lessons for students should be evenly balanced
         // group the schedules by group id and check the number of lessons on each day
         // penalty += 1
+        classes.sort(Comparator.comparing(Class::getTimeslotId));
         Map<String, List<Class>> classInGroups = classes.stream()
                 .collect(Collectors.groupingBy(p -> String.valueOf(p.getGroupId())));
+
         for (Map.Entry<String, List<Class>> classInGroup : classInGroups.entrySet()) {
             Map<String, List<Class>> groupInDays = classInGroup.getValue().stream()
                     .collect(Collectors.groupingBy(p -> String.valueOf(p.getTimeslotDayId())));
 
             for (Map.Entry<String, List<Class>> groupInDay : groupInDays.entrySet()) {
-                if (groupInDay.getValue().size() >= 5) {
+                if (groupInDay.getValue().size() - 1 > 6) {
                     penalty += 1;
                 }
             }
