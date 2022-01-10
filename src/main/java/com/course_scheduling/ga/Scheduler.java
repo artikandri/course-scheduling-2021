@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Scheduler {
 
     // adjust these values as needed
-    public static final int POPULATION_SIZE = 10;
+    public static final int POPULATION_SIZE = 20;
     public static final double MUTATION_RATE = 0.8;
     public static final double CROSSOVER_RATE = 0.2;
     public static final int TOURNAMENT_SELECTION_SIZE = 3;
@@ -18,8 +18,8 @@ public class Scheduler {
 
     // adjust these values as needed
     public static final double TARGET_FITNESS = 1.0;
-    public static final int TARGET_PENALTY = 30;
-    public static final int TARGET_TIMER_MINUTES = 15;
+    public static final int TARGET_PENALTY = 50;
+    public static final int TARGET_TIMER_MINUTES = 1;
 
     private int classNumb = 1;
     private Data data;
@@ -100,10 +100,12 @@ public class Scheduler {
         printWriter.println(population.getSchedules().get(0));
 
         String schedules = stringWriter.toString();
+        String schedulesAsList = population.getSchedules().get(0).getScheduleAsList();
         System.out.println(schedules);
 
         String scheduleFileName = "Schedules-GA-" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
         fileManager.createTextFile(schedules, scheduleFileName, "results/ga/");
+        fileManager.createTextFile(schedulesAsList, "List-" + scheduleFileName, "results/ga/");
     }
 
     private String printGenerationInfo(int generationNumber, Population population) {

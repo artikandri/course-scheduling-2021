@@ -133,9 +133,17 @@ public class GeneticAlgorithm {
                 && x.getTimeslotId() == class2.getTimeslotId())
                 .findFirst()
                 .isPresent();
+        boolean hasGroupClassWithTheSameTimeslotExisted = schedule1.getClasses()
+                .stream()
+                .filter(x -> x.getGroupId() == class2.getGroupId()
+                && x.getTimeslotId() == class2.getTimeslotId())
+                .findFirst()
+                .isPresent();
         boolean isClassAlreadyIdeal = isClassIdeal(schedule1, index);
 
-        canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted && !isClassAlreadyIdeal;
+        canBeChanged = hasTheSameCourse && hasTheSameDuration
+                && !hasClassExisted && !isClassAlreadyIdeal
+                && !hasGroupClassWithTheSameTimeslotExisted;
 
         return canBeChanged;
     }

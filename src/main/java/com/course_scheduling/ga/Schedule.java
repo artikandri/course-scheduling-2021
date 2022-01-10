@@ -38,6 +38,8 @@ public class Schedule {
                     = (List) possibleDurations.get((int) randomPossibleDurationIndex);
 
             List<Integer> previouslyChosenTimeslotIds = new ArrayList(Arrays.asList());
+            List<Integer> previouslyChosenTimeslotIdsForTheGroup = new ArrayList(Arrays.asList());
+
             Map possibleTimeslotMap = course.getPossibleTimeslotMap();
 
             // define room
@@ -46,6 +48,7 @@ public class Schedule {
             // flag to check course day
             int courseDayId = -1;
             int prevCourseId = -1;
+            int prevGroupId = -1;
 
             // create new class for every durations
             // match duration with timeslot
@@ -65,12 +68,17 @@ public class Schedule {
                                 Collectors.toList()));
 
                 boolean isPreferenceConsidered = !suitablePreferredTimeslots.isEmpty();
-                Timeslot randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
+                Timeslot randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds,
+                        previouslyChosenTimeslotIdsForTheGroup,
+                        prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
 
                 boolean isTimeslotAlreadyAdded = true;
                 do {
-                    randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
-                    isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId());
+                    randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds,
+                            previouslyChosenTimeslotIdsForTheGroup,
+                            prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
+                    isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId())
+                            || previouslyChosenTimeslotIdsForTheGroup.contains(randomTimeslot.getId());
                 } while (isTimeslotAlreadyAdded);
 
                 boolean isTimeslotUnique = !previouslyChosenTimeslotIds.contains((int) randomTimeslot.getId());
@@ -78,19 +86,28 @@ public class Schedule {
 
                 if (canAssignTimeslot) {
                     previouslyChosenTimeslotIds.add(randomTimeslot.getId());
+                    if (prevGroupId == -1 || course.getGroupId() == prevGroupId) {
+                        prevGroupId = course.getGroupId();
+                        previouslyChosenTimeslotIdsForTheGroup.add(randomTimeslot.getId());
+                    }
+
                     newClass.setTimeslot(randomTimeslot);
                     courseDayId = randomTimeslot.getDayId();
-
                     classes.add(newClass);
                 }
                 prevCourseId = course.getId();
             }
+            
             previouslyChosenTimeslotIds.clear();
+            System.out.println(prevGroupId+" "+previouslyChosenTimeslotIdsForTheGroup);
+            if (course.getGroupId() != prevGroupId) {
+                previouslyChosenTimeslotIdsForTheGroup.clear();
+            }
         });
         return this;
     }
 
-    private Timeslot getSuitableTimeslot(Course course, List previouslyChosenTimeslotIds, int prevCourseId, int courseDayId, String duration, boolean shouldCheckPreference) {
+    private Timeslot getSuitableTimeslot(Course course, List previouslyChosenTimeslotIds, List previouslyChosenTimeslotIdsForTheGroup, int prevCourseId, int courseDayId, String duration, boolean shouldCheckPreference) {
         Map possibleTimeslotMap = course.getPossibleTimeslotMap();
         // consider timeslot
         List<Integer> preferredTimeslots
@@ -107,7 +124,9 @@ public class Schedule {
                         Collectors.toList()));
         List<Timeslot> suitableTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
-                        timeslot -> possibleTimeslots.contains(timeslot.getId()),
+                        timeslot -> possibleTimeslots.contains(timeslot.getId())
+                        && !previouslyChosenTimeslotIds.contains(timeslot.getId())
+                        && !previouslyChosenTimeslotIdsForTheGroup.contains(timeslot.getId()),
                         Collectors.toList()));
 
         // consider the day
@@ -218,7 +237,13 @@ public class Schedule {
         classes.sort(Comparator.comparing(Class::getTimeslotId));
         classes.forEach(x -> {
             classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(x)).forEach(y -> {
-                if (x.getTimeslot().getId() == y.getTimeslot().getId() && x.getId() != y.getId()) {
+                // same timeslot can only be assigned to one group, one instructor,
+                // one room, one course at the time
+                if (x.getTimeslot().getId() == y.getTimeslot().getId()
+                        && x.getGroupId() == y.getGroupId()
+                        && x.getId() != y.getId()) {
+                    numbOfConflicts++;
+
                     if (x.getInstructor().getId() == y.getInstructor().getId()) {
                         numbOfConflicts++;
                         penalty += 99;
@@ -230,13 +255,6 @@ public class Schedule {
                     }
                 }
 
-                // Additional soft constraint: classes with the same course id on the same day
-                // should be assigned to the same room
-                // commented because not used now
-//                boolean isConsecutive = Math.abs(x.getTimeslot().getId() - y.getTimeslot().getId()) == 1;
-//                if (x.getId() == y.getId() && isConsecutive && x.getRoom().getId() != y.getRoom().getId()) {
-//                    penalty += 1;
-//                }
             });
         });
     }
@@ -396,6 +414,41 @@ public class Schedule {
 
         String scheduleTables = stringWriter.toString();
         return scheduleTables;
+    }
+
+    public String getScheduleAsList() {
+        // rewrote this function to produce schedules
+        // in similar style with the pso algorithm
+
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        classes.sort(Comparator.comparing(Class::getGroupId).thenComparing(Class::getTimeslotId));
+        Map<String, List<Class>> classInGroups = classes.stream()
+                .collect(Collectors.groupingBy(p -> String.valueOf(p.getGroupId())));
+
+        for (Map.Entry<String, List<Class>> classInGroup : classInGroups.entrySet()) {
+            printWriter.println("Group " + classInGroup.getKey());
+            for (Class gClass : classInGroup.getValue()) {
+                String classSchedule = gClass.getTimeslot().getTime()
+                        + " = "
+                        + gClass.getCourse().getName()
+                        + " ("
+                        + gClass.getRoom().getName()
+                        + ") ";
+                printWriter.println(classSchedule);
+            }
+        }
+
+        String scheduleTables = stringWriter.toString();
+        return scheduleTables;
+    }
+
+    public static void main(String[] args) {
+        Data data = new Data();
+        Schedule schedule = new Schedule(data);
+
+        schedule.initialize();
     }
 
 }
