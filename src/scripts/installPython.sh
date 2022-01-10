@@ -19,6 +19,7 @@ pip install openpyxl
 # ================================= GETTING STARTED ====================================
 # cd /path/to/your/directory
 # create a virtual env for your python project in selected directory
+# this step is optional, but a good practice
 python3 -m venv .venv
 
 # activate previously created virtual env in the directory

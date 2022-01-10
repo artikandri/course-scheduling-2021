@@ -1,17 +1,22 @@
-Environment installation: 
+Environment installation (Java):
 
-1. Install OpenJDK 11
+1. Install OpenJDK 11 or 17
     - Linux: 
         https://dev.to/mumu/windows-subsystem-for-linux-java-setup-2b2b?utm_source=pocket_mylist 
         > sudo apt update
         > sudo apt install openjdk-11-jdk
     - Windows: 
+        https://www.oracle.com/java/technologies/downloads/#jdk17-windows
         https://knowledge.exlibrisgroup.com/Aleph/Knowledge_Articles/How_to_Download_and_Install_OpenJDK_11_on_Windows_10_PC_for_Aleph 
 
-2. Find out where JDK is installed.
+2. Find out where the JDK is installed.
     - Linux:    
         > readlink -f $(which java)
         will output something similar to: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+    - Windows
+        Check your installation path. By default, it should refer to C:\Program Files. 
+        Find "C:\Program Files\Java" and confirm your installation by checking the existence of 
+            the JDK there. 
 
 3. Setup your environment variable and configure the PATH env variable
     - Linux: 
@@ -29,7 +34,7 @@ Environment installation:
     > java --version
 
 5. Install maven. Maven is a build tool that you can use for compiling, running unit or integration tests, 
-    deploying you your code locally and remotely, etc. 
+    deploying you your code locally and remotely, etc. This project is Maven-based. 
     Linux: 
     > sudo apt install maven 
 
@@ -47,17 +52,27 @@ Environment installation:
     > javac /path/to/your/file -cp /path/to/your/jar/dependency/file
         will run the file with given dependencies. RUN THIS COMMAND FROM src/.../java folder, or else it won't work 
     > java -jar {jar_file_name}.jar
-        will run the compiled file 
+        will run the compiled file. By default, the compiled file will be located in "target/" folder, 
+        but it's not recommended to run the file this way because system will ask you to 
+        refer to the dependencies.
     > mvn install -e
         download & install dependencies defined in pom.xml
+    > mvn -Dmaven.test.skip=true -DskipTests=true clean install
+        clean install maven 
+    > mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+        assembly a new jar file, packed with dependencies. Run this to get an executable jar file.
+        You may later run the file by executing java -jar path/to/the/file.jar
+        By default the assembled package will be located in target/ folder 
+        under the name course-scheduling-1.0-jar-with-dependencies.jar
     > mvn dependency:copy-dependencies
         copy dependencies from M2_HOME folder (in Linux, usually located in /home/user_name/.m2/repository) to target/dependency folder
         
 8. Alternative: Install NetBeans as your IDE. It runs much faster than iDEA on low to mid-end computer 
-    > Windows: 
+    Windows: 
         https://netbeans.apache.org/download/nb126/nb126.html 
-        > WSL2 configuration: 
-            To use NetBeans with WSL, you have to allow Windows to use UNC path ("//wsl..."). To do this, you may 
+        WSL2 configuration: 
+            To use NetBeans with WSL, you have to allow Windows to use UNC path ("//wsl..."). 
+            To do this, you may 
             add a registry key to disable UNC check.
             https://www.ibm.com/support/pages/disableunccheck-registry-key-created-during-rational-synergy-installation 
             - go to Registry Editor under 'HKEY_LOCAL_MACHINE'
@@ -67,6 +82,43 @@ Environment installation:
 
 
 
+Environment installation (Python): 
+1. Run the "installPython.sh" script (located in src/scripts/) through your command line.
+    This script will automatically install python3, python3-pip, and python3-venv apps in your env. 
+    It will also install pandas & openpyxl packages.
+
+2. Install the packages one by one manually
+    Linux: 
+    # install python3, pip, and venv (virtual environment)
+    > sudo apt install python3
+    > sudo apt install python3-pip
+    > sudo apt install python3-venv
+
+    # Pandas: Python package, providing fast, flexible, and expressive data structures
+    > pip install pandas
+
+    # openpyxl: openpyxl is a Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.
+    > pip install openpyxl
+
+
+How to run the project (make sure to install the environment first): 
+
+1. If you are using Maven
+    > mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+        build the jar file
+    > java -jar target/course-scheduling-1.0-jar-with-dependencies.jar
+        run the jar file
+2. If you are using a dedicated Java editor: 
+    - Install OpenJDK 11/17 and connect them with your editor.
+    - Make sure to install all the dependencies specified in pom.xml. 
+        Every editor has their own installation way so I can't mention the steps.
+    - Click on the play button to run the whole program. 
+
+
+
+
+
+    
 
 
 

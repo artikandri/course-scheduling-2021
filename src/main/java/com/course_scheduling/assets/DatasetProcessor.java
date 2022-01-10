@@ -17,7 +17,7 @@ public class DatasetProcessor {
 
     public static List readFile(String pathToCsv) {
         pathToCsv = pathToCsv == null ? "dataset/processed/courses.csv" : pathToCsv;
-        List<List<String>> records = new ArrayList<List<String>>();
+        List<List<String>> records = new ArrayList<>();
         try (CSVReader csvReader = new CSVReader(new FileReader(pathToCsv));) {
             String[] values = null;
             while ((values = csvReader.readNext()) != null) {
@@ -27,9 +27,6 @@ public class DatasetProcessor {
             e.printStackTrace();
         }
         return records;
-    }
-
-    public static void main(String[] args) {
     }
 
 }
