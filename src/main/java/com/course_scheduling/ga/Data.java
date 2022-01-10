@@ -21,6 +21,9 @@ public class Data {
     private CsvParser csvParser = new CsvParser();
     private TimeParser timeParser = new TimeParser();
     private ListParser listParser = new ListParser();
+    
+    private boolean isExperimentMode = true;
+    private int experimentType = 1;
 
     public Data() {
         initialize();
@@ -85,8 +88,25 @@ public class Data {
     }
 
     public void setCourses() {
+        String coursesFilePath = "src/main/resources/dataset/processed/courses.csv";
+        if(isExperimentMode) {
+            switch(experimentType) {
+                case 1:
+                   coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
+                   break;
+                case 2:
+                   coursesFilePath = "src/main/resources/dataset/processed/courses_medium.csv";
+                   break;
+                case 3:
+                   coursesFilePath = "src/main/resources/dataset/processed/courses_large.csv";
+                   break;
+                default:
+                   coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
+                   break;
+            }
+        }
         List courseCsvs
-                = DatasetProcessor.readFile("dataset/processed/courses_small.csv");
+                = DatasetProcessor.readFile(coursesFilePath);
         courseCsvs.remove(0);
         courses = new ArrayList<Course>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
@@ -211,6 +231,11 @@ public class Data {
 
     public void setNumberOfClasses() {
         numberOfClasses = courses.size();
+    }
+    
+    public void setExperimentParameters(boolean isExperimentMode, int experimentType) {
+        this.isExperimentMode = isExperimentMode;
+        this.experimentType = experimentType;
     }
 
     public void setData() {

@@ -1,5 +1,7 @@
 package com.course_scheduling.ga;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -236,10 +238,11 @@ public class Schedule {
 
                 // Additional soft constraint: classes with the same course id on the same day
                 // should be assigned to the same room
-                boolean isConsecutive = Math.abs(x.getTimeslot().getId() - y.getTimeslot().getId()) == 1;
-                if (x.getId() == y.getId() && isConsecutive && x.getRoom().getId() != y.getRoom().getId()) {
-                    penalty += 1;
-                }
+                // commented because not used now
+//                boolean isConsecutive = Math.abs(x.getTimeslot().getId() - y.getTimeslot().getId()) == 1;
+//                if (x.getId() == y.getId() && isConsecutive && x.getRoom().getId() != y.getRoom().getId()) {
+//                    penalty += 1;
+//                }
             });
         });
     }
@@ -312,7 +315,7 @@ public class Schedule {
                 // check consecutive classes for every 2 classes
                 for (int i = 0; i < classInCourse.getValue().size(); i++) {
                     Class prevClass = classInCourse.getValue().get(i);
-                    if (i == 0 || i == 2 && i < classInCourse.getValue().size()) {
+                    if (i < classInCourse.getValue().size() - 1) {
                         Class nextClass = classInCourse.getValue().get(i + 1);
                         boolean isConsecutive = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) == 1;
 
@@ -348,7 +351,46 @@ public class Schedule {
                 }
             }
         }
+    }
 
+    public String toString() {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        printWriter.print("------------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.println("Class # | Course (Id) - Weekly hours | Room  |   Instructor (Id)   |  Meeting Time (Id) | Group (Id)");
+        printWriter.print("------------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
+
+        classes.sort(Comparator.comparing(Class::getCourseId).thenComparing(Class::getTimeslotId));
+
+        for (Class x : classes) {
+            int coursesIndex = data.getCourses().indexOf(x.getCourse());
+            int roomsIndex = data.getRooms().indexOf(x.getRoom());
+            int instructorsIndex = data.getInstructors().indexOf(x.getInstructor());
+            int meetingTimeIndex = data.getTimeslots().indexOf(x.getTimeslot());
+            int groupIndex = data.getCourses().get(coursesIndex).getGroupId();
+
+            printWriter.println("                       ");
+            printWriter.print(String.format("  %1$02d  ", classes.indexOf(x)) + "  | ");
+            printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName()
+                    + " (" + data.getCourses().get(coursesIndex).getId() + ")"
+                    + " - " + data.getCourses().get(coursesIndex).getWeeklyHours() + " hours             | "));
+            printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
+            printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
+                    + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
+            printWriter.print(data.getTimeslots().get(meetingTimeIndex).getTime()
+                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + ")  | ");
+            printWriter.print(data.getGroups().get(groupIndex).getName()
+                    + " (" + data.getGroups().get(groupIndex).getId() + ")");
+        }
+
+        printWriter.print("\n-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        String scheduleTables = stringWriter.toString();
+        return scheduleTables;
     }
 
     // function is not used

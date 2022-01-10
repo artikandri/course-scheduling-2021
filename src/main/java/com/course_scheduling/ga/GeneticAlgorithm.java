@@ -19,10 +19,10 @@ public class GeneticAlgorithm {
     // compare two population, get the best one (has the best fitness), cross them over, and return the new pop
     Population crossoverPopulation(Population population) {
         Population crossoverPopulation = new Population(population.getSchedules().size(), data);
-        IntStream.range(0, Driver.NUMB_OF_ELITE_SCHEDULES).forEach(x -> crossoverPopulation.getSchedules().set(x,
+        IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> crossoverPopulation.getSchedules().set(x,
                 population.getSchedules().get(x)));
-        IntStream.range(Driver.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
-            if (Driver.CROSSOVER_RATE > Math.random()) {
+        IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
+            if (Scheduler.CROSSOVER_RATE > Math.random()) {
                 Schedule schedule1 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(0);
                 Schedule schedule2 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(1);
                 crossoverPopulation.getSchedules().set(x, crossoverSchedule(schedule1, schedule2));
@@ -68,8 +68,8 @@ public class GeneticAlgorithm {
     Population mutatePopulation(Population population) {
         Population mutatePopulation = new Population(population.getSchedules().size(), data);
         ArrayList<Schedule> schedules = mutatePopulation.getSchedules();
-        IntStream.range(0, Driver.NUMB_OF_ELITE_SCHEDULES).forEach(x -> schedules.set(x, population.getSchedules().get(x)));
-        IntStream.range(Driver.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
+        IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> schedules.set(x, population.getSchedules().get(x)));
+        IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
             schedules.set(x, mutateSchedule(population.getSchedules().get(x)));
         });
         return mutatePopulation;
@@ -79,7 +79,7 @@ public class GeneticAlgorithm {
         // randomly generated schedules may have differing length due to the random nature of timeslot assignment
         Schedule schedule = new Schedule(data).initialize();
         for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
-            if (Driver.MUTATION_RATE > Math.random()) {
+            if (Scheduler.MUTATION_RATE > Math.random()) {
                 if (i < schedule.getClasses().size()) {
                     if (canScheduleBeChanged(mutateSchedule, schedule, i)) {
                         mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
@@ -103,17 +103,21 @@ public class GeneticAlgorithm {
 
         boolean hasTheSameCourse = class1.getCourseId() == class2.getCourseId();
         boolean hasTheSameDuration = class1.getTimeslot().getDuration() == class2.getTimeslot().getDuration();
-
-        if (hasTheSameCourse && hasTheSameDuration) {
-            canBeChanged = true;
-        }
+        boolean hasClassExisted = schedule1.getClasses()
+                .stream()
+                .filter(x -> x.getCourseId() == class2.getCourseId() 
+                        && x.getTimeslotId() == class2.getTimeslotId())
+                .findFirst()
+                .isPresent();
+        
+        canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted;
 
         return canBeChanged;
     }
 
     Population selectTournamentPopulation(Population population) {
-        Population tournamentPopulation = new Population(Driver.TOURNAMENT_SELECTION_SIZE, data);
-        IntStream.range(0, Driver.TOURNAMENT_SELECTION_SIZE).forEach(x -> {
+        Population tournamentPopulation = new Population(Scheduler.TOURNAMENT_SELECTION_SIZE, data);
+        IntStream.range(0, Scheduler.TOURNAMENT_SELECTION_SIZE).forEach(x -> {
             tournamentPopulation.getSchedules().set(x,
                     population.getSchedules().get((int) (Math.random() * population.getSchedules().size())));
         });
