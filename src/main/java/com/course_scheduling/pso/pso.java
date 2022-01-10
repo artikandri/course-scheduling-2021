@@ -9,6 +9,7 @@ package com.course_scheduling.pso;
  *
  * @author Teddy Ferdinan
  */
+import com.course_scheduling.assets.DatasetProcessor;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
@@ -487,7 +488,7 @@ public class pso {
         }
 
         //check constraint #2
-        //The same room can’t be scheduled for 2 different courses simultaneously. [violation => penalty +99]
+        //The same room canï¿½t be scheduled for 2 different courses simultaneously. [violation => penalty +99]
         //do the check across the same timeslot, so split one particle into its schedules
         for(int i=0; i < particleCount; i++) {
             for(int j=0; j < x.possibleTimes.length; j++) {
@@ -1180,7 +1181,7 @@ public class pso {
         String[] possibleInstructors, coursesPreferredTimes;
         String[] tempHolder = new String[3];
 
-        List listInstructors = reader.readFile("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\instructors.csv");
+        List listInstructors = reader.readFile(pathToFile);
         possibleInstructors = new String [listInstructors.size()-1];
         coursesPreferredTimes = new String [listInstructors.size()-1];
         for(int i=1; i < listInstructors.size(); i++) {
@@ -1199,7 +1200,7 @@ public class pso {
         String[] possibleInstructors, coursesPreferredTimes;
         String[] tempHolder = new String[3];
 
-        List listInstructors = reader.readFile("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\instructors.csv");
+        List listInstructors = reader.readFile(pathToFile);
         possibleInstructors = new String [listInstructors.size()-1];
         coursesPreferredTimes = new String [listInstructors.size()-1];
         for(int i=1; i < listInstructors.size(); i++) {

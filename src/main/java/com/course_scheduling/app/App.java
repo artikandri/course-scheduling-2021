@@ -1,7 +1,7 @@
 package com.course_scheduling.app;
 
 import com.course_scheduling.ga.Scheduler;
-import com.course_scheduling.pso;
+import com.course_scheduling.pso.pso;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,19 +26,19 @@ public class App {
         //("C:\\Users\\Teddy Ferdinan\\Desktop\\courses_medium.csv");
         //("C:\\Users\\Teddy Ferdinan\\Desktop\\courses_large.csv");
         //("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
-        possibleCourses = psoGetPossibleCourses("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
-        coursesWeeklyHours = psoGetCoursesWeeklyHours("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
-        courseInstructorPairs = psoGetCourseInstructorPairs("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
-        coursesGroups = psoGetCoursesGroups("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
-        possibleRooms = psoGetPossibleRooms("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\rooms.csv");
-        possibleTimes = psoGetPossibleTimes("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\timeslots.csv");
-        possibleTimesDurations = psoGetPossibleTimesDurations("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\timeslots.csv");
-        possibleInstructors = psoGetPossibleInstructors("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\instructors.csv");
-        coursesPreferredTimes = psoGetCoursesPreferredTimes("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\instructors.csv");
+        possibleCourses = pso.psoGetPossibleCourses("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
+        coursesWeeklyHours = pso.psoGetCoursesWeeklyHours("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
+        courseInstructorPairs = pso.psoGetCourseInstructorPairs("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
+        coursesGroups = pso.psoGetCoursesGroups("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\courses.csv");
+        possibleRooms = pso.psoGetPossibleRooms("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\rooms.csv");
+        possibleTimes = pso.psoGetPossibleTimes("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\timeslots.csv");
+        possibleTimesDurations = pso.psoGetPossibleTimesDurations("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\timeslots.csv");
+        possibleInstructors = pso.psoGetPossibleInstructors("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\instructors.csv");
+        coursesPreferredTimes = pso.psoGetCoursesPreferredTimes("D:\\GithubRepos\\course-scheduling-2021\\dataset\\processed\\instructors.csv");
         String logOutput = "";        
         //initialize PSO
         //Configuration x = psoInitialize("limitFV", 750, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
-        Configuration x = psoInitialize("limitIter", 1000, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
+        Configuration x = pso.psoInitialize("limitIter", 1000, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
         Configuration xNew = psoIterate(x, "");
         logOutput += xNew.show();
         logOutput += psoMapSchedules(xNew);
