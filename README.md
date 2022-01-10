@@ -2,9 +2,9 @@
 
 Final project for Advanced Topics in Artificial Intelligence class, 1st semester in Politechnika Wrocławska, Fall 2021.
 Joint project by Argi K Candri (@artikandri) and Teddy Ferdinan (@teddy-f-47) in group 5.
+The idea was to build an optimal course schedule with Genetic Algorithm (GA) and Particle Swarm Optimization (PSO) algorithm. 
 
 Datasets were acquired from 2 sources:
-
 1. Unitime
    Our main reference. Chosen file: LLR: Large Lecture Room Problem dataset, Fall 2007 (pu-fal07-llr)
    Processed into 4 separate datasets: courses.csv, instructors.csv, rooms.csv, timeslots.csv
@@ -16,5 +16,6 @@ Datasets were acquired from 2 sources:
    Accessible online on https://github.com/illinois/courses-dataset (Last accessed on Jan 6th, 2022)
 
 Refer to InstallationGuide.txt on how to run the project.
+Refer to ExperimentGuide.txt on how to fiddle with the project parameters. 
 
 Accessible online on https://github.com/artikandri/course-scheduling-2021 (Last accessed on Jan 6th, 2022)

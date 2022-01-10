@@ -12,7 +12,6 @@ public class Course {
 
     private List possibleDurations;
     private Map possibleTimeslots;
-    private int maxPossibleCombination;
 
     public Course(int id, String name, double weeklyHours, int instructorId, int groupId) {
         this.id = id;
@@ -28,10 +27,6 @@ public class Course {
 
     public void setPossibleTimeslots(Map possibleTimeslots) {
         this.possibleTimeslots = possibleTimeslots;
-    }
-
-    public void setMaxPossibleCombination(int maxPossibleCombination) {
-        this.maxPossibleCombination = maxPossibleCombination;
     }
 
     public int getId() {
@@ -62,7 +57,4 @@ public class Course {
         return possibleTimeslots;
     }
 
-    public int getMaxPossibleCombination() {
-        return maxPossibleCombination;
-    }
 }

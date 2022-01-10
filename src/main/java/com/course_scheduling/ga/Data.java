@@ -5,9 +5,7 @@ package com.course_scheduling.ga;
  * @author @artikandri
  */
 import com.course_scheduling.assets.*;
-import java.time.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Data {
 
@@ -68,7 +66,7 @@ public class Data {
     public void setRooms() {
         List roomCsvs = DatasetProcessor.readFile("src/main/resources/dataset/processed/rooms.csv");
         roomCsvs.remove(0);
-        rooms = new ArrayList<Room>(Arrays.asList());
+        rooms = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < roomCsvs.size(); i++) {
             String[] row = csvParser.parseRow(roomCsvs.get(i).toString());
             Room room = new Room(i, row[0]);
@@ -80,7 +78,7 @@ public class Data {
         List instructorCsvs
                 = DatasetProcessor.readFile("src/main/resources/dataset/processed/instructors.csv");
         instructorCsvs.remove(0);
-        instructors = new ArrayList<Instructor>(Arrays.asList());
+        instructors = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < instructorCsvs.size(); i++) {
             String[] row = csvParser.parseRow(instructorCsvs.get(i).toString());
             Instructor instructor = new Instructor(i, row[0], row[1]);
@@ -106,10 +104,11 @@ public class Data {
                     break;
             }
         }
+
         List courseCsvs
                 = DatasetProcessor.readFile(coursesFilePath);
         courseCsvs.remove(0);
-        courses = new ArrayList<Course>(Arrays.asList());
+        courses = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
             String[] row = csvParser.parseRow(courseCsvs.get(i).toString());
 
@@ -118,7 +117,6 @@ public class Data {
             // result: list of list of doubles
             List<List> possibleDurations = new ArrayList(Arrays.asList());
             ArrayList<Double> durations = new ArrayList<>(Arrays.asList(1.0, 1.5));
-            int maxLength = 0;
 
             NumberCombinator numberCombinator = new NumberCombinator(durations,
                     Double.parseDouble(row[1].replaceAll("\\]", "")), true);
@@ -130,7 +128,6 @@ public class Data {
                     String result = combination.substring(combination.lastIndexOf(":") + 1);
                     String[] results
                             = result.replaceAll("\\[", "").replaceAll("\\]", "").split(" ");
-                    maxLength = results.length > maxLength ? results.length : maxLength;
                     possibleDurations.add(listParser.arrayOfStringToListOfDoubles(results));
                 }
             }
@@ -155,7 +152,6 @@ public class Data {
 
             course.setPossibleDurations(possibleDurations);
             course.setPossibleTimeslots(timeslotMap);
-            course.setMaxPossibleCombination(maxLength);
 
             courses.add(course);
         }
@@ -166,7 +162,7 @@ public class Data {
                 = DatasetProcessor.readFile("src/main/resources/dataset/processed/courses.csv");
         List groupCsvs = new ArrayList(Arrays.asList());
         courseCsvs.remove(0);
-        groups = new ArrayList<Group>(Arrays.asList());
+        groups = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
             String[] row = csvParser.parseRow(courseCsvs.get(i).toString());
             groupCsvs.add(row[3]);
@@ -183,7 +179,7 @@ public class Data {
         List timeslotCsvs
                 = DatasetProcessor.readFile("src/main/resources/dataset/processed/timeslots.csv");
         timeslotCsvs.remove(0);
-        timeslots = new ArrayList<Timeslot>(Arrays.asList());
+        timeslots = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < timeslotCsvs.size(); i++) {
             String[] row = csvParser.parseRow(timeslotCsvs.get(i).toString());
             String time = row[0].split(" - ")[1];
@@ -200,7 +196,7 @@ public class Data {
                 String[] nextRow = csvParser.parseRow(timeslotCsvs.get(i + 1).toString());
                 String nextTime = nextRow[0].split(" - ")[1].trim();
                 String nextCourseTime = timeParser.padZeroToHourAndMinute(nextTime).trim();
-                if (nextCourseTime.trim().equals("07:30:00")) {
+                if (nextCourseTime.trim().equals(startTime)) {
                     duration = timeParser.timeDifferenceInHours(endTime, courseTime);
                 } else {
                     duration = timeParser.timeDifferenceInHours(nextCourseTime, courseTime);
@@ -237,22 +233,5 @@ public class Data {
     public void setExperimentParameters(boolean isExperimentMode, int experimentType) {
         this.isExperimentMode = isExperimentMode;
         this.experimentType = experimentType;
-    }
-
-    public void setData() {
-        setRooms();
-        setInstructors();
-        setTimeslots();
-        setGroups();
-        setCourses();
-        setNumberOfClasses();
-    }
-
-    // function is not used
-    // only here to help debugging
-    // to do: remove before submission
-    public static void main(String[] args) {
-        Data data = new Data();
-        data.setData();
     }
 }

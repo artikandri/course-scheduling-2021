@@ -51,4 +51,4 @@ hs_err_pid*
 .venv/*
 
 #results
-results/ga/*.txt
+results/ga/Schedules-*.txt

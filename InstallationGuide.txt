@@ -1,17 +1,22 @@
 Environment installation (Java):
 
-1. Install OpenJDK 11
+1. Install OpenJDK 11 or 17
     - Linux: 
         https://dev.to/mumu/windows-subsystem-for-linux-java-setup-2b2b?utm_source=pocket_mylist 
         > sudo apt update
         > sudo apt install openjdk-11-jdk
     - Windows: 
+        https://www.oracle.com/java/technologies/downloads/#jdk17-windows
         https://knowledge.exlibrisgroup.com/Aleph/Knowledge_Articles/How_to_Download_and_Install_OpenJDK_11_on_Windows_10_PC_for_Aleph 
 
-2. Find out where JDK is installed.
+2. Find out where the JDK is installed.
     - Linux:    
         > readlink -f $(which java)
         will output something similar to: /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+    - Windows
+        Check your installation path. By default, it should refer to C:\Program Files. 
+        Find "C:\Program Files\Java" and confirm your installation by checking the existence of 
+            the JDK there. 
 
 3. Setup your environment variable and configure the PATH env variable
     - Linux: 
@@ -29,7 +34,7 @@ Environment installation (Java):
     > java --version
 
 5. Install maven. Maven is a build tool that you can use for compiling, running unit or integration tests, 
-    deploying you your code locally and remotely, etc. 
+    deploying you your code locally and remotely, etc. This project is Maven-based. 
     Linux: 
     > sudo apt install maven 
 
@@ -104,7 +109,7 @@ How to run the project (make sure to install the environment first):
     > java -jar target/course-scheduling-1.0-jar-with-dependencies.jar
         run the jar file
 2. If you are using a dedicated Java editor: 
-    - Install OpenJDK 11 and connect them with your editor.
+    - Install OpenJDK 11/17 and connect them with your editor.
     - Make sure to install all the dependencies specified in pom.xml. 
         Every editor has their own installation way so I can't mention the steps.
     - Click on the play button to run the whole program. 

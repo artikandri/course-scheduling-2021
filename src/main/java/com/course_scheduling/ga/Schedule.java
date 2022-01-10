@@ -398,14 +398,4 @@ public class Schedule {
         return scheduleTables;
     }
 
-    // function is not used
-    // only here to help debugging
-    // to do: remove before submission
-    public static void main(String[] args) {
-        Data data = new Data();
-        Schedule schedule = new Schedule(data);
-        schedule.initialize();
-        schedule.calculateFitnessAndPenalty();
-    }
-
 }

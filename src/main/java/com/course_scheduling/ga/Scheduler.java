@@ -17,7 +17,7 @@ public class Scheduler {
 
     // adjust these values as needed
     public static final double TARGET_FITNESS = 1.0;
-    public static final int TARGET_PENALTY = 50;
+    public static final int TARGET_PENALTY = 30;
     public static final int TARGET_TIMER_MINUTES = 15;
 
     private int classNumb = 1;

@@ -1,9 +1,0 @@
-
-// to do: check weeklyHours, sesuaikan sama duration timeslot v
-// to do: pasang timer, tampilin di txt file
-// to do: print schedules jadi txt file
-// to do: check kenapa maven surefire kagak mau ngebuild mulu
-// to do: itung fitnessFunction, panggil di main class 
-// to do: pasang department, pull dr branch java yg baru kalau nanti sudah di MR, sesuaikan sama schedule, group
-// to do : tampilin generation # dan fitness # 
-// rapikan tampilan jadwal 
