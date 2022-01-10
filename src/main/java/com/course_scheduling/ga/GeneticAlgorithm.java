@@ -40,23 +40,23 @@ public class GeneticAlgorithm {
         for (int i = 0; i < crossoverSchedule.getClasses().size(); i++) {
             if (Math.random() > 0.5) {
                 if (i < schedule1.getClasses().size()) {
-                    if (canScheduleBeChanged(crossoverSchedule, schedule1, i)) {
+                    if (canScheduleBeExchanged(crossoverSchedule, schedule1, i)) {
                         crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
                     }
                 } else {
                     int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
-                    if (canScheduleBeChanged(crossoverSchedule, schedule1, randomIndex)) {
+                    if (canScheduleBeExchanged(crossoverSchedule, schedule1, randomIndex)) {
                         crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
                     }
                 }
             } else {
                 if (i < schedule2.getClasses().size()) {
-                    if (canScheduleBeChanged(crossoverSchedule, schedule2, i)) {
+                    if (canScheduleBeExchanged(crossoverSchedule, schedule2, i)) {
                         crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
                     }
                 } else {
                     int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
-                    if (canScheduleBeChanged(crossoverSchedule, schedule2, randomIndex)) {
+                    if (canScheduleBeExchanged(crossoverSchedule, schedule2, randomIndex)) {
                         crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
                     }
 
@@ -77,17 +77,16 @@ public class GeneticAlgorithm {
     }
 
     Schedule mutateSchedule(Schedule mutateSchedule) {
-        // randomly generated schedules may have differing length due to the random nature of timeslot assignment
         Schedule schedule = new Schedule(data).initialize();
         for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
             if (Scheduler.MUTATION_RATE > Math.random()) {
                 if (i < schedule.getClasses().size()) {
-                    if (canScheduleBeChanged(mutateSchedule, schedule, i)) {
+                    if (canScheduleBeExchanged(mutateSchedule, schedule, i)) {
                         mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
                     }
                 } else {
                     int randomIndex = (int) (schedule.getClasses().size() * Math.random());
-                    if (canScheduleBeChanged(mutateSchedule, schedule, randomIndex)) {
+                    if (canScheduleBeExchanged(mutateSchedule, schedule, randomIndex)) {
                         mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
                     }
                 }
@@ -96,22 +95,9 @@ public class GeneticAlgorithm {
         return mutateSchedule;
     }
 
-    private boolean canScheduleBeChanged(Schedule schedule1, Schedule schedule2, int index) {
-        boolean canBeChanged = false;
-
-        Class class1 = schedule1.getClasses().get(index);
-        Class class2 = schedule2.getClasses().get(index);
-
-        boolean hasTheSameCourse = class1.getCourseId() == class2.getCourseId();
-        boolean hasTheSameDuration = class1.getTimeslot().getDuration() == class2.getTimeslot().getDuration();
-        boolean hasClassExisted = schedule1.getClasses()
-                .stream()
-                .filter(x -> x.getCourseId() == class2.getCourseId()
-                && x.getTimeslotId() == class2.getTimeslotId())
-                .findFirst()
-                .isPresent();
-
-        List<Class> similarClasses = schedule1.getClasses()
+    private boolean isClassIdeal(Schedule schedule, int index) {
+        Class class1 = schedule.getClasses().get(index);
+        List<Class> similarClasses = schedule.getClasses()
                 .stream()
                 .filter(x -> x.getCourseId() == class1.getCourseId()
                 && x.getTimeslotDayId() == class1.getTimeslotDayId()
@@ -129,6 +115,25 @@ public class GeneticAlgorithm {
 
         boolean isAlreadyConsecutive = Math.abs(timeslotIdDifference) == similarClasses.size() - 1;
         boolean isClassAlreadyIdeal = similarClasses.size() > 1 && isAlreadyConsecutive;
+
+        return isClassAlreadyIdeal;
+    }
+
+    private boolean canScheduleBeExchanged(Schedule schedule1, Schedule schedule2, int index) {
+        boolean canBeChanged = false;
+
+        Class class1 = schedule1.getClasses().get(index);
+        Class class2 = schedule2.getClasses().get(index);
+
+        boolean hasTheSameCourse = class1.getCourseId() == class2.getCourseId();
+        boolean hasTheSameDuration = class1.getTimeslot().getDuration() == class2.getTimeslot().getDuration();
+        boolean hasClassExisted = schedule1.getClasses()
+                .stream()
+                .filter(x -> x.getCourseId() == class2.getCourseId()
+                && x.getTimeslotId() == class2.getTimeslotId())
+                .findFirst()
+                .isPresent();
+        boolean isClassAlreadyIdeal = isClassIdeal(schedule1, index);
 
         canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted && !isClassAlreadyIdeal;
 

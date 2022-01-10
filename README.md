@@ -1,7 +1,6 @@
 # course-scheduling-2021
 
 Final project for Advanced Topics in Artificial Intelligence class, 1st semester in Politechnika Wrocławska, Fall 2021.
-Joint project by Argi K Candri (@artikandri) and Teddy Ferdinan (@teddy-f-47) in group 5.
 The idea was to build an optimal course schedule with Genetic Algorithm (GA) and Particle Swarm Optimization (PSO) algorithm. 
 
 Datasets were acquired from 2 sources:

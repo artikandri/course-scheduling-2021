@@ -9,9 +9,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
 
-    public static final int POPULATION_SIZE = 9;
-    public static final double MUTATION_RATE = 0.1;
-    public static final double CROSSOVER_RATE = 0.9;
+    // adjust these values as needed
+    public static final int POPULATION_SIZE = 10;
+    public static final double MUTATION_RATE = 0.8;
+    public static final double CROSSOVER_RATE = 0.2;
     public static final int TOURNAMENT_SELECTION_SIZE = 3;
     public static final int NUMB_OF_ELITE_SCHEDULES = 1;
 
@@ -181,14 +182,14 @@ public class Scheduler {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
-        printWriter.println("\nAvailable Courses ==>");
+        printWriter.println("\nAvailable Courses");
         data.getCourses().forEach(x -> printWriter.println("course #: " + x.getId() + ", name: " + x.getName()
                 + ", instructors: " + data.findInstructorById(x.getInstructorId()).getName()));
-        printWriter.println("\nAvailable Rooms ==>");
+        printWriter.println("\nAvailable Rooms");
         data.getRooms().forEach(x -> printWriter.println("room #: " + x.getName()));
-        printWriter.println("\nAvailable Instructors ==>");
+        printWriter.println("\nAvailable Instructors");
         data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
-        printWriter.println("\nAvailable Meeting Times ==>");
+        printWriter.println("\nAvailable Meeting Times");
         data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
         printWriter.println("------------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
