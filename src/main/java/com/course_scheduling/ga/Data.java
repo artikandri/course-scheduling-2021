@@ -21,7 +21,8 @@ public class Data {
     private CsvParser csvParser = new CsvParser();
     private TimeParser timeParser = new TimeParser();
     private ListParser listParser = new ListParser();
-    
+
+    // adjust value as needed
     private boolean isExperimentMode = true;
     private int experimentType = 1;
 
@@ -89,20 +90,20 @@ public class Data {
 
     public void setCourses() {
         String coursesFilePath = "src/main/resources/dataset/processed/courses.csv";
-        if(isExperimentMode) {
-            switch(experimentType) {
+        if (isExperimentMode) {
+            switch (experimentType) {
                 case 1:
-                   coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
-                   break;
+                    coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
+                    break;
                 case 2:
-                   coursesFilePath = "src/main/resources/dataset/processed/courses_medium.csv";
-                   break;
+                    coursesFilePath = "src/main/resources/dataset/processed/courses_medium.csv";
+                    break;
                 case 3:
-                   coursesFilePath = "src/main/resources/dataset/processed/courses_large.csv";
-                   break;
+                    coursesFilePath = "src/main/resources/dataset/processed/courses_large.csv";
+                    break;
                 default:
-                   coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
-                   break;
+                    coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
+                    break;
             }
         }
         List courseCsvs
@@ -232,7 +233,7 @@ public class Data {
     public void setNumberOfClasses() {
         numberOfClasses = courses.size();
     }
-    
+
     public void setExperimentParameters(boolean isExperimentMode, int experimentType) {
         this.isExperimentMode = isExperimentMode;
         this.experimentType = experimentType;

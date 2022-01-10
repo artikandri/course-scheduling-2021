@@ -128,7 +128,7 @@ public class Schedule {
         Timeslot randomTimeslot
                 = suitableTimeslotObjects.get((int) randomTimeslotIndex);
 
-        boolean isTimeslotOnTheDayExist = suitableTimeslotObjectsOnTheDay.contains(randomTimeslot.getId());
+        boolean isTimeslotOnTheDayExist = suitableTimeslotObjectsOnTheDay.contains(randomTimeslot);
         boolean isPreferredTimeslotExist = suitablePreferredTimeslots.contains(randomTimeslot.getId());
 
         // check preferences
@@ -264,6 +264,7 @@ public class Schedule {
             Class randomClass = classInCourse.getValue().get(0);
             Course course = randomClass.getCourse();
 
+            // course with weeklyHours = 2 may only get assigned into 2 classes
             if (course.getWeeklyHours() == 2.0) {
                 for (int i = 0; i < classInCourse.getValue().size(); i++) {
                     Class prevClass = classInCourse.getValue().get(i);
@@ -278,6 +279,8 @@ public class Schedule {
                 }
             }
 
+            // course with weeklyHours = 3 may get assigned into 3 classes (1 hour each)
+            // or 2 classes (1.5 hours each)
             if (course.getWeeklyHours() == 3.0) {
                 for (int i = 0; i < classInCourse.getValue().size(); i++) {
                     Class prevClass = classInCourse.getValue().get(i);
@@ -298,40 +301,47 @@ public class Schedule {
                 }
             }
 
-            // ideally courses should be splitted into 2 days
+            // course with weeklyHours = 4 may get assigned into 4 classes (1 hour each)
+            // or 3 classes (1.5 hours for 2 classes and 1 hour for 1 class)
             if (course.getWeeklyHours() == 4.0) {
+                // check number of days
+                // ideally the classes should be splitted into 2 days (3 and 1 combination)
                 Map<String, List<Class>> classInCoursesInDays = classInCourse.getValue().stream()
                         .collect(Collectors.groupingBy(p -> String.valueOf(p.getTimeslotDayId())));
+                if (classInCoursesInDays.size() != 2) {
+                    penalty += 2;
 
-                // check number of classes in 1 day
+                }
+
+                // check number of classes in one day
+                // ideally the max number of classes is 2
                 for (Map.Entry<String, List<Class>> classInCoursesInDay : classInCoursesInDays
                         .entrySet()) {
-                    if (classInCoursesInDay.getValue().size() != 2) {
+                    if (classInCoursesInDay.getValue().size() > 2) {
                         penalty += 2;
-
                     }
-                }
 
-                // check consecutive classes for every 2 classes
-                for (int i = 0; i < classInCourse.getValue().size(); i++) {
-                    Class prevClass = classInCourse.getValue().get(i);
-                    if (i < classInCourse.getValue().size() - 1) {
-                        Class nextClass = classInCourse.getValue().get(i + 1);
-                        boolean isConsecutive = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) == 1;
+                    // check consecutive classes in one day
+                    for (int i = 0; i < classInCoursesInDay.getValue().size(); i++) {
+                        Class prevClass = classInCoursesInDay.getValue().get(i);
+                        if (i < classInCoursesInDay.getValue().size() - 1) {
+                            Class nextClass = classInCoursesInDay.getValue().get(i + 1);
+                            boolean isConsecutive = Math.abs(nextClass.getTimeslot().getId() - prevClass.getTimeslot().getId()) == 1;
 
-                        if (!isConsecutive) {
-                            penalty += 2;
-
+                            if (!isConsecutive) {
+                                penalty += 2;
+                            }
                         }
-                    }
 
+                    }
                 }
+
             }
         }
     }
 
     /*
-     * calculates penalty for imbalanced lessons on each day param: none return: none
+     * calculates penalty for imbalanced lessons on each day
      */
     private void calculatePenaltyForImbalancedLessons() {
         // 5. Soft constraint: number of daily lessons for students should be evenly balanced

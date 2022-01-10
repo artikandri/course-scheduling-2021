@@ -15,6 +15,12 @@ public class Scheduler {
     public static final double CROSSOVER_RATE = 0.9;
     public static final int TOURNAMENT_SELECTION_SIZE = 3;
     public static final int NUMB_OF_ELITE_SCHEDULES = 1;
+
+    // adjust these values as needed
+    public static final double TARGET_FITNESS = 1.0;
+    public static final int TARGET_PENALTY = 50;
+    public static final int TARGET_TIMER_MINUTES = 15;
+
     private int scheduleNumb = 0;
     private int classNumb = 1;
     private Data data;
@@ -26,10 +32,6 @@ public class Scheduler {
     public void runAlgorithm() {
         Scheduler scheduler = new Scheduler();
         scheduler.data = new Data();
-        // set your experiment parameters here
-        // 1 = small, 2 = medium, 3 = large
-        scheduler.data.setExperimentParameters(true, 1);
-
         scheduler.printAvailableData();
         scheduler.generateSchedules();
     }
@@ -37,6 +39,7 @@ public class Scheduler {
     private void generateSchedules() {
         Scheduler scheduler = new Scheduler();
         scheduler.data = new Data();
+
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(scheduler.data);
@@ -62,9 +65,10 @@ public class Scheduler {
             scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
             generationInfo = scheduler.printGenerationInfo(generationNumber, population);
 
-            isFitnessReached = population.getSchedules().get(0).getFitness() == 1.0;
-            isPenaltyReached = population.getSchedules().get(0).getPenalty() <= 60;
-            isTimerReached = passedTimeInMinutes == 15;
+            isFitnessReached = population.getSchedules().get(0).getFitness() == TARGET_FITNESS;
+            isPenaltyReached = population.getSchedules().get(0).getPenalty() <= TARGET_PENALTY;
+            isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
+
             passedTimeInMs = watch.time();
             passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
 
@@ -73,14 +77,22 @@ public class Scheduler {
 
             scheduler.classNumb = 1;
 
+            if (isTimerReached || isPenaltyReached || isFitnessReached) {
+                System.out.print("-----------------------------------------------------------------------------------");
+                System.out.println("-------------------------------------------------------------------------------------");
+            }
+
             if (isTimerReached) {
-                System.out.println("Process stopped because it has taken more than 15 minutes.");
+                System.out.println("Process stopped because maximum time in minutes ("
+                        + TARGET_TIMER_MINUTES + ") has been reached.");
             }
             if (isPenaltyReached) {
-                System.out.println("Process stopped because minimum number of penalty has been reached");
+                System.out.println("Process stopped because minimum number of penalty ("
+                        + TARGET_PENALTY + ") has been reached");
             }
             if (isFitnessReached) {
-                System.out.println("Process stopped because the target fitness value has been reached");
+                System.out.println("Process stopped because targeted fitness value ("
+                        + TARGET_FITNESS + ") has been reached");
             }
         }
 

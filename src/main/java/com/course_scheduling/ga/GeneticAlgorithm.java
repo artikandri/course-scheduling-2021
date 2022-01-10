@@ -1,6 +1,7 @@
 package com.course_scheduling.ga;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GeneticAlgorithm {
@@ -105,12 +106,31 @@ public class GeneticAlgorithm {
         boolean hasTheSameDuration = class1.getTimeslot().getDuration() == class2.getTimeslot().getDuration();
         boolean hasClassExisted = schedule1.getClasses()
                 .stream()
-                .filter(x -> x.getCourseId() == class2.getCourseId() 
-                        && x.getTimeslotId() == class2.getTimeslotId())
+                .filter(x -> x.getCourseId() == class2.getCourseId()
+                && x.getTimeslotId() == class2.getTimeslotId())
                 .findFirst()
                 .isPresent();
-        
-        canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted;
+
+        List<Class> similarClasses = schedule1.getClasses()
+                .stream()
+                .filter(x -> x.getCourseId() == class1.getCourseId()
+                && x.getTimeslotDayId() == class1.getTimeslotDayId()
+                && x.getRoom().getId() == class1.getRoom().getId())
+                .collect(Collectors.toList());
+        similarClasses.sort(Comparator.comparing(Class::getCourseId).thenComparing(Class::getTimeslotId));
+        int timeslotIdDifference = -1;
+        for (Class similarClass : similarClasses) {
+            if (timeslotIdDifference == -1) {
+                timeslotIdDifference = similarClass.getTimeslotId();
+            } else {
+                timeslotIdDifference -= similarClass.getTimeslotId();
+            }
+        }
+
+        boolean isAlreadyConsecutive = Math.abs(timeslotIdDifference) == similarClasses.size();
+        boolean isClassAlreadyIdeal = similarClasses.size() > 1 && isAlreadyConsecutive;
+
+        canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted && !isClassAlreadyIdeal;
 
         return canBeChanged;
     }

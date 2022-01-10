@@ -49,3 +49,6 @@ hs_err_pid*
 
 #python
 .venv/*
+
+#results
+results/ga/*.txt
