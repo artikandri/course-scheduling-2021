@@ -1,14 +1,13 @@
 package com.course_scheduling.ga;
 
-import java.lang.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class Instructor {
+public final class Instructor {
 
-    private int id;
-    private String name;
-    private List<Integer> preferences;
+    private final int id;
+    private final String name;
+    private final List<Integer> preferences;
 
     public Instructor(int id, String name, String preferences) {
         this.id = id;

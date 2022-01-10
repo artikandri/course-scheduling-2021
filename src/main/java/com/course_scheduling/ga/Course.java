@@ -1,15 +1,14 @@
 package com.course_scheduling.ga;
 
-import com.course_scheduling.assets.DatasetProcessor;
 import java.util.*;
 
 public class Course {
 
-    private int id;
+    private final int id;
     private String name = null;
     private double weeklyHours = 0;
-    private int instructorId;
-    private int groupId;
+    private final int instructorId;
+    private final int groupId;
 
     private List possibleDurations;
     private Map possibleTimeslots;

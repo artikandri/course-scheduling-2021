@@ -3,7 +3,6 @@ package com.course_scheduling.ga;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Schedule {
@@ -27,13 +26,10 @@ public class Schedule {
 
     public Schedule initialize() {
         // add class for each course
-        new ArrayList<Course>(data.getCourses()).forEach(course -> {
+        new ArrayList<>(data.getCourses()).forEach(course -> {
             // consider timeslot
             List<Integer> preferredTimeslots
                     = data.findInstructorById(course.getInstructorId()).getPreferences();
-            List<Timeslot> preferredTimeslotObjects = data.getTimeslots().stream()
-                    .filter(timeslot -> preferredTimeslots.contains(timeslot.getId()))
-                    .collect(Collectors.toList());
 
             // consider duration
             List possibleDurations = course.getPossibleDurations();
@@ -41,9 +37,6 @@ public class Schedule {
             List<Double> randomDurations
                     = (List) possibleDurations.get((int) randomPossibleDurationIndex);
 
-            // match duration with timeslot
-            // add classes by considering the duration
-            // > 1 hour means multiple classes
             List<Integer> previouslyChosenTimeslotIds = new ArrayList(Arrays.asList());
             Map possibleTimeslotMap = course.getPossibleTimeslotMap();
 
@@ -55,6 +48,8 @@ public class Schedule {
             int prevCourseId = -1;
 
             // create new class for every durations
+            // match duration with timeslot
+            // > 1 hour means multiple classes
             for (Double duration : randomDurations) {
                 Class newClass = new Class(classNumb++, course);
 
@@ -72,15 +67,14 @@ public class Schedule {
                 boolean isPreferenceConsidered = !suitablePreferredTimeslots.isEmpty();
                 Timeslot randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
 
-                boolean isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId());
+                boolean isTimeslotAlreadyAdded = true;
                 do {
                     randomTimeslot = getSuitableTimeslot(course, previouslyChosenTimeslotIds, prevCourseId, courseDayId, duration.toString(), isPreferenceConsidered);
                     isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId());
                 } while (isTimeslotAlreadyAdded);
 
-                boolean canAssignTimeslot = previouslyChosenTimeslotIds.isEmpty()
-                        || !previouslyChosenTimeslotIds
-                                .contains((int) randomTimeslot.getId());
+                boolean isTimeslotUnique = !previouslyChosenTimeslotIds.contains((int) randomTimeslot.getId());
+                boolean canAssignTimeslot = previouslyChosenTimeslotIds.isEmpty() || isTimeslotUnique;
 
                 if (canAssignTimeslot) {
                     previouslyChosenTimeslotIds.add(randomTimeslot.getId());
@@ -363,6 +357,7 @@ public class Schedule {
         }
     }
 
+    @Override
     public String toString() {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);

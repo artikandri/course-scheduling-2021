@@ -8,7 +8,7 @@ public class Population {
     private ArrayList<Schedule> schedules;
 
     public Population(int size, Data data) {
-        schedules = new ArrayList<Schedule>(size);
+        schedules = new ArrayList<>(size);
         IntStream.range(0, size).forEach(x -> schedules.add(new Schedule(data).initialize()));
     }
 

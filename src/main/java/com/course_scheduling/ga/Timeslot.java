@@ -8,11 +8,11 @@ import com.course_scheduling.assets.TimeParser;
  */
 public class Timeslot {
 
-    private int id;
-    private String time;
+    private final int id;
+    private final String time;
     private String day;
     private String hour;
-    private double duration;
+    private final double duration;
     private int dayId;
 
     public Timeslot(int id, String time, double duration) {

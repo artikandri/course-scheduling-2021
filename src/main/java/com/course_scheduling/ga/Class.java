@@ -13,15 +13,10 @@ public class Class {
     private Timeslot timeslot;
     private Room room;
     private Group group;
-    private boolean shouldBeMutated;
 
     public Class(int id, Course course) {
         this.id = id;
         this.course = course;
-    }
-
-    public void setShouldBeMutated(boolean shouldBeMutated) {
-        this.shouldBeMutated = shouldBeMutated;
     }
 
     public void setInstructor(Instructor instructor) {
@@ -66,10 +61,6 @@ public class Class {
 
     public int getTimeslotId() {
         return timeslot.getId();
-    }
-
-    public int getShouldBeMutated() {
-        return shouldBeMutated;
     }
 
     public int getCourseId() {

@@ -4,7 +4,6 @@ import com.course_scheduling.assets.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
-
 import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
@@ -21,13 +20,12 @@ public class Scheduler {
     public static final int TARGET_PENALTY = 50;
     public static final int TARGET_TIMER_MINUTES = 15;
 
-    private int scheduleNumb = 0;
     private int classNumb = 1;
     private Data data;
 
-    private Timer watch = Timer.start();
-    private FileManager fileManager = new FileManager();
-    private DateParser dateParser = new DateParser();
+    private final Timer watch = Timer.start();
+    private final FileManager fileManager = new FileManager();
+    private final DateParser dateParser = new DateParser();
 
     public void runAlgorithm() {
         Scheduler scheduler = new Scheduler();
@@ -60,7 +58,6 @@ public class Scheduler {
         while (!isFitnessReached && !isPenaltyReached && !isTimerReached) {
             generationNumber += 1;
             population = geneticAlgorithm.evolve(population).sortByFitness();
-            scheduler.scheduleNumb = 0;
 
             scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
             generationInfo = scheduler.printGenerationInfo(generationNumber, population);

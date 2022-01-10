@@ -39,9 +39,6 @@ public class FileManager {
         }
     }
 
-    // function is not used
-    // only here to help debugging
-    // to do: remove before submission
     public static void main(String[] args) {
         FileManager fileManager = new FileManager();
         fileManager.createTextFile("test", "test.txt", "results/ga/");

@@ -6,8 +6,8 @@ package com.course_scheduling.ga;
  */
 public class Room {
 
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 
     public Room(int id, String name) {
         this.id = id;

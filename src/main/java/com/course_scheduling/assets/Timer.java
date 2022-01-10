@@ -2,11 +2,6 @@ package com.course_scheduling.assets;
 
 import java.util.concurrent.TimeUnit;
 
-// Usage
-// Timer watch = Timer.start();
-//    // do something
-//    long passedTimeInMs = watch.time();
-//    long passedTimeInSeconds = watch.time(TimeUnit.SECONDS);
 public class Timer {
 
     long starts;
@@ -31,5 +26,11 @@ public class Timer {
 
     public long time(TimeUnit unit) {
         return unit.convert(time(), TimeUnit.MILLISECONDS);
+    }
+
+    public static void main(String[] args) {
+        Timer watch = Timer.start();
+        long passedTimeInMs = watch.time();
+        long passedTimeInSeconds = watch.time(TimeUnit.SECONDS);
     }
 }

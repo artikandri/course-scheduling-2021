@@ -1,7 +1,5 @@
 package com.course_scheduling.assets;
 
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
