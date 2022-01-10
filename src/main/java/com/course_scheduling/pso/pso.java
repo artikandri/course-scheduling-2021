@@ -1,10 +1,4 @@
 package com.course_scheduling.pso;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-
 /**
  *
  * @author Teddy Ferdinan
@@ -22,7 +16,7 @@ import java.io.IOException;
 
 public class pso {
 
-    static class Configuration {
+    public static class Configuration {
         int countParticles;
         int currentIteration;
         String psoMode;
@@ -91,7 +85,7 @@ public class pso {
             }
         }
 
-        String show() {
+        public String show() {
             String output = "";
             output = output + "--------CONFIGURATION---------\n";
             output = output + "Number of Particles       : " + countParticles + "\n";
@@ -126,7 +120,7 @@ public class pso {
         return allCourses;
     }
 
-    private static Configuration psoInitialize(String psoMode, int maxLimitMode, int countParticles, String[] possibleRooms, String[] possibleCourses, String[] possibleTimes, float[] possibleTimesDurations, String[] coursesGroups, float[] coursesWeeklyHours, String[] coursesPreferredTimes, String[] courseInstructorPairs) {
+    public static Configuration psoInitialize(String psoMode, int maxLimitMode, int countParticles, String[] possibleRooms, String[] possibleCourses, String[] possibleTimes, float[] possibleTimesDurations, String[] coursesGroups, float[] coursesWeeklyHours, String[] coursesPreferredTimes, String[] courseInstructorPairs) {
         int currentIteration = 0;
         int globalBestPosition = 0;
         double globalBestFV = 0;
@@ -916,7 +910,7 @@ public class pso {
         return x;
     }
 
-    private static Configuration psoIterate(Configuration x, String executionMode) {
+    public static Configuration psoIterate(Configuration x, String executionMode) {
         Configuration y = x;
         y = psoFindGlobalBest(y);
         if("limitFV".equals(y.psoMode)) {
