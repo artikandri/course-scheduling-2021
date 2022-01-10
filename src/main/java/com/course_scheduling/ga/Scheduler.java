@@ -151,7 +151,7 @@ public class Scheduler {
             printWriter.print(String.format("  %1$02d  ", classNumb) + "  | ");
             printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName()
                     + " (" + data.getCourses().get(coursesIndex).getId() + ")"
-                    + " - " + data.getCourses().get(coursesIndex).getWeeklyHours() + " hours             | "));
+                    + " - " + x.getTimeslot().getDuration() + " hours             | "));
             printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");

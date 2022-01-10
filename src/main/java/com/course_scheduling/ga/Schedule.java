@@ -350,7 +350,7 @@ public class Schedule {
                     .collect(Collectors.groupingBy(p -> String.valueOf(p.getTimeslotDayId())));
 
             for (Map.Entry<String, List<Class>> groupInDay : groupInDays.entrySet()) {
-                if (groupInDay.getValue().size() - 1 > 6) {
+                if (groupInDay.getValue().size() - 1 > 5) {
                     penalty += 1;
                 }
             }
@@ -381,7 +381,7 @@ public class Schedule {
             printWriter.print(String.format("  %1$02d  ", classes.indexOf(x)) + "  | ");
             printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName()
                     + " (" + data.getCourses().get(coursesIndex).getId() + ")"
-                    + " - " + data.getCourses().get(coursesIndex).getWeeklyHours() + " hours             | "));
+                    + " - " + x.getTimeslot().getDuration() + " hours             | "));
             printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");

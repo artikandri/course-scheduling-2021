@@ -127,7 +127,7 @@ public class GeneticAlgorithm {
             }
         }
 
-        boolean isAlreadyConsecutive = Math.abs(timeslotIdDifference) == similarClasses.size();
+        boolean isAlreadyConsecutive = Math.abs(timeslotIdDifference) == similarClasses.size() - 1;
         boolean isClassAlreadyIdeal = similarClasses.size() > 1 && isAlreadyConsecutive;
 
         canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted && !isClassAlreadyIdeal;
