@@ -1,0 +1,8 @@
+<configuration debug="false">
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>%date{HH:mm:ss.SSS} %highlight(%-5level)
+            %gray(%logger{90}) %X{X-ApplicationId} %msg%n
+        </pattern>
+    </encoder>
+</appender>

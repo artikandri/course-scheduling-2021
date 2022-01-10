@@ -1,0 +1,37 @@
+
+How to experiment with the project:
+
+1. GA algorithm
+    There are 2 kinds of parameters to play with in the GA project. 
+    The first set of parameters is located in Data.java. These parameters are:
+        boolean isExperimentMode = true or false;
+            when enabled, system will access experimental datasets (courses_small, courses_medium, courses_large)
+            when disabled, system will access the original dataset (courses.csv)
+        int experimentType = 1 or 2 or 3. 
+            1 will execute the "courses_small" dataset;
+            2 for "courses_medium" dataset;
+            and 3 for "courses_large" dataset.
+            
+    The second set of parameters is located in Scheduler.java. These parameters are: 
+        public static final double TARGET_FITNESS = 1.0;
+            adjust your desired fitness value. System will stop regenerating schedules 
+                when the value is already reached.
+        public static final int TARGET_PENALTY = 50;
+            adjust your desired penalty value. System will stop regenerating schedules 
+                when the value is already reached.
+        public static final int TARGET_TIMER_MINUTES = 15;
+            adjust your desired fitness value. System will stop regenerating schedules 
+                when the value is already reached.
+        public static final int POPULATION_SIZE = 10;
+            adjust the number of populations
+        public static final double MUTATION_RATE = 0.8;
+            adjust the mutation rate. Our experiments show that higher mutation rate is more effective to produce low penalty
+        public static final double CROSSOVER_RATE = 0.2;
+            adjust the crossover rate. Our experiments show that low crossover rate is more effective to produce low penalty
+        public static final int TOURNAMENT_SELECTION_SIZE = 3;
+            adjust the number of populations selected to be competed
+        public static final int NUMB_OF_ELITE_SCHEDULES = 1;
+            adjust the number of elite schedules
+
+
+2. PSO algorithm

@@ -1,24 +1,60 @@
 package com.course_scheduling.ga;
 
+import java.util.*;
+
 public class Course {
 
-    private int id;
-    private String courseName;
-    private int instructorId;
+    private final int id;
+    private String name = null;
+    private double weeklyHours = 0;
+    private final int instructorId;
+    private final int groupId;
 
-    public Course() {
+    private List possibleDurations;
+    private Map possibleTimeslots;
 
-    }
-
-    public void setCourseData(int courseId, String courseName, int instructorId) {
-        this.id = courseId;
-        this.courseName = courseName;
+    public Course(int id, String name, double weeklyHours, int instructorId, int groupId) {
+        this.id = id;
+        this.name = name;
+        this.weeklyHours = weeklyHours;
         this.instructorId = instructorId;
-
-        // do something
+        this.groupId = groupId;
     }
 
-    public void main(String[] args) {
+    public void setPossibleDurations(List possibleDurations) {
+        this.possibleDurations = possibleDurations;
+    }
+
+    public void setPossibleTimeslots(Map possibleTimeslots) {
+        this.possibleTimeslots = possibleTimeslots;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getWeeklyHours() {
+        return weeklyHours;
+    }
+
+    public int getInstructorId() {
+        return instructorId;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public List getPossibleDurations() {
+        return possibleDurations;
+    }
+
+    public Map getPossibleTimeslotMap() {
+        return possibleTimeslots;
     }
 
 }
