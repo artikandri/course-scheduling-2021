@@ -99,7 +99,7 @@ public class Scheduler {
         printWriter.println(generationInfo);
         printWriter.print("Time (seconds): " + passedTimeInMs / 1000);
         printWriter.println("        |    Time (minutes): " + passedTimeInMinutes);
-        printWriter.println(population.getSchedules().get(population.getSchedules().size() - 1));
+        printWriter.println(population.getSchedules().get(0));
 
         String schedules = stringWriter.toString();
         System.out.println(schedules);

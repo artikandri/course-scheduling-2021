@@ -78,8 +78,9 @@ public class Schedule {
                     isTimeslotAlreadyAdded = previouslyChosenTimeslotIds.contains(randomTimeslot.getId());
                 } while (isTimeslotAlreadyAdded);
 
-                boolean canAssignTimeslot = previouslyChosenTimeslotIds.isEmpty() || !previouslyChosenTimeslotIds
-                        .contains((int) randomTimeslot.getId());
+                boolean canAssignTimeslot = previouslyChosenTimeslotIds.isEmpty()
+                        || !previouslyChosenTimeslotIds
+                                .contains((int) randomTimeslot.getId());
 
                 if (canAssignTimeslot) {
                     previouslyChosenTimeslotIds.add(randomTimeslot.getId());
@@ -88,7 +89,6 @@ public class Schedule {
 
                     classes.add(newClass);
                 }
-
                 prevCourseId = course.getId();
             }
             previouslyChosenTimeslotIds.clear();
