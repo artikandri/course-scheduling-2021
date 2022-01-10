@@ -14,6 +14,7 @@ public class Timeslot {
     private String hour;
     private final double duration;
     private int dayId;
+    private boolean isFlagged = false;
 
     public Timeslot(int id, String time, double duration) {
         this.id = id;
@@ -35,6 +36,10 @@ public class Timeslot {
         hour = dayAndHour[1];
     }
 
+    public void setIsFlagged(boolean isFlagged) {
+        this.isFlagged = isFlagged;
+    }
+
     public int getId() {
         return id;
     }
@@ -49,6 +54,10 @@ public class Timeslot {
 
     public int getDayId() {
         return dayId;
+    }
+
+    public boolean getIsFlagged() {
+        return isFlagged;
     }
 
 }

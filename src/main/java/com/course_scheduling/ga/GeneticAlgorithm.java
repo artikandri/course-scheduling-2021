@@ -24,8 +24,8 @@ public class GeneticAlgorithm {
                 population.getSchedules().get(x)));
         IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
             if (Scheduler.CROSSOVER_RATE > Math.random()) {
-                Schedule schedule1 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(0);
-                Schedule schedule2 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(1);
+                Schedule schedule1 = selectTournamentPopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(0);
+                Schedule schedule2 = selectTournamentPopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(1);
                 crossoverPopulation.getSchedules().set(x, crossoverSchedule(schedule1, schedule2));
             } else {
                 crossoverPopulation.getSchedules().set(x, population.getSchedules().get(x));
@@ -121,6 +121,8 @@ public class GeneticAlgorithm {
 
     private boolean canScheduleBeExchanged(Schedule schedule1, Schedule schedule2, int index) {
         boolean canBeChanged = false;
+        // randomly encourage exchange to prevent schedules suffering from elitism
+        boolean isExchangeEncouraged = Math.random() > 0.5;
 
         Class class1 = schedule1.getClasses().get(index);
         Class class2 = schedule2.getClasses().get(index);
@@ -141,9 +143,10 @@ public class GeneticAlgorithm {
                 .isPresent();
         boolean isClassAlreadyIdeal = isClassIdeal(schedule1, index);
 
-        canBeChanged = hasTheSameCourse && hasTheSameDuration
-                && !hasClassExisted && !isClassAlreadyIdeal
-                && !hasGroupClassWithTheSameTimeslotExisted;
+        if (hasTheSameCourse && hasTheSameDuration) {
+            canBeChanged = isExchangeEncouraged || !hasClassExisted && !isClassAlreadyIdeal
+                    && !hasGroupClassWithTheSameTimeslotExisted;
+        }
 
         return canBeChanged;
     }

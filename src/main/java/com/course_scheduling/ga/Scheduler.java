@@ -13,13 +13,13 @@ public class Scheduler {
     public static final int POPULATION_SIZE = 20;
     public static final double MUTATION_RATE = 0.8;
     public static final double CROSSOVER_RATE = 0.2;
-    public static final int TOURNAMENT_SELECTION_SIZE = 3;
+    public static final int TOURNAMENT_SELECTION_SIZE = 6;
     public static final int NUMB_OF_ELITE_SCHEDULES = 1;
 
     // adjust these values as needed
     public static final double TARGET_FITNESS = 1.0;
-    public static final int TARGET_PENALTY = 50;
-    public static final int TARGET_TIMER_MINUTES = 1;
+    public static final int TARGET_PENALTY = 30;
+    public static final int TARGET_TIMER_MINUTES = 15;
 
     private int classNumb = 1;
     private Data data;

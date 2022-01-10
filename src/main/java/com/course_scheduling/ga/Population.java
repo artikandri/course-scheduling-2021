@@ -28,4 +28,36 @@ public class Population {
         });
         return this;
     }
+
+    public Population sortByNumbOfConflicts() {
+        schedules.sort((schedule1, schedule2) -> {
+            int returnValue = 0;
+            if (schedule1.getNumbOfConflicts() > schedule2.getNumbOfConflicts()) {
+                returnValue = -1;
+            } else if (schedule1.getNumbOfConflicts() < schedule2.getNumbOfConflicts()) {
+                returnValue = 1;
+            }
+            return returnValue;
+        });
+        return this;
+    }
+
+    public Population sortByPenaltyAndNumbOfConflicts() {
+        sortByPenalty();
+        sortByNumbOfConflicts();
+        return this;
+    }
+
+    public Population sortByPenalty() {
+        schedules.sort((schedule1, schedule2) -> {
+            int returnValue = 0;
+            if (schedule1.getPenalty() > schedule2.getPenalty()) {
+                returnValue = -1;
+            } else if (schedule1.getPenalty() < schedule2.getPenalty()) {
+                returnValue = 1;
+            }
+            return returnValue;
+        });
+        return this;
+    }
 }
