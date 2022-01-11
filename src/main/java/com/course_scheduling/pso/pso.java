@@ -26,6 +26,7 @@ public class pso {
         double[][][] positions;
         double[] velocities;
         double[] fitnessValues;
+        double[] penalties;
 
         String[] possibleRooms;
         String[] possibleCourses;
@@ -57,6 +58,7 @@ public class pso {
             this.positions = positions;
             this.velocities = velocities;
             this.fitnessValues = new double[countParticles];
+            this.penalties = new double[countParticles];
 
             this.possibleCourses = possibleCourses;
             this.possibleTimes = possibleTimes;
@@ -92,14 +94,14 @@ public class pso {
             output = output + "Maximum Iteration         : " + maxIteration + "\n";
             output = output + "Target FV                 : " + targetFV + "\n";
             output = output + "Global Best Position      : " + globalBestPosition + "\n";
-            output = output + "Global Best Penalty Score : " + globalBestFV + "\n";
-            output = output + "Global Best Fitness Value : " + (1/globalBestFV) + "\n";
+            output = output + "Global Best Penalty Score : " + penalties[globalBestPosition] + "\n";
+            output = output + "Global Best Fitness Value : " + fitnessValues[globalBestPosition] + "\n";
             for(int i=0; i < positions.length; i++) {
                 output = output + "Particle " + i + ": ";
                 for(int j=0; j < positions[i].length; j++) {
                     output = output + Arrays.toString(positions[i][j]) + ",";
                 }
-                output = output + "| FV: " + fitnessValues[i] + "\n";
+                output = output + "\nPenalty: " + penalties[i] + "| FV: " + fitnessValues[i] + "\n";
             }
             return output;
         }
@@ -632,7 +634,8 @@ public class pso {
         double globalBestPenalty = penalties[0];
         int globalBestIndex = 0;
         for(int i=0; i < penalties.length; i++) {
-            x.fitnessValues[i] = 1/penalties[i];
+            x.penalties[i] = penalties[i];
+            x.fitnessValues[i] = 1/(penalties[i]);
             if(globalBestPenalty > penalties[i]) {
                 globalBestPenalty = penalties[i];
                 globalBestIndex = i;
