@@ -18,8 +18,9 @@ public class Scheduler {
 
     // adjust these values as needed
     public static final double TARGET_FITNESS = 1.0;
-    public static final int TARGET_PENALTY = 30;
+    public static final int TARGET_PENALTY = 20;
     public static final int TARGET_TIMER_MINUTES = 15;
+    public static final int TARGET_GENERATION = 100000;
 
     private int classNumb = 1;
     private Data data;
@@ -54,15 +55,14 @@ public class Scheduler {
         boolean isFitnessReached = penalty.getFitness() == 1.0;
         boolean isPenaltyReached = penalty.getPenalty() <= 60;
         boolean isTimerReached = passedTimeInMinutes == 15;
-
-        String generationInfo = "";
-
-        population.getSchedules().forEach(schd -> System.out.println(schd));
+        boolean isGenerationReached = generationNumber == TARGET_GENERATION;
+        
+        String generationInfo = scheduler.printGenerationInfo(generationNumber, population);
 
         scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
         scheduler.classNumb = 1;
 
-        while (!isFitnessReached && !isPenaltyReached && !isTimerReached) {
+        while (!isFitnessReached && !isPenaltyReached && !isTimerReached && !isGenerationReached) {
             generationNumber += 1;
             population = geneticAlgorithm.evolve(population).sortByFitness();
 
@@ -75,6 +75,7 @@ public class Scheduler {
             isFitnessReached = penaltyEvolve.getFitness() == TARGET_FITNESS;
             isPenaltyReached = penaltyEvolve.getPenalty() <= TARGET_PENALTY;
             isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
+            isGenerationReached = generationNumber == TARGET_GENERATION;
 
             passedTimeInMs = watch.time();
             passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
@@ -101,6 +102,11 @@ public class Scheduler {
                 System.out.println("Process stopped because targeted fitness value ("
                         + TARGET_FITNESS + ") has been reached");
             }
+            
+            if (isGenerationReached) {
+                System.out.println("Process stopped because targeted generation value ("
+                        + TARGET_GENERATION + ") has been reached");
+            }
         }
 
         printWriter.println(generationInfo);
@@ -108,13 +114,13 @@ public class Scheduler {
         printWriter.println("        |    Time (minutes): " + passedTimeInMinutes);
         printWriter.println(population.getSchedules().get(0));
 
-        String schedules = stringWriter.toString();
+        String schedulesAsTable = stringWriter.toString();
         String schedulesAsList = population.getSchedules().get(0).getScheduleAsList();
-        System.out.println(schedules);
+        System.out.println(schedulesAsTable);
 
         String scheduleFileName = "Schedules-GA-" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
-        fileManager.createTextFile(schedules, scheduleFileName, "results/ga/");
-        fileManager.createTextFile(schedulesAsList, "List-" + scheduleFileName, "results/ga/");
+        fileManager.createTextFile(schedulesAsTable, scheduleFileName, "results/ga/");
+        fileManager.createTextFile(generationInfo.concat(schedulesAsList), "List-" + scheduleFileName, "results/ga/");
     }
 
     private String printGenerationInfo(int generationNumber, Population population) {
@@ -205,7 +211,7 @@ public class Scheduler {
         data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
         printWriter.println("\nAvailable Meeting Times");
         data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
-        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
         String availableData = stringWriter.toString();
