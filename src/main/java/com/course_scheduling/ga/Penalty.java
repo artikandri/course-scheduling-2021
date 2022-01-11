@@ -75,7 +75,7 @@ public class Penalty {
                         && x.getGroupId() == y.getGroupId()
                         && x.getId() != y.getId()) {
                     numbOfConflicts++;
-                    penalty += 1;
+                    penalty += 9999;
 
                     if (x.getInstructor().getId() == y.getInstructor().getId()) {
                         numbOfConflicts++;

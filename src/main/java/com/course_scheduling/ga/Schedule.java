@@ -27,8 +27,6 @@ public class Schedule {
 
         Collections.shuffle(courses);
         for (Course course : courses) {
-            List<Integer> preferredTimeslots
-                    = data.findInstructorById(course.getInstructorId()).getPreferences();
 
             // consider duration
             List possibleDurations = course.getPossibleDurations();
@@ -36,7 +34,6 @@ public class Schedule {
             List<Double> randomDurations
                     = (List) possibleDurations.get((int) randomPossibleDurationIndex);
             List<Integer> prevTimeslotIds = new ArrayList(Arrays.asList());
-            Map possibleTimeslotMap = course.getPossibleTimeslotMap();
 
             // define room
             Room room = data.getRooms().get((int) (data.getRooms().size() * Math.random()));
@@ -44,52 +41,49 @@ public class Schedule {
             // create new class for every durations
             // match duration with timeslot
             // > 1 hour means multiple classes
-                for (Double duration : randomDurations) {
-                    Class newClass = new Class(classNumb++, course);
-                    newClass.setRoom(room);
-                    newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
-                    newClass.setGroup(data.findGroupById(course.getGroupId()));
-                    newClass.setNumbOfClasses(randomDurations.size());
+            for (Double duration : randomDurations) {
+                Class newClass = new Class(classNumb++, course);
+                newClass.setRoom(room);
+                newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
+                newClass.setGroup(data.findGroupById(course.getGroupId()));
+                newClass.setNumbOfClasses(randomDurations.size());
 
-                    Timeslot randomTimeslot = getSuitableTimeslot(course, 
-                                prevTimeslotIds,
-                                prevTimeslotIdsForGroup,
-                                duration.toString());
-                    
-                    boolean isTimeslotUnique = !prevTimeslotIds.contains((int) randomTimeslot.getId());
-                    boolean canAssignTimeslot = prevTimeslotIds.isEmpty() || isTimeslotUnique;
+                Timeslot randomTimeslot;
+                randomTimeslot = getSuitableTimeslot(course,
+                        prevTimeslotIds,
+                        prevTimeslotIdsForGroup,
+                        duration.toString());
 
-                    if (canAssignTimeslot) {
-                        prevTimeslotIds.add(randomTimeslot.getId());
-
-                        if (prevGroupId == -1) {
-                            prevGroupId = course.getGroupId();
-                        }
-                        
-                        if (course.getGroupId() == prevGroupId) {
-                            prevTimeslotIdsForGroup.add(randomTimeslot.getId());
-                        } else {
-                            prevTimeslotIdsForGroup.clear();
-                            prevTimeslotIdsForGroup.add(randomTimeslot.getId());
-                            prevGroupId = course.getGroupId();
-                        }
-
-                        newClass.setTimeslot(randomTimeslot);
-                        classes.add(newClass);
-                    }
+                if (prevGroupId == -1) {
+                    prevGroupId = course.getGroupId();
                 }
-                
+
+                // set timeslot
+                newClass.setTimeslot(randomTimeslot);
+                prevTimeslotIds.add(randomTimeslot.getId());
+                if (course.getGroupId() == prevGroupId) {
+                    prevTimeslotIdsForGroup.add(randomTimeslot.getId());
+                } else {
+                    prevTimeslotIdsForGroup.clear();
+                    prevTimeslotIdsForGroup.add(randomTimeslot.getId());
+                    prevGroupId = course.getGroupId();
+                }
+
+                // add class
+                classes.add(newClass);
+            }
+
             // clear timeslot for the course
             prevTimeslotIds.clear();
-           
+
         } //end of for
 
         return this;
     }
 
-    private Timeslot getSuitableTimeslot(Course course, 
+    private Timeslot getSuitableTimeslot(Course course,
             List prevTimeslotIds,
-            List prevTimeslotIdsForGroup, 
+            List prevTimeslotIdsForGroup,
             String duration) {
 
         // consider possible timeslot
@@ -107,33 +101,33 @@ public class Schedule {
         List<Integer> preferredTimeslots
                 = data.findInstructorById(course.getInstructorId()).getPreferences();
         List<Integer> suitablePreferredTimeslots = preferredTimeslots.stream()
-                            .collect(Collectors.filtering(
-                                    timeslotId -> possibleTimeslots.contains(timeslotId),
-                                    Collectors.toList()));
+                .collect(Collectors.filtering(
+                        timeslotId -> possibleTimeslots.contains(timeslotId),
+                        Collectors.toList()));
         boolean checkPreference = !suitablePreferredTimeslots.isEmpty();
 
         // filter available timeslots
         List<Timeslot> suitableTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
                         timeslot -> possibleTimeslots.contains(timeslot.getId())
-                        && checkPreference? preferredTimeslots.contains(timeslot.getId()) : true
-                        && !prevTimeslotIds.contains(timeslot.getId())
-                        && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
+                        && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
+                                && !prevTimeslotIds.contains(timeslot.getId())
+                                && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
                         Collectors.toList()));
         List<Timeslot> suitableAltTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
                         timeslot
                         -> possibleAltTimeslots.contains(timeslot.getId())
                         && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
-                        && !prevTimeslotIds.contains(timeslot.getId())
-                        && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
+                                && !prevTimeslotIds.contains(timeslot.getId())
+                                && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
                         Collectors.toList()));
-        
+
         if (suitableTimeslotObjects.isEmpty()) {
-                suitableTimeslotObjects = data.getTimeslots().stream()
-                        .collect(Collectors.filtering(
-                                timeslot -> possibleTimeslots.contains(timeslot.getId()),
-                                Collectors.toList()));
+            suitableTimeslotObjects = data.getTimeslots().stream()
+                    .collect(Collectors.filtering(
+                            timeslot -> possibleTimeslots.contains(timeslot.getId()),
+                            Collectors.toList()));
         }
 
         // create random timeslot
@@ -146,10 +140,10 @@ public class Schedule {
         Timeslot randomTimeslot
                 = suitableTimeslotObjects.get((int) randomTimeslotIndex);
         Timeslot nextTimeslot = nextTimeslotId == -1 ? randomTimeslot : data.getTimeslots().get(nextTimeslotId);
-        
+
         // encourage randomizing to avoid identical schedules
         // generation may stop without notice when schedules are identical with each other
-        boolean isRandomizingEncouraged = Math.random() * 100 <= 70;    
+        boolean isRandomizingEncouraged = Math.random() * 100 <= 70;
         if (suitableTimeslotObjects.contains(nextTimeslot) && !isRandomizingEncouraged) {
             randomTimeslot = nextTimeslot;
         }
@@ -214,7 +208,7 @@ public class Schedule {
                 .collect(Collectors.groupingBy(p -> String.valueOf(p.getGroupId())));
 
         for (Map.Entry<String, List<Class>> classInGroup : classInGroups.entrySet()) {
-            printWriter.println("--Group " + classInGroup.getKey()+":");
+            printWriter.println("--Group " + classInGroup.getKey() + ":");
             for (Class gClass : classInGroup.getValue()) {
                 String classSchedule = gClass.getTimeslot().getTime()
                         + " = "
