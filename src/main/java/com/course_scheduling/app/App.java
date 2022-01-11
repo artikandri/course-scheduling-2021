@@ -4,6 +4,8 @@ import com.course_scheduling.ga.Scheduler;
 import com.course_scheduling.pso.pso;
 import com.course_scheduling.pso.pso.Configuration;
 import com.course_scheduling.assets.FileManager;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 /**
  * Constructor.
@@ -23,34 +25,51 @@ public class App {
 //        driver.runAlgorithm();
 
         //run PSO algorithm
-        app.runPsoAlgorithm();
+        app.runPsoAlgorithm("default", "limitFV", 100, 30);
     }
     
-    private void runPsoAlgorithm() {
+    private void runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles) {
+        String courseDataset = "src/main/resources/dataset/processed/courses.csv";
+        switch(datasetSize) {
+            case "small" :
+                courseDataset = "src/main/resources/dataset/processed/courses_small.csv";
+                break;
+            case "medium" :
+                courseDataset = "src/main/resources/dataset/processed/courses_medium.csv";
+                break;
+            case "large" :
+                courseDataset = "src/main/resources/dataset/processed/courses_large.csv";
+                break;
+            default :
+                courseDataset = "src/main/resources/dataset/processed/courses.csv";
+        }
         float[] coursesWeeklyHours;
         String[] possibleRooms, possibleCourses, possibleTimes, possibleInstructors, coursesGroups, coursesPreferredTimes, courseInstructorPairs;
         float[] possibleTimesDurations;
-        possibleCourses = pso.psoGetPossibleCourses("src/main/resources/dataset/processed/courses.csv");
-        coursesWeeklyHours = pso.psoGetCoursesWeeklyHours("src/main/resources/dataset/processed/courses.csv");
-        courseInstructorPairs = pso.psoGetCourseInstructorPairs("src/main/resources/dataset/processed/courses.csv");
-        coursesGroups = pso.psoGetCoursesGroups("src/main/resources/dataset/processed/courses.csv");
+        possibleCourses = pso.psoGetPossibleCourses(courseDataset);
+        coursesWeeklyHours = pso.psoGetCoursesWeeklyHours(courseDataset);
+        courseInstructorPairs = pso.psoGetCourseInstructorPairs(courseDataset);
+        coursesGroups = pso.psoGetCoursesGroups(courseDataset);
         possibleRooms = pso.psoGetPossibleRooms("src/main/resources/dataset/processed/rooms.csv");
         possibleTimes = pso.psoGetPossibleTimes("src/main/resources/dataset/processed/timeslots.csv");
         possibleTimesDurations = pso.psoGetPossibleTimesDurations("src/main/resources/dataset/processed/timeslots.csv");
         possibleInstructors = pso.psoGetPossibleInstructors("src/main/resources/dataset/processed/instructors.csv");
         coursesPreferredTimes = pso.psoGetCoursesPreferredTimes("src/main/resources/dataset/processed/instructors.csv");
         String logOutput = "";        
-        //initialize PSO
-        //Configuration x = psoInitialize("limitFV", 750, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
-        
-        Configuration x = pso.psoInitialize("limitIter", 1000, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
+        //initialize PSO; automatic stop after 15 minutes
+        //"limitFV", 700, 30 => operation mode limit FV, 700 max penalty score, 30 particles
+        //"limitIter", 1000, 30 => operation mode limit Iter, 1000 max iteration, 30 particles
+        //Configuration x = pso.psoInitialize("limitIter", 1000, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
+        //Configuration x = pso.psoInitialize("limitFV", 100, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
+        Configuration x = pso.psoInitialize(psoMode, psoLimit, psoParticles, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
         Configuration xNew = pso.psoIterate(x, "");
         logOutput += xNew.show();
         logOutput += pso.psoMapSchedules(xNew);
         //write log output to file
-        
-        fileManager.createTextFile(logOutput, "Schedules-PSO", "results/pso/");
-       
+        DateTimeFormatter psoDTF = DateTimeFormatter.ofPattern("_yyyy_MM_dd_HH_mm_ss");
+        LocalDateTime psoNow = LocalDateTime.now();
+        String psoTimestamp = psoDTF.format(psoNow) + ".txt";
+        fileManager.createTextFile(logOutput, "Schedules-PSO"+psoTimestamp, "results/pso/");
     }
 
 }

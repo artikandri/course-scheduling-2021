@@ -10,9 +10,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.lang.Math;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 public class pso {
 
@@ -93,6 +92,7 @@ public class pso {
             output = output + "Maximum Iteration         : " + maxIteration + "\n";
             output = output + "Target FV                 : " + targetFV + "\n";
             output = output + "Global Best Position      : " + globalBestPosition + "\n";
+            output = output + "Global Best Penalty Score : " + globalBestFV + "\n";
             output = output + "Global Best Fitness Value : " + (1/globalBestFV) + "\n";
             for(int i=0; i < positions.length; i++) {
                 output = output + "Particle " + i + ": ";
@@ -177,8 +177,8 @@ public class pso {
                     }
                     realTimeslot++;
                 }
-                //spare eight 1.5h slots to allow swapping
-                int spareCounter = 8;
+                //spare four 1.5h slots to allow swapping
+                int spareCounter = 4;
                 while(spareCounter > 0) {
                     int indexToBeSpared = remainingTimes15h.size() - 1;
                     remainingTimes15h.remove(indexToBeSpared);
@@ -911,11 +911,17 @@ public class pso {
     }
 
     public static Configuration psoIterate(Configuration x, String executionMode) {
+        boolean isTimerReached = false;
+        Instant start = Instant.now();
+        Instant end;
+        Duration timeElapsed;
+        double timeLimit = 15;
+
         Configuration y = x;
         y = psoFindGlobalBest(y);
         if("limitFV".equals(y.psoMode)) {
             //iterate until global best FV is equal to or lower than target FV
-            while(y.globalBestFV > y.targetFV) {
+            while(y.globalBestFV > y.targetFV && isTimerReached==false) {
                 //find global best
                 y = psoFindGlobalBest(y);
                 //particle movement
@@ -927,10 +933,14 @@ public class pso {
                     System.out.printf("%s", y.show());
                     System.out.printf("\n");
                 }
+                //timer
+                end = Instant.now();
+                timeElapsed = Duration.between(start, end);
+                if(timeElapsed.toMinutes() >= timeLimit) isTimerReached = true;
             }
         } else {
             //iterate until maximum iteration limit is reached
-            while(y.currentIteration < y.maxIteration) {
+            while(y.currentIteration < y.maxIteration && isTimerReached==false) {
                 //find global best
                 y = psoFindGlobalBest(y);
                 //particle movement
@@ -942,6 +952,10 @@ public class pso {
                     System.out.printf("%s", y.show());
                     System.out.printf("\n");
                 }
+                //timer
+                end = Instant.now();
+                timeElapsed = Duration.between(start, end);
+                if(timeElapsed.toMinutes() >= timeLimit) isTimerReached = true;
             }
         }
         return y;
