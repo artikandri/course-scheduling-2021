@@ -1,7 +1,6 @@
 package com.course_scheduling.ga;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class Population {
@@ -19,44 +18,40 @@ public class Population {
 
     public Population sortByFitness() {
         schedules.sort((schedule1, schedule2) -> {
-            int returnValue = 0;
-            if (schedule1.getFitness() > schedule2.getFitness()) {
-                returnValue = -1;
-            } else if (schedule1.getFitness() < schedule2.getFitness()) {
-                returnValue = 1;
-            }
-            return returnValue;
+            Penalty penalty1 = new Penalty(schedule1);
+            Penalty penalty2 = new Penalty(schedule2);
+
+            int sortScore = penalty1.getFitness() > penalty2.getFitness() ? -1 : 1;
+            return sortScore;
         });
         return this;
     }
 
     public Population sortByNumbOfConflicts() {
         schedules.sort((schedule1, schedule2) -> {
-            int returnValue = 0;
-            if (schedule1.getNumbOfConflicts() > schedule2.getNumbOfConflicts()) {
-                returnValue = -1;
-            } else if (schedule1.getNumbOfConflicts() < schedule2.getNumbOfConflicts()) {
-                returnValue = 1;
-            }
-            return returnValue;
+            Penalty penalty1 = new Penalty(schedule1);
+            Penalty penalty2 = new Penalty(schedule2);
+
+            int sortScore = penalty1.getNumbOfConflicts() > penalty2.getNumbOfConflicts() ? -1 : 1;
+            return sortScore;
         });
         return this;
     }
 
     public Population sortByPenaltyAndNumbOfConflicts() {
-        schedules.sort(Comparator.comparing(Schedule::getPenalty).thenComparing(Schedule::getNumbOfConflicts));
+        sortByPenalty();
+        sortByNumbOfConflicts();
+
         return this;
     }
 
     public Population sortByPenalty() {
         schedules.sort((schedule1, schedule2) -> {
-            int returnValue = 0;
-            if (schedule1.getPenalty() > schedule2.getPenalty()) {
-                returnValue = -1;
-            } else if (schedule1.getPenalty() < schedule2.getPenalty()) {
-                returnValue = 1;
-            }
-            return returnValue;
+            Penalty penalty1 = new Penalty(schedule1);
+            Penalty penalty2 = new Penalty(schedule2);
+
+            int sortScore = penalty1.getPenalty() > penalty2.getPenalty() ? -1 : 1;
+            return sortScore;
         });
         return this;
     }

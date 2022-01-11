@@ -10,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 public class Scheduler {
 
     // adjust these values as needed
-    public static final int POPULATION_SIZE = 20;
-    public static final double MUTATION_RATE = 0.7;
-    public static final double CROSSOVER_RATE = 0.3;
-    public static final int TOURNAMENT_SELECTION_SIZE = 6;
+    public static final int POPULATION_SIZE = 10;
+    public static final double MUTATION_RATE = 0.5;
+    public static final double CROSSOVER_RATE = 0.5;
+    public static final int TOURNAMENT_SELECTION_SIZE = 3;
     public static final int NUMB_OF_ELITE_SCHEDULES = 1;
 
     // adjust these values as needed
@@ -47,12 +47,18 @@ public class Scheduler {
         int generationNumber = 0;
         long passedTimeInMs = watch.time();
         long passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
-        boolean isFitnessReached = population.getSchedules().get(0).getFitness() == 1.0;
-        boolean isPenaltyReached = population.getSchedules().get(0).getPenalty() <= 60;
+
+        Schedule schedule = population.getSchedules().get(0);
+        Penalty penalty = new Penalty(schedule);
+
+        boolean isFitnessReached = penalty.getFitness() == 1.0;
+        boolean isPenaltyReached = penalty.getPenalty() <= 60;
         boolean isTimerReached = passedTimeInMinutes == 15;
+
         String generationInfo = "";
 
-        population.getSchedules().forEach(schedule -> System.out.println(schedule));
+        population.getSchedules().forEach(schd -> System.out.println(schd));
+
         scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
         scheduler.classNumb = 1;
 
@@ -63,8 +69,11 @@ public class Scheduler {
             scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
             generationInfo = scheduler.printGenerationInfo(generationNumber, population);
 
-            isFitnessReached = population.getSchedules().get(0).getFitness() == TARGET_FITNESS;
-            isPenaltyReached = population.getSchedules().get(0).getPenalty() <= TARGET_PENALTY;
+            Schedule scheduleEvolve = population.getSchedules().get(0);
+            Penalty penaltyEvolve = new Penalty(scheduleEvolve);
+
+            isFitnessReached = penaltyEvolve.getFitness() == TARGET_FITNESS;
+            isPenaltyReached = penaltyEvolve.getPenalty() <= TARGET_PENALTY;
             isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
 
             passedTimeInMs = watch.time();
@@ -112,14 +121,16 @@ public class Scheduler {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
+        Penalty penalty = new Penalty(population.getSchedules().get(0));
+
         printWriter.println("Generation # " + generationNumber);
         printWriter.print("Schedule # " + generationNumber);
         printWriter.println("       |         Fitness # "
-                + population.getSchedules().get(0).getFitness()
+                + penalty.getFitness()
                 + "       |         Penalty # "
-                + population.getSchedules().get(0).getPenalty()
+                + penalty.getPenalty()
                 + "  |                  Conflicts # "
-                + population.getSchedules().get(0).getNumbOfConflicts() + " ");
+                + penalty.getNumbOfConflicts() + " ");
         printWriter.print("-----------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
@@ -166,7 +177,8 @@ public class Scheduler {
             classNumb++;
         });
 
-        if (schedule.getFitness() == 1) {
+        Penalty penalty = new Penalty(schedule);
+        if (penalty.getFitness() == 1) {
             printWriter.println("> Solution found in " + (generation + 1) + " generations");
         }
 
@@ -199,4 +211,10 @@ public class Scheduler {
         String availableData = stringWriter.toString();
         System.out.println(availableData);
     }
+
+    public static void main(String[] args) {
+        Scheduler scheduler = new Scheduler();
+        scheduler.runAlgorithm();
+    }
+
 }
