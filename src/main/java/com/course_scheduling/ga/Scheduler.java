@@ -11,8 +11,8 @@ public class Scheduler {
 
     // adjust these values as needed
     public static final int POPULATION_SIZE = 20;
-    public static final double MUTATION_RATE = 0.8;
-    public static final double CROSSOVER_RATE = 0.2;
+    public static final double MUTATION_RATE = 0.7;
+    public static final double CROSSOVER_RATE = 0.3;
     public static final int TOURNAMENT_SELECTION_SIZE = 6;
     public static final int NUMB_OF_ELITE_SCHEDULES = 1;
 

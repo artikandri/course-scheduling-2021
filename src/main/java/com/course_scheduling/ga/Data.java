@@ -22,7 +22,7 @@ public class Data {
 
     // adjust value as needed
     private boolean isExperimentMode = true;
-    private int experimentType = 2;
+    private int experimentType = 1;
 
     public Data() {
         initialize();

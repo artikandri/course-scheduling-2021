@@ -1,6 +1,7 @@
 package com.course_scheduling.ga;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class Population {
@@ -43,8 +44,7 @@ public class Population {
     }
 
     public Population sortByPenaltyAndNumbOfConflicts() {
-        sortByPenalty();
-        sortByNumbOfConflicts();
+        schedules.sort(Comparator.comparing(Schedule::getPenalty).thenComparing(Schedule::getNumbOfConflicts));
         return this;
     }
 

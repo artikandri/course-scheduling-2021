@@ -13,6 +13,7 @@ public class Class {
     private Timeslot timeslot;
     private Room room;
     private Group group;
+    private int numbOfClasses = 0;
 
     public Class(int id, Course course) {
         this.id = id;
@@ -21,6 +22,10 @@ public class Class {
 
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
+    }
+
+    public void setNumbOfClasses(int numbOfClasses) {
+        this.numbOfClasses = numbOfClasses;
     }
 
     public void setTimeslot(Timeslot timeslot) {
@@ -69,6 +74,10 @@ public class Class {
 
     public int getTimeslotDayId() {
         return timeslot.getDayId();
+    }
+
+    public int getNumbOfClasses() {
+        return numbOfClasses;
     }
 
     public Room getRoom() {

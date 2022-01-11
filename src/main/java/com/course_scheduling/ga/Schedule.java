@@ -37,6 +37,7 @@ public class Schedule {
             // consider duration
             List possibleDurations = course.getPossibleDurations();
             double randomPossibleDurationIndex = possibleDurations.size() * Math.random();
+
             List<Double> randomDurations
                     = (List) possibleDurations.get((int) randomPossibleDurationIndex);
             List<Integer> prevTimeslotIds = new ArrayList(Arrays.asList());
@@ -59,6 +60,7 @@ public class Schedule {
                     newClass.setRoom(room);
                     newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
                     newClass.setGroup(data.findGroupById(course.getGroupId()));
+                    newClass.setNumbOfClasses(randomDurations.size());
 
                     List<Integer> possibleTimeslots
                             = (List) possibleTimeslotMap.get(duration.toString());
