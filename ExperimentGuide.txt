@@ -35,3 +35,33 @@ How to experiment with the project:
 
 
 2. PSO algorithm
+All adjustable parameters are accessible in App.java (located in package com.course_scheduling.app, the path directory is src\main\java\com\course_scheduling\app\App.java).
+
+the function to call is app.runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles)
+
+example :
+	app.runPsoAlgorithm("small", "limitFV", 100, 30);
+	app.runPsoAlgorithm("medium", "limitIter", 5000, 30);
+
+Parameters:
+	1. datasetSize :
+		possible values are "small", "medium", "large", "default".
+		"small" will use the course_small.csv dataset (1 group, 13 courses)
+		"medium" will use the course_medium.csv dataset (4 groups, 52 courses)
+		"large" will use the course_large.csv dataset (8 groups, 104 courses)
+		any other value will use courses.csv dataset (50 groups, 650 courses)
+	2. psoMode:
+		possible values are "limitFV" and "limitIter"
+		"limitFV" will stop the iterations when the global best penalty is lower than the specified psoLimit, or when the execution time exceeds 15 minutes.
+		"limitIter" will stop the iterations when the iterations reaches the specified psoLimit, or when the execution time exceeds 15 minutes.
+	3. psoLimit:
+		the max penalty score for operation mode "limitFV", or
+		the max iteration for operation mode "limitIter"
+		recommendations:
+		"limitFV" ... for datasetSize="small", psoLimit is recommended to be 725. no recommendations for "medium", "large", and "default".
+		"limiIter" ... psoLimit is recommended to be 1000.
+	4. psoParticles:
+		the number of particles to be used. recommended is 30.
+
+* Comparing FV Values
+Since FV is calculated by the formula (1/sum_of_penalty), we want to maximize the FV. Greater FV mean better quality of the result.
