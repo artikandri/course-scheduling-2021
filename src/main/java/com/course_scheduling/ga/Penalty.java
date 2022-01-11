@@ -1,9 +1,13 @@
 package com.course_scheduling.ga;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.course_scheduling.assets.Statistics;
 
 /**
  *
@@ -17,6 +21,7 @@ public class Penalty {
     private double fitness = -1;
 
     private List<Class> classes;
+    private Statistics statistics = new Statistics();
 
     public Penalty(Schedule schedule) {
         this.classes = schedule.getClasses();
@@ -70,6 +75,7 @@ public class Penalty {
                         && x.getGroupId() == y.getGroupId()
                         && x.getId() != y.getId()) {
                     numbOfConflicts++;
+                    penalty += 1;
 
                     if (x.getInstructor().getId() == y.getInstructor().getId()) {
                         numbOfConflicts++;
@@ -194,11 +200,18 @@ public class Penalty {
             Map<String, List<Class>> groupInDays = classInGroup.getValue().stream()
                     .collect(Collectors.groupingBy(p -> String.valueOf(p.getTimeslotDayId())));
 
+            List<Integer> numberOfCoursesEverydayPerGroup = new ArrayList<>(Arrays.asList());
             for (Map.Entry<String, List<Class>> groupInDay : groupInDays.entrySet()) {
-                if (groupInDay.getValue().size() - 1 > 5) {
-                    penalty += 1;
+                if (groupInDay.getValue().size() > 5) {
+                    penalty += 99 * (groupInDay.getValue().size() - 5);
                 }
+                numberOfCoursesEverydayPerGroup.add(groupInDay.getValue().size());
             }
+
+            if (statistics.getVariance(numberOfCoursesEverydayPerGroup) < 1) {
+                penalty += statistics.getStandardDeviation(numberOfCoursesEverydayPerGroup);
+            }
+
         }
     }
 
@@ -207,7 +220,7 @@ public class Penalty {
     }
 
     public double getFitness() {
-        if (isFitnessChanged == true) {
+        if (isFitnessChanged) {
             fitness = calculateFitnessAndPenalty();
             isFitnessChanged = false;
         }
@@ -215,7 +228,7 @@ public class Penalty {
     }
 
     public int getPenalty() {
-        if (isFitnessChanged == true) {
+        if (isFitnessChanged) {
             fitness = calculateFitnessAndPenalty();
             isFitnessChanged = false;
         }

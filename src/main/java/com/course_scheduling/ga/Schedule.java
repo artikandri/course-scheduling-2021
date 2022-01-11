@@ -51,19 +51,10 @@ public class Schedule {
                     newClass.setGroup(data.findGroupById(course.getGroupId()));
                     newClass.setNumbOfClasses(randomDurations.size());
 
-                    List<Integer> possibleTimeslots
-                            = (List) possibleTimeslotMap.get(duration.toString());
-                    List<Integer> suitablePreferredTimeslots = preferredTimeslots.stream()
-                            .collect(Collectors.filtering(
-                                    timeslotId -> possibleTimeslots.contains(timeslotId),
-                                    Collectors.toList()));
-                    
-                    boolean isPreferenceConsidered = !suitablePreferredTimeslots.isEmpty();
                     Timeslot randomTimeslot = getSuitableTimeslot(course, 
                                 prevTimeslotIds,
                                 prevTimeslotIdsForGroup,
-                                duration.toString(), 
-                                isPreferenceConsidered);
+                                duration.toString());
                     
                     boolean isTimeslotUnique = !prevTimeslotIds.contains((int) randomTimeslot.getId());
                     boolean canAssignTimeslot = prevTimeslotIds.isEmpty() || isTimeslotUnique;
@@ -99,8 +90,7 @@ public class Schedule {
     private Timeslot getSuitableTimeslot(Course course, 
             List prevTimeslotIds,
             List prevTimeslotIdsForGroup, 
-            String duration,
-            boolean shouldCheckPreference) {
+            String duration) {
 
         // consider possible timeslot
         Map possibleTimeslotMap = course.getPossibleTimeslotMap();
@@ -116,12 +106,17 @@ public class Schedule {
         // get preferences
         List<Integer> preferredTimeslots
                 = data.findInstructorById(course.getInstructorId()).getPreferences();
+        List<Integer> suitablePreferredTimeslots = preferredTimeslots.stream()
+                            .collect(Collectors.filtering(
+                                    timeslotId -> possibleTimeslots.contains(timeslotId),
+                                    Collectors.toList()));
+        boolean checkPreference = !suitablePreferredTimeslots.isEmpty();
 
         // filter available timeslots
         List<Timeslot> suitableTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
                         timeslot -> possibleTimeslots.contains(timeslot.getId())
-                        && shouldCheckPreference? preferredTimeslots.contains(timeslot.getId()) : true
+                        && checkPreference? preferredTimeslots.contains(timeslot.getId()) : true
                         && !prevTimeslotIds.contains(timeslot.getId())
                         && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
                         Collectors.toList()));
@@ -129,7 +124,7 @@ public class Schedule {
                 .collect(Collectors.filtering(
                         timeslot
                         -> possibleAltTimeslots.contains(timeslot.getId())
-                        && shouldCheckPreference? preferredTimeslots.contains(timeslot.getId()) : true
+                        && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
                         && !prevTimeslotIds.contains(timeslot.getId())
                         && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
                         Collectors.toList()));
