@@ -13,6 +13,8 @@ public class Class {
     private Timeslot timeslot;
     private Room room;
     private Group group;
+    private int numbOfClasses = 0;
+    private boolean isFlagged = false;
 
     public Class(int id, Course course) {
         this.id = id;
@@ -21,6 +23,10 @@ public class Class {
 
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
+    }
+
+    public void setNumbOfClasses(int numbOfClasses) {
+        this.numbOfClasses = numbOfClasses;
     }
 
     public void setTimeslot(Timeslot timeslot) {
@@ -33,6 +39,10 @@ public class Class {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public boolean getIsFlagged() {
+        return isFlagged;
     }
 
     public int getId() {
@@ -71,11 +81,19 @@ public class Class {
         return timeslot.getDayId();
     }
 
+    public int getNumbOfClasses() {
+        return numbOfClasses;
+    }
+
     public Room getRoom() {
         return room;
     }
 
     public String toString() {
         return "[" + course.getName() + "," + room.getName() + "," + instructor.getName() + "," + timeslot.getTime() + "]";
+    }
+
+    public void setIsFlagged(boolean isFlagged) {
+        this.isFlagged = isFlagged;
     }
 }

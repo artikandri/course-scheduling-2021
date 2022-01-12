@@ -1,4 +1,5 @@
 package com.course_scheduling.pso;
+
 /**
  *
  * @author Teddy Ferdinan
@@ -16,6 +17,7 @@ import java.time.Instant;
 public class pso {
 
     public static class Configuration {
+
         int countParticles;
         int currentIteration;
         String psoMode;
@@ -48,7 +50,7 @@ public class pso {
             this.countParticles = countParticles;
             this.currentIteration = currentIteration;
             this.psoMode = psoMode;
-            if(psoMode == "limitFV") {
+            if (psoMode == "limitFV") {
                 this.targetFV = maxLimitMode;
             } else {
                 this.maxIteration = maxLimitMode;
@@ -70,15 +72,15 @@ public class pso {
             this.possibleRooms = possibleRooms;
 
             this.allCourses = allCourses;
-            for(int timeslot=0; timeslot < possibleTimes.length; timeslot++) {
+            for (int timeslot = 0; timeslot < possibleTimes.length; timeslot++) {
                 //count how many timeslots available in each day
-                if(possibleTimes[timeslot].contains("Monday")) {
+                if (possibleTimes[timeslot].contains("Monday")) {
                     this.timeslotsMon++;//9, e.g. 0 - 8
-                } else if(possibleTimes[timeslot].contains("Tuesday")) {
+                } else if (possibleTimes[timeslot].contains("Tuesday")) {
                     this.timeslotsTue++;//8, e.g. 9 - 16
-                } else if(possibleTimes[timeslot].contains("Wednesday")) {
+                } else if (possibleTimes[timeslot].contains("Wednesday")) {
                     this.timeslotsWed++;//11, e.g. 17 - 27
-                } else if(possibleTimes[timeslot].contains("Thursday")) {
+                } else if (possibleTimes[timeslot].contains("Thursday")) {
                     this.timeslotsThu++;//10, e.g. 28 - 37
                 } else {
                     this.timeslotsFri++;//11, e.g. 38 - 48
@@ -96,9 +98,9 @@ public class pso {
             output = output + "Global Best Position      : " + globalBestPosition + "\n";
             output = output + "Global Best Penalty Score : " + penalties[globalBestPosition] + "\n";
             output = output + "Global Best Fitness Value : " + fitnessValues[globalBestPosition] + "\n";
-            for(int i=0; i < positions.length; i++) {
+            for (int i = 0; i < positions.length; i++) {
                 output = output + "Particle " + i + ": ";
-                for(int j=0; j < positions[i].length; j++) {
+                for (int j = 0; j < positions[i].length; j++) {
                     output = output + Arrays.toString(positions[i][j]) + ",";
                 }
                 output = output + "\nPenalty: " + penalties[i] + "| FV: " + fitnessValues[i] + "\n";
@@ -109,11 +111,13 @@ public class pso {
 
     public static String[][] psoAllCourses(String[] possibleCourses, String[] coursesGroups) {
         //all courses, split courses into groups 0 - 49 here
-        int allCoursesLength = possibleCourses.length/13;
+        int allCoursesLength = possibleCourses.length / 13;
         String[][] allCourses = new String[allCoursesLength][13];
         int groupCourseIndex = 0;
-        for(int j=0; j < possibleCourses.length; j++) {
-            if(groupCourseIndex == 13) groupCourseIndex = 0;
+        for (int j = 0; j < possibleCourses.length; j++) {
+            if (groupCourseIndex == 13) {
+                groupCourseIndex = 0;
+            }
             String groupCode = coursesGroups[j];
             int groupCodeInt = Integer.parseInt(groupCode);
             allCourses[groupCodeInt][groupCourseIndex] = Integer.toString(j);
@@ -128,13 +132,13 @@ public class pso {
         double globalBestFV = 0;
         Random r = new Random();
 
-        int particleDimensionLength = possibleTimes.length * (int)Math.floor(possibleCourses.length/13);//49 * 50 = 2450
+        int particleDimensionLength = possibleTimes.length * (int) Math.floor(possibleCourses.length / 13);//49 * 50 = 2450
         double[][][] positions = new double[countParticles][particleDimensionLength][2];//positions at x (room), y (course)
         double[] velocities = new double[countParticles];
 
         //all rooms
         ArrayList<String> remainingRooms = new ArrayList<String>();
-        for(int j=0; j < possibleRooms.length; j++) {
+        for (int j = 0; j < possibleRooms.length; j++) {
             remainingRooms.add(Integer.toString(j));
         }
         ArrayList<String> allRooms = new ArrayList<String>(remainingRooms);
@@ -152,11 +156,11 @@ public class pso {
         String xValue, yValue, zValue;
         float assignedCourseWeeklyLoad;
         //first step - assign courses to timeslots
-        for(int i=0; i < countParticles; i++) {
-            for(int k=0; k < allCourses.length; k++) {
+        for (int i = 0; i < countParticles; i++) {
+            for (int k = 0; k < allCourses.length; k++) {
                 //build course pool
                 remainingCourses.clear();
-                for(int x=0; x < allCourses[k].length; x++) {
+                for (int x = 0; x < allCourses[k].length; x++) {
                     remainingCourses.add(allCourses[k][x]);
                 }
                 //build timeslot pool
@@ -164,13 +168,15 @@ public class pso {
                 remainingTimes1h.clear();
                 remainingTimes15h.clear();
                 int tsmin = k * possibleTimes.length;
-                int tsmax = ((k+1) * possibleTimes.length);
+                int tsmax = ((k + 1) * possibleTimes.length);
                 int realTimeslot = 0;
-                for(int x=tsmin; x < tsmax; x++) {
+                for (int x = tsmin; x < tsmax; x++) {
                     remainingTimes.add(Integer.toString(x));
                     //consider each timeslot's duration
-                    if(realTimeslot == possibleTimes.length) realTimeslot = 0;
-                    if(possibleTimesDurations[realTimeslot] < 1.49) {
+                    if (realTimeslot == possibleTimes.length) {
+                        realTimeslot = 0;
+                    }
+                    if (possibleTimesDurations[realTimeslot] < 1.49) {
                         //1h slot
                         remainingTimes1h.add(Integer.toString(x));
                     } else {
@@ -181,30 +187,32 @@ public class pso {
                 }
                 //spare four 1.5h slots to allow swapping
                 int spareCounter = 4;
-                while(spareCounter > 0) {
+                while (spareCounter > 0) {
                     int indexToBeSpared = remainingTimes15h.size() - 1;
                     remainingTimes15h.remove(indexToBeSpared);
                     spareCounter--;
                 }
                 //loop the remaining courses
                 int initialCoursePoolSize = remainingCourses.size();
-                for(int j=0; j < initialCoursePoolSize; j++) {
+                for (int j = 0; j < initialCoursePoolSize; j++) {
                     //choose a course and remove selection from pool
                     yIndex = r.nextInt(remainingCourses.size());
                     yValue = remainingCourses.get(yIndex);
                     remainingCourses.remove(yIndex);
                     assignedCourse = Integer.parseInt(yValue);
                     //check the courses' weekly load
-                    assignedCourseWeeklyLoad = coursesWeeklyHours[(int)assignedCourse];
+                    assignedCourseWeeklyLoad = coursesWeeklyHours[(int) assignedCourse];
                     //if 1h course
-                    if(assignedCourseWeeklyLoad > 0.5 && assignedCourseWeeklyLoad < 1.5) {
+                    if (assignedCourseWeeklyLoad > 0.5 && assignedCourseWeeklyLoad < 1.5) {
                         //assign a timeslot from 1h pool and remove selection from the pool
-                        if(remainingTimes1h.size() > 0) {
+                        if (remainingTimes1h.size() > 0) {
                             zIndex = 0;
                             zValue = remainingTimes1h.get(zIndex);
                             remainingTimes1h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
                         } else {
                             //if there is no more 1h slot left
@@ -212,102 +220,122 @@ public class pso {
                             zValue = remainingTimes15h.get(zIndex);
                             remainingTimes15h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
                         }
                     }
                     //if 2h course
-                    if(assignedCourseWeeklyLoad > 1.5 && assignedCourseWeeklyLoad < 2.5) {
+                    if (assignedCourseWeeklyLoad > 1.5 && assignedCourseWeeklyLoad < 2.5) {
                         //assign two timeslots from 1h pool and remove selections from the pool
-                        if(remainingTimes1h.size() > 0) {
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                        if (remainingTimes1h.size() > 0) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes1h.get(zIndex);
                                 remainingTimes1h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                         } else {
                             //if there is no more 1h slot left
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes15h.get(zIndex);
                                 remainingTimes15h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                         }
                     }
                     //if 3h course
-                    if(assignedCourseWeeklyLoad > 2.5 && assignedCourseWeeklyLoad < 3.5) {
+                    if (assignedCourseWeeklyLoad > 2.5 && assignedCourseWeeklyLoad < 3.5) {
                         //try to assign to 1.5h pool first if there are enough timeslots
-                        if(remainingTimes15h.size() >= 2) {
+                        if (remainingTimes15h.size() >= 2) {
                             //assign two timeslots from 1.5h pool and remove selections from the pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes15h.get(zIndex);
                                 remainingTimes15h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
-                        } else if(remainingTimes1h.size() >= 3) {
+                        } else if (remainingTimes1h.size() >= 3) {
                             //assign three timeslots from 1h pool and remove selections from the pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 3; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 3; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes1h.get(zIndex);
                                 remainingTimes1h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
-                        } else if(remainingTimes1h.size() >=2) {
+                        } else if (remainingTimes1h.size() >= 2) {
                             //assign two timeslots from 1h pool and one timeslot from 1.5h pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes1h.get(zIndex);
                                 remainingTimes1h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                             zIndex = 0;
                             zValue = remainingTimes15h.get(zIndex);
                             remainingTimes15h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
                         } else {
                             //assign one timeslot from 1h pool and two timeslots from 1.5h pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes15h.get(zIndex);
                                 remainingTimes15h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                             zIndex = 0;
                             zValue = remainingTimes1h.get(zIndex);
                             remainingTimes1h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
                         }
                     }
                     //if 4h course
-                    if(assignedCourseWeeklyLoad > 3.5) {
+                    if (assignedCourseWeeklyLoad > 3.5) {
                         //try to assign to 1.5h pool first if there are enough timeslots
-                        if(remainingTimes15h.size() >= 2) {
+                        if (remainingTimes15h.size() >= 2) {
                             //assign two timeslots from 1.5h pool and remove selections from the pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes15h.get(zIndex);
                                 remainingTimes15h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                             //assign a timeslot from 1h pool and remove selection from the pool
@@ -315,67 +343,83 @@ public class pso {
                             zValue = remainingTimes1h.get(zIndex);
                             remainingTimes1h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
-                        } else if(remainingTimes1h.size() >= 4) {
+                        } else if (remainingTimes1h.size() >= 4) {
                             //assign four timeslots from 1h pool and remove selections from the pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 4; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 4; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes1h.get(zIndex);
                                 remainingTimes1h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
-                        } else if(remainingTimes1h.size() >=3) {
+                        } else if (remainingTimes1h.size() >= 3) {
                             //assign three timeslots from 1h pool and one timeslot from 1.5h pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 3; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 3; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes1h.get(zIndex);
                                 remainingTimes1h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                             zIndex = 0;
                             zValue = remainingTimes15h.get(zIndex);
                             remainingTimes15h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
-                        } else if(remainingTimes1h.size() >=2) {
+                        } else if (remainingTimes1h.size() >= 2) {
                             //assign two timeslots from 1h pool and two timeslots from 1.5h pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes1h.get(zIndex);
                                 remainingTimes1h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
-                            for(int assignmentRepeater=0; assignmentRepeater < 2; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 2; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes15h.get(zIndex);
                                 remainingTimes15h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                         } else {
                             //assign one timeslot from 1h pool and three timeslots from 1.5h pool
-                            for(int assignmentRepeater=0; assignmentRepeater < 3; assignmentRepeater++) {
+                            for (int assignmentRepeater = 0; assignmentRepeater < 3; assignmentRepeater++) {
                                 zIndex = 0;
                                 zValue = remainingTimes15h.get(zIndex);
                                 remainingTimes15h.remove(zIndex);
                                 assignedTime = Integer.parseInt(zValue);
-                                if(assignedCourse == 0) assignedCourse = 0.47;
+                                if (assignedCourse == 0) {
+                                    assignedCourse = 0.47;
+                                }
                                 positions[i][assignedTime][1] = assignedCourse;
                             }
                             zIndex = 0;
                             zValue = remainingTimes1h.get(zIndex);
                             remainingTimes1h.remove(zIndex);
                             assignedTime = Integer.parseInt(zValue);
-                            if(assignedCourse == 0) assignedCourse = 0.47;
+                            if (assignedCourse == 0) {
+                                assignedCourse = 0.47;
+                            }
                             positions[i][assignedTime][1] = assignedCourse;
                         }
                     }
@@ -383,19 +427,19 @@ public class pso {
             }
         }
         //second step - assign a room if a course exists in a timeslot
-        for(int i=0; i < countParticles; i++) {
-            for(int j=0; j < possibleTimes.length; j++) {
+        for (int i = 0; i < countParticles; i++) {
+            for (int j = 0; j < possibleTimes.length; j++) {
                 //build room pool
                 remainingRooms.clear();
                 remainingRooms.addAll(allRooms);
                 remainingRoomsBooked.clear();
                 //check for 'booked' rooms by continuous courses
-                for(int k=0; k < allCourses.length; k++) {
-                    int timeslotIndex = j+(k*possibleTimes.length);
-                    if(positions[i][timeslotIndex][1] != 0) {
-                        if(timeslotIndex > 0) {
-                            if(positions[i][timeslotIndex][1] == positions[i][timeslotIndex-1][1]) {
-                                String theBookedRoom = Integer.toString((int)positions[i][timeslotIndex-1][0]);
+                for (int k = 0; k < allCourses.length; k++) {
+                    int timeslotIndex = j + (k * possibleTimes.length);
+                    if (positions[i][timeslotIndex][1] != 0) {
+                        if (timeslotIndex > 0) {
+                            if (positions[i][timeslotIndex][1] == positions[i][timeslotIndex - 1][1]) {
+                                String theBookedRoom = Integer.toString((int) positions[i][timeslotIndex - 1][0]);
                                 remainingRoomsBooked.add(theBookedRoom);
                                 int theBookedRoomIndex = remainingRooms.indexOf(theBookedRoom);
                                 remainingRooms.remove(theBookedRoomIndex);
@@ -404,13 +448,13 @@ public class pso {
                     }
                 }
                 //loop across the schedules
-                for(int k=0; k < allCourses.length; k++) {
-                    int timeslotIndex = j+(k*possibleTimes.length);
-                    if(positions[i][timeslotIndex][1] != 0) {
-                        if(timeslotIndex > 0) {
-                            if(positions[i][timeslotIndex][1] == positions[i][timeslotIndex-1][1]) {
+                for (int k = 0; k < allCourses.length; k++) {
+                    int timeslotIndex = j + (k * possibleTimes.length);
+                    if (positions[i][timeslotIndex][1] != 0) {
+                        if (timeslotIndex > 0) {
+                            if (positions[i][timeslotIndex][1] == positions[i][timeslotIndex - 1][1]) {
                                 //if the course is continuous, assign from 'booked' pool
-                                xValue = Integer.toString((int)positions[i][timeslotIndex-1][0]);
+                                xValue = Integer.toString((int) positions[i][timeslotIndex - 1][0]);
                                 xIndex = remainingRoomsBooked.indexOf(xValue);
                                 remainingRoomsBooked.remove(xIndex);
                                 assignedRoom = Integer.parseInt(xValue);
@@ -429,7 +473,9 @@ public class pso {
                             assignedRoom = Integer.parseInt(xValue);
                         }
                         //put the assignment into the slot in the particle
-                        if(assignedRoom == 0) assignedRoom = 0.47;
+                        if (assignedRoom == 0) {
+                            assignedRoom = 0.47;
+                        }
                         positions[i][timeslotIndex][0] = assignedRoom;
                     }
                 }
@@ -437,7 +483,7 @@ public class pso {
         }
 
         //initialize velocities randomly
-        for(int i=0; i < countParticles; i++) {
+        for (int i = 0; i < countParticles; i++) {
             velocities[i] = r.nextDouble();
         }
 
@@ -446,7 +492,7 @@ public class pso {
 
     private static Configuration psoFindGlobalBest(Configuration x) {
         int particleCount = x.positions.length;
-        int particleLength = x.positions[0].length;        
+        int particleLength = x.positions[0].length;
         Double[] fitnessValues = new Double[particleCount];
         Double[] penalties = new Double[particleCount];
         ArrayList<String> values = new ArrayList<String>();
@@ -455,29 +501,31 @@ public class pso {
         String[][] allCourses = x.allCourses;
 
         //initial penalty values
-        for(int i=0; i < particleCount; i++) {
+        for (int i = 0; i < particleCount; i++) {
             penalties[i] = 0.0;
         }
 
         //check constraint #1
         //Courses taught by the same instructor can't be held simultaneously. [violation => penalty +99]
         //do the check across the same timeslot, so split one particle into its schedules
-        for(int i=0; i < particleCount; i++) {
-            for(int j=0; j < x.possibleTimes.length; j++) {
+        for (int i = 0; i < particleCount; i++) {
+            for (int j = 0; j < x.possibleTimes.length; j++) {
                 values.clear();
-                for(int k=0; k < allCourses.length; k++) {
-                    if(x.positions[i][j+(k*x.possibleTimes.length)][1] != 0) {
-                        double course = x.positions[i][j+(k*x.possibleTimes.length)][1];
-                        String value = x.courseInstructorPairs[(int)course];
+                for (int k = 0; k < allCourses.length; k++) {
+                    if (x.positions[i][j + (k * x.possibleTimes.length)][1] != 0) {
+                        double course = x.positions[i][j + (k * x.possibleTimes.length)][1];
+                        String value = x.courseInstructorPairs[(int) course];
                         values.add(value);
                     }
                 }
-                for(int k=0; k < allCourses.length; k++) {
-                    if(x.positions[i][j+(k*x.possibleTimes.length)][1] != 0) {
-                        double course = x.positions[i][j+(k*x.possibleTimes.length)][1];
-                        String value = x.courseInstructorPairs[(int)course];
+                for (int k = 0; k < allCourses.length; k++) {
+                    if (x.positions[i][j + (k * x.possibleTimes.length)][1] != 0) {
+                        double course = x.positions[i][j + (k * x.possibleTimes.length)][1];
+                        String value = x.courseInstructorPairs[(int) course];
                         int frequency = Collections.frequency(values, value);
-                        if(frequency > 1) penalties[i] = penalties[i] + (frequency * 9999);
+                        if (frequency > 1) {
+                            penalties[i] = penalties[i] + (frequency * 9999);
+                        }
                     }
                 }
             }
@@ -486,22 +534,24 @@ public class pso {
         //check constraint #2
         //The same room can�t be scheduled for 2 different courses simultaneously. [violation => penalty +99]
         //do the check across the same timeslot, so split one particle into its schedules
-        for(int i=0; i < particleCount; i++) {
-            for(int j=0; j < x.possibleTimes.length; j++) {
+        for (int i = 0; i < particleCount; i++) {
+            for (int j = 0; j < x.possibleTimes.length; j++) {
                 values.clear();
-                for(int k=0; k < allCourses.length; k++) {
-                    if(x.positions[i][j+(k*x.possibleTimes.length)][0] != 0) {
-                        double room = x.positions[i][j+(k*x.possibleTimes.length)][0];
-                        String value = x.possibleRooms[(int)room];
+                for (int k = 0; k < allCourses.length; k++) {
+                    if (x.positions[i][j + (k * x.possibleTimes.length)][0] != 0) {
+                        double room = x.positions[i][j + (k * x.possibleTimes.length)][0];
+                        String value = x.possibleRooms[(int) room];
                         values.add(value);
                     }
                 }
-                for(int k=0; k < allCourses.length; k++) {
-                    if(x.positions[i][j+(k*x.possibleTimes.length)][0] != 0) {
-                        double room = x.positions[i][j+(k*x.possibleTimes.length)][0];
-                        String value = x.possibleRooms[(int)room];
+                for (int k = 0; k < allCourses.length; k++) {
+                    if (x.positions[i][j + (k * x.possibleTimes.length)][0] != 0) {
+                        double room = x.positions[i][j + (k * x.possibleTimes.length)][0];
+                        String value = x.possibleRooms[(int) room];
                         int frequency = Collections.frequency(values, value);
-                        if(frequency > 1) penalties[i] = penalties[i] + (frequency * 9999);
+                        if (frequency > 1) {
+                            penalties[i] = penalties[i] + (frequency * 9999);
+                        }
                     }
                 }
             }
@@ -510,17 +560,17 @@ public class pso {
         //check constraint #3
         //Maintain preference of instructor as much as possible. [violation => penalty +1]
         //do the check across the same timeslot, so split one particle into its schedules
-        for(int i=0; i < x.possibleCourses.length; i++) {
+        for (int i = 0; i < x.possibleCourses.length; i++) {
             String instructorCode = x.courseInstructorPairs[i];
             String instructorPreferences = x.coursesPreferredTimes[Integer.parseInt(instructorCode)].replaceAll(" ", "");
-            if(instructorPreferences != "" && !(instructorPreferences.isEmpty())) {
+            if (instructorPreferences != "" && !(instructorPreferences.isEmpty())) {
                 String[] instructorPreferencesArray = instructorPreferences.split(",");
-                for(int j=0; j < instructorPreferencesArray.length; j++) {
-                    if(instructorPreferencesArray[j] != "" && !(instructorPreferencesArray[j].isEmpty())) {
+                for (int j = 0; j < instructorPreferencesArray.length; j++) {
+                    if (instructorPreferencesArray[j] != "" && !(instructorPreferencesArray[j].isEmpty())) {
                         int tsPreferred = Integer.parseInt(instructorPreferencesArray[j]);
-                        for(int k=0; k < particleCount; k++) {
-                            for(int z=0; z < allCourses.length; z++) {
-                                if(x.positions[k][tsPreferred+(z*x.possibleTimes.length)][1] != i) {
+                        for (int k = 0; k < particleCount; k++) {
+                            for (int z = 0; z < allCourses.length; z++) {
+                                if (x.positions[k][tsPreferred + (z * x.possibleTimes.length)][1] != i) {
                                     penalties[k] = penalties[k] + 1;
                                 }
                             }
@@ -533,16 +583,16 @@ public class pso {
         //check constraint #4
         //Geometrical shapes of 2h, 3h, 4h, and 5h courses must be considered. [violation => penalty +2]
         //do the check per schedule in each particle
-        for(int particle=0; particle < particleCount; particle++) {
+        for (int particle = 0; particle < particleCount; particle++) {
             int timeslot = 0;
-            for(int particleTimeslot=0; particleTimeslot < particleLength; particleTimeslot++) {
-                if(timeslot == x.possibleTimes.length) {
+            for (int particleTimeslot = 0; particleTimeslot < particleLength; particleTimeslot++) {
+                if (timeslot == x.possibleTimes.length) {
                     timeslot = 0;
                 }
                 double courseIndex = x.positions[particle][particleTimeslot][1];
-                if(courseIndex != 0.0) {
-                    float courseLoad = x.coursesWeeklyHours[(int)courseIndex];
-                    if(courseLoad > 1) {
+                if (courseIndex != 0.0) {
+                    float courseLoad = x.coursesWeeklyHours[(int) courseIndex];
+                    if (courseLoad > 1) {
                         //this evaluation approach works for all 2h, 3h, and 4h courses!
                         //the reason: a 2h course should not be split,
                         //and this approach already checks for such a consecutive timeslot pair
@@ -555,21 +605,23 @@ public class pso {
                         //alternatively, it will be split into 3+1 or 1+3 and the penalty will be 2
                         //worst case is it will be split into 1+1+1+1 and the penalty will be 8
                         int checkMarker = 0;
-                        int neighbour1 = particleTimeslot-1;
-                        int neighbour2 = particleTimeslot+1;
-                        if(checkMarker == 0 && neighbour1 > -1) {
+                        int neighbour1 = particleTimeslot - 1;
+                        int neighbour2 = particleTimeslot + 1;
+                        if (checkMarker == 0 && neighbour1 > -1) {
                             double neighbour1CourseIndex = x.positions[particle][neighbour1][1];
-                            if(courseIndex == neighbour1CourseIndex) {
+                            if (courseIndex == neighbour1CourseIndex) {
                                 checkMarker = 1;
                             }
                         }
-                        if(checkMarker == 0 && neighbour2 < particleLength) {
+                        if (checkMarker == 0 && neighbour2 < particleLength) {
                             double neighbour2CourseIndex = x.positions[particle][neighbour2][1];
-                            if(courseIndex == neighbour2CourseIndex) {
+                            if (courseIndex == neighbour2CourseIndex) {
                                 checkMarker = 1;
                             }
                         }
-                        if(checkMarker == 0) penalties[particle] = penalties[particle] + 2;
+                        if (checkMarker == 0) {
+                            penalties[particle] = penalties[particle] + 2;
+                        }
                     }
                 }
             }
@@ -578,7 +630,7 @@ public class pso {
         //check constraint #5
         //Number of daily lessons for students should be evenly balanced. [violation => penalty +1]
         //do the check per schedule in each particle
-        for(int particle=0; particle < particleCount; particle++) {
+        for (int particle = 0; particle < particleCount; particle++) {
             //count how many classes in each day
             int timeslot = 0;
             int classesMon = 0;
@@ -586,25 +638,55 @@ public class pso {
             int classesWed = 0;
             int classesThu = 0;
             int classesFri = 0;
-            for(int particleTimeslot=0; particleTimeslot < particleLength; particleTimeslot++) {
-                if(timeslot == (x.possibleTimes.length-1)) {
+            for (int particleTimeslot = 0; particleTimeslot < particleLength; particleTimeslot++) {
+                if (timeslot == (x.possibleTimes.length - 1)) {
                     //check if in one day there are more than 5 classes
-                    if(classesMon > 5) penalties[particle] = penalties[particle] + (99 * (classesMon-5));
-                    if(classesTue > 5) penalties[particle] = penalties[particle] + (99 * (classesTue-5));
-                    if(classesWed > 5) penalties[particle] = penalties[particle] + (99 * (classesWed-5));
-                    if(classesThu > 5) penalties[particle] = penalties[particle] + (99 * (classesThu-5));
-                    if(classesFri > 5) penalties[particle] = penalties[particle] + (99 * (classesFri-5));
+                    if (classesMon > 5) {
+                        penalties[particle] = penalties[particle] + (99 * (classesMon - 5));
+                    }
+                    if (classesTue > 5) {
+                        penalties[particle] = penalties[particle] + (99 * (classesTue - 5));
+                    }
+                    if (classesWed > 5) {
+                        penalties[particle] = penalties[particle] + (99 * (classesWed - 5));
+                    }
+                    if (classesThu > 5) {
+                        penalties[particle] = penalties[particle] + (99 * (classesThu - 5));
+                    }
+                    if (classesFri > 5) {
+                        penalties[particle] = penalties[particle] + (99 * (classesFri - 5));
+                    }
                     //compare the number of classes among the days, tolerance is +/- 1
-                    if(Math.sqrt(classesMon-classesTue) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesMon-classesTue);
-                    if(Math.sqrt(classesMon-classesWed) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesMon-classesWed);
-                    if(Math.sqrt(classesMon-classesThu) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesMon-classesThu);
-                    if(Math.sqrt(classesMon-classesFri) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesMon-classesFri);
-                    if(Math.sqrt(classesTue-classesWed) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesTue-classesWed);
-                    if(Math.sqrt(classesTue-classesThu) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesTue-classesThu);
-                    if(Math.sqrt(classesTue-classesFri) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesTue-classesFri);
-                    if(Math.sqrt(classesWed-classesThu) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesWed-classesThu);
-                    if(Math.sqrt(classesWed-classesFri) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesWed-classesFri);
-                    if(Math.sqrt(classesThu-classesFri) > 1) penalties[particle] = penalties[particle] + Math.sqrt(classesThu-classesFri);
+                    if (Math.sqrt(classesMon - classesTue) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesMon - classesTue);
+                    }
+                    if (Math.sqrt(classesMon - classesWed) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesMon - classesWed);
+                    }
+                    if (Math.sqrt(classesMon - classesThu) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesMon - classesThu);
+                    }
+                    if (Math.sqrt(classesMon - classesFri) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesMon - classesFri);
+                    }
+                    if (Math.sqrt(classesTue - classesWed) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesTue - classesWed);
+                    }
+                    if (Math.sqrt(classesTue - classesThu) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesTue - classesThu);
+                    }
+                    if (Math.sqrt(classesTue - classesFri) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesTue - classesFri);
+                    }
+                    if (Math.sqrt(classesWed - classesThu) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesWed - classesThu);
+                    }
+                    if (Math.sqrt(classesWed - classesFri) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesWed - classesFri);
+                    }
+                    if (Math.sqrt(classesThu - classesFri) > 1) {
+                        penalties[particle] = penalties[particle] + Math.sqrt(classesThu - classesFri);
+                    }
                     //reset the counters
                     timeslot = 0;
                     classesMon = 0;
@@ -613,14 +695,14 @@ public class pso {
                     classesThu = 0;
                     classesFri = 0;
                 }
-                if(x.positions[particle][particleTimeslot][1] != 0) {
-                    if(particleTimeslot < x.timeslotsMon) {
+                if (x.positions[particle][particleTimeslot][1] != 0) {
+                    if (particleTimeslot < x.timeslotsMon) {
                         classesMon++;
-                    } else if(x.timeslotsMon >= particleTimeslot && particleTimeslot < (x.timeslotsMon + x.timeslotsTue)) {
+                    } else if (x.timeslotsMon >= particleTimeslot && particleTimeslot < (x.timeslotsMon + x.timeslotsTue)) {
                         classesTue++;
-                    } else if((x.timeslotsMon + x.timeslotsTue) >= particleTimeslot && particleTimeslot < (x.timeslotsMon + x.timeslotsTue + x.timeslotsWed)) {
+                    } else if ((x.timeslotsMon + x.timeslotsTue) >= particleTimeslot && particleTimeslot < (x.timeslotsMon + x.timeslotsTue + x.timeslotsWed)) {
                         classesWed++;
-                    } else if((x.timeslotsMon + x.timeslotsTue + x.timeslotsWed) >= particleTimeslot && particleTimeslot < (x.timeslotsMon + x.timeslotsTue + x.timeslotsWed + x.timeslotsThu)) {
+                    } else if ((x.timeslotsMon + x.timeslotsTue + x.timeslotsWed) >= particleTimeslot && particleTimeslot < (x.timeslotsMon + x.timeslotsTue + x.timeslotsWed + x.timeslotsThu)) {
                         classesThu++;
                     } else {
                         classesFri++;
@@ -633,10 +715,10 @@ public class pso {
         //find index with the lowest penalty score
         double globalBestPenalty = penalties[0];
         int globalBestIndex = 0;
-        for(int i=0; i < penalties.length; i++) {
+        for (int i = 0; i < penalties.length; i++) {
             x.penalties[i] = penalties[i];
-            x.fitnessValues[i] = 1/(penalties[i]);
-            if(globalBestPenalty > penalties[i]) {
+            x.fitnessValues[i] = 1 / (penalties[i]);
+            if (globalBestPenalty > penalties[i]) {
                 globalBestPenalty = penalties[i];
                 globalBestIndex = i;
             }
@@ -651,14 +733,14 @@ public class pso {
         Random r = new Random();
         int globalBestIndex = x.globalBestPosition;
 
-        for(int particle=0; particle < x.countParticles; particle++) {
-            if(particle != globalBestIndex) {
+        for (int particle = 0; particle < x.countParticles; particle++) {
+            if (particle != globalBestIndex) {
                 double[][] timeslotsMarks = new double[x.positions[particle].length][2];
-                for(int i=0; i < x.positions[particle].length; i++) {
-                    if(x.positions[particle][i][1] == 0) {
+                for (int i = 0; i < x.positions[particle].length; i++) {
+                    if (x.positions[particle][i][1] == 0) {
                         //empty timeslot, marked as available
                         timeslotsMarks[i][1] = -99;
-                    } else if(x.positions[particle][i][1] != x.positions[globalBestIndex][i][1]) {
+                    } else if (x.positions[particle][i][1] != x.positions[globalBestIndex][i][1]) {
                         //only mark the course for movement if it's not in the same timeslot as the global best
                         timeslotsMarks[i][0] = x.positions[particle][i][1];//what course
                         timeslotsMarks[i][1] = 1;//marked for movement
@@ -673,23 +755,23 @@ public class pso {
                 ArrayList<Integer> emptyTimeslots1h = new ArrayList<Integer>();
                 ArrayList<Integer> emptyTimeslots15h = new ArrayList<Integer>();
                 int[] coursePairIndex = new int[3];
-                for(int i=0; i < x.positions[particle].length; i++) {
-                    if(timeslotCounter == x.possibleTimes.length) {
+                for (int i = 0; i < x.positions[particle].length; i++) {
+                    if (timeslotCounter == x.possibleTimes.length) {
                         timeslotCounter = 0;
                     }
-                    if(timeslotCounter == 0) {
+                    if (timeslotCounter == 0) {
                         groupCounter++;
-                        if(groupCounter <= x.possibleCourses.length/13) {
+                        if (groupCounter <= x.possibleCourses.length / 13) {
                             emptyTimeslotsMin = emptyTimeslotsMin + x.possibleTimes.length;
                             emptyTimeslotsMax = emptyTimeslotsMax + x.possibleTimes.length;
                             //build the empty timeslot pool
                             emptyTimeslots1h.clear();
                             emptyTimeslots15h.clear();
-                            if(emptyTimeslotsMin < x.positions[particle].length) {
-                                for(int j=emptyTimeslotsMin; j < emptyTimeslotsMax; j++) {
-                                    if(timeslotsMarks[j][1] == -99) {
-                                        int timeslotDurationIndex = j - (x.possibleTimesDurations.length * (groupCounter-1));
-                                        if(x.possibleTimesDurations[timeslotDurationIndex] < 1.49) {
+                            if (emptyTimeslotsMin < x.positions[particle].length) {
+                                for (int j = emptyTimeslotsMin; j < emptyTimeslotsMax; j++) {
+                                    if (timeslotsMarks[j][1] == -99) {
+                                        int timeslotDurationIndex = j - (x.possibleTimesDurations.length * (groupCounter - 1));
+                                        if (x.possibleTimesDurations[timeslotDurationIndex] < 1.49) {
                                             emptyTimeslots1h.add(j);
                                         } else {
                                             emptyTimeslots15h.add(j);
@@ -699,7 +781,7 @@ public class pso {
                             }
                         }
                     }
-                    if(timeslotsMarks[i][1] == 1 && x.positions[particle][i][1] != 0) {
+                    if (timeslotsMarks[i][1] == 1 && x.positions[particle][i][1] != 0) {
                         //timeslotsMarks[i][1] == 1 => checks if the slot is marked for re-assignment
                         //x.positions[particle][i][1] != 0 => checks if the slot has actually been moved by prev iter
                         coursePairIndex[0] = 0;//for storing the course's actual index (from the dataset)
@@ -707,13 +789,13 @@ public class pso {
                         coursePairIndex[2] = -1;//for storing its next timeslot index if consecutive
                         //now, we will re-assign the course to an empty timeslot
                         //but, first, check if the course is consecutive
-                        int timeslotDurationIndex = i - (x.possibleTimesDurations.length * (groupCounter-1));
-                        int currentCourseIndex = (int)x.positions[particle][i][1];
-                        int timeslotNeighbour = timeslotDurationIndex+1;
-                        if(timeslotNeighbour < x.positions[particle].length && timeslotNeighbour < x.possibleTimes.length) {
-                            int neighbourCourseIndex = (int)x.positions[particle][i+1][1];
-                            if(currentCourseIndex == neighbourCourseIndex && 
-                            x.possibleTimesDurations[timeslotDurationIndex] == x.possibleTimesDurations[timeslotNeighbour]) {
+                        int timeslotDurationIndex = i - (x.possibleTimesDurations.length * (groupCounter - 1));
+                        int currentCourseIndex = (int) x.positions[particle][i][1];
+                        int timeslotNeighbour = timeslotDurationIndex + 1;
+                        if (timeslotNeighbour < x.positions[particle].length && timeslotNeighbour < x.possibleTimes.length) {
+                            int neighbourCourseIndex = (int) x.positions[particle][i + 1][1];
+                            if (currentCourseIndex == neighbourCourseIndex
+                                    && x.possibleTimesDurations[timeslotDurationIndex] == x.possibleTimesDurations[timeslotNeighbour]) {
                                 coursePairIndex[0] = currentCourseIndex;
                                 coursePairIndex[1] = i;
                                 coursePairIndex[2] = timeslotNeighbour;
@@ -721,18 +803,18 @@ public class pso {
                         }
                         //now, the actual course re-assignment takes place
                         float currentCourseSlotDuration = x.possibleTimesDurations[timeslotDurationIndex];
-                        if(currentCourseSlotDuration < 1.49) {
+                        if (currentCourseSlotDuration < 1.49) {
                             //if it is a singular non-consecutive course, re-assign to an empty timeslot of same duration
-                            if(coursePairIndex[1] != -1 && coursePairIndex[2] == -1 && emptyTimeslots1h.size()!=0) {
+                            if (coursePairIndex[1] != -1 && coursePairIndex[2] == -1 && emptyTimeslots1h.size() != 0) {
                                 int zIndex = r.nextInt(emptyTimeslots1h.size());
                                 int zValue = emptyTimeslots1h.get(zIndex);
                                 x.positions[particle][zValue][1] = coursePairIndex[0];
                                 x.positions[particle][coursePairIndex[1]][1] = 0;
                                 emptyTimeslots1h.remove(zIndex);
                                 //emptyTimeslots1h.add(coursePairIndex[1]);
-                            } else if(coursePairIndex[1] != -1 && coursePairIndex[2] != -1 && emptyTimeslots1h.size()!=0) {
+                            } else if (coursePairIndex[1] != -1 && coursePairIndex[2] != -1 && emptyTimeslots1h.size() != 0) {
                                 //if it is a consecutive course, re-assign both as long as there are enough empty slots
-                                if(emptyTimeslots1h.size() > 2) {
+                                if (emptyTimeslots1h.size() > 2) {
                                     int zMarker = 0;
                                     int zRepeatCounter = 3;
                                     int zIndex1 = -47;
@@ -740,20 +822,20 @@ public class pso {
                                     int zValue1 = -47;
                                     int zValue2 = -47;
                                     //try to find two consecutive empty slots up to 3X
-                                    while(zMarker == 0 && zRepeatCounter > 0) {
+                                    while (zMarker == 0 && zRepeatCounter > 0) {
                                         zIndex1 = r.nextInt(emptyTimeslots1h.size());
                                         zValue1 = emptyTimeslots1h.get(zIndex1);
-                                        if(emptyTimeslots1h.indexOf((zValue1+1)) != -1) {
-                                            zValue2 = (zValue1+1);
+                                        if (emptyTimeslots1h.indexOf((zValue1 + 1)) != -1) {
+                                            zValue2 = (zValue1 + 1);
                                             zMarker = 1;
-                                        } else if(emptyTimeslots1h.indexOf((zValue1-1)) != -1) {
-                                            zValue2 = (zValue1-1);
+                                        } else if (emptyTimeslots1h.indexOf((zValue1 - 1)) != -1) {
+                                            zValue2 = (zValue1 - 1);
                                             zMarker = 1;
                                         }
                                         zRepeatCounter--;
                                     }
                                     //only re-assign if the two empty slots are consecutive
-                                    if(zMarker == 1) {
+                                    if (zMarker == 1) {
                                         x.positions[particle][zValue1][1] = coursePairIndex[0];
                                         x.positions[particle][zValue2][1] = coursePairIndex[0];
                                         x.positions[particle][coursePairIndex[1]][1] = 0;
@@ -764,11 +846,11 @@ public class pso {
                                         //emptyTimeslots1h.add(coursePairIndex[1]);
                                         //emptyTimeslots1h.add(coursePairIndex[2]);
                                     }
-                                } else if(emptyTimeslots1h.size() == 2) {
+                                } else if (emptyTimeslots1h.size() == 2) {
                                     int zValue1 = emptyTimeslots1h.get(0);
                                     int zValue2 = emptyTimeslots1h.get(1);
                                     //only re-assign if the two empty slots are consecutive
-                                    if(Math.sqrt(zValue1-zValue2) == 1) {
+                                    if (Math.sqrt(zValue1 - zValue2) == 1) {
                                         x.positions[particle][zValue1][1] = coursePairIndex[0];
                                         x.positions[particle][zValue2][1] = coursePairIndex[0];
                                         x.positions[particle][coursePairIndex[1]][1] = 0;
@@ -782,16 +864,16 @@ public class pso {
                             }
                         } else {
                             //if it is a singular non-consecutive course, re-assign to an empty timeslot of same duration
-                            if(coursePairIndex[1] != -1 && coursePairIndex[2] == -1 && emptyTimeslots15h.size()!=0) {
+                            if (coursePairIndex[1] != -1 && coursePairIndex[2] == -1 && emptyTimeslots15h.size() != 0) {
                                 int zIndex = r.nextInt(emptyTimeslots15h.size());
                                 int zValue = emptyTimeslots15h.get(zIndex);
                                 x.positions[particle][zValue][1] = coursePairIndex[0];
                                 x.positions[particle][coursePairIndex[1]][1] = 0;
                                 emptyTimeslots15h.remove(zIndex);
                                 //emptyTimeslots15h.add(coursePairIndex[1]);
-                            } else if(coursePairIndex[1] != -1 && coursePairIndex[2] != -1 && emptyTimeslots15h.size()!=0) {
+                            } else if (coursePairIndex[1] != -1 && coursePairIndex[2] != -1 && emptyTimeslots15h.size() != 0) {
                                 //if it is a consecutive course, re-assign both as long as there are enough empty slots
-                                if(emptyTimeslots15h.size() > 2) {
+                                if (emptyTimeslots15h.size() > 2) {
                                     int zMarker = 0;
                                     int zRepeatCounter = 3;
                                     int zIndex1 = -47;
@@ -799,20 +881,20 @@ public class pso {
                                     int zValue1 = -47;
                                     int zValue2 = -47;
                                     //try to find two consecutive empty slots up to 3X
-                                    while(zMarker == 0 && zRepeatCounter > 0) {
+                                    while (zMarker == 0 && zRepeatCounter > 0) {
                                         zIndex1 = r.nextInt(emptyTimeslots15h.size());
                                         zValue1 = emptyTimeslots15h.get(zIndex1);
-                                        if(emptyTimeslots15h.indexOf((zValue1+1)) != -1) {
-                                            zValue2 = (zValue1+1);
+                                        if (emptyTimeslots15h.indexOf((zValue1 + 1)) != -1) {
+                                            zValue2 = (zValue1 + 1);
                                             zMarker = 1;
-                                        } else if(emptyTimeslots15h.indexOf((zValue1-1)) != -1) {
-                                            zValue2 = (zValue1-1);
+                                        } else if (emptyTimeslots15h.indexOf((zValue1 - 1)) != -1) {
+                                            zValue2 = (zValue1 - 1);
                                             zMarker = 1;
                                         }
                                         zRepeatCounter--;
                                     }
                                     //only re-assign if the two empty slots are consecutive
-                                    if(zMarker == 1) {
+                                    if (zMarker == 1) {
                                         x.positions[particle][zValue1][1] = coursePairIndex[0];
                                         x.positions[particle][zValue2][1] = coursePairIndex[0];
                                         x.positions[particle][coursePairIndex[1]][1] = 0;
@@ -823,11 +905,11 @@ public class pso {
                                         //emptyTimeslots15h.add(coursePairIndex[1]);
                                         //emptyTimeslots15h.add(coursePairIndex[2]);
                                     }
-                                } else if(emptyTimeslots15h.size() == 2) {
+                                } else if (emptyTimeslots15h.size() == 2) {
                                     int zValue1 = emptyTimeslots15h.get(0);
                                     int zValue2 = emptyTimeslots15h.get(1);
                                     //only re-assign if the two empty slots are consecutive
-                                    if(Math.sqrt(zValue1-zValue2) == 1) {
+                                    if (Math.sqrt(zValue1 - zValue2) == 1) {
                                         x.positions[particle][zValue1][1] = coursePairIndex[0];
                                         x.positions[particle][zValue2][1] = coursePairIndex[0];
                                         x.positions[particle][coursePairIndex[1]][1] = 0;
@@ -845,11 +927,11 @@ public class pso {
                 }
 
                 //re-assign rooms
-                for(int roomReset=0; roomReset < x.positions[particle].length; roomReset++) {
+                for (int roomReset = 0; roomReset < x.positions[particle].length; roomReset++) {
                     x.positions[particle][roomReset][0] = 0;
                 }
                 ArrayList<String> remainingRooms = new ArrayList<String>();
-                for(int j=0; j < x.possibleRooms.length; j++) {
+                for (int j = 0; j < x.possibleRooms.length; j++) {
                     remainingRooms.add(Integer.toString(j));
                 }
                 ArrayList<String> allRooms = new ArrayList<String>(remainingRooms);
@@ -857,18 +939,18 @@ public class pso {
                 double assignedRoom;
                 int xIndex;
                 String xValue;
-                for(int j=0; j < x.possibleTimes.length; j++) {
+                for (int j = 0; j < x.possibleTimes.length; j++) {
                     //build room pool
                     remainingRooms.clear();
                     remainingRooms.addAll(allRooms);
                     remainingRoomsBooked.clear();
                     //check for 'booked' rooms by continuous courses
-                    for(int k=0; k < x.allCourses.length; k++) {
-                        int timeslotIndex = j+(k*(x.possibleTimes.length));
-                        if(x.positions[particle][timeslotIndex][1] != 0) {
-                            if(timeslotIndex > 0) {
-                                if(x.positions[particle][timeslotIndex][1] == x.positions[particle][timeslotIndex-1][1]) {
-                                    String theBookedRoom = Integer.toString((int)x.positions[particle][timeslotIndex-1][0]);
+                    for (int k = 0; k < x.allCourses.length; k++) {
+                        int timeslotIndex = j + (k * (x.possibleTimes.length));
+                        if (x.positions[particle][timeslotIndex][1] != 0) {
+                            if (timeslotIndex > 0) {
+                                if (x.positions[particle][timeslotIndex][1] == x.positions[particle][timeslotIndex - 1][1]) {
+                                    String theBookedRoom = Integer.toString((int) x.positions[particle][timeslotIndex - 1][0]);
                                     remainingRoomsBooked.add(theBookedRoom);
                                     int theBookedRoomIndex = remainingRooms.indexOf(theBookedRoom);
                                     remainingRooms.remove(theBookedRoomIndex);
@@ -877,13 +959,13 @@ public class pso {
                         }
                     }
                     //loop across the schedules
-                    for(int k=0; k < x.allCourses.length; k++) {
-                        int timeslotIndex = j+(k*(x.possibleTimes.length));
-                        if(x.positions[particle][timeslotIndex][1] != 0) {
-                            if(timeslotIndex > 0) {
-                                if(x.positions[particle][timeslotIndex][1] == x.positions[particle][timeslotIndex-1][1]) {
+                    for (int k = 0; k < x.allCourses.length; k++) {
+                        int timeslotIndex = j + (k * (x.possibleTimes.length));
+                        if (x.positions[particle][timeslotIndex][1] != 0) {
+                            if (timeslotIndex > 0) {
+                                if (x.positions[particle][timeslotIndex][1] == x.positions[particle][timeslotIndex - 1][1]) {
                                     //if the course is continuous, assign from 'booked' pool
-                                    xValue = Integer.toString((int)x.positions[particle][timeslotIndex-1][0]);
+                                    xValue = Integer.toString((int) x.positions[particle][timeslotIndex - 1][0]);
                                     xIndex = remainingRoomsBooked.indexOf(xValue);
                                     remainingRoomsBooked.remove(xIndex);
                                     assignedRoom = Integer.parseInt(xValue);
@@ -902,7 +984,9 @@ public class pso {
                                 assignedRoom = Integer.parseInt(xValue);
                             }
                             //put the assignment into the slot in the particle
-                            if(assignedRoom == 0) assignedRoom = 0.47;
+                            if (assignedRoom == 0) {
+                                assignedRoom = 0.47;
+                            }
                             x.positions[particle][timeslotIndex][0] = assignedRoom;
                         }
                     }
@@ -913,25 +997,25 @@ public class pso {
         return x;
     }
 
-    public static Configuration psoIterate(Configuration x, String executionMode) {
+    public static Configuration psoIterate(Configuration x, String executionMode, double tLimit) {
         boolean isTimerReached = false;
         Instant start = Instant.now();
         Instant end;
         Duration timeElapsed;
-        double timeLimit = 15;
+        double timeLimit = tLimit;
 
         Configuration y = x;
         y = psoFindGlobalBest(y);
-        if("limitFV".equals(y.psoMode)) {
+        if ("limitFV".equals(y.psoMode)) {
             //iterate until global best FV is equal to or lower than target FV
-            while(y.globalBestFV > y.targetFV && isTimerReached==false) {
+            while (y.globalBestFV > y.targetFV && isTimerReached == false) {
                 //find global best
                 y = psoFindGlobalBest(y);
                 //particle movement
                 y = psoMovement(y);
                 y.currentIteration++;
                 //print details if necessary
-                if(executionMode == "detailed") {
+                if (executionMode == "detailed") {
                     System.out.printf("--Iteration %d: \n", y.currentIteration);
                     System.out.printf("%s", y.show());
                     System.out.printf("\n");
@@ -939,18 +1023,20 @@ public class pso {
                 //timer
                 end = Instant.now();
                 timeElapsed = Duration.between(start, end);
-                if(timeElapsed.toMinutes() >= timeLimit) isTimerReached = true;
+                if (timeElapsed.toMinutes() >= timeLimit) {
+                    isTimerReached = true;
+                }
             }
         } else {
             //iterate until maximum iteration limit is reached
-            while(y.currentIteration < y.maxIteration && isTimerReached==false) {
+            while (y.currentIteration < y.maxIteration && isTimerReached == false) {
                 //find global best
                 y = psoFindGlobalBest(y);
                 //particle movement
                 y = psoMovement(y);
                 y.currentIteration++;
                 //print details if necessary
-                if(executionMode == "detailed") {
+                if (executionMode == "detailed") {
                     System.out.printf("--Iteration %d: \n", y.currentIteration);
                     System.out.printf("%s", y.show());
                     System.out.printf("\n");
@@ -958,7 +1044,9 @@ public class pso {
                 //timer
                 end = Instant.now();
                 timeElapsed = Duration.between(start, end);
-                if(timeElapsed.toMinutes() >= timeLimit) isTimerReached = true;
+                if (timeElapsed.toMinutes() >= timeLimit) {
+                    isTimerReached = true;
+                }
             }
         }
         return y;
@@ -968,22 +1056,25 @@ public class pso {
         String output = "-----Schedules, Global Best-----\n";
         int groupCounter = 1;
         int assignedTime = 0;
-        for(int timeslot=0; timeslot < x.positions[x.globalBestPosition].length; timeslot++) {
-            if(assignedTime == x.possibleTimes.length) assignedTime = 0;
-            if(assignedTime == 0) {
+        for (int timeslot = 0; timeslot < x.positions[x.globalBestPosition].length; timeslot++) {
+            if (assignedTime == x.possibleTimes.length) {
+                assignedTime = 0;
+            }
+            if (assignedTime == 0) {
                 output += "--Group " + groupCounter + ":\n";
                 groupCounter++;
             }
             String assignedTimeStr = x.possibleTimes[assignedTime];
             String assignedCourseStr = "-";
             String assignedRoomStr = "-";
-            if(x.positions[x.globalBestPosition][timeslot][1] != 0) {
-                int assignedCourse = (int)x.positions[x.globalBestPosition][timeslot][1];
-                int assignedRoom = (int)x.positions[x.globalBestPosition][timeslot][0];
+            if (x.positions[x.globalBestPosition][timeslot][1] != 0) {
+                int assignedCourse = (int) x.positions[x.globalBestPosition][timeslot][1];
+                int assignedRoom = (int) x.positions[x.globalBestPosition][timeslot][0];
                 assignedCourseStr = x.possibleCourses[assignedCourse];
                 assignedRoomStr = x.possibleRooms[assignedRoom];
             }
             output += assignedTimeStr + " = " + assignedCourseStr + "(" + assignedRoomStr + ")\n";
+            System.out.println(output);
             assignedTime++;
         }
         return output;
@@ -996,10 +1087,10 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listRooms = reader.readFile(pathToFile);
-        possibleRooms = new String[listRooms.size()-1];
-        for(int i=1; i < listRooms.size(); i++) {
+        possibleRooms = new String[listRooms.size() - 1];
+        for (int i = 1; i < listRooms.size(); i++) {
             room = listRooms.get(i).toString();
-            possibleRooms[i-1] = room.replaceAll("\\[", "").replaceAll("\\]", "");
+            possibleRooms[i - 1] = room.replaceAll("\\[", "").replaceAll("\\]", "");
         }
         return possibleRooms;
     }
@@ -1012,17 +1103,17 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listCourses = reader.readFile(pathToFile);
-        possibleCourses = new String[listCourses.size()-1];
-        coursesWeeklyHours = new float[listCourses.size()-1];
-        courseInstructorPairs = new String[listCourses.size()-1];
-        coursesGroups = new String[listCourses.size()-1];
-        for(int i=1; i < listCourses.size(); i++) {
+        possibleCourses = new String[listCourses.size() - 1];
+        coursesWeeklyHours = new float[listCourses.size() - 1];
+        courseInstructorPairs = new String[listCourses.size() - 1];
+        coursesGroups = new String[listCourses.size() - 1];
+        for (int i = 1; i < listCourses.size(); i++) {
             course = listCourses.get(i).toString();
             tempHolder = course.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("&amp;", "&").split(";", 4);
-            possibleCourses[i-1] = tempHolder[0];
-            coursesWeeklyHours[i-1] = Float.parseFloat(tempHolder[1]);
-            courseInstructorPairs[i-1] = tempHolder[2];
-            coursesGroups[i-1] = tempHolder[3];
+            possibleCourses[i - 1] = tempHolder[0];
+            coursesWeeklyHours[i - 1] = Float.parseFloat(tempHolder[1]);
+            courseInstructorPairs[i - 1] = tempHolder[2];
+            coursesGroups[i - 1] = tempHolder[3];
         }
 
         return possibleCourses;
@@ -1036,17 +1127,17 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listCourses = reader.readFile(pathToFile);
-        possibleCourses = new String[listCourses.size()-1];
-        coursesWeeklyHours = new float[listCourses.size()-1];
-        courseInstructorPairs = new String[listCourses.size()-1];
-        coursesGroups = new String[listCourses.size()-1];
-        for(int i=1; i < listCourses.size(); i++) {
+        possibleCourses = new String[listCourses.size() - 1];
+        coursesWeeklyHours = new float[listCourses.size() - 1];
+        courseInstructorPairs = new String[listCourses.size() - 1];
+        coursesGroups = new String[listCourses.size() - 1];
+        for (int i = 1; i < listCourses.size(); i++) {
             course = listCourses.get(i).toString();
             tempHolder = course.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("&amp;", "&").split(";", 4);
-            possibleCourses[i-1] = tempHolder[0];
-            coursesWeeklyHours[i-1] = Float.parseFloat(tempHolder[1]);
-            courseInstructorPairs[i-1] = tempHolder[2];
-            coursesGroups[i-1] = tempHolder[3];
+            possibleCourses[i - 1] = tempHolder[0];
+            coursesWeeklyHours[i - 1] = Float.parseFloat(tempHolder[1]);
+            courseInstructorPairs[i - 1] = tempHolder[2];
+            coursesGroups[i - 1] = tempHolder[3];
         }
 
         return coursesWeeklyHours;
@@ -1060,17 +1151,17 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listCourses = reader.readFile(pathToFile);
-        possibleCourses = new String[listCourses.size()-1];
-        coursesWeeklyHours = new float[listCourses.size()-1];
-        courseInstructorPairs = new String[listCourses.size()-1];
-        coursesGroups = new String[listCourses.size()-1];
-        for(int i=1; i < listCourses.size(); i++) {
+        possibleCourses = new String[listCourses.size() - 1];
+        coursesWeeklyHours = new float[listCourses.size() - 1];
+        courseInstructorPairs = new String[listCourses.size() - 1];
+        coursesGroups = new String[listCourses.size() - 1];
+        for (int i = 1; i < listCourses.size(); i++) {
             course = listCourses.get(i).toString();
             tempHolder = course.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("&amp;", "&").split(";", 4);
-            possibleCourses[i-1] = tempHolder[0];
-            coursesWeeklyHours[i-1] = Float.parseFloat(tempHolder[1]);
-            courseInstructorPairs[i-1] = tempHolder[2];
-            coursesGroups[i-1] = tempHolder[3];
+            possibleCourses[i - 1] = tempHolder[0];
+            coursesWeeklyHours[i - 1] = Float.parseFloat(tempHolder[1]);
+            courseInstructorPairs[i - 1] = tempHolder[2];
+            coursesGroups[i - 1] = tempHolder[3];
         }
 
         return courseInstructorPairs;
@@ -1084,17 +1175,17 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listCourses = reader.readFile(pathToFile);
-        possibleCourses = new String[listCourses.size()-1];
-        coursesWeeklyHours = new float[listCourses.size()-1];
-        courseInstructorPairs = new String[listCourses.size()-1];
-        coursesGroups = new String[listCourses.size()-1];
-        for(int i=1; i < listCourses.size(); i++) {
+        possibleCourses = new String[listCourses.size() - 1];
+        coursesWeeklyHours = new float[listCourses.size() - 1];
+        courseInstructorPairs = new String[listCourses.size() - 1];
+        coursesGroups = new String[listCourses.size() - 1];
+        for (int i = 1; i < listCourses.size(); i++) {
             course = listCourses.get(i).toString();
             tempHolder = course.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("&amp;", "&").split(";", 4);
-            possibleCourses[i-1] = tempHolder[0];
-            coursesWeeklyHours[i-1] = Float.parseFloat(tempHolder[1]);
-            courseInstructorPairs[i-1] = tempHolder[2];
-            coursesGroups[i-1] = tempHolder[3];
+            possibleCourses[i - 1] = tempHolder[0];
+            coursesWeeklyHours[i - 1] = Float.parseFloat(tempHolder[1]);
+            courseInstructorPairs[i - 1] = tempHolder[2];
+            coursesGroups[i - 1] = tempHolder[3];
         }
 
         return coursesGroups;
@@ -1108,34 +1199,34 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listTimeslots = reader.readFile(pathToFile);
-        possibleTimes = new String [listTimeslots.size()-1];
-        possibleTimesDurations = new float [listTimeslots.size()-1];
-        for(int i=1; i < listTimeslots.size(); i++) {
+        possibleTimes = new String[listTimeslots.size() - 1];
+        possibleTimesDurations = new float[listTimeslots.size() - 1];
+        for (int i = 1; i < listTimeslots.size(); i++) {
             timeslot = listTimeslots.get(i).toString();
-            possibleTimes[i-1] = timeslot.replaceAll("\\[", "").replaceAll("\\]", "");
+            possibleTimes[i - 1] = timeslot.replaceAll("\\[", "").replaceAll("\\]", "");
         }
-        for(int i=0; i < possibleTimes.length; i++) {
+        for (int i = 0; i < possibleTimes.length; i++) {
             String[] slotCurrent = possibleTimes[i].replaceAll(" ", "").split("-", 2);
             String[] slotNext = new String[2];
-            if(i < possibleTimes.length-1) {
-                slotNext = possibleTimes[i+1].replaceAll(" ", "").split("-", 2);
+            if (i < possibleTimes.length - 1) {
+                slotNext = possibleTimes[i + 1].replaceAll(" ", "").split("-", 2);
             } else {
                 slotNext = "Friday - 19:30".replaceAll(" ", "").split("-", 2);
             }
-            if(slotCurrent[0].equals(slotNext[0])) {
+            if (slotCurrent[0].equals(slotNext[0])) {
                 String[] slotCurrentTime = slotCurrent[1].split(":");
                 int slotCurrentTimeMinutes = (Integer.parseInt(slotCurrentTime[0]) * 60) + (Integer.parseInt(slotCurrentTime[1]));
                 String[] slotNextTime = slotNext[1].split(":", 2);
                 int slotNextTimeMinutes = (Integer.parseInt(slotNextTime[0]) * 60) + (Integer.parseInt(slotNextTime[1]));
                 int slotDifferenceMinutes = slotNextTimeMinutes - slotCurrentTimeMinutes;
-                float slotDifferenceHours = (float)slotDifferenceMinutes/60;
+                float slotDifferenceHours = (float) slotDifferenceMinutes / 60;
                 possibleTimesDurations[i] = slotDifferenceHours;
             } else {
                 String[] slotCurrentTime = slotCurrent[1].split(":", 2);
                 int slotCurrentTimeMinutes = (Integer.parseInt(slotCurrentTime[0]) * 60) + (Integer.parseInt(slotCurrentTime[1]));
                 int slotNextTimeMinutes = (19 * 60) + 30;//last class should end at 19:30
                 int slotDifferenceMinutes = slotNextTimeMinutes - slotCurrentTimeMinutes;
-                float slotDifferenceHours = (float)slotDifferenceMinutes/60;
+                float slotDifferenceHours = (float) slotDifferenceMinutes / 60;
                 possibleTimesDurations[i] = slotDifferenceHours;
             }
         }
@@ -1151,34 +1242,34 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listTimeslots = reader.readFile(pathToFile);
-        possibleTimes = new String [listTimeslots.size()-1];
-        possibleTimesDurations = new float [listTimeslots.size()-1];
-        for(int i=1; i < listTimeslots.size(); i++) {
+        possibleTimes = new String[listTimeslots.size() - 1];
+        possibleTimesDurations = new float[listTimeslots.size() - 1];
+        for (int i = 1; i < listTimeslots.size(); i++) {
             timeslot = listTimeslots.get(i).toString();
-            possibleTimes[i-1] = timeslot.replaceAll("\\[", "").replaceAll("\\]", "");
+            possibleTimes[i - 1] = timeslot.replaceAll("\\[", "").replaceAll("\\]", "");
         }
-        for(int i=0; i < possibleTimes.length; i++) {
+        for (int i = 0; i < possibleTimes.length; i++) {
             String[] slotCurrent = possibleTimes[i].replaceAll(" ", "").split("-", 2);
             String[] slotNext = new String[2];
-            if(i < possibleTimes.length-1) {
-                slotNext = possibleTimes[i+1].replaceAll(" ", "").split("-", 2);
+            if (i < possibleTimes.length - 1) {
+                slotNext = possibleTimes[i + 1].replaceAll(" ", "").split("-", 2);
             } else {
                 slotNext = "Friday - 19:30".replaceAll(" ", "").split("-", 2);
             }
-            if(slotCurrent[0].equals(slotNext[0])) {
+            if (slotCurrent[0].equals(slotNext[0])) {
                 String[] slotCurrentTime = slotCurrent[1].split(":");
                 int slotCurrentTimeMinutes = (Integer.parseInt(slotCurrentTime[0]) * 60) + (Integer.parseInt(slotCurrentTime[1]));
                 String[] slotNextTime = slotNext[1].split(":", 2);
                 int slotNextTimeMinutes = (Integer.parseInt(slotNextTime[0]) * 60) + (Integer.parseInt(slotNextTime[1]));
                 int slotDifferenceMinutes = slotNextTimeMinutes - slotCurrentTimeMinutes;
-                float slotDifferenceHours = (float)slotDifferenceMinutes/60;
+                float slotDifferenceHours = (float) slotDifferenceMinutes / 60;
                 possibleTimesDurations[i] = slotDifferenceHours;
             } else {
                 String[] slotCurrentTime = slotCurrent[1].split(":", 2);
                 int slotCurrentTimeMinutes = (Integer.parseInt(slotCurrentTime[0]) * 60) + (Integer.parseInt(slotCurrentTime[1]));
                 int slotNextTimeMinutes = (19 * 60) + 30;//last class should end at 19:30
                 int slotDifferenceMinutes = slotNextTimeMinutes - slotCurrentTimeMinutes;
-                float slotDifferenceHours = (float)slotDifferenceMinutes/60;
+                float slotDifferenceHours = (float) slotDifferenceMinutes / 60;
                 possibleTimesDurations[i] = slotDifferenceHours;
             }
         }
@@ -1193,13 +1284,13 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listInstructors = reader.readFile(pathToFile);
-        possibleInstructors = new String [listInstructors.size()-1];
-        coursesPreferredTimes = new String [listInstructors.size()-1];
-        for(int i=1; i < listInstructors.size(); i++) {
+        possibleInstructors = new String[listInstructors.size() - 1];
+        coursesPreferredTimes = new String[listInstructors.size() - 1];
+        for (int i = 1; i < listInstructors.size(); i++) {
             instructor = listInstructors.get(i).toString();
             tempHolder = instructor.replaceAll("\\[", "").replaceAll("\\]", "").split(";", 2);
-            possibleInstructors[i-1] = tempHolder[0];
-            coursesPreferredTimes[i-1] = tempHolder[1];
+            possibleInstructors[i - 1] = tempHolder[0];
+            coursesPreferredTimes[i - 1] = tempHolder[1];
         }
 
         return possibleInstructors;
@@ -1212,16 +1303,16 @@ public class pso {
         String[] tempHolder = new String[3];
 
         List listInstructors = reader.readFile(pathToFile);
-        possibleInstructors = new String [listInstructors.size()-1];
-        coursesPreferredTimes = new String [listInstructors.size()-1];
-        for(int i=1; i < listInstructors.size(); i++) {
+        possibleInstructors = new String[listInstructors.size() - 1];
+        coursesPreferredTimes = new String[listInstructors.size() - 1];
+        for (int i = 1; i < listInstructors.size(); i++) {
             instructor = listInstructors.get(i).toString();
             tempHolder = instructor.replaceAll("\\[", "").replaceAll("\\]", "").split(";", 2);
-            possibleInstructors[i-1] = tempHolder[0];
-            coursesPreferredTimes[i-1] = tempHolder[1];
+            possibleInstructors[i - 1] = tempHolder[0];
+            coursesPreferredTimes[i - 1] = tempHolder[1];
         }
 
         return coursesPreferredTimes;
     }
-    
+
 }

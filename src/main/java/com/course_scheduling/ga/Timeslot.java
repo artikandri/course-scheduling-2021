@@ -50,4 +50,5 @@ public class Timeslot {
     public int getDayId() {
         return dayId;
     }
+
 }
