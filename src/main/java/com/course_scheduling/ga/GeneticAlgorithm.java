@@ -46,10 +46,7 @@ public class GeneticAlgorithm {
                         crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
                     }
                 } else {
-                    int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
-                    if (canScheduleBeExchanged(crossoverSchedule, schedule1, randomIndex)) {
-                        crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
-                    }
+                    crossoverSchedule = exchangeOneRandomCourseInSchedule(crossoverSchedule, schedule1);
                 }
             } else {
                 if (i < schedule2.getClasses().size()) {
@@ -57,11 +54,7 @@ public class GeneticAlgorithm {
                         crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
                     }
                 } else {
-                    int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
-                    if (canScheduleBeExchanged(crossoverSchedule, schedule2, randomIndex)) {
-                        crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
-                    }
-
+                    crossoverSchedule = exchangeOneRandomCourseInSchedule(crossoverSchedule, schedule2);
                 }
             }
         }
@@ -78,23 +71,28 @@ public class GeneticAlgorithm {
         return mutatePopulation;
     }
 
+    private Schedule exchangeOneRandomCourseInSchedule(Schedule schedule1, Schedule schedule2) {
+        int rIndex = (int) (schedule1.getClasses().size() * Math.random());
+        Class rClass = schedule1.getClasses().get(rIndex);
+        List<Class> possibleReps = schedule2.getClasses()
+                .stream()
+                .filter(x -> x.getCourseId() == rClass.getCourseId())
+                .collect(Collectors.toList());
+        for (Class mClass : schedule1.getClasses()) {
+            if (mClass.getCourseId() == rClass.getCourseId()) {
+                Class newClass = possibleReps.get((int) (possibleReps.size() * Math.random()));
+                schedule1.getClasses().set(schedule1.getClasses().indexOf(mClass), newClass);
+            }
+        }
+        return schedule1;
+    }
+
     Schedule mutateSchedule(Schedule mutateSchedule) {
         Schedule schedule = new Schedule(data).initialize();
         // randomly introducing bad genes
         // 1st: mutate all classes related to a random course
         if (Scheduler.MUTATION_RATE > Math.random()) {
-            int rIndex = (int) (mutateSchedule.getClasses().size() * Math.random());
-            Class rClass = mutateSchedule.getClasses().get(rIndex);
-            List<Class> possibleReps = schedule.getClasses()
-                    .stream()
-                    .filter(x -> x.getCourseId() == rClass.getCourseId())
-                    .collect(Collectors.toList());
-            for (Class mClass : mutateSchedule.getClasses()) {
-                if (mClass.getCourseId() == rClass.getCourseId()) {
-                    Class newClass = possibleReps.get((int) (possibleReps.size() * Math.random()));
-                    mutateSchedule.getClasses().set(mutateSchedule.getClasses().indexOf(mClass), newClass);
-                }
-            }
+            mutateSchedule = exchangeOneRandomCourseInSchedule(mutateSchedule, schedule);
         } else {
             // mutate only one class
             for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {

@@ -27,11 +27,13 @@ public class App {
         System.out.println("-------------------------------------------------------------------------------------");
 
         Scheduler.TARGET_TIMER_MINUTES = 1;
-        Scheduler.POPULATION_SIZE = 30;
-        Scheduler.TARGET_GENERATION = 300;
 
         Scheduler gaScheduler = new Scheduler();
         gaScheduler.runAlgorithm(true, 1);
+        gaScheduler.runAlgorithm(true, 2);
+        gaScheduler.runAlgorithm(true, 3);
+        gaScheduler.runAlgorithm(false, 0);
+
         System.out.println("Schedule has been successfully generated with GA algorithm.");
         System.out.println("Find newly generated schedule file in results/ga/ folder");
 
@@ -42,7 +44,10 @@ public class App {
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         App app = new App();
-        app.runPsoAlgorithm("small", "limitIter", 300, 30);
+        app.runPsoAlgorithm("small", "limitFV", 700, 30);
+        app.runPsoAlgorithm("medium", "limitFV", 700, 30);
+        app.runPsoAlgorithm("large", "limitFV", 700, 30);
+        app.runPsoAlgorithm("default", "limitFV", 700, 30);
 
         System.out.println("Schedule has been successfully generated with PSO algorithm.");
         System.out.println("Find newly generated schedule file in results/pso/ folder");

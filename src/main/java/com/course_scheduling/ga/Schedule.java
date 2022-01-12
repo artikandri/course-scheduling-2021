@@ -124,10 +124,14 @@ public class Schedule {
                         Collectors.toList()));
 
         if (suitableTimeslotObjects.isEmpty()) {
-            suitableTimeslotObjects = data.getTimeslots().stream()
-                    .collect(Collectors.filtering(
-                            timeslot -> possibleTimeslots.contains(timeslot.getId()),
-                            Collectors.toList()));
+            if (!suitableAltTimeslotObjects.isEmpty()) {
+                suitableTimeslotObjects = suitableAltTimeslotObjects;
+            } else {
+                suitableTimeslotObjects = data.getTimeslots().stream()
+                        .collect(Collectors.filtering(
+                                timeslot -> possibleTimeslots.contains(timeslot.getId()),
+                                Collectors.toList()));
+            }
         }
 
         // create random timeslot
