@@ -24,8 +24,10 @@ public class GeneticAlgorithm {
                 population.getSchedules().get(x)));
         IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
             if (Scheduler.CROSSOVER_RATE > Math.random()) {
-                Schedule schedule1 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(0);
-                Schedule schedule2 = selectTournamentPopulation(population).sortByFitness().getSchedules().get(1);
+
+                Schedule schedule1 = selectTournamentPopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(0);
+                Schedule schedule2 = selectTournamentPopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(1);
+
                 crossoverPopulation.getSchedules().set(x, crossoverSchedule(schedule1, schedule2));
             } else {
                 crossoverPopulation.getSchedules().set(x, population.getSchedules().get(x));
@@ -44,10 +46,7 @@ public class GeneticAlgorithm {
                         crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
                     }
                 } else {
-                    int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
-                    if (canScheduleBeExchanged(crossoverSchedule, schedule1, randomIndex)) {
-                        crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
-                    }
+                    crossoverSchedule = exchangeOneRandomCourseInSchedule(crossoverSchedule, schedule1);
                 }
             } else {
                 if (i < schedule2.getClasses().size()) {
@@ -55,11 +54,7 @@ public class GeneticAlgorithm {
                         crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
                     }
                 } else {
-                    int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
-                    if (canScheduleBeExchanged(crossoverSchedule, schedule2, randomIndex)) {
-                        crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
-                    }
-
+                    crossoverSchedule = exchangeOneRandomCourseInSchedule(crossoverSchedule, schedule2);
                 }
             }
         }
@@ -76,22 +71,46 @@ public class GeneticAlgorithm {
         return mutatePopulation;
     }
 
+    private Schedule exchangeOneRandomCourseInSchedule(Schedule schedule1, Schedule schedule2) {
+        int rIndex = (int) (schedule1.getClasses().size() * Math.random());
+        Class rClass = schedule1.getClasses().get(rIndex);
+        List<Class> possibleReps = schedule2.getClasses()
+                .stream()
+                .filter(x -> x.getCourseId() == rClass.getCourseId())
+                .collect(Collectors.toList());
+        for (Class mClass : schedule1.getClasses()) {
+            if (mClass.getCourseId() == rClass.getCourseId()) {
+                Class newClass = possibleReps.get((int) (possibleReps.size() * Math.random()));
+                schedule1.getClasses().set(schedule1.getClasses().indexOf(mClass), newClass);
+            }
+        }
+        return schedule1;
+    }
+
     Schedule mutateSchedule(Schedule mutateSchedule) {
         Schedule schedule = new Schedule(data).initialize();
-        for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
-            if (Scheduler.MUTATION_RATE > Math.random()) {
-                if (i < schedule.getClasses().size()) {
-                    if (canScheduleBeExchanged(mutateSchedule, schedule, i)) {
-                        mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
-                    }
-                } else {
-                    int randomIndex = (int) (schedule.getClasses().size() * Math.random());
-                    if (canScheduleBeExchanged(mutateSchedule, schedule, randomIndex)) {
-                        mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
+        // randomly introducing bad genes
+        // 1st: mutate all classes related to a random course
+        if (Scheduler.MUTATION_RATE > Math.random()) {
+            mutateSchedule = exchangeOneRandomCourseInSchedule(mutateSchedule, schedule);
+        } else {
+            // mutate only one class
+            for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
+                if (Scheduler.MUTATION_RATE > Math.random()) {
+                    if (i < schedule.getClasses().size()) {
+                        if (canScheduleBeExchanged(mutateSchedule, schedule, i)) {
+                            mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
+                        }
+                    } else {
+                        int randomIndex = (int) (schedule.getClasses().size() * Math.random());
+                        if (canScheduleBeExchanged(mutateSchedule, schedule, randomIndex)) {
+                            mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
+                        }
                     }
                 }
             }
         }
+
         return mutateSchedule;
     }
 
@@ -121,6 +140,8 @@ public class GeneticAlgorithm {
 
     private boolean canScheduleBeExchanged(Schedule schedule1, Schedule schedule2, int index) {
         boolean canBeChanged = false;
+        // randomly encourage exchange to prevent schedules suffering from elitism
+        boolean isExchangeEncouraged = Math.random() > 0.5;
 
         Class class1 = schedule1.getClasses().get(index);
         Class class2 = schedule2.getClasses().get(index);
@@ -133,9 +154,18 @@ public class GeneticAlgorithm {
                 && x.getTimeslotId() == class2.getTimeslotId())
                 .findFirst()
                 .isPresent();
+        boolean hasGroupClassWithTheSameTimeslotExisted = schedule1.getClasses()
+                .stream()
+                .filter(x -> x.getGroupId() == class2.getGroupId()
+                && x.getTimeslotId() == class2.getTimeslotId())
+                .findFirst()
+                .isPresent();
         boolean isClassAlreadyIdeal = isClassIdeal(schedule1, index);
 
-        canBeChanged = hasTheSameCourse && hasTheSameDuration && !hasClassExisted && !isClassAlreadyIdeal;
+        if (hasTheSameCourse && hasTheSameDuration) {
+            canBeChanged = isExchangeEncouraged || !hasClassExisted && !isClassAlreadyIdeal
+                    && !hasGroupClassWithTheSameTimeslotExisted;
+        }
 
         return canBeChanged;
     }

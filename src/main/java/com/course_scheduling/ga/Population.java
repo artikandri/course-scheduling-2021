@@ -18,13 +18,40 @@ public class Population {
 
     public Population sortByFitness() {
         schedules.sort((schedule1, schedule2) -> {
-            int returnValue = 0;
-            if (schedule1.getFitness() > schedule2.getFitness()) {
-                returnValue = -1;
-            } else if (schedule1.getFitness() < schedule2.getFitness()) {
-                returnValue = 1;
-            }
-            return returnValue;
+            Penalty penalty1 = new Penalty(schedule1);
+            Penalty penalty2 = new Penalty(schedule2);
+
+            int sortScore = penalty1.getFitness() > penalty2.getFitness() ? -1 : 1;
+            return sortScore;
+        });
+        return this;
+    }
+
+    public Population sortByNumbOfConflicts() {
+        schedules.sort((schedule1, schedule2) -> {
+            Penalty penalty1 = new Penalty(schedule1);
+            Penalty penalty2 = new Penalty(schedule2);
+
+            int sortScore = penalty1.getNumbOfConflicts() > penalty2.getNumbOfConflicts() ? -1 : 1;
+            return sortScore;
+        });
+        return this;
+    }
+
+    public Population sortByPenaltyAndNumbOfConflicts() {
+        sortByPenalty();
+        sortByNumbOfConflicts();
+
+        return this;
+    }
+
+    public Population sortByPenalty() {
+        schedules.sort((schedule1, schedule2) -> {
+            Penalty penalty1 = new Penalty(schedule1);
+            Penalty penalty2 = new Penalty(schedule2);
+
+            int sortScore = penalty1.getPenalty() > penalty2.getPenalty() ? -1 : 1;
+            return sortScore;
         });
         return this;
     }

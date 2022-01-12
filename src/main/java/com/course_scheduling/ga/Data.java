@@ -21,8 +21,8 @@ public class Data {
     private ListParser listParser = new ListParser();
 
     // adjust value as needed
-    private boolean isExperimentMode = true;
-    private int experimentType = 1;
+    public static boolean IS_EXPERIMENT_MODE = true;
+    public static int EXPERIMENT_TYPE = 1;
 
     public Data() {
         initialize();
@@ -88,8 +88,8 @@ public class Data {
 
     public void setCourses() {
         String coursesFilePath = "src/main/resources/dataset/processed/courses.csv";
-        if (isExperimentMode) {
-            switch (experimentType) {
+        if (IS_EXPERIMENT_MODE) {
+            switch (EXPERIMENT_TYPE) {
                 case 1:
                     coursesFilePath = "src/main/resources/dataset/processed/courses_small.csv";
                     break;
@@ -230,8 +230,4 @@ public class Data {
         numberOfClasses = courses.size();
     }
 
-    public void setExperimentParameters(boolean isExperimentMode, int experimentType) {
-        this.isExperimentMode = isExperimentMode;
-        this.experimentType = experimentType;
-    }
 }

@@ -10,25 +10,29 @@ import java.util.concurrent.TimeUnit;
 public class Scheduler {
 
     // adjust these values as needed
-    public static final int POPULATION_SIZE = 10;
-    public static final double MUTATION_RATE = 0.8;
-    public static final double CROSSOVER_RATE = 0.2;
-    public static final int TOURNAMENT_SELECTION_SIZE = 3;
-    public static final int NUMB_OF_ELITE_SCHEDULES = 1;
+    public static int POPULATION_SIZE = 10;
+    public static double MUTATION_RATE = 0.7;
+    public static double CROSSOVER_RATE = 0.3;
+    public static int TOURNAMENT_SELECTION_SIZE = 3;
+    public static int NUMB_OF_ELITE_SCHEDULES = 1;
 
     // adjust these values as needed
-    public static final double TARGET_FITNESS = 1.0;
-    public static final int TARGET_PENALTY = 30;
-    public static final int TARGET_TIMER_MINUTES = 15;
+    public static double TARGET_FITNESS = 1.0;
+    public static int TARGET_PENALTY = 20;
+    public static int TARGET_TIMER_MINUTES = 15;
+    public static int TARGET_GENERATION = 100000;
 
     private int classNumb = 1;
     private Data data;
 
-    private final Timer watch = Timer.start();
-    private final FileManager fileManager = new FileManager();
-    private final DateParser dateParser = new DateParser();
+    private Timer watch = Timer.start();
+    private FileManager fileManager = new FileManager();
+    private DateParser dateParser = new DateParser();
 
-    public void runAlgorithm() {
+    public void runAlgorithm(boolean IS_EXPERIMENT_MODE, int EXPERIMENT_TYPE) {
+        Data.IS_EXPERIMENT_MODE = IS_EXPERIMENT_MODE;
+        Data.EXPERIMENT_TYPE = EXPERIMENT_TYPE;
+
         Scheduler scheduler = new Scheduler();
         scheduler.data = new Data();
         scheduler.printAvailableData();
@@ -47,25 +51,34 @@ public class Scheduler {
         int generationNumber = 0;
         long passedTimeInMs = watch.time();
         long passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
-        boolean isFitnessReached = population.getSchedules().get(0).getFitness() == 1.0;
-        boolean isPenaltyReached = population.getSchedules().get(0).getPenalty() <= 60;
-        boolean isTimerReached = passedTimeInMinutes == 15;
-        String generationInfo = "";
 
-        population.getSchedules().forEach(schedule -> System.out.println(schedule));
+        Schedule schedule = population.getSchedules().get(0);
+        Penalty penalty = new Penalty(schedule);
+
+        boolean isFitnessReached = penalty.getFitness() == TARGET_FITNESS;
+        boolean isPenaltyReached = penalty.getPenalty() <= TARGET_PENALTY;
+        boolean isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
+        boolean isGenerationReached = generationNumber == TARGET_GENERATION;
+
+        String generationInfo = scheduler.printGenerationInfo(generationNumber, population);
+
         scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
         scheduler.classNumb = 1;
 
-        while (!isFitnessReached && !isPenaltyReached && !isTimerReached) {
+        while (!isFitnessReached && !isPenaltyReached && !isTimerReached && !isGenerationReached) {
             generationNumber += 1;
             population = geneticAlgorithm.evolve(population).sortByFitness();
 
             scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
             generationInfo = scheduler.printGenerationInfo(generationNumber, population);
 
-            isFitnessReached = population.getSchedules().get(0).getFitness() == TARGET_FITNESS;
-            isPenaltyReached = population.getSchedules().get(0).getPenalty() <= TARGET_PENALTY;
+            Schedule scheduleEvolve = population.getSchedules().get(0);
+            Penalty penaltyEvolve = new Penalty(scheduleEvolve);
+
+            isFitnessReached = penaltyEvolve.getFitness() == TARGET_FITNESS;
+            isPenaltyReached = penaltyEvolve.getPenalty() <= TARGET_PENALTY;
             isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
+            isGenerationReached = generationNumber == TARGET_GENERATION;
 
             passedTimeInMs = watch.time();
             passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
@@ -92,6 +105,11 @@ public class Scheduler {
                 System.out.println("Process stopped because targeted fitness value ("
                         + TARGET_FITNESS + ") has been reached");
             }
+
+            if (isGenerationReached) {
+                System.out.println("Process stopped because targeted generation value ("
+                        + TARGET_GENERATION + ") has been reached");
+            }
         }
 
         printWriter.println(generationInfo);
@@ -99,25 +117,57 @@ public class Scheduler {
         printWriter.println("        |    Time (minutes): " + passedTimeInMinutes);
         printWriter.println(population.getSchedules().get(0));
 
-        String schedules = stringWriter.toString();
-        System.out.println(schedules);
+        String schedulesAsTable = stringWriter.toString();
+        String schedulesAsList = population.getSchedules().get(0).getScheduleAsList();
+        System.out.println(schedulesAsTable);
 
+        String paramsInfo = printParametersInfo();
         String scheduleFileName = "Schedules-GA-" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
-        fileManager.createTextFile(schedules, scheduleFileName, "results/ga/");
+        fileManager.createTextFile(paramsInfo.concat(schedulesAsTable), scheduleFileName, "results/ga/");
+
+        String schedulesAsListContent = paramsInfo.concat(generationInfo).concat(schedulesAsList);
+        fileManager.createTextFile(schedulesAsListContent, "List-" + scheduleFileName, "results/ga/");
+    }
+
+    private String printParametersInfo() {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        printWriter.print("Population size # " + POPULATION_SIZE);
+        printWriter.println("       |         Mutation rate "
+                + MUTATION_RATE
+                + "       |         Crossover rate # "
+                + CROSSOVER_RATE);
+        printWriter.println("Tournament selection size # "
+                + TOURNAMENT_SELECTION_SIZE
+                + "  |                  Number of elite schedules # "
+                + NUMB_OF_ELITE_SCHEDULES
+                + " ");
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        String info = stringWriter.toString();
+        return info;
     }
 
     private String printGenerationInfo(int generationNumber, Population population) {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
+        Penalty penalty = new Penalty(population.getSchedules().get(0));
+
         printWriter.println("Generation # " + generationNumber);
         printWriter.print("Schedule # " + generationNumber);
         printWriter.println("       |         Fitness # "
-                + population.getSchedules().get(0).getFitness()
+                + penalty.getFitness()
                 + "       |         Penalty # "
-                + population.getSchedules().get(0).getPenalty()
+                + penalty.getPenalty()
                 + "  |                  Conflicts # "
-                + population.getSchedules().get(0).getNumbOfConflicts() + " ");
+                + penalty.getNumbOfConflicts() + " ");
+
         printWriter.print("-----------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
@@ -164,7 +214,8 @@ public class Scheduler {
             classNumb++;
         });
 
-        if (schedule.getFitness() == 1) {
+        Penalty penalty = new Penalty(schedule);
+        if (penalty.getFitness() == 1) {
             printWriter.println("> Solution found in " + (generation + 1) + " generations");
         }
 
@@ -191,10 +242,16 @@ public class Scheduler {
         data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
         printWriter.println("\nAvailable Meeting Times");
         data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
-        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
         String availableData = stringWriter.toString();
         System.out.println(availableData);
     }
+
+    public static void main(String[] args) {
+        Scheduler scheduler = new Scheduler();
+        scheduler.runAlgorithm(true, 1);
+    }
+
 }
