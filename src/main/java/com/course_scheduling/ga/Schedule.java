@@ -209,14 +209,28 @@ public class Schedule {
 
         for (Map.Entry<String, List<Class>> classInGroup : classInGroups.entrySet()) {
             printWriter.println("--Group " + classInGroup.getKey() + ":");
-            for (Class gClass : classInGroup.getValue()) {
-                String classSchedule = gClass.getTimeslot().getTime()
-                        + " = "
-                        + gClass.getCourse().getName()
-                        + " ("
-                        + gClass.getRoom().getName()
-                        + ") ";
-                printWriter.println(classSchedule);
+
+            List<Integer> classTimeslotIds = classInGroup.getValue()
+                    .stream()
+                    .map(Class::getTimeslotId)
+                    .collect(Collectors.toList());
+
+            for (Timeslot timeslot : data.getTimeslots()) {
+                if (classTimeslotIds.contains(timeslot.getId())) {
+                    int classIndex = classTimeslotIds.indexOf(timeslot.getId());
+                    Class gClass = classInGroup.getValue().get(classIndex);
+                    String classSchedule = gClass.getTimeslot().getTime()
+                            + " = "
+                            + gClass.getCourse().getName()
+                            + " ("
+                            + gClass.getRoom().getName()
+                            + ") ";
+                    printWriter.println(classSchedule);
+                } else {
+                    String classSchedule = timeslot.getTime()
+                            + " = (-)";
+                    printWriter.println(classSchedule);
+                }
             }
         }
 

@@ -10,26 +10,29 @@ import java.util.concurrent.TimeUnit;
 public class Scheduler {
 
     // adjust these values as needed
-    public static final int POPULATION_SIZE = 10;
-    public static final double MUTATION_RATE = 0.5;
-    public static final double CROSSOVER_RATE = 0.5;
-    public static final int TOURNAMENT_SELECTION_SIZE = 3;
-    public static final int NUMB_OF_ELITE_SCHEDULES = 1;
+    public static int POPULATION_SIZE = 10;
+    public static double MUTATION_RATE = 0.7;
+    public static double CROSSOVER_RATE = 0.3;
+    public static int TOURNAMENT_SELECTION_SIZE = 3;
+    public static int NUMB_OF_ELITE_SCHEDULES = 1;
 
     // adjust these values as needed
-    public static final double TARGET_FITNESS = 1.0;
-    public static final int TARGET_PENALTY = 20;
-    public static final int TARGET_TIMER_MINUTES = 15;
-    public static final int TARGET_GENERATION = 100000;
+    public static double TARGET_FITNESS = 1.0;
+    public static int TARGET_PENALTY = 20;
+    public static int TARGET_TIMER_MINUTES = 15;
+    public static int TARGET_GENERATION = 100000;
 
     private int classNumb = 1;
     private Data data;
 
-    private final Timer watch = Timer.start();
-    private final FileManager fileManager = new FileManager();
-    private final DateParser dateParser = new DateParser();
+    private Timer watch = Timer.start();
+    private FileManager fileManager = new FileManager();
+    private DateParser dateParser = new DateParser();
 
-    public void runAlgorithm() {
+    public void runAlgorithm(boolean IS_EXPERIMENT_MODE, int EXPERIMENT_TYPE) {
+        Data.IS_EXPERIMENT_MODE = IS_EXPERIMENT_MODE;
+        Data.EXPERIMENT_TYPE = EXPERIMENT_TYPE;
+
         Scheduler scheduler = new Scheduler();
         scheduler.data = new Data();
         scheduler.printAvailableData();
@@ -52,11 +55,11 @@ public class Scheduler {
         Schedule schedule = population.getSchedules().get(0);
         Penalty penalty = new Penalty(schedule);
 
-        boolean isFitnessReached = penalty.getFitness() == 1.0;
-        boolean isPenaltyReached = penalty.getPenalty() <= 60;
-        boolean isTimerReached = passedTimeInMinutes == 15;
+        boolean isFitnessReached = penalty.getFitness() == TARGET_FITNESS;
+        boolean isPenaltyReached = penalty.getPenalty() <= TARGET_PENALTY;
+        boolean isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
         boolean isGenerationReached = generationNumber == TARGET_GENERATION;
-        
+
         String generationInfo = scheduler.printGenerationInfo(generationNumber, population);
 
         scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
@@ -102,7 +105,7 @@ public class Scheduler {
                 System.out.println("Process stopped because targeted fitness value ("
                         + TARGET_FITNESS + ") has been reached");
             }
-            
+
             if (isGenerationReached) {
                 System.out.println("Process stopped because targeted generation value ("
                         + TARGET_GENERATION + ") has been reached");
@@ -118,9 +121,36 @@ public class Scheduler {
         String schedulesAsList = population.getSchedules().get(0).getScheduleAsList();
         System.out.println(schedulesAsTable);
 
+        String paramsInfo = printParametersInfo();
         String scheduleFileName = "Schedules-GA-" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
-        fileManager.createTextFile(schedulesAsTable, scheduleFileName, "results/ga/");
-        fileManager.createTextFile(generationInfo.concat(schedulesAsList), "List-" + scheduleFileName, "results/ga/");
+        fileManager.createTextFile(paramsInfo.concat(schedulesAsTable), scheduleFileName, "results/ga/");
+
+        String schedulesAsListContent = paramsInfo.concat(generationInfo).concat(schedulesAsList);
+        fileManager.createTextFile(schedulesAsListContent, "List-" + scheduleFileName, "results/ga/");
+    }
+
+    private String printParametersInfo() {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        printWriter.print("Population size # " + POPULATION_SIZE);
+        printWriter.println("       |         Mutation rate "
+                + MUTATION_RATE
+                + "       |         Crossover rate # "
+                + CROSSOVER_RATE);
+        printWriter.println("Tournament selection size # "
+                + TOURNAMENT_SELECTION_SIZE
+                + "  |                  Number of elite schedules # "
+                + NUMB_OF_ELITE_SCHEDULES
+                + " ");
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+
+        String info = stringWriter.toString();
+        return info;
     }
 
     private String printGenerationInfo(int generationNumber, Population population) {
@@ -137,6 +167,7 @@ public class Scheduler {
                 + penalty.getPenalty()
                 + "  |                  Conflicts # "
                 + penalty.getNumbOfConflicts() + " ");
+
         printWriter.print("-----------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
@@ -220,7 +251,7 @@ public class Scheduler {
 
     public static void main(String[] args) {
         Scheduler scheduler = new Scheduler();
-        scheduler.runAlgorithm();
+        scheduler.runAlgorithm(true, 1);
     }
 
 }
