@@ -69,27 +69,33 @@ public class Penalty {
         classes.sort(Comparator.comparing(Class::getTimeslotId));
         classes.forEach(x -> {
             classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(x)).forEach(y -> {
-                // same timeslot can only be assigned to one group, one instructor,
-                // one room, one course at the time
-                if (x.getTimeslot().getId() == y.getTimeslot().getId()
-                        && x.getId() != y.getId()) {
+                // same timeslot can only be assigned
+                // to one group, one instructor,
+                // one room, one course at one time
+                if (x.getTimeslot() == y.getTimeslot()
+                        && x.getGroupId() == y.getGroupId()) {
 
-                    if (x.getGroupId() == y.getGroupId()) {
+                    if (x.getCourseId() != y.getCourseId()) {
                         numbOfConflicts++;
                         penalty += 9999;
                     }
 
-                    if (x.getInstructor().getId() == y.getInstructor().getId()) {
-                        numbOfConflicts++;
-                        penalty += 9999;
-                    }
+                }
+
+                if (x.getTimeslot() == y.getTimeslot()
+                        && x.getGroupId() != y.getGroupId()) {
 
                     if (x.getRoom() == y.getRoom()) {
                         numbOfConflicts++;
                         penalty += 9999;
                     }
-                }
 
+                    if (x.getInstructor() == y.getInstructor()) {
+                        numbOfConflicts++;
+                        penalty += 9999;
+                    }
+
+                }
             });
         });
     }
@@ -185,6 +191,42 @@ public class Penalty {
 
             }
         }
+    }
+
+    public List<Class> getConflictedClasses() {
+        classes.forEach(x -> {
+            classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(x)).forEach(y -> {
+
+                if (x.getTimeslot() == y.getTimeslot()
+                        && x.getGroupId() == y.getGroupId()) {
+
+                    if (x.getCourseId() != y.getCourseId()) {
+                        x.setIsFlagged(true);
+                    }
+
+                }
+
+                if (x.getTimeslot() == y.getTimeslot()
+                        && x.getGroupId() != y.getGroupId()) {
+
+                    if (x.getRoom() == y.getRoom()) {
+                        x.setIsFlagged(true);
+                    }
+
+                    if (x.getInstructor() == y.getInstructor()) {
+                        x.setIsFlagged(true);
+                    }
+                }
+
+            });
+        });
+
+        List<Class> filteredClasses = classes.stream()
+                .collect(Collectors.filtering(
+                        x -> x.getIsFlagged() == true,
+                        Collectors.toList()));
+
+        return filteredClasses;
     }
 
     /*

@@ -26,28 +26,31 @@ public class App {
         System.out.println("-------------------------------------------------------------------------------------");
 
         Scheduler gaScheduler = new Scheduler();
-        Scheduler.TARGET_TIMER_MINUTES = 3;
 
         // first experiment: run algorithm on all datasets
-        // algorithm will automatically stopped after 15 mins
-//        gaScheduler.runAlgorithm(true, 1);
+        // algorithm will automatically stopped after 10 mins
+        Scheduler.TARGET_TIMER_MINUTES = 10;
+        gaScheduler.runAlgorithm(true, 1);
         gaScheduler.runAlgorithm(true, 2);
-//        gaScheduler.runAlgorithm(true, 3);
-//        gaScheduler.runAlgorithm(false, 0);
+        gaScheduler.runAlgorithm(true, 3);
+        gaScheduler.runAlgorithm(false, 0);
 
-        // 2nd experiment: set threshold on certain penalty value
+        // 2nd experiment: set threshold on certain penalty values
         // algorithm will automatically stopped when penalty value has been reached
-//        Scheduler.TARGET_TIMER_MINUTES = 15;
-//        gaScheduler.runAlgorithm(true, 1);
-//
-//        Scheduler.TARGET_TIMER_MINUTES = 15;
-//        gaScheduler.runAlgorithm(true, 2);
-//
-//        Scheduler.TARGET_TIMER_MINUTES = 15;
-//        gaScheduler.runAlgorithm(true, 3);
-//
-//        Scheduler.TARGET_TIMER_MINUTES = 15;
-//        gaScheduler.runAlgorithm(false, 0);
+        // or when the experiment has run past 15 mins
+        Scheduler.TARGET_TIMER_MINUTES = 15;
+        Scheduler.TARGET_PENALTY = 600;
+        gaScheduler.runAlgorithm(true, 1);
+
+        Scheduler.TARGET_PENALTY = 250000;
+        gaScheduler.runAlgorithm(true, 2);
+
+        Scheduler.TARGET_PENALTY = 600000;
+        gaScheduler.runAlgorithm(true, 3);
+
+        Scheduler.TARGET_PENALTY = 6000000;
+        gaScheduler.runAlgorithm(false, 0);
+
         System.out.println("Schedule has been successfully generated with GA algorithm.");
         System.out.println("Find newly generated schedule file in results/ga/ folder");
     }
@@ -58,7 +61,7 @@ public class App {
         app.runGaExperiment();
 
         //run PSO algorithm
-//        app.runPsoExperiment();
+        app.runPsoExperiment();
     }
 
     private void runPsoExperiment() {

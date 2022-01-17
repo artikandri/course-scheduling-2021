@@ -45,7 +45,7 @@ public class GeneticAlgorithm {
                         crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
                     }
                 } else {
-                    if (schedule1.getClasses().size() > Scheduler.NUMB_OF_MEDIUM_SIZED_SCHEDULE_CLASSES) {
+                    if (schedule1.getClasses().size() > Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES) {
                         int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
                         if (canScheduleBeExchanged(crossoverSchedule, schedule1, randomIndex)) {
                             crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
@@ -105,7 +105,7 @@ public class GeneticAlgorithm {
         // randomly introducing bad genes
         // 1st: mutate all classes related to a random course
 
-        if (mutateSchedule.getClasses().size() > Scheduler.NUMB_OF_MEDIUM_SIZED_SCHEDULE_CLASSES) {
+        if (mutateSchedule.getClasses().size() < Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES) {
             mutateSchedule = exchangeOneRandomCourseInSchedule(mutateSchedule, schedule);
         } else {
             for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
@@ -171,8 +171,8 @@ public class GeneticAlgorithm {
 
         // improve performance by reducing number of checking on large schedules
         // java stream method performs very slowly
-        boolean isClassAlreadyIdeal = schedule1.getClasses().size() > Scheduler.NUMB_OF_MEDIUM_SIZED_SCHEDULE_CLASSES
-                ? isClassIdeal(schedule1, index) : true;
+        boolean isClassAlreadyIdeal = schedule1.getClasses().size() > Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES
+                ? true : isClassIdeal(schedule1, index);
 
         if (hasTheSameCourse && hasTheSameDuration) {
             canBeChanged = isExchangeEncouraged || !isClassAlreadyIdeal
