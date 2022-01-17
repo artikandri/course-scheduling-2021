@@ -15,14 +15,14 @@ public class Data {
     private ArrayList<Timeslot> timeslots;
     private ArrayList<Group> groups;
 
-    private int numberOfClasses = 0;
+    private int numberOfCourses = 0;
     private CsvParser csvParser = new CsvParser();
     private TimeParser timeParser = new TimeParser();
     private ListParser listParser = new ListParser();
 
     // adjust value as needed
     public static boolean IS_EXPERIMENT_MODE = true;
-    public static int EXPERIMENT_TYPE = 1;
+    public static int EXPERIMENT_TYPE = 2;
 
     public Data() {
         initialize();
@@ -59,12 +59,12 @@ public class Data {
         return groups;
     }
 
-    public int getNumberOfClasses() {
-        return this.numberOfClasses;
+    public int getNumberOfCourses() {
+        return this.numberOfCourses;
     }
 
     public void setRooms() {
-        List roomCsvs = DatasetProcessor.readFile("src/main/resources/dataset/processed/rooms.csv");
+        List roomCsvs = DatasetParser.readFile("src/main/resources/dataset/processed/rooms.csv");
         roomCsvs.remove(0);
         rooms = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < roomCsvs.size(); i++) {
@@ -76,7 +76,7 @@ public class Data {
 
     public void setInstructors() {
         List instructorCsvs
-                = DatasetProcessor.readFile("src/main/resources/dataset/processed/instructors.csv");
+                = DatasetParser.readFile("src/main/resources/dataset/processed/instructors.csv");
         instructorCsvs.remove(0);
         instructors = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < instructorCsvs.size(); i++) {
@@ -106,7 +106,7 @@ public class Data {
         }
 
         List courseCsvs
-                = DatasetProcessor.readFile(coursesFilePath);
+                = DatasetParser.readFile(coursesFilePath);
         courseCsvs.remove(0);
         courses = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < courseCsvs.size(); i++) {
@@ -159,7 +159,7 @@ public class Data {
 
     public void setGroups() {
         List courseCsvs
-                = DatasetProcessor.readFile("src/main/resources/dataset/processed/courses.csv");
+                = DatasetParser.readFile("src/main/resources/dataset/processed/courses.csv");
         List groupCsvs = new ArrayList(Arrays.asList());
         courseCsvs.remove(0);
         groups = new ArrayList<>(Arrays.asList());
@@ -177,7 +177,7 @@ public class Data {
 
     public void setTimeslots() {
         List timeslotCsvs
-                = DatasetProcessor.readFile("src/main/resources/dataset/processed/timeslots.csv");
+                = DatasetParser.readFile("src/main/resources/dataset/processed/timeslots.csv");
         timeslotCsvs.remove(0);
         timeslots = new ArrayList<>(Arrays.asList());
         for (int i = 0; i < timeslotCsvs.size(); i++) {
@@ -227,7 +227,12 @@ public class Data {
     }
 
     public void setNumberOfClasses() {
-        numberOfClasses = courses.size();
+        numberOfCourses = courses.size();
+    }
+
+    public static void main(String[] args) {
+        Data data = new Data();
+        data.initialize();
     }
 
 }

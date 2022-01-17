@@ -17,7 +17,7 @@ public class Schedule {
 
     public Schedule(Data data) {
         this.data = data;
-        classes = new ArrayList<Class>(data.getNumberOfClasses());
+        classes = new ArrayList<Class>(data.getNumberOfCourses());
     }
 
     public Schedule initialize() {
@@ -25,7 +25,6 @@ public class Schedule {
         List<Integer> prevTimeslotIdsForGroup = new ArrayList(Arrays.asList());
         List<Course> courses = data.getCourses();
 
-        Collections.shuffle(courses);
         for (Course course : courses) {
 
             // consider duration
@@ -81,7 +80,8 @@ public class Schedule {
         return this;
     }
 
-    private Timeslot getSuitableTimeslot(Course course,
+    private Timeslot getSuitableTimeslot(
+            Course course,
             List prevTimeslotIds,
             List prevTimeslotIdsForGroup,
             String duration) {
@@ -90,12 +90,7 @@ public class Schedule {
         Map possibleTimeslotMap = course.getPossibleTimeslotMap();
         List<Integer> possibleTimeslots
                 = (List) possibleTimeslotMap.get(duration);
-
-        // set alternative timeslots
-        List<Integer> possibleAltTimeslots = new ArrayList<>(Arrays.asList());
-        if ("1.0".equals(duration)) {
-            possibleAltTimeslots = (List) possibleTimeslotMap.get("1.5");
-        }
+        List<Integer> possibleAltTimeslots = duration == "1.0" ? (List) possibleTimeslotMap.get("1.5") : new ArrayList<>(Arrays.asList());
 
         // get preferences
         List<Integer> preferredTimeslots
@@ -110,27 +105,28 @@ public class Schedule {
         List<Timeslot> suitableTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
                         timeslot -> possibleTimeslots.contains(timeslot.getId())
-                        && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
-                                && !prevTimeslotIds.contains(timeslot.getId())
-                                && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
+                        && (checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true)
+                        && !prevTimeslotIds.contains(timeslot.getId())
+                        && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
                         Collectors.toList()));
+
         List<Timeslot> suitableAltTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
-                        timeslot
-                        -> possibleAltTimeslots.contains(timeslot.getId())
-                        && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
-                                && !prevTimeslotIds.contains(timeslot.getId())
-                                && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
+                        timeslot -> possibleAltTimeslots.contains(timeslot.getId())
+                        && (checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true)
+                        && !prevTimeslotIds.contains(timeslot.getId())
+                        && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
                         Collectors.toList()));
 
         if (suitableTimeslotObjects.isEmpty()) {
-            if (!suitableAltTimeslotObjects.isEmpty()) {
-                suitableTimeslotObjects = suitableAltTimeslotObjects;
-            } else {
+            if (suitableAltTimeslotObjects.isEmpty()) {
                 suitableTimeslotObjects = data.getTimeslots().stream()
                         .collect(Collectors.filtering(
-                                timeslot -> possibleTimeslots.contains(timeslot.getId()),
+                                timeslot -> possibleTimeslots.contains(timeslot.getId())
+                                && !prevTimeslotIds.contains(timeslot.getId()),
                                 Collectors.toList()));
+            } else {
+                suitableTimeslotObjects = suitableAltTimeslotObjects;
             }
         }
 
@@ -147,8 +143,9 @@ public class Schedule {
 
         // encourage randomizing to avoid identical schedules
         // generation may stop without notice when schedules are identical with each other
-        boolean isRandomizingEncouraged = Math.random() * 100 <= 70;
-        if (suitableTimeslotObjects.contains(nextTimeslot) && !isRandomizingEncouraged) {
+        boolean isScheduleSmall = data.getNumberOfCourses() <= Scheduler.NUMB_OF_MEDIUM_SIZED_SCHEDULE_COURSES;
+        boolean isRandomizingEncouraged = Math.random() * 100 <= (isScheduleSmall ? 70 : 20);
+        if (possibleTimeslots.contains(nextTimeslot.getId()) && !isRandomizingEncouraged) {
             randomTimeslot = nextTimeslot;
         }
 
@@ -157,6 +154,10 @@ public class Schedule {
 
     public ArrayList<Class> getClasses() {
         return classes;
+    }
+
+    public void setClasses(ArrayList classes) {
+        this.classes = classes;
     }
 
     @Override

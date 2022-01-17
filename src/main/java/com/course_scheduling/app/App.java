@@ -18,32 +18,57 @@ public class App {
 
     private final FileManager fileManager = new FileManager();
 
-    public static void main(String[] args) {
-        // run GA algorithm
+    private void runGaExperiment() {
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Genetic Algorithm");
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
 
-        Scheduler.TARGET_TIMER_MINUTES = 1;
-
         Scheduler gaScheduler = new Scheduler();
-        gaScheduler.runAlgorithm(true, 1);
-        gaScheduler.runAlgorithm(true, 2);
-        gaScheduler.runAlgorithm(true, 3);
-        gaScheduler.runAlgorithm(false, 0);
+        Scheduler.TARGET_TIMER_MINUTES = 3;
 
+        // first experiment: run algorithm on all datasets
+        // algorithm will automatically stopped after 15 mins
+//        gaScheduler.runAlgorithm(true, 1);
+        gaScheduler.runAlgorithm(true, 2);
+//        gaScheduler.runAlgorithm(true, 3);
+//        gaScheduler.runAlgorithm(false, 0);
+
+        // 2nd experiment: set threshold on certain penalty value
+        // algorithm will automatically stopped when penalty value has been reached
+//        Scheduler.TARGET_TIMER_MINUTES = 15;
+//        gaScheduler.runAlgorithm(true, 1);
+//
+//        Scheduler.TARGET_TIMER_MINUTES = 15;
+//        gaScheduler.runAlgorithm(true, 2);
+//
+//        Scheduler.TARGET_TIMER_MINUTES = 15;
+//        gaScheduler.runAlgorithm(true, 3);
+//
+//        Scheduler.TARGET_TIMER_MINUTES = 15;
+//        gaScheduler.runAlgorithm(false, 0);
         System.out.println("Schedule has been successfully generated with GA algorithm.");
         System.out.println("Find newly generated schedule file in results/ga/ folder");
+    }
+
+    public static void main(String[] args) {
+        App app = new App();
+        // run GA algorithm
+        app.runGaExperiment();
 
         //run PSO algorithm
+//        app.runPsoExperiment();
+    }
+
+    private void runPsoExperiment() {
+        App app = new App();
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Particle Swarm Optimization");
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
-        App app = new App();
+
         app.runPsoAlgorithm("small", "limitFV", 700, 30);
         app.runPsoAlgorithm("medium", "limitFV", 700, 30);
         app.runPsoAlgorithm("large", "limitFV", 700, 30);

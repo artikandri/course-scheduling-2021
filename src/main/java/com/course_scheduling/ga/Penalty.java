@@ -72,10 +72,12 @@ public class Penalty {
                 // same timeslot can only be assigned to one group, one instructor,
                 // one room, one course at the time
                 if (x.getTimeslot().getId() == y.getTimeslot().getId()
-                        && x.getGroupId() == y.getGroupId()
                         && x.getId() != y.getId()) {
-                    numbOfConflicts++;
-                    penalty += 9999;
+
+                    if (x.getGroupId() == y.getGroupId()) {
+                        numbOfConflicts++;
+                        penalty += 9999;
+                    }
 
                     if (x.getInstructor().getId() == y.getInstructor().getId()) {
                         numbOfConflicts++;
