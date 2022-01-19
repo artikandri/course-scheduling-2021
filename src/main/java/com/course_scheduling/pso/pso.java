@@ -4,7 +4,7 @@ package com.course_scheduling.pso;
  *
  * @author Teddy Ferdinan
  */
-import com.course_scheduling.assets.DatasetProcessor;
+import com.course_scheduling.assets.DatasetParser;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
@@ -1081,7 +1081,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleRooms(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String room;
         String[] possibleRooms;
         String[] tempHolder = new String[3];
@@ -1096,7 +1096,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleCourses(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1120,7 +1120,7 @@ public class pso {
     }
 
     public static float[] psoGetCoursesWeeklyHours(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1144,7 +1144,7 @@ public class pso {
     }
 
     public static String[] psoGetCourseInstructorPairs(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1168,7 +1168,7 @@ public class pso {
     }
 
     public static String[] psoGetCoursesGroups(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1192,7 +1192,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleTimes(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String timeslot;
         String[] possibleTimes;
         float[] possibleTimesDurations;
@@ -1235,7 +1235,7 @@ public class pso {
     }
 
     public static float[] psoGetPossibleTimesDurations(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String timeslot;
         String[] possibleTimes;
         float[] possibleTimesDurations;
@@ -1278,7 +1278,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleInstructors(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String instructor;
         String[] possibleInstructors, coursesPreferredTimes;
         String[] tempHolder = new String[3];
@@ -1297,7 +1297,7 @@ public class pso {
     }
 
     public static String[] psoGetCoursesPreferredTimes(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String instructor;
         String[] possibleInstructors, coursesPreferredTimes;
         String[] tempHolder = new String[3];

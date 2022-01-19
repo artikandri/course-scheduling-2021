@@ -19,7 +19,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <!-- maven-jar-plugin: This plugin provides the capability to build jars -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.1.0</version>
@@ -44,6 +43,12 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+            <!-- Apache Commons Lang, a package of Java utility classes for the classes that are in java.lang's hierarchy -->
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>4.4</version>
     </dependency>
     <!-- Apache Commons Lang, a package of Java utility classes for the classes that are in java.lang's hierarchy -->
     <dependency>

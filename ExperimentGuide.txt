@@ -11,27 +11,71 @@ How to experiment with the project:
             1 will execute the "courses_small" dataset;
             2 for "courses_medium" dataset;
             and 3 for "courses_large" dataset.
+            When isExperimentMode is set to false, this variable won't be considered.
             
     The second set of parameters is located in Scheduler.java. These parameters are: 
         public static final double TARGET_FITNESS = 1.0;
-            adjust your desired fitness value. System will stop regenerating schedules 
-                when the value is already reached.
+            Adjust your desired fitness value. System will stop regenerating schedules 
+                when the value is already reached. 
+                The value should be decimal and ranges from 0 to 1. 
         public static final int TARGET_PENALTY = 50;
             adjust your desired penalty value. System will stop regenerating schedules 
-                when the value is already reached.
+                when the value is already reached. 
+                The value should be integer and start from 0. 
         public static final int TARGET_TIMER_MINUTES = 15;
             adjust your desired fitness value. System will stop regenerating schedules 
                 when the value is already reached.
+                Value should be integer and starts from 0. 
+        public static int TARGET_GENERATION = 100000;
+            adjust your desired generation value. System will stop regenerating schedules 
+                when the value is already reached.
+                Value should be integer and starts from 0. 
+        public static boolean IS_SCHEDULE_PRINTED_ON_GENERATION = false;
+            When set to true, will print schedule on generation. 
+                This takes more resources since print is a blocking operation, especially with large schedules.
+                By default is set to false. 
+        public static boolean IS_GEN_INFO_PRINTED_ON_GENERATION = true;
+            When set to true, will print generation info on generation. 
+                By default is set to true since generation info is not expensive to generate. 
         public static final int POPULATION_SIZE = 10;
-            adjust the number of populations
+            adjust the number of populations. Value should be integer and starts from 1. 
         public static final double MUTATION_RATE = 0.8;
-            adjust the mutation rate. Our experiments show that higher mutation rate is more effective to produce low penalty
+            adjust the mutation rate. 
+            Our experiments show that higher mutation rate is more effective to produce low penalty.
+            Value should be decimal and ranges from 0 to 1. 
         public static final double CROSSOVER_RATE = 0.2;
-            adjust the crossover rate. Our experiments show that low crossover rate is more effective to produce low penalty
+            adjust the crossover rate. 
+            Our experiments show that low crossover rate is more effective to produce low penalty value.
+            Value should be decimal and ranges from 0 to 1. 
         public static final int TOURNAMENT_SELECTION_SIZE = 3;
-            adjust the number of populations selected to be competed
+            adjust the number of populations selected to be competed against each other.
+            Value should be integer and starts from 1. 
         public static final int NUMB_OF_ELITE_SCHEDULES = 1;
-            adjust the number of elite schedules
+            adjust the number of elite schedules (chosen schedules). 
+            Value should be integer and starts from 1. 
+        public static int NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES = 250;
+            adjust the number of standard large sized schedule classes. 
+            This number will be used by the system to decide whether to encourage 
+            the usage of several computationally-heavy functions. 
+            Usually the number of classes generated from courses_large.csv will not exceed 250,
+            which leads us to decide on this number. 
+            Value should be integer and starts from 1. 
+
+        To set the variables, you may go to App.java and check the runGaExperiment function. 
+        To set the parameters located in Data.java, 
+            you may include the parameters inside the function to run the algorithm.
+        gaScheduler.runAlgorithm(true, 1);
+            > IS_EXPERIMENT_MODE: true
+            > EXPERIMENT_TYPE: 1
+            will run the ga algorithm in experiment mode on courses_small.csv dataset
+
+        To set the parameters located in Scheduler.java,    
+            you may set each parameter directly before calling the method to run the algorithm, 
+            since all of the parameters in this class are in static mode. 
+        Scheduler.TARGET_TIMER_MINUTES = 10;
+            will set the targeted timer (in minutes) as 10 mins. 
+        Scheduler.TARGET_PENALTY = 10;
+            will set the targeted penalty value as 10. 
 
 
 2. PSO algorithm

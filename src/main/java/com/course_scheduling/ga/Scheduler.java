@@ -15,12 +15,16 @@ public class Scheduler {
     public static double CROSSOVER_RATE = 0.3;
     public static int TOURNAMENT_SELECTION_SIZE = 3;
     public static int NUMB_OF_ELITE_SCHEDULES = 1;
+    public static int NUMB_OF_SMALL_SIZED_SCHEDULE_COURSES = 30;
+    public static int NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES = 250;
 
     // adjust these values as needed
     public static double TARGET_FITNESS = 1.0;
     public static int TARGET_PENALTY = 20;
     public static int TARGET_TIMER_MINUTES = 15;
     public static int TARGET_GENERATION = 100000;
+    public static boolean IS_SCHEDULE_PRINTED_ON_GENERATION = false;
+    public static boolean IS_GEN_INFO_PRINTED_ON_GENERATION = true;
 
     private int classNumb = 1;
     private Data data;
@@ -69,8 +73,12 @@ public class Scheduler {
             generationNumber += 1;
             population = geneticAlgorithm.evolve(population).sortByFitness();
 
-            scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
-            generationInfo = scheduler.printGenerationInfo(generationNumber, population);
+            if (Scheduler.IS_SCHEDULE_PRINTED_ON_GENERATION) {
+                scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
+            }
+            if (Scheduler.IS_GEN_INFO_PRINTED_ON_GENERATION) {
+                generationInfo = scheduler.printGenerationInfo(generationNumber, population);
+            }
 
             Schedule scheduleEvolve = population.getSchedules().get(0);
             Penalty penaltyEvolve = new Penalty(scheduleEvolve);
@@ -122,11 +130,12 @@ public class Scheduler {
         System.out.println(schedulesAsTable);
 
         String paramsInfo = printParametersInfo();
-        String scheduleFileName = "Schedules-GA-" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
+        String scheduleFileName = "Schedules-GA__" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
         fileManager.createTextFile(paramsInfo.concat(schedulesAsTable), scheduleFileName, "results/ga/");
 
         String schedulesAsListContent = paramsInfo.concat(generationInfo).concat(schedulesAsList);
-        fileManager.createTextFile(schedulesAsListContent, "List-" + scheduleFileName, "results/ga/");
+        fileManager.createTextFile(schedulesAsListContent, "List__" + scheduleFileName, "results/ga/");
+
     }
 
     private String printParametersInfo() {
@@ -251,7 +260,7 @@ public class Scheduler {
 
     public static void main(String[] args) {
         Scheduler scheduler = new Scheduler();
-        scheduler.runAlgorithm(true, 1);
+        scheduler.runAlgorithm(false, 0);
     }
 
 }
