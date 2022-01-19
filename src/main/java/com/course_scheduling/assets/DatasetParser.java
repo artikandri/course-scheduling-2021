@@ -13,7 +13,7 @@ import java.util.*;
  * @return List<String> records
  *
  */
-public class DatasetProcessor {
+public class DatasetParser {
 
     public static List readFile(String pathToCsv) {
         pathToCsv = pathToCsv == null ? "dataset/processed/courses.csv" : pathToCsv;
