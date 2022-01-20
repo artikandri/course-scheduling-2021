@@ -81,11 +81,11 @@ How to experiment with the project:
 2. PSO algorithm
 All adjustable parameters are accessible in App.java (located in package com.course_scheduling.app, the path directory is src\main\java\com\course_scheduling\app\App.java).
 
-the function to call is app.runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles)
+the function to call is app.runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles, int psoTimeLimit)
 
 example :
-	app.runPsoAlgorithm("small", "limitFV", 100, 30);
-	app.runPsoAlgorithm("medium", "limitIter", 5000, 30);
+	app.runPsoAlgorithm("small", "limitFV", 100, 30, 10);
+	app.runPsoAlgorithm("medium", "limitIter", 5000, 30, 15);
 
 Parameters:
 	1. datasetSize :
@@ -106,6 +106,14 @@ Parameters:
 		"limiIter" ... psoLimit is recommended to be 1000.
 	4. psoParticles:
 		the number of particles to be used. recommended is 30.
+	5. psoTimeLimit
+		the hard time limit for the algorithm to run (in minutes).
+		once the algorithm runs for t minutes, where t >= psoTimeLimit, the algorithm will stop running.
+
+* Important!
+When running App.java, you should run only one algorithm for one experiment at a time.
+
+Running multiple experiments at the same time in Netbeans (even though technically they are executed sequentially) seems to cause a bug where some schedule files are not written into the results directory. We assume that this is due to Netbeans running out of resources.
 
 * Comparing FV Values
 Since FV is calculated by the formula (1/sum_of_penalty), we want to maximize the FV. Greater FV mean better quality of the result.
