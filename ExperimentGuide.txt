@@ -11,37 +11,81 @@ How to experiment with the project:
             1 will execute the "courses_small" dataset;
             2 for "courses_medium" dataset;
             and 3 for "courses_large" dataset.
+            When isExperimentMode is set to false, this variable won't be considered.
             
     The second set of parameters is located in Scheduler.java. These parameters are: 
         public static final double TARGET_FITNESS = 1.0;
-            adjust your desired fitness value. System will stop regenerating schedules 
-                when the value is already reached.
+            Adjust your desired fitness value. System will stop regenerating schedules 
+                when the value is already reached. 
+                The value should be decimal and ranges from 0 to 1. 
         public static final int TARGET_PENALTY = 50;
             adjust your desired penalty value. System will stop regenerating schedules 
-                when the value is already reached.
+                when the value is already reached. 
+                The value should be integer and start from 0. 
         public static final int TARGET_TIMER_MINUTES = 15;
             adjust your desired fitness value. System will stop regenerating schedules 
                 when the value is already reached.
+                Value should be integer and starts from 0. 
+        public static int TARGET_GENERATION = 100000;
+            adjust your desired generation value. System will stop regenerating schedules 
+                when the value is already reached.
+                Value should be integer and starts from 0. 
+        public static boolean IS_SCHEDULE_PRINTED_ON_GENERATION = false;
+            When set to true, will print schedule on generation. 
+                This takes more resources since print is a blocking operation, especially with large schedules.
+                By default is set to false. 
+        public static boolean IS_GEN_INFO_PRINTED_ON_GENERATION = true;
+            When set to true, will print generation info on generation. 
+                By default is set to true since generation info is not expensive to generate. 
         public static final int POPULATION_SIZE = 10;
-            adjust the number of populations
+            adjust the number of populations. Value should be integer and starts from 1. 
         public static final double MUTATION_RATE = 0.8;
-            adjust the mutation rate. Our experiments show that higher mutation rate is more effective to produce low penalty
+            adjust the mutation rate. 
+            Our experiments show that higher mutation rate is more effective to produce low penalty.
+            Value should be decimal and ranges from 0 to 1. 
         public static final double CROSSOVER_RATE = 0.2;
-            adjust the crossover rate. Our experiments show that low crossover rate is more effective to produce low penalty
+            adjust the crossover rate. 
+            Our experiments show that low crossover rate is more effective to produce low penalty value.
+            Value should be decimal and ranges from 0 to 1. 
         public static final int TOURNAMENT_SELECTION_SIZE = 3;
-            adjust the number of populations selected to be competed
+            adjust the number of populations selected to be competed against each other.
+            Value should be integer and starts from 1. 
         public static final int NUMB_OF_ELITE_SCHEDULES = 1;
-            adjust the number of elite schedules
+            adjust the number of elite schedules (chosen schedules). 
+            Value should be integer and starts from 1. 
+        public static int NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES = 250;
+            adjust the number of standard large sized schedule classes. 
+            This number will be used by the system to decide whether to encourage 
+            the usage of several computationally-heavy functions. 
+            Usually the number of classes generated from courses_large.csv will not exceed 250,
+            which leads us to decide on this number. 
+            Value should be integer and starts from 1. 
+
+        To set the variables, you may go to App.java and check the runGaExperiment function. 
+        To set the parameters located in Data.java, 
+            you may include the parameters inside the function to run the algorithm.
+        gaScheduler.runAlgorithm(true, 1);
+            > IS_EXPERIMENT_MODE: true
+            > EXPERIMENT_TYPE: 1
+            will run the ga algorithm in experiment mode on courses_small.csv dataset
+
+        To set the parameters located in Scheduler.java,    
+            you may set each parameter directly before calling the method to run the algorithm, 
+            since all of the parameters in this class are in static mode. 
+        Scheduler.TARGET_TIMER_MINUTES = 10;
+            will set the targeted timer (in minutes) as 10 mins. 
+        Scheduler.TARGET_PENALTY = 10;
+            will set the targeted penalty value as 10. 
 
 
 2. PSO algorithm
 All adjustable parameters are accessible in App.java (located in package com.course_scheduling.app, the path directory is src\main\java\com\course_scheduling\app\App.java).
 
-the function to call is app.runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles)
+the function to call is app.runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles, int psoTimeLimit)
 
 example :
-	app.runPsoAlgorithm("small", "limitFV", 100, 30);
-	app.runPsoAlgorithm("medium", "limitIter", 5000, 30);
+	app.runPsoAlgorithm("small", "limitFV", 100, 10, 10);
+	app.runPsoAlgorithm("medium", "limitIter", 5000, 10, 15);
 
 Parameters:
 	1. datasetSize :
@@ -52,16 +96,25 @@ Parameters:
 		any other value will use courses.csv dataset (50 groups, 650 courses)
 	2. psoMode:
 		possible values are "limitFV" and "limitIter"
-		"limitFV" will stop the iterations when the global best penalty is lower than the specified psoLimit, or when the execution time exceeds 15 minutes.
-		"limitIter" will stop the iterations when the iterations reaches the specified psoLimit, or when the execution time exceeds 15 minutes.
+		"limitFV" will stop the iterations when the global best penalty is lower than the specified psoLimit, or when the execution time exceeds psoTimeLimit.
+		"limitIter" will stop the iterations when the iterations reaches the specified psoLimit, or when the execution time exceeds psoTimeLimit.
 	3. psoLimit:
 		the max penalty score for operation mode "limitFV", or
 		the max iteration for operation mode "limitIter"
 		recommendations:
-		"limitFV" ... for datasetSize="small", psoLimit is recommended to be 725. no recommendations for "medium", "large", and "default".
+		"limitFV" ... for datasetSize="small", psoLimit is recommended to be 650. no recommendations for "medium", "large", and "default".
 		"limiIter" ... psoLimit is recommended to be 1000.
 	4. psoParticles:
-		the number of particles to be used. recommended is 30.
+		the number of particles to be used. recommended is 10.
+	5. psoTimeLimit
+		the hard time limit for the algorithm to run (in minutes).
+		once the algorithm runs for t minutes, where t >= psoTimeLimit, the algorithm will stop running.
+		recommended to be 10 or 15 minutes.
+
+* Important!
+When running App.java, you should run only one algorithm for one experiment at a time.
+
+Running multiple experiments at the same time in Netbeans (even though technically they are executed sequentially) seems to cause a bug where some schedule files are not written into the results directory. We assume that this is due to Netbeans running out of resources.
 
 * Comparing FV Values
 Since FV is calculated by the formula (1/sum_of_penalty), we want to maximize the FV. Greater FV mean better quality of the result.

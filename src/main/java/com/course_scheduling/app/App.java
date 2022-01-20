@@ -18,42 +18,80 @@ public class App {
 
     private final FileManager fileManager = new FileManager();
 
-    public static void main(String[] args) {
-        // run GA algorithm
+    private void runGaExperiment() {
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Genetic Algorithm");
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
 
-        Scheduler.TARGET_TIMER_MINUTES = 1;
-
         Scheduler gaScheduler = new Scheduler();
+
+        // first experiment: comparing FVs after algorithm runs for 10 mins
+        // algorithm will automatically stopped after 10 mins
+        Scheduler.TARGET_TIMER_MINUTES = 10;
         gaScheduler.runAlgorithm(true, 1);
         gaScheduler.runAlgorithm(true, 2);
         gaScheduler.runAlgorithm(true, 3);
         gaScheduler.runAlgorithm(false, 0);
 
+        // 2nd experiment: comparing times to reach a penalty threshold
+        // algorithm will automatically stopped when penalty value has been reached
+        // or when the experiment has run past 15 mins
+        Scheduler.TARGET_TIMER_MINUTES = 15;
+        Scheduler.TARGET_PENALTY = 600;
+        gaScheduler.runAlgorithm(true, 1);
+
+        Scheduler.TARGET_PENALTY = 250000;
+        gaScheduler.runAlgorithm(true, 2);
+
+        Scheduler.TARGET_PENALTY = 600000;
+        gaScheduler.runAlgorithm(true, 3);
+
+        Scheduler.TARGET_PENALTY = 6000000;
+        gaScheduler.runAlgorithm(false, 0);
+
         System.out.println("Schedule has been successfully generated with GA algorithm.");
         System.out.println("Find newly generated schedule file in results/ga/ folder");
+    }
+
+    public static void main(String[] args) {
+        App app = new App();
+        // run GA algorithm
+        app.runGaExperiment();
 
         //run PSO algorithm
+        app.runPsoExperiment();
+    }
+
+    private void runPsoExperiment() {
+        App app = new App();
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
         System.out.println("Particle Swarm Optimization");
         System.out.print("-----------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------------------------------------------------");
-        App app = new App();
-        app.runPsoAlgorithm("small", "limitFV", 700, 30);
-        app.runPsoAlgorithm("medium", "limitFV", 700, 30);
-        app.runPsoAlgorithm("large", "limitFV", 700, 30);
-        app.runPsoAlgorithm("default", "limitFV", 700, 30);
+
+        // first experiment: comparing FVs after algorithm runs for 10 mins
+        // algorithm will automatically stopped after 10 mins
+        app.runPsoAlgorithm("small", "limitFV", 1, 10, 10);
+        app.runPsoAlgorithm("medium", "limitFV", 1, 10, 10);
+        app.runPsoAlgorithm("large", "limitFV", 1, 10, 10);
+        app.runPsoAlgorithm("default", "limitFV", 1, 10, 10);
+
+        // 2nd experiment: comparing times to reach an FV threshold
+        // algorithm will automatically stopped when penalty value has been reached
+        // or when the experiment has run past 15 mins
+        app.runPsoAlgorithm("small", "limitFV", 600, 10, 15);
+        app.runPsoAlgorithm("medium", "limitFV", 250000, 10, 15);
+        app.runPsoAlgorithm("large", "limitFV", 600000, 10, 15);
+        app.runPsoAlgorithm("default", "limitFV", 6000000, 10, 15);
 
         System.out.println("Schedule has been successfully generated with PSO algorithm.");
         System.out.println("Find newly generated schedule file in results/pso/ folder");
     }
 
-    private void runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles) {
+    private void runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles, int psoTimeLimit) {
         String courseDataset = "src/main/resources/dataset/processed/courses.csv";
         switch (datasetSize) {
             case "small":
@@ -89,7 +127,7 @@ public class App {
         //Configuration x = pso.psoInitialize("limitIter", 1000, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
         //Configuration x = pso.psoInitialize("limitFV", 100, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
         Configuration x = pso.psoInitialize(psoMode, psoLimit, psoParticles, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
-        Configuration xNew = pso.psoIterate(x, "detailed", 1);
+        Configuration xNew = pso.psoIterate(x, "detailed", psoTimeLimit);
         logOutput += xNew.show();
         logOutput += pso.psoMapSchedules(xNew);
         //write log output to file

@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.ListUtils;
+
 public class Schedule {
 
     private ArrayList<Class> classes;
@@ -17,22 +19,30 @@ public class Schedule {
 
     public Schedule(Data data) {
         this.data = data;
-        classes = new ArrayList<Class>(data.getNumberOfClasses());
+        classes = new ArrayList<>(data.getNumberOfCourses());
     }
 
     public Schedule initialize() {
         int prevGroupId = -1;
         List<Integer> prevTimeslotIdsForGroup = new ArrayList(Arrays.asList());
         List<Course> courses = data.getCourses();
+        List blacklistedDurationsForGroup = new ArrayList(Arrays.asList());
 
-        Collections.shuffle(courses);
         for (Course course : courses) {
-
             // consider duration
-            List possibleDurations = course.getPossibleDurations();
-            double randomPossibleDurationIndex = possibleDurations.size() * Math.random();
-            List<Double> randomDurations
-                    = (List) possibleDurations.get((int) randomPossibleDurationIndex);
+            List<List> possibleDurations = course.getPossibleDurations();
+            List<Double> randomDurations = new ArrayList(Arrays.asList());
+            for (List posDur : possibleDurations) {
+                if (ListUtils.intersection(posDur, blacklistedDurationsForGroup).isEmpty()) {
+                    randomDurations = posDur;
+                }
+            }
+            if (randomDurations.isEmpty()) {
+                double randomPossibleDurationIndex = possibleDurations.size() * Math.random();
+                randomDurations
+                        = (List) possibleDurations.get((int) randomPossibleDurationIndex);
+            }
+
             List<Integer> prevTimeslotIds = new ArrayList(Arrays.asList());
 
             // define room
@@ -48,8 +58,7 @@ public class Schedule {
                 newClass.setGroup(data.findGroupById(course.getGroupId()));
                 newClass.setNumbOfClasses(randomDurations.size());
 
-                Timeslot randomTimeslot;
-                randomTimeslot = getSuitableTimeslot(course,
+                Timeslot randomTimeslot = getSuitableTimeslot(course,
                         prevTimeslotIds,
                         prevTimeslotIdsForGroup,
                         duration.toString());
@@ -61,12 +70,19 @@ public class Schedule {
                 // set timeslot
                 newClass.setTimeslot(randomTimeslot);
                 prevTimeslotIds.add(randomTimeslot.getId());
-                if (course.getGroupId() == prevGroupId) {
-                    prevTimeslotIdsForGroup.add(randomTimeslot.getId());
-                } else {
+                prevTimeslotIdsForGroup.add(randomTimeslot.getId());
+
+                if (course.getGroupId() != prevGroupId) {
+                    blacklistedDurationsForGroup.clear();
                     prevTimeslotIdsForGroup.clear();
-                    prevTimeslotIdsForGroup.add(randomTimeslot.getId());
                     prevGroupId = course.getGroupId();
+                }
+
+                // check timeslot flag
+                // blacklist duration to prevent conflicts in the future
+                if (randomTimeslot.getIsFlagged()) {
+                    newClass.setIsFlagged(true);
+                    blacklistedDurationsForGroup.add(randomTimeslot.getDuration());
                 }
 
                 // add class
@@ -81,7 +97,8 @@ public class Schedule {
         return this;
     }
 
-    private Timeslot getSuitableTimeslot(Course course,
+    private Timeslot getSuitableTimeslot(
+            Course course,
             List prevTimeslotIds,
             List prevTimeslotIdsForGroup,
             String duration) {
@@ -90,52 +107,46 @@ public class Schedule {
         Map possibleTimeslotMap = course.getPossibleTimeslotMap();
         List<Integer> possibleTimeslots
                 = (List) possibleTimeslotMap.get(duration);
+        List<Integer> possibleAltTimeslots = "1.0".equals(duration) ? (List) possibleTimeslotMap.get("1.5") : new ArrayList<>(Arrays.asList());
 
-        // set alternative timeslots
-        List<Integer> possibleAltTimeslots = new ArrayList<>(Arrays.asList());
-        if ("1.0".equals(duration)) {
-            possibleAltTimeslots = (List) possibleTimeslotMap.get("1.5");
-        }
+        List availableTimeslots = ListUtils.removeAll(possibleTimeslots, prevTimeslotIdsForGroup);
+        List availableAltTimeslots = ListUtils.removeAll(possibleAltTimeslots, prevTimeslotIdsForGroup);
 
         // get preferences
         List<Integer> preferredTimeslots
                 = data.findInstructorById(course.getInstructorId()).getPreferences();
-        List<Integer> suitablePreferredTimeslots = preferredTimeslots.stream()
-                .collect(Collectors.filtering(
-                        timeslotId -> possibleTimeslots.contains(timeslotId),
-                        Collectors.toList()));
+        List<Integer> suitablePreferredTimeslots = ListUtils.intersection(preferredTimeslots, availableTimeslots);
         boolean checkPreference = !suitablePreferredTimeslots.isEmpty();
+        List timeslotRefs = checkPreference ? suitablePreferredTimeslots : availableTimeslots;
 
-        // filter available timeslots
         List<Timeslot> suitableTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
-                        timeslot -> possibleTimeslots.contains(timeslot.getId())
-                        && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
-                                && !prevTimeslotIds.contains(timeslot.getId())
-                                && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
+                        timeslot -> timeslotRefs.contains(timeslot.getId()),
                         Collectors.toList()));
         List<Timeslot> suitableAltTimeslotObjects = data.getTimeslots().stream()
                 .collect(Collectors.filtering(
-                        timeslot
-                        -> possibleAltTimeslots.contains(timeslot.getId())
-                        && checkPreference ? preferredTimeslots.contains(timeslot.getId()) : true
-                                && !prevTimeslotIds.contains(timeslot.getId())
-                                && !prevTimeslotIdsForGroup.contains(timeslot.getId()),
+                        timeslot -> availableAltTimeslots.contains(timeslot.getId()),
                         Collectors.toList()));
 
+        boolean isFlagged = suitableTimeslotObjects.size() <= 1;
         if (suitableTimeslotObjects.isEmpty()) {
-            if (!suitableAltTimeslotObjects.isEmpty()) {
-                suitableTimeslotObjects = suitableAltTimeslotObjects;
-            } else {
+            if (suitableAltTimeslotObjects.isEmpty()) {
                 suitableTimeslotObjects = data.getTimeslots().stream()
                         .collect(Collectors.filtering(
-                                timeslot -> possibleTimeslots.contains(timeslot.getId()),
+                                timeslot -> possibleTimeslots.contains(timeslot.getId())
+                                && !prevTimeslotIds.contains(timeslot.getId()),
                                 Collectors.toList()));
+                isFlagged = true;
+            } else {
+                suitableTimeslotObjects = suitableAltTimeslotObjects;
             }
         }
 
         // create random timeslot
-        int prevTimeslotId = prevTimeslotIds.isEmpty() ? 0 : (int) prevTimeslotIds.get(prevTimeslotIds.size() - 1);
+        List prevTimeslotRefs = prevTimeslotIds.isEmpty() ? prevTimeslotIdsForGroup : prevTimeslotIds;
+        int prevTimeslotId = prevTimeslotRefs.isEmpty()
+                ? (int) (suitableTimeslotObjects.size() * Math.random())
+                : (int) prevTimeslotRefs.get(prevTimeslotRefs.size() - 1);
         int nextTimeslotId = prevTimeslotId <= data.getTimeslots().size() - 2 ? prevTimeslotId + 1 : -1;
 
         // get next timeslot if possible
@@ -147,16 +158,23 @@ public class Schedule {
 
         // encourage randomizing to avoid identical schedules
         // generation may stop without notice when schedules are identical with each other
-        boolean isRandomizingEncouraged = Math.random() * 100 <= 70;
-        if (suitableTimeslotObjects.contains(nextTimeslot) && !isRandomizingEncouraged) {
+        // encourage randomizing for new course to avoid all courses assigned consecutively without any break
+        boolean isNewCourse = prevTimeslotIds.isEmpty();
+        boolean isRandomizingEncouraged = Math.random() * 100 <= (isNewCourse ? 60 : 10);
+        if (availableTimeslots.contains(nextTimeslot.getId()) && !isRandomizingEncouraged) {
             randomTimeslot = nextTimeslot;
         }
+        randomTimeslot.setIsFlagged(isFlagged);
 
         return randomTimeslot;
     }
 
     public ArrayList<Class> getClasses() {
         return classes;
+    }
+
+    public void setClasses(ArrayList classes) {
+        this.classes = classes;
     }
 
     @Override
@@ -200,36 +218,52 @@ public class Schedule {
         return scheduleTables;
     }
 
-    public String getScheduleAsList() {
-        // rewrote this function to produce schedules
-        // in similar style with the pso algorithm
+    public String getScheduleAsList(List... schClasses) {
+
+        List<Class> classesToPrint = schClasses.length > 0 ? schClasses[0] : classes;
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
-        classes.sort(Comparator.comparing(Class::getGroupId).thenComparing(Class::getTimeslotId));
-        Map<String, List<Class>> classInGroups = classes.stream()
+        classesToPrint.sort(Comparator.comparing(Class::getGroupId).thenComparing(Class::getTimeslotId));
+        Map<String, List<Class>> classInGroups = classesToPrint.stream()
                 .collect(Collectors.groupingBy(p -> String.valueOf(p.getGroupId())));
 
         for (Map.Entry<String, List<Class>> classInGroup : classInGroups.entrySet()) {
             printWriter.println("--Group " + classInGroup.getKey() + ":");
-
             List<Integer> classTimeslotIds = classInGroup.getValue()
                     .stream()
                     .map(Class::getTimeslotId)
                     .collect(Collectors.toList());
 
             for (Timeslot timeslot : data.getTimeslots()) {
+                // prints conflicted timeslots multiple times
                 if (classTimeslotIds.contains(timeslot.getId())) {
-                    int classIndex = classTimeslotIds.indexOf(timeslot.getId());
-                    Class gClass = classInGroup.getValue().get(classIndex);
-                    String classSchedule = gClass.getTimeslot().getTime()
-                            + " = "
-                            + gClass.getCourse().getName()
-                            + " ("
-                            + gClass.getRoom().getName()
-                            + ") ";
-                    printWriter.println(classSchedule);
+                    List<Integer> conflictedTimeslotIds = classTimeslotIds.stream()
+                            .collect(Collectors.filtering(
+                                    timeslotId -> timeslot.getId() == timeslotId,
+                                    Collectors.toList()));
+
+                    int confTimeslotIndex = 0;
+                    for (Integer confTimeslotId : conflictedTimeslotIds) {
+                        int classIndex = classTimeslotIds.indexOf(confTimeslotId);
+                        if (conflictedTimeslotIds.size() > 1) {
+                            classIndex += confTimeslotIndex;
+                        }
+                        Class gClass = classInGroup.getValue().get(classIndex);
+                        String classSchedule = gClass.getTimeslot().getTime()
+                                + " = "
+                                + gClass.getCourse().getName()
+                                + " ("
+                                + gClass.getRoom().getName()
+                                + ") "
+                                + " ("
+                                + gClass.getInstructor().getName()
+                                + ") ";
+                        printWriter.println(classSchedule);
+                        confTimeslotIndex += 1;
+                    }
+
                 } else {
                     String classSchedule = timeslot.getTime()
                             + " = (-)";

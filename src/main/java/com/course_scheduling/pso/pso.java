@@ -4,7 +4,7 @@ package com.course_scheduling.pso;
  *
  * @author Teddy Ferdinan
  */
-import com.course_scheduling.assets.DatasetProcessor;
+import com.course_scheduling.assets.DatasetParser;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
@@ -22,9 +22,9 @@ public class pso {
         int currentIteration;
         String psoMode;
         int maxIteration = 1;
-        int targetFV = 1;
+        int targetPenalty = 1;
         int globalBestPosition;
-        double globalBestFV;
+        double globalBestPenalty;
         double[][][] positions;
         double[] velocities;
         double[] fitnessValues;
@@ -45,18 +45,20 @@ public class pso {
         int timeslotsWed = 0;
         int timeslotsThu = 0;
         int timeslotsFri = 0;
+        
+        long timeElapsedMinutes = 0;
 
-        Configuration(String psoMode, int maxLimitMode, int countParticles, int currentIteration, int globalBestPosition, double globalBestFV, double[][][] positions, double[] velocities, String[] possibleCourses, String[] possibleTimes, float[] possibleTimesDurations, String[] coursesGroups, float[] coursesWeeklyHours, String[] coursesPreferredTimes, String[] courseInstructorPairs, String[][] allCourses, String[] possibleRooms) {
+        Configuration(String psoMode, int maxLimitMode, int countParticles, int currentIteration, int globalBestPosition, double globalBestPenalty, double[][][] positions, double[] velocities, String[] possibleCourses, String[] possibleTimes, float[] possibleTimesDurations, String[] coursesGroups, float[] coursesWeeklyHours, String[] coursesPreferredTimes, String[] courseInstructorPairs, String[][] allCourses, String[] possibleRooms) {
             this.countParticles = countParticles;
             this.currentIteration = currentIteration;
             this.psoMode = psoMode;
             if (psoMode == "limitFV") {
-                this.targetFV = maxLimitMode;
+                this.targetPenalty = maxLimitMode;
             } else {
                 this.maxIteration = maxLimitMode;
             }
             this.globalBestPosition = globalBestPosition;
-            this.globalBestFV = globalBestFV;
+            this.globalBestPenalty = globalBestPenalty;
             this.positions = positions;
             this.velocities = velocities;
             this.fitnessValues = new double[countParticles];
@@ -86,6 +88,8 @@ public class pso {
                     this.timeslotsFri++;//11, e.g. 38 - 48
                 }
             }
+            
+            this.timeElapsedMinutes = 0;
         }
 
         public String show() {
@@ -94,10 +98,11 @@ public class pso {
             output = output + "Number of Particles       : " + countParticles + "\n";
             output = output + "PSO Running Mode          : " + psoMode + "\n";
             output = output + "Maximum Iteration         : " + maxIteration + "\n";
-            output = output + "Target FV                 : " + targetFV + "\n";
+            output = output + "Target FV                 : " + targetPenalty + "\n";
             output = output + "Global Best Position      : " + globalBestPosition + "\n";
             output = output + "Global Best Penalty Score : " + penalties[globalBestPosition] + "\n";
             output = output + "Global Best Fitness Value : " + fitnessValues[globalBestPosition] + "\n";
+            output = output + "Time Elapsed (in minutes) : " + timeElapsedMinutes + "\n";
             for (int i = 0; i < positions.length; i++) {
                 output = output + "Particle " + i + ": ";
                 for (int j = 0; j < positions[i].length; j++) {
@@ -105,6 +110,20 @@ public class pso {
                 }
                 output = output + "\nPenalty: " + penalties[i] + "| FV: " + fitnessValues[i] + "\n";
             }
+            return output;
+        }
+
+        public String showHeaderInformation() {
+            String output = "";
+            output = output + "--------CONFIGURATION---------\n";
+            output = output + "Number of Particles       : " + countParticles + "\n";
+            output = output + "PSO Running Mode          : " + psoMode + "\n";
+            output = output + "Maximum Iteration         : " + maxIteration + "\n";
+            output = output + "Target FV                 : " + targetPenalty + "\n";
+            output = output + "Global Best Position      : " + globalBestPosition + "\n";
+            output = output + "Global Best Penalty Score : " + penalties[globalBestPosition] + "\n";
+            output = output + "Global Best Fitness Value : " + fitnessValues[globalBestPosition] + "\n";
+            output = output + "Time Elapsed (in minutes) : " + timeElapsedMinutes + "\n";
             return output;
         }
     }
@@ -129,7 +148,7 @@ public class pso {
     public static Configuration psoInitialize(String psoMode, int maxLimitMode, int countParticles, String[] possibleRooms, String[] possibleCourses, String[] possibleTimes, float[] possibleTimesDurations, String[] coursesGroups, float[] coursesWeeklyHours, String[] coursesPreferredTimes, String[] courseInstructorPairs) {
         int currentIteration = 0;
         int globalBestPosition = 0;
-        double globalBestFV = 0;
+        double globalBestPenalty = 0;
         Random r = new Random();
 
         int particleDimensionLength = possibleTimes.length * (int) Math.floor(possibleCourses.length / 13);//49 * 50 = 2450
@@ -487,7 +506,7 @@ public class pso {
             velocities[i] = r.nextDouble();
         }
 
-        return new Configuration(psoMode, maxLimitMode, countParticles, currentIteration, globalBestPosition, globalBestFV, positions, velocities, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs, allCourses, possibleRooms);
+        return new Configuration(psoMode, maxLimitMode, countParticles, currentIteration, globalBestPosition, globalBestPenalty, positions, velocities, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs, allCourses, possibleRooms);
     }
 
     private static Configuration psoFindGlobalBest(Configuration x) {
@@ -723,7 +742,7 @@ public class pso {
                 globalBestIndex = i;
             }
         }
-        x.globalBestFV = globalBestPenalty;
+        x.globalBestPenalty = globalBestPenalty;
         x.globalBestPosition = globalBestIndex;
 
         return x;
@@ -1008,7 +1027,7 @@ public class pso {
         y = psoFindGlobalBest(y);
         if ("limitFV".equals(y.psoMode)) {
             //iterate until global best FV is equal to or lower than target FV
-            while (y.globalBestFV > y.targetFV && isTimerReached == false) {
+            while (y.globalBestPenalty > y.targetPenalty && isTimerReached == false) {
                 //find global best
                 y = psoFindGlobalBest(y);
                 //particle movement
@@ -1017,12 +1036,13 @@ public class pso {
                 //print details if necessary
                 if (executionMode == "detailed") {
                     System.out.printf("--Iteration %d: \n", y.currentIteration);
-                    System.out.printf("%s", y.show());
+                    System.out.printf("%s\n", y.showHeaderInformation());
                     System.out.printf("\n");
                 }
                 //timer
                 end = Instant.now();
                 timeElapsed = Duration.between(start, end);
+                y.timeElapsedMinutes = timeElapsed.toMinutes();
                 if (timeElapsed.toMinutes() >= timeLimit) {
                     isTimerReached = true;
                 }
@@ -1038,12 +1058,13 @@ public class pso {
                 //print details if necessary
                 if (executionMode == "detailed") {
                     System.out.printf("--Iteration %d: \n", y.currentIteration);
-                    System.out.printf("%s", y.show());
+                    System.out.printf("%s\n", y.showHeaderInformation());
                     System.out.printf("\n");
                 }
                 //timer
                 end = Instant.now();
                 timeElapsed = Duration.between(start, end);
+                y.timeElapsedMinutes = timeElapsed.toMinutes();
                 if (timeElapsed.toMinutes() >= timeLimit) {
                     isTimerReached = true;
                 }
@@ -1074,14 +1095,13 @@ public class pso {
                 assignedRoomStr = x.possibleRooms[assignedRoom];
             }
             output += assignedTimeStr + " = " + assignedCourseStr + "(" + assignedRoomStr + ")\n";
-            System.out.println(output);
             assignedTime++;
         }
         return output;
     }
 
     public static String[] psoGetPossibleRooms(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String room;
         String[] possibleRooms;
         String[] tempHolder = new String[3];
@@ -1096,7 +1116,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleCourses(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1120,7 +1140,7 @@ public class pso {
     }
 
     public static float[] psoGetCoursesWeeklyHours(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1144,7 +1164,7 @@ public class pso {
     }
 
     public static String[] psoGetCourseInstructorPairs(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1168,7 +1188,7 @@ public class pso {
     }
 
     public static String[] psoGetCoursesGroups(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String course;
         float[] coursesWeeklyHours;
         String[] possibleCourses, coursesGroups, courseInstructorPairs;
@@ -1192,7 +1212,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleTimes(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String timeslot;
         String[] possibleTimes;
         float[] possibleTimesDurations;
@@ -1235,7 +1255,7 @@ public class pso {
     }
 
     public static float[] psoGetPossibleTimesDurations(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String timeslot;
         String[] possibleTimes;
         float[] possibleTimesDurations;
@@ -1278,7 +1298,7 @@ public class pso {
     }
 
     public static String[] psoGetPossibleInstructors(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String instructor;
         String[] possibleInstructors, coursesPreferredTimes;
         String[] tempHolder = new String[3];
@@ -1297,7 +1317,7 @@ public class pso {
     }
 
     public static String[] psoGetCoursesPreferredTimes(String pathToFile) {
-        DatasetProcessor reader = new DatasetProcessor();
+        DatasetParser reader = new DatasetParser();
         String instructor;
         String[] possibleInstructors, coursesPreferredTimes;
         String[] tempHolder = new String[3];
