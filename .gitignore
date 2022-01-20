@@ -52,7 +52,7 @@ hs_err_pid*
 
 #results
 results/ga/Schedules-*.txt
-results/ga/List*.txt
+results/ga/List__*.txt
 results/ga/Conflict-List*.txt
 results/pso/Schedules-*.txt
 
