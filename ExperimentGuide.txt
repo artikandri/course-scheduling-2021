@@ -84,8 +84,8 @@ All adjustable parameters are accessible in App.java (located in package com.cou
 the function to call is app.runPsoAlgorithm(String datasetSize, String psoMode, int psoLimit, int psoParticles, int psoTimeLimit)
 
 example :
-	app.runPsoAlgorithm("small", "limitFV", 100, 30, 10);
-	app.runPsoAlgorithm("medium", "limitIter", 5000, 30, 15);
+	app.runPsoAlgorithm("small", "limitFV", 100, 10, 10);
+	app.runPsoAlgorithm("medium", "limitIter", 5000, 10, 15);
 
 Parameters:
 	1. datasetSize :
@@ -96,19 +96,20 @@ Parameters:
 		any other value will use courses.csv dataset (50 groups, 650 courses)
 	2. psoMode:
 		possible values are "limitFV" and "limitIter"
-		"limitFV" will stop the iterations when the global best penalty is lower than the specified psoLimit, or when the execution time exceeds 15 minutes.
-		"limitIter" will stop the iterations when the iterations reaches the specified psoLimit, or when the execution time exceeds 15 minutes.
+		"limitFV" will stop the iterations when the global best penalty is lower than the specified psoLimit, or when the execution time exceeds psoTimeLimit.
+		"limitIter" will stop the iterations when the iterations reaches the specified psoLimit, or when the execution time exceeds psoTimeLimit.
 	3. psoLimit:
 		the max penalty score for operation mode "limitFV", or
 		the max iteration for operation mode "limitIter"
 		recommendations:
-		"limitFV" ... for datasetSize="small", psoLimit is recommended to be 725. no recommendations for "medium", "large", and "default".
+		"limitFV" ... for datasetSize="small", psoLimit is recommended to be 650. no recommendations for "medium", "large", and "default".
 		"limiIter" ... psoLimit is recommended to be 1000.
 	4. psoParticles:
-		the number of particles to be used. recommended is 30.
+		the number of particles to be used. recommended is 10.
 	5. psoTimeLimit
 		the hard time limit for the algorithm to run (in minutes).
 		once the algorithm runs for t minutes, where t >= psoTimeLimit, the algorithm will stop running.
+		recommended to be 10 or 15 minutes.
 
 * Important!
 When running App.java, you should run only one algorithm for one experiment at a time.
