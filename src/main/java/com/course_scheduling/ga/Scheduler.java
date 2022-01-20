@@ -61,8 +61,8 @@ public class Scheduler {
 
         boolean isFitnessReached = penalty.getFitness() == TARGET_FITNESS;
         boolean isPenaltyReached = penalty.getPenalty() <= TARGET_PENALTY;
-        boolean isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
-        boolean isGenerationReached = generationNumber == TARGET_GENERATION;
+        boolean isTimerReached = passedTimeInMinutes >= TARGET_TIMER_MINUTES;
+        boolean isGenerationReached = generationNumber >= TARGET_GENERATION;
 
         String generationInfo = scheduler.printGenerationInfo(generationNumber, population);
 
@@ -85,8 +85,8 @@ public class Scheduler {
 
             isFitnessReached = penaltyEvolve.getFitness() == TARGET_FITNESS;
             isPenaltyReached = penaltyEvolve.getPenalty() <= TARGET_PENALTY;
-            isTimerReached = passedTimeInMinutes == TARGET_TIMER_MINUTES;
-            isGenerationReached = generationNumber == TARGET_GENERATION;
+            isTimerReached = passedTimeInMinutes >= TARGET_TIMER_MINUTES;
+            isGenerationReached = generationNumber >= TARGET_GENERATION;
 
             passedTimeInMs = watch.time();
             passedTimeInMinutes = watch.time(TimeUnit.MINUTES);
