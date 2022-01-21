@@ -7,6 +7,9 @@ import com.course_scheduling.pso.pso.Configuration;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Constructor.
@@ -17,6 +20,18 @@ import java.time.LocalDateTime;
 public class App {
 
     private final FileManager fileManager = new FileManager();
+    
+    private void restAndWrite() {
+        //this function is used to let the app "sleep" for 10 seconds,
+        //during which it is able to finish writing the output txt file properly.
+        //it is necessary in order to avoid a bug, in which the file is not
+        //yet written and the app already starts running the next experiment
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void runGaExperiment() {
         System.out.print("-----------------------------------------------------------------------------------");
@@ -30,26 +45,39 @@ public class App {
         // first experiment: comparing FVs after algorithm runs for 10 mins
         // algorithm will automatically stopped after 10 mins
         Scheduler.TARGET_TIMER_MINUTES = 10;
+        
         gaScheduler.runAlgorithm(true, 1);
+        restAndWrite();
+        
         gaScheduler.runAlgorithm(true, 2);
+        restAndWrite();
+        
         gaScheduler.runAlgorithm(true, 3);
+        restAndWrite();
+        
         gaScheduler.runAlgorithm(false, 0);
+        restAndWrite();
 
         // 2nd experiment: comparing times to reach a penalty threshold
         // algorithm will automatically stopped when penalty value has been reached
         // or when the experiment has run past 15 mins
         Scheduler.TARGET_TIMER_MINUTES = 15;
+        
         Scheduler.TARGET_PENALTY = 600;
         gaScheduler.runAlgorithm(true, 1);
+        restAndWrite();
 
         Scheduler.TARGET_PENALTY = 250000;
         gaScheduler.runAlgorithm(true, 2);
+        restAndWrite();
 
         Scheduler.TARGET_PENALTY = 600000;
         gaScheduler.runAlgorithm(true, 3);
+        restAndWrite();
 
         Scheduler.TARGET_PENALTY = 6000000;
         gaScheduler.runAlgorithm(false, 0);
+        restAndWrite();
 
         System.out.println("Schedule has been successfully generated with GA algorithm.");
         System.out.println("Find newly generated schedule file in results/ga/ folder");
@@ -75,17 +103,31 @@ public class App {
         // first experiment: comparing FVs after algorithm runs for 10 mins
         // algorithm will automatically stopped after 10 mins
         app.runPsoAlgorithm("small", "limitFV", 1, 10, 10);
+        restAndWrite();
+        
         app.runPsoAlgorithm("medium", "limitFV", 1, 10, 10);
+        restAndWrite();
+        
         app.runPsoAlgorithm("large", "limitFV", 1, 10, 10);
+        restAndWrite();
+        
         app.runPsoAlgorithm("default", "limitFV", 1, 10, 10);
+        restAndWrite();
 
         // 2nd experiment: comparing times to reach an FV threshold
         // algorithm will automatically stopped when penalty value has been reached
         // or when the experiment has run past 15 mins
         app.runPsoAlgorithm("small", "limitFV", 600, 10, 15);
+        restAndWrite();
+        
         app.runPsoAlgorithm("medium", "limitFV", 250000, 10, 15);
+        restAndWrite();
+        
         app.runPsoAlgorithm("large", "limitFV", 600000, 10, 15);
+        restAndWrite();
+        
         app.runPsoAlgorithm("default", "limitFV", 6000000, 10, 15);
+        restAndWrite();
 
         System.out.println("Schedule has been successfully generated with PSO algorithm.");
         System.out.println("Find newly generated schedule file in results/pso/ folder");
@@ -121,11 +163,8 @@ public class App {
         coursesPreferredTimes = pso.psoGetCoursesPreferredTimes("src/main/resources/dataset/processed/instructors.csv");
         String logOutput = "";
 
-        //initialize PSO; automatic stop after 15 minutes
         //"limitFV", 700, 30 => operation mode limit FV, 700 max penalty score, 30 particles
         //"limitIter", 1000, 30 => operation mode limit Iter, 1000 max iteration, 30 particles
-        //Configuration x = pso.psoInitialize("limitIter", 1000, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
-        //Configuration x = pso.psoInitialize("limitFV", 100, 30, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
         Configuration x = pso.psoInitialize(psoMode, psoLimit, psoParticles, possibleRooms, possibleCourses, possibleTimes, possibleTimesDurations, coursesGroups, coursesWeeklyHours, coursesPreferredTimes, courseInstructorPairs);
         Configuration xNew = pso.psoIterate(x, "detailed", psoTimeLimit);
         logOutput += xNew.show();
