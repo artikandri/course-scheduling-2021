@@ -13,8 +13,6 @@ sudo apt install python3-venv
 # Pandas: Python package, providing fast, flexible, and expressive data structures
 pip install pandas
 
-# openpyxl: openpyxl is a Python library to read/write Excel 2010 xlsx/xlsm/xltx/xltm files.
-pip install openpyxl
 
 # ================================= GETTING STARTED ====================================
 # cd /path/to/your/directory

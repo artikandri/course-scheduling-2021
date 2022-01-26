@@ -4,11 +4,11 @@ import pandas as pd
 import csv
 
 # get project root, relative to this folder: if the folder changes, the path MUST be changed as well.
-PROJECT_ROOT = Path().resolve().parent.parent.parent
+PROJECT_ROOT = Path().resolve().parent.parent
 
 # initialize the directory
 os.chdir(PROJECT_ROOT)
-coursesFilePath = Path('dataset/processed', 'courses.csv')
+coursesFilePath = Path('main/resources/dataset/processed', 'courses.csv')
 
 # read courses.csv file
 courseFile = pd.read_csv(coursesFilePath, sep=";")
@@ -19,7 +19,7 @@ def createNewDatasetOnGivenLength(dName, dLength):
     datasetLength = 13 if dLength is None else dLength
     datasetName = "small" if dName is None else dName
 
-    targetFilePath = Path("dataset/processed", "courses_"+datasetName+".csv")
+    targetFilePath = Path("main/resources/dataset/processed", "courses_"+datasetName+".csv")
     targetFile = open(targetFilePath, 'w', newline="")
     writer = csv.writer(targetFile, dialect="excel", delimiter=";")
     writer.writerow(["courses", "weekly_hours", "instructors", "group"])

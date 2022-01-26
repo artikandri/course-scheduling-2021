@@ -6,12 +6,12 @@ import string
 import csv
 
 # get project root, relative to this folder: if the folder changes, the path MUST be changed as well. 
-PROJECT_ROOT = Path().resolve().parent.parent.parent
+PROJECT_ROOT = Path().resolve().parent.parent
 
 #initialize the directory
 os.chdir(PROJECT_ROOT)
-xlsx_file = Path('dataset/raw','dataset_pu-fal07-llr.xlsx')
-timeslotFilePath = Path('dataset/processed','timeslots.csv')
+xlsx_file = Path('main/resources/dataset/raw','dataset_pu-fal07-llr.xlsx')
+timeslotFilePath = Path('main/resources/dataset/processed','timeslots.csv')
 
 # read unitime dataset file
 unitimeInstructors = pd.read_excel(xlsx_file, sheet_name='Sheet1', usecols="AJ")
@@ -22,7 +22,7 @@ timeslotFile = pd.read_csv(timeslotFilePath, usecols=['timeslots'], sep=";")
 timeslots = timeslotFile["timeslots"].to_list()
 
 #Generate new csv file
-targetFilePath = Path("dataset/processed", "instructors.csv")
+targetFilePath = Path("main/resources/dataset/processed", "instructors.csv")
 targetFile = open(targetFilePath, 'w', newline="")
 
 # generate random initials
