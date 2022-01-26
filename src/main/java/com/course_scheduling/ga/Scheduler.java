@@ -13,7 +13,7 @@ public class Scheduler {
     public static int POPULATION_SIZE = 10;
     public static double MUTATION_RATE = 0.7;
     public static double CROSSOVER_RATE = 0.3;
-    public static int TOURNAMENT_SELECTION_SIZE = 3;
+    public static int NUMB_OF_POPULATION_COMPETITOR = 3;
     public static int NUMB_OF_ELITE_SCHEDULES = 1;
     public static int NUMB_OF_SMALL_SIZED_SCHEDULE_COURSES = 30;
     public static int NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES = 250;
@@ -49,6 +49,7 @@ public class Scheduler {
 
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
+
         GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(scheduler.data);
         Population population = new Population(Scheduler.POPULATION_SIZE, scheduler.data).sortByFitness();
 
@@ -80,11 +81,11 @@ public class Scheduler {
                 generationInfo = scheduler.printGenerationInfo(generationNumber, population);
             }
 
-            Schedule scheduleEvolve = population.getSchedules().get(0);
-            Penalty penaltyEvolve = new Penalty(scheduleEvolve);
+            Schedule bestSchedule = population.getSchedules().get(0);
+            Penalty bestSchedulePenalty = new Penalty(bestSchedule);
 
-            isFitnessReached = penaltyEvolve.getFitness() == TARGET_FITNESS;
-            isPenaltyReached = penaltyEvolve.getPenalty() <= TARGET_PENALTY;
+            isFitnessReached = bestSchedulePenalty.getFitness() == TARGET_FITNESS;
+            isPenaltyReached = bestSchedulePenalty.getPenalty() <= TARGET_PENALTY;
             isTimerReached = passedTimeInMinutes >= TARGET_TIMER_MINUTES;
             isGenerationReached = generationNumber >= TARGET_GENERATION;
 
@@ -150,8 +151,8 @@ public class Scheduler {
                 + MUTATION_RATE
                 + "       |         Crossover rate # "
                 + CROSSOVER_RATE);
-        printWriter.println("Tournament selection size # "
-                + TOURNAMENT_SELECTION_SIZE
+        printWriter.println("Number of population competitor # "
+                + NUMB_OF_POPULATION_COMPETITOR
                 + "  |                  Number of elite schedules # "
                 + NUMB_OF_ELITE_SCHEDULES
                 + " ");
@@ -196,7 +197,7 @@ public class Scheduler {
         printWriter.println("\n                       ");
         printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("------------------------------------------------------------------------------------");
-        printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Meeting Time (Id) | Group (Id)");
+        printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Timeslot (Id) | Group (Id)");
         printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("------------------------------------------------------------------------------------");
 
@@ -204,7 +205,7 @@ public class Scheduler {
             int coursesIndex = data.getCourses().indexOf(x.getCourse());
             int roomsIndex = data.getRooms().indexOf(x.getRoom());
             int instructorsIndex = data.getInstructors().indexOf(x.getInstructor());
-            int meetingTimeIndex = data.getTimeslots().indexOf(x.getTimeslot());
+            int timeslotIndex = data.getTimeslots().indexOf(x.getTimeslot());
             int groupIndex = data.getCourses().get(coursesIndex).getGroupId();
 
             printWriter.println("                       ");
@@ -215,8 +216,8 @@ public class Scheduler {
             printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
-            printWriter.print(data.getTimeslots().get(meetingTimeIndex).getTime()
-                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + ")  | ");
+            printWriter.print(data.getTimeslots().get(timeslotIndex).getTime()
+                    + " (" + data.getTimeslots().get(timeslotIndex).getId() + ")  | ");
             printWriter.print(data.getGroups().get(groupIndex).getName()
                     + " (" + data.getGroups().get(groupIndex).getId() + ")");
 
@@ -249,8 +250,8 @@ public class Scheduler {
         data.getRooms().forEach(x -> printWriter.println("room #: " + x.getName()));
         printWriter.println("\nAvailable Instructors");
         data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
-        printWriter.println("\nAvailable Meeting Times");
-        data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Meeting Time: " + x.getTime()));
+        printWriter.println("\nAvailable Timeslots");
+        data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Timeslot: " + x.getTime()));
         printWriter.print("------------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 

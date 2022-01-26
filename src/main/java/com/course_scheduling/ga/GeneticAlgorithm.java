@@ -13,118 +13,116 @@ public class GeneticAlgorithm {
         this.data = data;
     }
 
-    // mutate population which is already crossovered
     public Population evolve(Population population) {
         return mutatePopulation(crossoverPopulation(population));
     }
 
-    // compare two population, get the best one (has the best fitness), cross them over, and return the new pop
     Population crossoverPopulation(Population population) {
-        Population crossoverPopulation = new Population(population.getSchedules().size(), data);
-        IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> crossoverPopulation.getSchedules().set(x,
+        Population populationToCrossoverWith = new Population(population.getSchedules().size(), data);
+
+        IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> populationToCrossoverWith.getSchedules().set(x,
                 population.getSchedules().get(x)));
         IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
             if (Scheduler.CROSSOVER_RATE > Math.random()) {
-                Schedule schedule1 = selectTournamentPopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(0);
-                Schedule schedule2 = selectTournamentPopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(1);
-                crossoverPopulation.getSchedules().set(x, crossoverSchedule(schedule1, schedule2));
+                Schedule bestSchedule = competePopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(0);
+                Schedule secondBestSchedule = competePopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(1);
+                populationToCrossoverWith.getSchedules().set(x, crossoverSchedule(bestSchedule, secondBestSchedule));
             } else {
-                crossoverPopulation.getSchedules().set(x, population.getSchedules().get(x));
+                populationToCrossoverWith.getSchedules().set(x, population.getSchedules().get(x));
             }
         });
-        return crossoverPopulation;
+        return populationToCrossoverWith;
     }
 
     Schedule crossoverSchedule(Schedule schedule1, Schedule schedule2) {
-        Schedule crossoverSchedule = new Schedule(data).initialize();
+        Schedule scheduleToCrossoverWith = new Schedule(data).initialize();
 
-        for (int i = 0; i < crossoverSchedule.getClasses().size(); i++) {
+        for (int i = 0; i < scheduleToCrossoverWith.getClasses().size(); i++) {
             if (Math.random() > 0.5) {
                 if (i < schedule1.getClasses().size()) {
-                    if (canScheduleBeExchanged(crossoverSchedule, schedule1, i)) {
-                        crossoverSchedule.getClasses().set(i, schedule1.getClasses().get(i));
+                    if (canScheduleBeExchanged(scheduleToCrossoverWith, schedule1, i)) {
+                        scheduleToCrossoverWith.getClasses().set(i, schedule1.getClasses().get(i));
                     }
                 } else {
                     if (schedule1.getClasses().size() > Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES) {
                         int randomIndex = (int) (schedule1.getClasses().size() * Math.random());
-                        if (canScheduleBeExchanged(crossoverSchedule, schedule1, randomIndex)) {
-                            crossoverSchedule.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
+                        if (canScheduleBeExchanged(scheduleToCrossoverWith, schedule1, randomIndex)) {
+                            scheduleToCrossoverWith.getClasses().set(randomIndex, schedule1.getClasses().get(randomIndex));
                         }
                     } else {
-                        crossoverSchedule = exchangeOneRandomCourseInSchedule(crossoverSchedule, schedule1);
+                        scheduleToCrossoverWith = exchangeOneRandomCourseInSchedule(scheduleToCrossoverWith, schedule1);
                     }
                 }
             } else {
                 if (i < schedule2.getClasses().size()) {
-                    if (canScheduleBeExchanged(crossoverSchedule, schedule2, i)) {
-                        crossoverSchedule.getClasses().set(i, schedule2.getClasses().get(i));
+                    if (canScheduleBeExchanged(scheduleToCrossoverWith, schedule2, i)) {
+                        scheduleToCrossoverWith.getClasses().set(i, schedule2.getClasses().get(i));
                     }
                 } else {
                     if (schedule2.getClasses().size() > 250) {
                         int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
-                        if (canScheduleBeExchanged(crossoverSchedule, schedule2, randomIndex)) {
-                            crossoverSchedule.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
+                        if (canScheduleBeExchanged(scheduleToCrossoverWith, schedule2, randomIndex)) {
+                            scheduleToCrossoverWith.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
                         }
                     } else {
-                        crossoverSchedule = exchangeOneRandomCourseInSchedule(crossoverSchedule, schedule2);
+                        scheduleToCrossoverWith = exchangeOneRandomCourseInSchedule(scheduleToCrossoverWith, schedule2);
                     }
                 }
             }
         }
-        return crossoverSchedule;
+        return scheduleToCrossoverWith;
     }
 
     Population mutatePopulation(Population population) {
-        Population mutatePopulation = new Population(population.getSchedules().size(), data);
-        ArrayList<Schedule> schedules = mutatePopulation.getSchedules();
+        Population populationToMutateWith = new Population(population.getSchedules().size(), data);
+
+        ArrayList<Schedule> schedules = populationToMutateWith.getSchedules();
         IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> schedules.set(x, population.getSchedules().get(x)));
         IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
             schedules.set(x, mutateSchedule(population.getSchedules().get(x)));
         });
-        return mutatePopulation;
+        return populationToMutateWith;
     }
 
     private Schedule exchangeOneRandomCourseInSchedule(Schedule schedule1, Schedule schedule2) {
         int rIndex = (int) (schedule1.getClasses().size() * Math.random());
         Class rClass = schedule1.getClasses().get(rIndex);
-        List<Class> possibleReps = schedule2.getClasses()
+        List<Class> possibleReplacements = schedule2.getClasses()
                 .stream()
                 .filter(x -> x.getCourseId() == rClass.getCourseId())
                 .collect(Collectors.toList());
         ArrayList<Class> filteredClasses = new ArrayList<Class>(schedule1.getClasses().stream()
                 .collect(Collectors.filtering(x -> x.getCourseId() != rClass.getCourseId(),
                         Collectors.toList())));
-        ArrayList<Class> newClasses = new ArrayList<Class>(ListUtils.union(filteredClasses, possibleReps));
+        ArrayList<Class> newClasses = new ArrayList<Class>(ListUtils.union(filteredClasses, possibleReplacements));
         schedule1.setClasses(newClasses);
 
         return schedule1;
     }
 
-    Schedule mutateSchedule(Schedule mutateSchedule) {
-        Schedule schedule = new Schedule(data).initialize();
-        // randomly introducing bad genes
-        // 1st: mutate all classes related to a random course
+    Schedule mutateSchedule(Schedule schedule) {
+        Schedule scheduleToMutateWith = new Schedule(data).initialize();
 
-        if (mutateSchedule.getClasses().size() < Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES) {
-            mutateSchedule = exchangeOneRandomCourseInSchedule(mutateSchedule, schedule);
+        if (schedule.getClasses().size() < Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES) {
+            schedule = exchangeOneRandomCourseInSchedule(schedule, scheduleToMutateWith);
         } else {
-            for (int i = 0; i < mutateSchedule.getClasses().size(); i++) {
+            for (int i = 0; i < schedule.getClasses().size(); i++) {
                 if (Scheduler.MUTATION_RATE > Math.random()) {
-                    if (i < schedule.getClasses().size()) {
-                        if (canScheduleBeExchanged(mutateSchedule, schedule, i)) {
-                            mutateSchedule.getClasses().set(i, schedule.getClasses().get(i));
+                    if (i < scheduleToMutateWith.getClasses().size()) {
+                        if (canScheduleBeExchanged(schedule, scheduleToMutateWith, i)) {
+                            schedule.getClasses().set(i, scheduleToMutateWith.getClasses().get(i));
                         }
                     } else {
-                        int randomIndex = (int) (schedule.getClasses().size() * Math.random());
-                        if (canScheduleBeExchanged(mutateSchedule, schedule, randomIndex)) {
-                            mutateSchedule.getClasses().set(randomIndex, schedule.getClasses().get(randomIndex));
+                        int randomIndex = (int) (scheduleToMutateWith.getClasses().size() * Math.random());
+                        if (canScheduleBeExchanged(schedule, scheduleToMutateWith, randomIndex)) {
+                            schedule.getClasses().set(randomIndex, scheduleToMutateWith.getClasses().get(randomIndex));
                         }
                     }
                 }
             }
         }
 
-        return mutateSchedule;
+        return schedule;
     }
 
     private boolean isClassIdeal(Schedule schedule, int index) {
@@ -182,12 +180,13 @@ public class GeneticAlgorithm {
         return canBeChanged;
     }
 
-    Population selectTournamentPopulation(Population population) {
-        Population tournamentPopulation = new Population(Scheduler.TOURNAMENT_SELECTION_SIZE, data);
-        IntStream.range(0, Scheduler.TOURNAMENT_SELECTION_SIZE).forEach(x -> {
-            tournamentPopulation.getSchedules().set(x,
+    Population competePopulation(Population population) {
+        Population populationToCompeteWith = new Population(Scheduler.NUMB_OF_POPULATION_COMPETITOR, data);
+
+        IntStream.range(0, Scheduler.NUMB_OF_POPULATION_COMPETITOR).forEach(x -> {
+            populationToCompeteWith.getSchedules().set(x,
                     population.getSchedules().get((int) (Math.random() * population.getSchedules().size())));
         });
-        return tournamentPopulation;
+        return populationToCompeteWith;
     }
 }
