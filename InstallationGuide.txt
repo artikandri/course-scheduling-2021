@@ -128,12 +128,24 @@ Environment installation (Python)*:
     # Pandas: Python package, providing fast, flexible, and expressive data structures
     > pip install pandas
 
-How to run the Python project: 
+How to run the Python project from command line: 
 1. Make sure that python3 and the required packages are already installed. 
+    Linux: 
     > pip show pandas 
-        will show the pandas package
+        will show the pandas package and its version
     > python3 -v
         will show the version of installed python3
+
+(1.5) Optional: create the virtual environment. 
+    The script is lightweight and the scope is small so its not needed, but doing it is a good practice.
+    https://docs.python.org/3/library/venv.html
+    Linux: 
+    > python3 -m venv path/to/your/env
+
+2. Run the corresponding script for each dataset.
+    Linux: 
+    > python3 courses.py
+        will run the script to produce courses.csv dataset, and so on. 
 
 
 
