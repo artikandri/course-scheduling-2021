@@ -11,6 +11,13 @@ import java.io.IOException;
  */
 public class FileManager {
 
+    /**
+     * Create text file.
+     *
+     * @param String Content to be written in the text file
+     * @param fileName intended file name
+     * @param filePath destination path to save the file
+     */
     public void createTextFile(String output, String fileName, String filePath) {
 
         String content = output.isBlank() ? "Text" : output;
@@ -37,11 +44,6 @@ public class FileManager {
         } catch (Exception e) {
             System.out.println(e);
         }
-    }
-
-    public static void main(String[] args) {
-        FileManager fileManager = new FileManager();
-        fileManager.createTextFile("test", "test.txt", "results/ga/");
     }
 
 }

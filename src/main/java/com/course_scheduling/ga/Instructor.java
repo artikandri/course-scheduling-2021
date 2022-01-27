@@ -2,12 +2,14 @@ package com.course_scheduling.ga;
 
 import java.util.*;
 import java.util.stream.*;
+import com.course_scheduling.assets.*;
 
 public final class Instructor {
 
     private final int id;
     private final String name;
     private final List<Integer> preferences;
+    private final ListParser listParser = new ListParser();
 
     public Instructor(int id, String name, String preferences) {
         this.id = id;
@@ -19,11 +21,7 @@ public final class Instructor {
         List<Integer> list = Arrays.asList();
         if (!preferences.isEmpty()) {
             String[] prefs = preferences.replaceAll("\\]", "").replaceAll("\\s+", "").split(",", -1);
-            list = Arrays.asList(prefs)
-                    .stream()
-                    .filter(item -> item != null && !"".equals(item) && !" ".equals(item))
-                    .map(pref -> Integer.parseInt(pref.trim()))
-                    .collect(Collectors.toList());
+            list = listParser.arrayOfStringToListOfIntegers(prefs);
         }
         return list;
     }

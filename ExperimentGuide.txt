@@ -47,10 +47,10 @@ How to experiment with the project:
             adjust the crossover rate. 
             Our experiments show that low crossover rate is more effective to produce low penalty value.
             Value should be decimal and ranges from 0 to 1. 
-        public static final int TOURNAMENT_SELECTION_SIZE = 3;
+        public static final int NUMB_OF_POPULATION_COMPETITOR = 3;
             adjust the number of populations selected to be competed against each other.
             Value should be integer and starts from 1. 
-        public static final int NUMB_OF_ELITE_SCHEDULES = 1;
+        public static final int NUMB_OF_TOP_SCHEDULES = 1;
             adjust the number of elite schedules (chosen schedules). 
             Value should be integer and starts from 1. 
         public static int NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES = 250;
@@ -112,9 +112,10 @@ Parameters:
 		recommended to be 10 or 15 minutes.
 
 * Important!
-When running App.java, you should run only one algorithm for one experiment at a time.
-
-Running multiple experiments at the same time in Netbeans (even though technically they are executed sequentially) seems to cause a bug where some schedule files are not written into the results directory. We assume that this is due to Netbeans running out of resources.
+When running App.java, it is advised to run only one algorithm for one experiment at a time, 
+to avoid Netbeans running out of resources. Alternatively, the algorithms may be run consecutively, 
+but with a delay of 10s between each generation. 
 
 * Comparing FV Values
-Since FV is calculated by the formula (1/sum_of_penalty), we want to maximize the FV. Greater FV mean better quality of the result.
+Since FV is calculated by the formula (1/sum_of_penalty), we want to maximize the FV. 
+Greater FV mean better quality of the result.

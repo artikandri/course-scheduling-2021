@@ -56,7 +56,6 @@ public class Schedule {
                 newClass.setRoom(room);
                 newClass.setInstructor(data.findInstructorById(course.getInstructorId()));
                 newClass.setGroup(data.findGroupById(course.getGroupId()));
-                newClass.setNumbOfClasses(randomDurations.size());
 
                 Timeslot randomTimeslot = getSuitableTimeslot(course,
                         prevTimeslotIds,
@@ -177,44 +176,44 @@ public class Schedule {
         this.classes = classes;
     }
 
-    @Override
-    public String toString() {
+    public String getScheduleAsTable() {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
-        printWriter.print("------------------------------------------------------------------------------------");
-        printWriter.println("------------------------------------------------------------------------------------");
-        printWriter.println("Class # | Course (Id) - Weekly hours | Room  |   Instructor (Id)   |  Meeting Time (Id) | Group (Id)");
-        printWriter.print("------------------------------------------------------------------------------------");
-        printWriter.println("------------------------------------------------------------------------------------");
-
         classes.sort(Comparator.comparing(Class::getCourseId).thenComparing(Class::getTimeslotId));
 
-        for (Class x : classes) {
-            int coursesIndex = data.getCourses().indexOf(x.getCourse());
-            int roomsIndex = data.getRooms().indexOf(x.getRoom());
-            int instructorsIndex = data.getInstructors().indexOf(x.getInstructor());
-            int meetingTimeIndex = data.getTimeslots().indexOf(x.getTimeslot());
+        printWriter.print("\n------------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
+        printWriter.println("Class # | Course (hour) | Timeslot (Id) |  Instructor (Id)   |   Room  |  Group");
+        printWriter.print("------------------------------------------------------------------------------------");
+        printWriter.println("------------------------------------------------------------------------------------");
+
+        classes.forEach(cls -> {
+            int coursesIndex = data.getCourses().indexOf(cls.getCourse());
+            int roomsIndex = data.getRooms().indexOf(cls.getRoom());
+            int instructorsIndex = data.getInstructors().indexOf(cls.getInstructor());
+            int timeslotIndex = data.getTimeslots().indexOf(cls.getTimeslot());
             int groupIndex = data.getCourses().get(coursesIndex).getGroupId();
 
-            printWriter.println("                       ");
-            printWriter.print(String.format("  %1$02d  ", classes.indexOf(x)) + "  | ");
+            printWriter.println("");
+            printWriter.print(String.format("  %1$02d  ", classes.indexOf(cls) + 1) + "  | ");
             printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName()
                     + " (" + data.getCourses().get(coursesIndex).getId() + ")"
-                    + " - " + x.getTimeslot().getDuration() + " hours             | "));
-            printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
+                    + " - " + cls.getTimeslot().getDuration() + " hours             | "));
+            printWriter.print(data.getTimeslots().get(timeslotIndex).getTime()
+                    + " (" + data.getTimeslots().get(timeslotIndex).getId() + ")  | ");
             printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
                     + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
-            printWriter.print(data.getTimeslots().get(meetingTimeIndex).getTime()
-                    + " (" + data.getTimeslots().get(meetingTimeIndex).getId() + ")  | ");
-            printWriter.print(data.getGroups().get(groupIndex).getName()
-                    + " (" + data.getGroups().get(groupIndex).getId() + ")");
-        }
+            printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
+            printWriter.print(data.getGroups().get(groupIndex).getName());
+
+        });
 
         printWriter.print("\n-----------------------------------------------------------------------------------");
         printWriter.println("-------------------------------------------------------------------------------------");
 
         String scheduleTables = stringWriter.toString();
+
         return scheduleTables;
     }
 
@@ -225,12 +224,12 @@ public class Schedule {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
-        classesToPrint.sort(Comparator.comparing(Class::getGroupId).thenComparing(Class::getTimeslotId));
+        classesToPrint.sort(Comparator.comparing(Class::getTimeslotId).thenComparing(Class::getGroupId));
         Map<String, List<Class>> classInGroups = classesToPrint.stream()
                 .collect(Collectors.groupingBy(p -> String.valueOf(p.getGroupId())));
 
         for (Map.Entry<String, List<Class>> classInGroup : classInGroups.entrySet()) {
-            printWriter.println("--Group " + classInGroup.getKey() + ":");
+            printWriter.println("\n--Group " + classInGroup.getKey() + ":");
             List<Integer> classTimeslotIds = classInGroup.getValue()
                     .stream()
                     .map(Class::getTimeslotId)
@@ -274,6 +273,11 @@ public class Schedule {
 
         String scheduleTables = stringWriter.toString();
         return scheduleTables;
+    }
+
+    @Override
+    public String toString() {
+        return getScheduleAsTable();
     }
 
     public static void main(String[] args) {

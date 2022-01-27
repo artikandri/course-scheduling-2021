@@ -1,6 +1,18 @@
 
-There are 7 datasets used in this scheduling project. 
-They are located in "src/main/resources/dataset" folder. 
+Datasets processed in this project were acquired from 2 sources. 
+They are located in "src/main/resources/dataset/raw" folder.
+1. Unitime
+   Our main reference. Chosen file: LLR: Large Lecture Room Problem dataset, Fall 2007 (pu-fal07-llr). 
+   Processed into 4 separate datasets: courses.csv, instructors.csv, rooms.csv, timeslots.csv. 
+   Column mappings are explained in each corresponding script. 
+   Accessible online on https://www.unitime.org/uct_datasets.php (Last accessed on Jan 6th, 2022).
+2. University of Illinois
+   Our second reference. Chosen file: Spring 2020 Schedule. 
+   We only took subject names to relabel the courses in our processed dataset. 
+   Accessible online on https://github.com/illinois/courses-dataset (Last accessed on Jan 6th, 2022).
+
+There are 7 processed datasets used in this scheduling project. 
+They are located in "src/main/resources/dataset/processed" folder. 
 To regenerate the dataset, please go to the "src/scripts/dataset" folder 
 and run the python scripts for the appropriate dataset. 
 

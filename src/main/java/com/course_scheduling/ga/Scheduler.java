@@ -3,8 +3,6 @@ package com.course_scheduling.ga;
 import com.course_scheduling.assets.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
@@ -14,8 +12,7 @@ public class Scheduler {
     public static double MUTATION_RATE = 0.7;
     public static double CROSSOVER_RATE = 0.3;
     public static int NUMB_OF_POPULATION_COMPETITOR = 3;
-    public static int NUMB_OF_ELITE_SCHEDULES = 1;
-    public static int NUMB_OF_SMALL_SIZED_SCHEDULE_COURSES = 30;
+    public static int NUMB_OF_TOP_SCHEDULES = 1;
     public static int NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES = 250;
 
     // adjust these values as needed
@@ -26,12 +23,15 @@ public class Scheduler {
     public static boolean IS_SCHEDULE_PRINTED_ON_GENERATION = false;
     public static boolean IS_GEN_INFO_PRINTED_ON_GENERATION = true;
 
-    private int classNumb = 1;
     private Data data;
 
     private Timer watch = Timer.start();
     private FileManager fileManager = new FileManager();
     private DateParser dateParser = new DateParser();
+
+    public void runAlgorithm(boolean IS_EXPERIMENT_MODE) {
+        runAlgorithm(false, 0);
+    }
 
     public void runAlgorithm(boolean IS_EXPERIMENT_MODE, int EXPERIMENT_TYPE) {
         Data.IS_EXPERIMENT_MODE = IS_EXPERIMENT_MODE;
@@ -39,7 +39,6 @@ public class Scheduler {
 
         Scheduler scheduler = new Scheduler();
         scheduler.data = new Data();
-        scheduler.printAvailableData();
         scheduler.generateSchedules();
     }
 
@@ -65,20 +64,24 @@ public class Scheduler {
         boolean isTimerReached = passedTimeInMinutes >= TARGET_TIMER_MINUTES;
         boolean isGenerationReached = generationNumber >= TARGET_GENERATION;
 
-        String generationInfo = scheduler.printGenerationInfo(generationNumber, population);
-
-        scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
-        scheduler.classNumb = 1;
+        String generationInfo = scheduler.getGenerationInfo(generationNumber, population);
+        String firstScheduleAsTable = schedule.getScheduleAsTable();
+        System.out.println(generationInfo);
+        System.out.println(firstScheduleAsTable);
 
         while (!isFitnessReached && !isPenaltyReached && !isTimerReached && !isGenerationReached) {
             generationNumber += 1;
-            population = geneticAlgorithm.evolve(population).sortByFitness();
+            population = geneticAlgorithm.regenerate(population).sortByFitness();
 
             if (Scheduler.IS_SCHEDULE_PRINTED_ON_GENERATION) {
-                scheduler.printScheduleAsTable(population.getSchedules().get(0), generationNumber);
+                Schedule bestSchedule = population.getSchedules().get(0);
+                String bestScheduleAsTable = bestSchedule.getScheduleAsTable();
+                System.out.println(bestScheduleAsTable);
             }
+
             if (Scheduler.IS_GEN_INFO_PRINTED_ON_GENERATION) {
-                generationInfo = scheduler.printGenerationInfo(generationNumber, population);
+                generationInfo = scheduler.getGenerationInfo(generationNumber, population);
+                System.out.println(generationInfo);
             }
 
             Schedule bestSchedule = population.getSchedules().get(0);
@@ -94,10 +97,10 @@ public class Scheduler {
 
             System.out.print("Time (seconds): " + passedTimeInMs / 1000);
             System.out.println("        |    Time (minutes): " + passedTimeInMinutes);
+            System.out.print("-----------------------------------------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------");
 
-            scheduler.classNumb = 1;
-
-            if (isTimerReached || isPenaltyReached || isFitnessReached) {
+            if (isTimerReached || isPenaltyReached || isFitnessReached || isGenerationReached) {
                 System.out.print("-----------------------------------------------------------------------------------");
                 System.out.println("-------------------------------------------------------------------------------------");
             }
@@ -113,38 +116,48 @@ public class Scheduler {
             if (isFitnessReached) {
                 System.out.println("Process stopped because targeted fitness value ("
                         + TARGET_FITNESS + ") has been reached");
+
+                if (penalty.getFitness() == 1) {
+                    printWriter.println("Solution found in " + (generationNumber + 1) + " generations");
+                }
             }
 
             if (isGenerationReached) {
                 System.out.println("Process stopped because targeted generation value ("
                         + TARGET_GENERATION + ") has been reached");
             }
+
         }
 
-        printWriter.println(generationInfo);
         printWriter.print("Time (seconds): " + passedTimeInMs / 1000);
         printWriter.println("        |    Time (minutes): " + passedTimeInMinutes);
-        printWriter.println(population.getSchedules().get(0));
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
+        printWriter.print(generationInfo);
+        printWriter.print("-----------------------------------------------------------------------------------");
+        printWriter.println("-------------------------------------------------------------------------------------");
 
-        String schedulesAsTable = stringWriter.toString();
-        String schedulesAsList = population.getSchedules().get(0).getScheduleAsList();
-        System.out.println(schedulesAsTable);
+        Schedule bestSchedule = population.getSchedules().get(0);
+        String schedulesAsTable = bestSchedule.getScheduleAsTable();
+        String schedulesAsList = bestSchedule.getScheduleAsList();
 
-        String paramsInfo = printParametersInfo();
-        String scheduleFileName = "Schedules-GA__" + dateParser.getTodayDate("dd-MM-yyyy hh.mm.ss") + ".txt";
-        fileManager.createTextFile(paramsInfo.concat(schedulesAsTable), scheduleFileName, "results/ga/");
+        String printInfo = stringWriter.toString();
+        String paramsInfo = getParametersInfo();
+        System.out.println(printInfo.concat(paramsInfo).concat(schedulesAsTable));
 
-        String schedulesAsListContent = paramsInfo.concat(generationInfo).concat(schedulesAsList);
+        String scheduleFileName = "Schedules-GA__" + dateParser.getTodayDate("dd-MM-yyyy HH.mm.ss") + ".txt";
+        String schedulesAsTableContent = printInfo.concat(paramsInfo).concat(schedulesAsTable);
+        fileManager.createTextFile(schedulesAsTableContent, scheduleFileName, "results/ga/");
+
+        String line = "\n------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+        String schedulesAsListContent = printInfo.concat(paramsInfo).concat(line).concat(schedulesAsList);
         fileManager.createTextFile(schedulesAsListContent, "List__" + scheduleFileName, "results/ga/");
 
     }
 
-    private String printParametersInfo() {
+    private String getParametersInfo() {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
-
-        printWriter.print("-----------------------------------------------------------------------------------");
-        printWriter.println("-------------------------------------------------------------------------------------");
 
         printWriter.print("Population size # " + POPULATION_SIZE);
         printWriter.println("       |         Mutation rate "
@@ -153,17 +166,15 @@ public class Scheduler {
                 + CROSSOVER_RATE);
         printWriter.println("Number of population competitor # "
                 + NUMB_OF_POPULATION_COMPETITOR
-                + "  |                  Number of elite schedules # "
-                + NUMB_OF_ELITE_SCHEDULES
+                + "  |                  Number of top schedules # "
+                + NUMB_OF_TOP_SCHEDULES
                 + " ");
-        printWriter.print("-----------------------------------------------------------------------------------");
-        printWriter.println("-------------------------------------------------------------------------------------");
 
         String info = stringWriter.toString();
         return info;
     }
 
-    private String printGenerationInfo(int generationNumber, Population population) {
+    private String getGenerationInfo(int generationNumber, Population population) {
         StringWriter stringWriter = new StringWriter();
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
@@ -176,92 +187,16 @@ public class Scheduler {
                 + "       |         Penalty # "
                 + penalty.getPenalty()
                 + "  |                  Conflicts # "
-                + penalty.getNumbOfConflicts() + " ");
-
-        printWriter.print("-----------------------------------------------------------------------------------");
-        printWriter.println("-------------------------------------------------------------------------------------");
+                + penalty.getNumbOfConflicts());
 
         String info = stringWriter.toString();
-        System.out.println(info);
 
         return info;
     }
 
-    private String printScheduleAsTable(Schedule schedule, int generation) {
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
-
-        ArrayList<Class> classes = schedule.getClasses();
-        classes.sort(Comparator.comparing(Class::getCourseId).thenComparing(Class::getTimeslotId));
-
-        printWriter.println("\n                       ");
-        printWriter.print("------------------------------------------------------------------------------------");
-        printWriter.println("------------------------------------------------------------------------------------");
-        printWriter.println("Class # | Course (number) | Room  |   Instructor (Id)   |  Timeslot (Id) | Group (Id)");
-        printWriter.print("------------------------------------------------------------------------------------");
-        printWriter.println("------------------------------------------------------------------------------------");
-
-        classes.forEach(x -> {
-            int coursesIndex = data.getCourses().indexOf(x.getCourse());
-            int roomsIndex = data.getRooms().indexOf(x.getRoom());
-            int instructorsIndex = data.getInstructors().indexOf(x.getInstructor());
-            int timeslotIndex = data.getTimeslots().indexOf(x.getTimeslot());
-            int groupIndex = data.getCourses().get(coursesIndex).getGroupId();
-
-            printWriter.println("                       ");
-            printWriter.print(String.format("  %1$02d  ", classNumb) + "  | ");
-            printWriter.print(String.format("%1$21s", data.getCourses().get(coursesIndex).getName()
-                    + " (" + data.getCourses().get(coursesIndex).getId() + ")"
-                    + " - " + x.getTimeslot().getDuration() + " hours             | "));
-            printWriter.print(String.format("%1$10s", data.getRooms().get(roomsIndex).getName() + "     | "));
-            printWriter.print(String.format("%1$15s", data.getInstructors().get(instructorsIndex).getName()
-                    + " (" + data.getInstructors().get(instructorsIndex).getId() + ")") + "  | ");
-            printWriter.print(data.getTimeslots().get(timeslotIndex).getTime()
-                    + " (" + data.getTimeslots().get(timeslotIndex).getId() + ")  | ");
-            printWriter.print(data.getGroups().get(groupIndex).getName()
-                    + " (" + data.getGroups().get(groupIndex).getId() + ")");
-
-            classNumb++;
-        });
-
-        Penalty penalty = new Penalty(schedule);
-        if (penalty.getFitness() == 1) {
-            printWriter.println("> Solution found in " + (generation + 1) + " generations");
-        }
-
-        printWriter.print("\n-----------------------------------------------------------------------------------");
-        printWriter.println("-------------------------------------------------------------------------------------");
-
-        String scheduleTables = stringWriter.toString();
-        System.out.println(scheduleTables);
-
-        return scheduleTables;
-    }
-
-    private void printAvailableData() {
-
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
-
-        printWriter.println("\nAvailable Courses");
-        data.getCourses().forEach(x -> printWriter.println("course #: " + x.getId() + ", name: " + x.getName()
-                + ", instructors: " + data.findInstructorById(x.getInstructorId()).getName()));
-        printWriter.println("\nAvailable Rooms");
-        data.getRooms().forEach(x -> printWriter.println("room #: " + x.getName()));
-        printWriter.println("\nAvailable Instructors");
-        data.getInstructors().forEach(x -> printWriter.println("id: " + x.getId() + ", name: " + x.getName()));
-        printWriter.println("\nAvailable Timeslots");
-        data.getTimeslots().forEach(x -> printWriter.println("id: " + x.getId() + ", Timeslot: " + x.getTime()));
-        printWriter.print("------------------------------------------------------------------------------------");
-        printWriter.println("-------------------------------------------------------------------------------------");
-
-        String availableData = stringWriter.toString();
-        System.out.println(availableData);
-    }
-
     public static void main(String[] args) {
         Scheduler scheduler = new Scheduler();
-        scheduler.runAlgorithm(false, 0);
+        scheduler.runAlgorithm(false);
     }
 
 }

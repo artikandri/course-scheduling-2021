@@ -1,43 +1,43 @@
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Population size # 10       |         Mutation rate 0.7       |         Crossover rate # 0.3
-Number of population competitor # 3  |                  Number of elite schedules # 1 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Generation # 1367
-Schedule # 1367       |         Fitness # 0.002325581395348837       |         Penalty # 429  |                  Conflicts # 0 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Time (seconds): 60        |    Time (minutes): 1
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Class # | Course (Id) - Weekly hours | Room  |   Instructor (Id)   |  Meeting Time (Id) | Group (Id)
+Generation # 2025
+Schedule # 2025       |         Fitness # 0.002320185614849188       |         Penalty # 430  |                  Conflicts # 0
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Population size # 10       |         Mutation rate 0.7       |         Crossover rate # 0.3
+Number of population competitor # 3  |                  Number of top schedules # 1 
+
+                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Class # | Course (hour) | Timeslot (Id) |  Instructor (Id)   |   Room  |  Group
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                        
-  00    | Intro Asian American Studies (0) - 1.5 hours             | Room 37M     |        YO (586)  | Thursday - 7:30 (28)  | Group 0 (0)                       
-  01    | Intro Asian American Studies (0) - 1.5 hours             | Room 37M     |        YO (586)  | Thursday - 9:00 (29)  | Group 0 (0)                       
-  02    | Intro to Asian Am Pop Culture (1) - 1.5 hours             | Room 6L     |        ZD (527)  | Thursday - 10:30 (30)  | Group 0 (0)                       
-  03    | Intro to Asian Am Pop Culture (1) - 1.5 hours             | Room 6L     |        ZD (527)  | Thursday - 12:00 (31)  | Group 0 (0)                       
-  04    | U.S. Race and Empire (2) - 1.5 hours             | Room 1C     |        VD (134)  | Monday - 13:30 (4)  | Group 0 (0)                       
-  05    | U.S. Race and Empire (2) - 1.5 hours             | Room 1C     |        VD (134)  | Monday - 15:00 (5)  | Group 0 (0)                       
-  06    | US Racial & Ethnic Politics (3) - 1.5 hours             | Room 25Z     |        GA (343)  | Tuesday - 10:30 (11)  | Group 0 (0)                       
-  07    | US Racial & Ethnic Politics (3) - 1.5 hours             | Room 25Z     |        GA (343)  | Tuesday - 12:00 (12)  | Group 0 (0)                       
-  08    | Asian American Youth in Film (4) - 1.5 hours             | Room 45L     |        VK (145)  | Tuesday - 13:30 (13)  | Group 0 (0)                       
-  09    | Asian American Youth in Film (4) - 1.5 hours             | Room 45L     |        VK (145)  | Tuesday - 15:00 (14)  | Group 0 (0)                       
-  10    | The Politics of Fashion (5) - 1.0 hours             | Room 43F     |        FA (536)  | Friday - 10:30 (40)  | Group 0 (0)                       
-  11    | The Politics of Fashion (5) - 1.0 hours             | Room 43F     |        FA (536)  | Friday - 11:30 (41)  | Group 0 (0)                       
-  12    | The Politics of Fashion (5) - 1.0 hours             | Room 43F     |        FA (536)  | Friday - 12:30 (42)  | Group 0 (0)                       
-  13    | Constructing Race in America (6) - 1.5 hours             | Room 45L     |        ST (219)  | Friday - 7:30 (38)  | Group 0 (0)                       
-  14    | Constructing Race in America (6) - 1.5 hours             | Room 45L     |        ST (219)  | Friday - 9:00 (39)  | Group 0 (0)                       
-  15    | Asian American History (7) - 1.5 hours             | Room 50O     |        JN (392)  | Monday - 12:00 (3)  | Group 0 (0)                       
-  16    | Asian American History (7) - 1.5 hours             | Room 50O     |        JN (392)  | Wednesday - 7:30 (17)  | Group 0 (0)                       
-  17    | Food and Asian Americans (8) - 1.5 hours             | Room 54L     |        GI (438)  | Monday - 10:30 (2)  | Group 0 (0)                       
-  18    | Food and Asian Americans (8) - 1.5 hours             | Room 54L     |        GI (438)  | Wednesday - 9:00 (18)  | Group 0 (0)                       
-  19    | Asian Families in America (9) - 1.5 hours             | Room 42C     |         KX (14)  | Monday - 7:30 (0)  | Group 0 (0)                       
-  20    | Asian Families in America (9) - 1.5 hours             | Room 42C     |         KX (14)  | Monday - 9:00 (1)  | Group 0 (0)                       
-  21    | Race and Cultural Diversity (10) - 1.5 hours             | Room 1C     |        DB (475)  | Tuesday - 7:30 (9)  | Group 0 (0)                       
-  22    | Race and Cultural Diversity (10) - 1.5 hours             | Room 1C     |        DB (475)  | Tuesday - 9:00 (10)  | Group 0 (0)                       
-  23    | Immigration, Law, and Rights (11) - 1.5 hours             | Room 44Y     |        NB (186)  | Tuesday - 16:30 (15)  | Group 0 (0)                       
-  24    | Immigration, Law, and Rights (11) - 1.5 hours             | Room 44Y     |        NB (186)  | Tuesday - 18:00 (16)  | Group 0 (0)                       
-  25    | Adv Asian Am Undergrad Reading (12) - 1.0 hours             | Room 1C     |         ZS (89)  | Wednesday - 11:30 (20)  | Group 0 (0)                       
-  26    | Adv Asian Am Undergrad Reading (12) - 1.0 hours             | Room 1C     |         ZS (89)  | Wednesday - 12:30 (21)  | Group 0 (0)                       
-  27    | Adv Asian Am Undergrad Reading (12) - 1.0 hours             | Room 1C     |         ZS (89)  | Wednesday - 14:30 (23)  | Group 0 (0)
+  01    | Intro Asian American Studies (0) - 1.5 hours             | Tuesday - 10:30 (11)  |        YO (586)  | Room 33B     | Group 0                       
+  02    | Intro Asian American Studies (0) - 1.5 hours             | Tuesday - 12:00 (12)  |        YO (586)  | Room 33B     | Group 0                       
+  03    | Intro to Asian Am Pop Culture (1) - 1.5 hours             | Friday - 7:30 (38)  |        ZD (527)  | Room 43F     | Group 0                       
+  04    | Intro to Asian Am Pop Culture (1) - 1.5 hours             | Friday - 9:00 (39)  |        ZD (527)  | Room 43F     | Group 0                       
+  05    | U.S. Race and Empire (2) - 1.5 hours             | Wednesday - 7:30 (17)  |        VD (134)  | Room 11I     | Group 0                       
+  06    | U.S. Race and Empire (2) - 1.5 hours             | Wednesday - 9:00 (18)  |        VD (134)  | Room 11I     | Group 0                       
+  07    | US Racial & Ethnic Politics (3) - 1.5 hours             | Tuesday - 13:30 (13)  |        GA (343)  | Room 10S     | Group 0                       
+  08    | US Racial & Ethnic Politics (3) - 1.5 hours             | Tuesday - 15:00 (14)  |        GA (343)  | Room 10S     | Group 0                       
+  09    | Asian American Youth in Film (4) - 1.5 hours             | Monday - 13:30 (4)  |        VK (145)  | Room 43F     | Group 0                       
+  10    | Asian American Youth in Film (4) - 1.5 hours             | Monday - 15:00 (5)  |        VK (145)  | Room 43F     | Group 0                       
+  11    | The Politics of Fashion (5) - 1.5 hours             | Monday - 7:30 (0)  |        FA (536)  | Room 7G     | Group 0                       
+  12    | The Politics of Fashion (5) - 1.5 hours             | Monday - 10:30 (2)  |        FA (536)  | Room 7G     | Group 0                       
+  13    | Constructing Race in America (6) - 1.5 hours             | Monday - 12:00 (3)  |        ST (219)  | Room 40P     | Group 0                       
+  14    | Constructing Race in America (6) - 1.5 hours             | Thursday - 10:30 (30)  |        ST (219)  | Room 40P     | Group 0                       
+  15    | Asian American History (7) - 1.5 hours             | Thursday - 7:30 (28)  |        JN (392)  | Room 42C     | Group 0                       
+  16    | Asian American History (7) - 1.5 hours             | Thursday - 9:00 (29)  |        JN (392)  | Room 42C     | Group 0                       
+  17    | Food and Asian Americans (8) - 1.0 hours             | Wednesday - 13:30 (22)  |        GI (438)  | Room 38V     | Group 0                       
+  18    | Food and Asian Americans (8) - 1.0 hours             | Wednesday - 14:30 (23)  |        GI (438)  | Room 38V     | Group 0                       
+  19    | Food and Asian Americans (8) - 1.0 hours             | Wednesday - 15:30 (24)  |        GI (438)  | Room 38V     | Group 0                       
+  20    | Asian Families in America (9) - 1.0 hours             | Friday - 12:30 (42)  |         KX (14)  | Room 9E     | Group 0                       
+  21    | Asian Families in America (9) - 1.0 hours             | Friday - 13:30 (43)  |         KX (14)  | Room 9E     | Group 0                       
+  22    | Asian Families in America (9) - 1.0 hours             | Friday - 15:30 (45)  |         KX (14)  | Room 9E     | Group 0                       
+  23    | Race and Cultural Diversity (10) - 1.5 hours             | Tuesday - 7:30 (9)  |        DB (475)  | Room 30X     | Group 0                       
+  24    | Race and Cultural Diversity (10) - 1.5 hours             | Tuesday - 9:00 (10)  |        DB (475)  | Room 30X     | Group 0                       
+  25    | Immigration, Law, and Rights (11) - 1.0 hours             | Thursday - 15:30 (34)  |        NB (186)  | Room 47D     | Group 0                       
+  26    | Immigration, Law, and Rights (11) - 1.0 hours             | Thursday - 16:30 (35)  |        NB (186)  | Room 47D     | Group 0                       
+  27    | Immigration, Law, and Rights (11) - 1.0 hours             | Thursday - 17:30 (36)  |        NB (186)  | Room 47D     | Group 0                       
+  28    | Adv Asian Am Undergrad Reading (12) - 1.5 hours             | Tuesday - 18:00 (16)  |         ZS (89)  | Room 13R     | Group 0                       
+  29    | Adv Asian Am Undergrad Reading (12) - 1.5 hours             | Thursday - 12:00 (31)  |         ZS (89)  | Room 13R     | Group 0
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-

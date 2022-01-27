@@ -116,7 +116,7 @@ Environment installation (Python)*:
  
 1. Run the "installPython.sh" script (located in src/scripts/) through your command line.
     This script will automatically install python3, python3-pip, and python3-venv apps in your env. 
-    It will also install pandas & openpyxl packages.
+    It will also install pandas packages.
 
 2. Install the packages one by one manually
     Linux: 

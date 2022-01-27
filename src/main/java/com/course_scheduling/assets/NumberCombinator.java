@@ -4,7 +4,7 @@ import java.util.*;
 
 public class NumberCombinator {
 
-    private boolean allowRepetitions;
+    private boolean isRepetitionAllowed;
     private int[] repetitions;
     private ArrayList<Double> numbers;
     private Double target;
@@ -28,9 +28,9 @@ public class NumberCombinator {
      * @param numbers Numbers that can be used to calculate the sum.
      * @param target Target value for sum.
      */
-    public NumberCombinator(ArrayList<Double> numbers, Double target, boolean allowRepetitions) {
-        this.allowRepetitions = allowRepetitions;
-        if (this.allowRepetitions) {
+    public NumberCombinator(ArrayList<Double> numbers, Double target, boolean isRepetitionAllowed) {
+        this.isRepetitionAllowed = isRepetitionAllowed;
+        if (this.isRepetitionAllowed) {
             Set<Double> numbersSet = new HashSet<>(numbers);
             this.numbers = new ArrayList<>(numbersSet);
         } else {
@@ -88,7 +88,7 @@ public class NumberCombinator {
     private Double next() {
         if (this.hasNext && this.repetitions.length > 0) {
             this.repetitions[0] += 1;
-            if (!this.allowRepetitions) {
+            if (!this.isRepetitionAllowed) {
                 this.redistribute();
             }
             this.calculateSum();
@@ -98,7 +98,7 @@ public class NumberCombinator {
                     this.repetitions[i] = 0;
                     if (i + 1 < this.repetitions.length) {
                         this.repetitions[i + 1] += 1;
-                        if (!this.allowRepetitions) {
+                        if (!this.isRepetitionAllowed) {
                             this.redistribute();
                         }
                     }
@@ -133,6 +133,11 @@ public class NumberCombinator {
         return this.combinations;
     }
 
+    /**
+     * Return all possible combinations as string
+     *
+     * @return Combinations as a string
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("" + sum + ": ");
