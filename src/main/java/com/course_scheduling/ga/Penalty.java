@@ -49,12 +49,12 @@ public class Penalty {
     // 3. Soft constraint: Maintain preference of instructor as much as possible
     // penalty += 1
     private void calculatePenaltyForInstructorPreferences() {
-        classes.forEach(x -> {
-            Instructor xInstructor = x.getInstructor();
-            List<Integer> xInstructorPreferences = xInstructor.getPreferences();
-            Timeslot xTimeslot = x.getTimeslot();
-            if (!xInstructorPreferences.isEmpty()
-                    && !xInstructorPreferences.contains(xTimeslot.getId())) {
+        classes.forEach(cls -> {
+            Instructor clsInstructor = cls.getInstructor();
+            List<Integer> clsInstructorPreferences = clsInstructor.getPreferences();
+            Timeslot xTimeslot = cls.getTimeslot();
+            if (!clsInstructorPreferences.isEmpty()
+                    && !clsInstructorPreferences.contains(xTimeslot.getId())) {
                 penalty += 1;
             }
         });
@@ -62,35 +62,36 @@ public class Penalty {
     }
 
     // 1. Hard constraint: same instructor can't teach 2 different courses simultaneously
-    // penalty += 99
+    // penalty += 9999
     // 2. Hard constraint: same room can't be scheduled for 2 diff courses simultaneously
-    // penalty += 99
+    // penalty += 9999
     private void calculatePenaltyForHardConstraints() {
         classes.sort(Comparator.comparing(Class::getTimeslotId));
-        classes.forEach(x -> {
-            classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(x)).forEach(y -> {
+        classes.forEach(cls1 -> {
+            classes.stream().filter(cls2
+                    -> classes.indexOf(cls2) >= classes.indexOf(cls1)).forEach(cls2 -> {
                 // same timeslot can only be assigned
                 // to one group, one instructor,
                 // one room, one course at one time
-                if (x.getTimeslot() == y.getTimeslot()
-                        && x.getGroupId() == y.getGroupId()) {
+                if (cls1.getTimeslot() == cls2.getTimeslot()
+                        && cls1.getGroupId() == cls2.getGroupId()) {
 
-                    if (x.getCourseId() != y.getCourseId()) {
+                    if (cls1.getCourseId() != cls2.getCourseId()) {
                         numbOfConflicts++;
                         penalty += 9999;
                     }
 
                 }
 
-                if (x.getTimeslot() == y.getTimeslot()
-                        && x.getGroupId() != y.getGroupId()) {
+                if (cls1.getTimeslot() == cls2.getTimeslot()
+                        && cls1.getGroupId() != cls2.getGroupId()) {
 
-                    if (x.getRoom() == y.getRoom()) {
+                    if (cls1.getRoom() == cls2.getRoom()) {
                         numbOfConflicts++;
                         penalty += 9999;
                     }
 
-                    if (x.getInstructor() == y.getInstructor()) {
+                    if (cls1.getInstructor() == cls2.getInstructor()) {
                         numbOfConflicts++;
                         penalty += 9999;
                     }
@@ -194,27 +195,27 @@ public class Penalty {
     }
 
     public List<Class> getConflictedClasses() {
-        classes.forEach(x -> {
-            classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(x)).forEach(y -> {
+        classes.forEach(cls1 -> {
+            classes.stream().filter(y -> classes.indexOf(y) >= classes.indexOf(cls1)).forEach(cls2 -> {
 
-                if (x.getTimeslot() == y.getTimeslot()
-                        && x.getGroupId() == y.getGroupId()) {
+                if (cls1.getTimeslot() == cls2.getTimeslot()
+                        && cls1.getGroupId() == cls2.getGroupId()) {
 
-                    if (x.getCourseId() != y.getCourseId()) {
-                        x.setIsFlagged(true);
+                    if (cls1.getCourseId() != cls2.getCourseId()) {
+                        cls1.setIsFlagged(true);
                     }
 
                 }
 
-                if (x.getTimeslot() == y.getTimeslot()
-                        && x.getGroupId() != y.getGroupId()) {
+                if (cls1.getTimeslot() == cls2.getTimeslot()
+                        && cls1.getGroupId() != cls2.getGroupId()) {
 
-                    if (x.getRoom() == y.getRoom()) {
-                        x.setIsFlagged(true);
+                    if (cls1.getRoom() == cls2.getRoom()) {
+                        cls1.setIsFlagged(true);
                     }
 
-                    if (x.getInstructor() == y.getInstructor()) {
-                        x.setIsFlagged(true);
+                    if (cls1.getInstructor() == cls2.getInstructor()) {
+                        cls1.setIsFlagged(true);
                     }
                 }
 

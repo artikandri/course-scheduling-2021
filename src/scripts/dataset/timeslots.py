@@ -6,7 +6,7 @@ from datetime import timedelta, datetime
 
 
 # get project root, relative to this folder: if the folder changes, the path MUST be changed as well. 
-PROJECT_ROOT = Path().resolve().parent.parent.parent
+PROJECT_ROOT = Path().resolve().parent.parent
 
 #initialize the directory
 os.chdir(PROJECT_ROOT)
@@ -62,7 +62,7 @@ def generateTimeslots ():
 timeslots = generateTimeslots()
 
 #Generate csv file 
-targetFilePath = Path("dataset/processed", "timeslots.csv")
+targetFilePath = Path("main/resources/dataset/processed", "timeslots.csv")
 targetFile = open(targetFilePath, 'w', newline="")
 
 # write the file

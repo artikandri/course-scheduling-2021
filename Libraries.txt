@@ -1,0 +1,45 @@
+Libraries used in the Java project to produce schedules: 
+
+1. maven-assembly-plugin
+    added capability to combine project output into a single distributable archive 
+    that also contains dependencies, modules, site documentation, and other files.
+    Included in pom.xml, not imported anywhere. 
+
+2. maven-jar-plugin
+    added capability to compile the project as jar file. Included in pom.xml, not imported anywhere. 
+
+3. junit
+    added capability to write unit tests to test the functions in the project. 
+    Included in pom.xml by default when generating the project. 
+    Imported in AppTest.java by default when generating the project.
+
+4. commons-collections4 4.4
+    Included in pom.xml.
+    Imported in:
+    - GeneticAlgorithm.java
+        - ListUtils: added capability to manipulate List object (union)
+    - Schedule.java
+        - ListUtils: added capability to manipulate List object (intersection, removeAll)
+
+5. commons-lang3 3.0
+    Included in pom.xml.
+    Imported in: 
+    - ListParser.java
+        ArrayUtils: added capability to manipulate Arrays (isEmpty)
+
+6. opencsv
+    added capability to read and parse CSV files
+    Included in pom.xml.
+    Imported in: 
+    - DatasetParser.java
+
+
+--------------------------------------------------------------------------------------
+
+Libraries used in the Python scripts to preprocess the dataset: 
+
+- Pandas
+- random: randrange, choice
+- csv
+- string
+- datetime: timedelta, datetime

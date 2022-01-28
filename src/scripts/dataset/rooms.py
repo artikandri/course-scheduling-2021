@@ -6,11 +6,11 @@ import pandas as pd
 import csv
 
 # get project root, relative to this folder: if the folder changes, the path MUST be changed as well. 
-PROJECT_ROOT = Path().resolve().parent.parent.parent
+PROJECT_ROOT = Path().resolve().parent.parent
 
 #initialize the directory
 os.chdir(PROJECT_ROOT)
-xlsx_file = Path('dataset/raw','dataset_pu-fal07-llr.xlsx')
+xlsx_file = Path('main/resources/dataset/raw','dataset_pu-fal07-llr.xlsx')
 
 # Open the Workbook
 df = pd.read_excel(xlsx_file,sheet_name='Sheet1', usecols="K")
@@ -29,7 +29,7 @@ def generateRoomNames():
 rooms = list(set(generateRoomNames()))
 
 #Generate csv file for rooms
-targetFilePath = Path("dataset/processed", "rooms.csv")
+targetFilePath = Path("main/resources/dataset/processed", "rooms.csv")
 targetFile = open(targetFilePath, 'w', newline="")
 
 # write the file and close 

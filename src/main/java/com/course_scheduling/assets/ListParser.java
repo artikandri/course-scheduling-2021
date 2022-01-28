@@ -11,9 +11,10 @@ import org.apache.commons.lang3.ArrayUtils;
 public class ListParser {
 
     /**
+     * convert array of number in strings to list of integers
      *
-     * @param arrayOfString
-     * @return list
+     * @param array of string
+     * @return list of integers
      */
     public List<Integer> arrayOfStringToListOfIntegers(String[] arrayOfString) {
         List list = Arrays.asList();
@@ -27,6 +28,12 @@ public class ListParser {
         return list;
     }
 
+    /**
+     * convert array of number in strings to list of doubles
+     *
+     * @param array of string
+     * @return list of doubles
+     */
     public List<Double> arrayOfStringToListOfDoubles(String[] arrayOfString) {
         List list = Arrays.asList();
         if (!ArrayUtils.isEmpty(arrayOfString)) {
@@ -39,6 +46,12 @@ public class ListParser {
         return list;
     }
 
+    /**
+     * remove duplicates from a list
+     *
+     * @param list of object
+     * @return unique list without duplicates
+     */
     public List uniqueList(List listWithDuplicates) {
         List<Integer> listWithoutDuplicates = new ArrayList<>(
                 new HashSet<>(listWithDuplicates));

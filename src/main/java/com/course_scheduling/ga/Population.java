@@ -1,15 +1,20 @@
 package com.course_scheduling.ga;
 
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 
+/**
+ *
+ * @author @artikandri
+ */
 public class Population {
 
     private ArrayList<Schedule> schedules;
 
     public Population(int size, Data data) {
         schedules = new ArrayList<>(size);
-        IntStream.range(0, size).forEach(x -> schedules.add(new Schedule(data).initialize()));
+        for (int i = 0; i < size; i++) {
+            schedules.add(new Schedule(data).initialize());
+        }
     }
 
     public ArrayList<Schedule> getSchedules() {

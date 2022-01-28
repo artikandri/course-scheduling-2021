@@ -2,9 +2,12 @@ package com.course_scheduling.ga;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import org.apache.commons.collections.ListUtils;
 
+/**
+ *
+ * @author @artikandri
+ */
 public class GeneticAlgorithm {
 
     private Data data;
@@ -13,24 +16,30 @@ public class GeneticAlgorithm {
         this.data = data;
     }
 
-    public Population evolve(Population population) {
+    public Population regenerate(Population population) {
         return mutatePopulation(crossoverPopulation(population));
     }
 
     Population crossoverPopulation(Population population) {
         Population populationToCrossoverWith = new Population(population.getSchedules().size(), data);
 
-        IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> populationToCrossoverWith.getSchedules().set(x,
-                population.getSchedules().get(x)));
-        IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
+        // get top schedules
+        for (int i = 0; i < Scheduler.NUMB_OF_TOP_SCHEDULES; i++) {
+            populationToCrossoverWith.getSchedules().set(i,
+                    population.getSchedules().get(i));
+        }
+
+        // crossover the rests
+        for (int i = Scheduler.NUMB_OF_TOP_SCHEDULES; i < population.getSchedules().size(); i++) {
             if (Scheduler.CROSSOVER_RATE > Math.random()) {
                 Schedule bestSchedule = competePopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(0);
                 Schedule secondBestSchedule = competePopulation(population).sortByPenaltyAndNumbOfConflicts().getSchedules().get(1);
-                populationToCrossoverWith.getSchedules().set(x, crossoverSchedule(bestSchedule, secondBestSchedule));
+                populationToCrossoverWith.getSchedules().set(i, crossoverSchedule(bestSchedule, secondBestSchedule));
             } else {
-                populationToCrossoverWith.getSchedules().set(x, population.getSchedules().get(x));
+                populationToCrossoverWith.getSchedules().set(i, population.getSchedules().get(i));
             }
-        });
+        }
+
         return populationToCrossoverWith;
     }
 
@@ -59,7 +68,7 @@ public class GeneticAlgorithm {
                         scheduleToCrossoverWith.getClasses().set(i, schedule2.getClasses().get(i));
                     }
                 } else {
-                    if (schedule2.getClasses().size() > 250) {
+                    if (schedule2.getClasses().size() > Scheduler.NUMB_OF_LARGE_SIZED_SCHEDULE_CLASSES) {
                         int randomIndex = (int) (schedule2.getClasses().size() * Math.random());
                         if (canScheduleBeExchanged(scheduleToCrossoverWith, schedule2, randomIndex)) {
                             scheduleToCrossoverWith.getClasses().set(randomIndex, schedule2.getClasses().get(randomIndex));
@@ -75,12 +84,16 @@ public class GeneticAlgorithm {
 
     Population mutatePopulation(Population population) {
         Population populationToMutateWith = new Population(population.getSchedules().size(), data);
-
         ArrayList<Schedule> schedules = populationToMutateWith.getSchedules();
-        IntStream.range(0, Scheduler.NUMB_OF_ELITE_SCHEDULES).forEach(x -> schedules.set(x, population.getSchedules().get(x)));
-        IntStream.range(Scheduler.NUMB_OF_ELITE_SCHEDULES, population.getSchedules().size()).forEach(x -> {
-            schedules.set(x, mutateSchedule(population.getSchedules().get(x)));
-        });
+
+        for (int i = 0; i < Scheduler.NUMB_OF_TOP_SCHEDULES; i++) {
+            schedules.set(i, population.getSchedules().get(i));
+        }
+
+        for (int i = Scheduler.NUMB_OF_TOP_SCHEDULES; i < population.getSchedules().size(); i++) {
+            schedules.set(i, mutateSchedule(population.getSchedules().get(i)));
+        }
+
         return populationToMutateWith;
     }
 
@@ -133,6 +146,7 @@ public class GeneticAlgorithm {
                 && x.getTimeslotDayId() == class1.getTimeslotDayId()
                 && x.getRoom().getId() == class1.getRoom().getId())
                 .collect(Collectors.toList());
+
         similarClasses.sort(Comparator.comparing(Class::getCourseId).thenComparing(Class::getTimeslotId));
         int timeslotIdDifference = -1;
         for (Class similarClass : similarClasses) {
@@ -182,11 +196,11 @@ public class GeneticAlgorithm {
 
     Population competePopulation(Population population) {
         Population populationToCompeteWith = new Population(Scheduler.NUMB_OF_POPULATION_COMPETITOR, data);
-
-        IntStream.range(0, Scheduler.NUMB_OF_POPULATION_COMPETITOR).forEach(x -> {
-            populationToCompeteWith.getSchedules().set(x,
-                    population.getSchedules().get((int) (Math.random() * population.getSchedules().size())));
-        });
+        for (int i = 0; i < Scheduler.NUMB_OF_POPULATION_COMPETITOR; i++) {
+            int randomScheduleIndex = (int) (Math.random() * population.getSchedules().size());
+            populationToCompeteWith.getSchedules().set(i,
+                    population.getSchedules().get(randomScheduleIndex));
+        }
         return populationToCompeteWith;
     }
 }

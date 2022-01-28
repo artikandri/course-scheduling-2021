@@ -5,13 +5,13 @@ from random import randrange, choice
 import csv
 
 # get project root, relative to this folder: if the folder changes, the path MUST be changed as well.
-PROJECT_ROOT = Path().resolve().parent.parent.parent
+PROJECT_ROOT = Path().resolve().parent.parent
 
 # initialize the directory
 os.chdir(PROJECT_ROOT)
-datasetUnitimeFilePath = Path('dataset/raw', 'dataset_pu-fal07-llr.xlsx')
-datasetIllinoisFilePath = Path('dataset/raw', 'dataset_illinois_2019-fa.csv')
-instructorFilePath = Path('dataset/processed', 'instructors.csv')
+datasetUnitimeFilePath = Path('main/resources/dataset/raw', 'dataset_pu-fal07-llr.xlsx')
+datasetIllinoisFilePath = Path('main/resources/dataset/raw', 'dataset_illinois_2019-fa.csv')
+instructorFilePath = Path('main/resources/dataset/processed', 'instructors.csv')
 
 # read unitime dataset file
 # AB (offering) column stores course offerings
@@ -63,7 +63,7 @@ uniqueCourses = list(map(lambda course:course.replace("&amp;", "&"), uniqueCours
 courses = uniqueCourses[:len(unitimeCourses)]
 
 # Generate new csv file
-targetFilePath = Path("dataset/processed", "courses.csv")
+targetFilePath = Path("main/resources/dataset/processed", "courses.csv")
 targetFile = open(targetFilePath, 'w', newline="")
 
 # write the file and close

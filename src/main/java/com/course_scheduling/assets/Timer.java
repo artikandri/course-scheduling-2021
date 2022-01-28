@@ -1,7 +1,13 @@
 package com.course_scheduling.assets;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ *
+ * @author @artikandri, Teddy Ferdinan
+ */
 public class Timer {
 
     long starts;
@@ -10,7 +16,7 @@ public class Timer {
         return new Timer();
     }
 
-    private Timer() {
+    public Timer() {
         reset();
     }
 
@@ -28,9 +34,27 @@ public class Timer {
         return unit.convert(time(), TimeUnit.MILLISECONDS);
     }
 
-    public static void main(String[] args) {
-        Timer watch = Timer.start();
-        long passedTimeInMs = watch.time();
-        long passedTimeInSeconds = watch.time(TimeUnit.SECONDS);
+    /**
+     * Constructor. Let the app sleep for specified delay (in ms)
+     *
+     * @param delayInMilliseconds (in milliseconds)
+     */
+    public void sleep(int delayInMilliseconds) {
+        sleep(0, Timer.class.getName());
     }
+
+    /**
+     * Let the app sleep for specified delay (in ms)
+     *
+     * @param delayInMilliseconds (in milliseconds)
+     * @param className class name
+     */
+    public void sleep(int delayInMilliseconds, String className) {
+        try {
+            TimeUnit.SECONDS.sleep(delayInMilliseconds);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(className).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
